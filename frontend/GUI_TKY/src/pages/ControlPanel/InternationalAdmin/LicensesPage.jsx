@@ -5,7 +5,7 @@ import currency from "../../../assets/images/currency.png";
 import userprofile from "../../../assets/images/userprofile.png"
 // Reactstrap Components
 import { Input, Row, Col, Button } from "reactstrap";
-import '../controlpaneladmin.scss'
+import '../controlpaneladmin.scss';
 import InternationalHeader from "./InternationalHeader";
 function LicensesPage() {
   // useNavigate is a React Router hook used to programmatically navigate to different routes
@@ -33,34 +33,37 @@ function LicensesPage() {
     <>
       <InternationalHeader />
       {/* Main Content */}
-      <div className="container-fluid">
+      <div className="container-fluid mt-5">
         <Row className="m-4">
           <Col xs="12" md="6">
             <h4 className="fw-bold">Licenses</h4>
           </Col>
-          <Col xs="12" md="6" className="text-md-end mt-2 mt-md-0">
-            {/* Add License Button */}
-            <Button className="b-color px-4" onClick={handleAddLicense}>
-              + icon
-            </Button>
-          </Col>
+          
         </Row>
 
         {/* Search Box */}
-        <Row className="m-2">
-          <Col xs="12" md="6" className="d-flex justify-content-between align-items-center ms-3">
-            <div className="search-box w-50 position-relative">
-              <Input
-                type="search"
-                placeholder="Search..."
-                className="w-100 rounded-3 bg-transparent input"
-              />
-              <i
-                className="bx bx-search-alt-2 search-icon"               
-              ></i>
-            </div>
-          </Col>
-        </Row>
+        <Row className="m-2 d-flex align-items-center justify-content-between">
+  <Col xs="12" md="auto" className="d-flex">
+    <div className="search-box w-100 ms-3">
+      <Input
+        type="search"
+        placeholder="Search..."
+        className="rounded-3 bg-transparent input"
+      />
+      <i className="bx bx-search-alt-2 search-icon"></i>
+    </div>
+  </Col>
+  <Col xs="12" md="auto" className="text-md-end mt-2 mt-md-0">
+    {/* Add License Button */}
+    <Button
+      className="color-blue px-4 rounded-3 me-3"
+      onClick={handleAddLicense}
+      style={{ background: "#41619A" }}
+    >
+      + icon
+    </Button>
+  </Col>
+</Row>
 
 
         {/* License List Section */}
