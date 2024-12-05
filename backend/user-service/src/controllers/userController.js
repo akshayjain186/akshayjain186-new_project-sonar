@@ -16,7 +16,6 @@ const UserInfo = require('../models/userInfoModel');
  * @param {string} req.body.name - The name of the new user.
  * @param {string} req.body.surname - The surname of the new user.
  * @param {string} req.body.email - The email address of the new user.
-* @param {string} req.body.password - The plain text password of the new user.
  * @param {number|string} req.body.roleId - The role ID of the new user (as number or string).
  * @param {number} req.body.mobile_no - The mobile number of the new user.
  * @param {boolean|string} req.body.isActive - The active status of the user (as boolean or string).
@@ -136,13 +135,12 @@ const UserInfo = require('../models/userInfoModel');
 //   }
 // };
 
-
 // Helper function to generate a random password
 const generatePassword = () => {
-  return crypto.randomBytes(8).toString('hex'); // Generates a 16-character random password
+  return crypto.randomBytes(4).toString('hex'); // Generates a 16-character random password
 };
 
-// Nodemailer transporter configuration
+ // Nodemailer transporter configuration
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -169,7 +167,7 @@ const registerUser = async (req, res) => {
     organization_number,
   } = req.body;
 
-  const allowedRoleIds = [2, 3, 4, 5]; // Allowed roles for registration
+  const allowedRoleIds = [2, 3, 4, 5]; 
 
   try {
     // Validate roleId
@@ -214,8 +212,10 @@ const registerUser = async (req, res) => {
 
     // Generate and hash the password
     const generatedPassword = generatePassword();
-    const salt = await bcrypt.genSalt(10);
+    console.log("--------++++----------->>>>",generatedPassword);
+    const salt = await bcrypt.genSalt(6);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
+    console.log("------------8888---------->>>>",hashedPassword);
 
     // Create the user
     const newUser = await User.create({
@@ -281,8 +281,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-
-
 /**
  * Authenticates a user and generates a JWT token.
  *
@@ -301,12 +299,15 @@ const loginUser = async (req, res) => {
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json({ message: 'User not found' }); // Explicitly return
+      return res.status(400).json({ message: 'User not found' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await password;
+    // console.log(" new password",password);
+    // console.log(user.password);
+    // console.log(isMatch);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' }); // Explicitly return
+      return res.status(400).json({ message: 'Invalid credentials' });
     }
 
     const token = jwt.sign(
@@ -315,10 +316,10 @@ const loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    return res.json({ token }); // Explicitly return
+    return res.json({ token }); 
   } catch (error) {
-    console.error("Login error: ", error); // Log error for debugging
-    return res.status(500).json({ error: 'Server Error' }); // Explicitly return
+    console.error("Login error: ", error); 
+    return res.status(500).json({ error: 'Server Error' }); 
   }
 };
 
