@@ -111,7 +111,7 @@ const AddnewPage = () => {
                             <Row>
                                 <Col lg="12">
                                     {/* Manager Name and Surname */}
-                                    <div className="d-flex gap-2">
+                                    <div className="d-flex gap-2"> 
                                         <div className="w-50">
                                             <Label className="mb-0">Manager name</Label>
                                             <Input
