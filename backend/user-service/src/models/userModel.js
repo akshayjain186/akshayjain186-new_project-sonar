@@ -1,7 +1,7 @@
 
 const { DataTypes, Model } = require('sequelize');
 const {sequelize} = require('../../config/database'); // Adjust the path as per your project structure
-
+const UserInfo = require('../models/userInfoModel');
 class User extends Model {}
 
 User.init(
@@ -45,5 +45,7 @@ User.init(
     timestamps: true, // Add createdAt and updatedAt timestamps
   }
 );
+
+User.hasOne(UserInfo, { foreignKey: 'userId', as: 'userInfo' });
 
 module.exports = User;
