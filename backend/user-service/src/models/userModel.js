@@ -62,7 +62,7 @@ User.init(
     },
     password: {
       type: DataTypes.STRING,
-      // allowNull: false,
+      allowNull: false,
     },
     mobile_no: {
       type: DataTypes.STRING,

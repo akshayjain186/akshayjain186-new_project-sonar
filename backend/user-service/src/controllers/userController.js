@@ -138,6 +138,7 @@ const UserInfo = require('../models/userInfoModel');
 // Helper function to generate a random password
 const generatePassword = () => {
   return crypto.randomBytes(4).toString('hex'); // Generates a 16-character random password
+  // return Math.random().toString(36).slice(-8); // Generates an 8-character random password
 };
 
  // Nodemailer transporter configuration
@@ -210,12 +211,20 @@ const registerUser = async (req, res) => {
     if (!currency) return res.status(400).json({ error: 'Invalid currency_id.' });
     if (!language) return res.status(400).json({ error: 'Invalid language_id.' });
 
-    // Generate and hash the password
+     // Generate and hash the password
     const generatedPassword = generatePassword();
-    console.log("--------++++----------->>>>",generatedPassword);
-    const salt = await bcrypt.genSalt(6);
+    console.log("--------password for the login user----------->>>>",generatedPassword);
+    const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
-    console.log("------------8888---------->>>>",hashedPassword);
+    //  // Generate a random password
+    //  const password = generatePassword();
+
+    //  // Hash the password before saving to the database
+    //  const hashedPassword = crypto
+    //    .createHash('sha256')
+    //    .update(password)
+    //    .digest('hex');
+
 
     // Create the user
     const newUser = await User.create({
@@ -293,21 +302,49 @@ const registerUser = async (req, res) => {
  *
  * @throws {Error} - Returns a 500 status code if a server error occurs.
  */
+// const loginUser = async (req, res) => {
+//   const { email, password } = req.body;
+
+//   try {
+//     const user = await User.findOne({ where: { email } });
+//     if (!user) {
+//       return res.status(400).json({ message: 'User not found' });
+//     }
+
+//     const isMatch = await password;
+//     // console.log(" new password",password);
+//     // console.log(user.password);
+//     // console.log(isMatch);
+//     if (!isMatch) {
+//       return res.status(400).json({ message: 'Invalid credentials' });
+//     }
+
+//     const token = jwt.sign(
+//       { userId: user.id },
+//       process.env.JWT_SECRET,
+//       { expiresIn: '1h' }
+//     );
+
+//     return res.json({ token }); 
+//   } catch (error) {
+//     console.error("Login error: ", error); 
+//     return res.status(500).json({ error: 'Server Error' }); 
+//   }
+// };
+
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
     const user = await User.findOne({ where: { email } });
     if (!user) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({ message: 'User not found' }); // Explicitly return
     }
 
-    const isMatch = await password;
-    // console.log(" new password",password);
-    // console.log(user.password);
-    // console.log(isMatch);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({ message: 'Invalid credentials' }); // Explicitly return
     }
 
     const token = jwt.sign(
@@ -316,13 +353,12 @@ const loginUser = async (req, res) => {
       { expiresIn: '1h' }
     );
 
-    return res.json({ token }); 
+    return res.json({ token }); // Explicitly return
   } catch (error) {
-    console.error("Login error: ", error); 
-    return res.status(500).json({ error: 'Server Error' }); 
+    console.error("Login error: ", error); // Log error for debugging
+    return res.status(500).json({ error: 'Server Error' }); // Explicitly return
   }
 };
-
 /**
  * Initiates the password reset process by generating a token and sending a reset email.
  *
