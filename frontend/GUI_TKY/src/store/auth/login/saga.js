@@ -25,7 +25,7 @@ function* loginUser({ payload: { user, history } }) {
       console.log('Login faileasssssssssssd:', response);
       localStorage.setItem('authUser', JSON.stringify(response.data));
    
-      history('/home');
+      history('/licenses');
     }
   } catch (error) {
     console.log('Login failed:', error.response);
