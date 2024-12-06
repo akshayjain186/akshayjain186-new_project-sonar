@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import {
   Dropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from "reactstrap";
+} from 'reactstrap';
 
 //i18n
-import { withTranslation } from "react-i18next";
+import { withTranslation } from 'react-i18next';
 
 // Redux
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import withRouter from "../../Common/withRouter";
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import withRouter from '../../Common/withRouter';
 
 // users
-import user1 from "../../../assets/images/users/avatar-1.jpg";
+import user1 from '../../../assets/images/users/avatar-1.jpg';
 
 const ProfileMenu = (props) => {
   // Declare a new state variable, which we'll call "menu"
   const [menu, setMenu] = useState(false);
 
-  const [username, setusername] = useState("Admin");
+  const [username, setusername] = useState('Admin');
 
   // useEffect(() => {
   //   if (localStorage.getItem("authUser")) {
@@ -33,6 +33,10 @@ const ProfileMenu = (props) => {
   //   }
   // }, [props.success]);
 
+  const userLogout = () => {
+    localStorage.removeItem('authUser');
+    history('/login');
+  };
   return (
     <React.Fragment>
       <Dropdown
@@ -50,13 +54,13 @@ const ProfileMenu = (props) => {
             src={user1}
             alt="Header Avatar"
           />
-          <span className="d-none d-xl-inline-block ms-2 me-1">{username}</span>
+          <span className="d-none d-xl-inline-block ms-2 me-1"></span>
           <i className="mdi mdi-chevron-down d-none d-xl-inline-block" />
         </DropdownToggle>
         <DropdownMenu className="dropdown-menu-end">
-          <Link to="/login" className="dropdown-item">
+          <Link className="dropdown-item" onClick={() => userLogout()}>
             <i className="bx bx-power-off font-size-16 align-middle me-1 text-danger" />
-            <span>{props.t("Logout")}</span>
+            <span>{props.t('Logout')}</span>
           </Link>
         </DropdownMenu>
       </Dropdown>
