@@ -6,11 +6,25 @@ const { authenticate } = require('../middleware/authMiddleware');
 
 const app = express();
 
+// Import the continent routes
+const continentRoutes = require('./routes/continentRoutes');
+const countryRoutes = require('./routes/countriesRoutes'); // Import the routes
+const currencyRoutes = require('./routes/currencyRoutes'); // Adjust path if necessary
+const languageRoutes = require('./routes/languagesRoutes')
+const company = require('./routes/companyRoutes')
+
 // Middleware
 app.use(express.json());
 
 // Routes
 app.use('/api/products', authenticate, productRoutes);  // Protect product routes with authentication
+
+app.use('/api/continents', continentRoutes);
+app.use('/api/countries', countryRoutes);
+app.use('/api', currencyRoutes); 
+app.use('/api/languages',languageRoutes)
+app.use('/api/company',company)
+
 
 // Test DB connection and handle errors in a single chain
 sequelize.authenticate()
