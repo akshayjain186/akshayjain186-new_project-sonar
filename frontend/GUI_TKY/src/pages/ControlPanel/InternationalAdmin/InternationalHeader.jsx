@@ -11,10 +11,10 @@ const InternationalHeader = () => {
                     <img
                         src={logo}
                         alt="Company Logo"
-                        style={{ height: "25px" }}
+                        style={{ height: "30px" }}
                     />
                     {/* User Avatar */}
-                    <div className="d-flex me-3">
+                    <div className="d-flex me-5">
                         <img
                             src={navprofile}
                             alt="User Avatar"

@@ -9,10 +9,10 @@ import customer from '../../../assets/images/customers.png'
 import companies from '../../../assets/images/companies.png'
 import product from '../../../assets/images/product.png'
 import portaluser from '../../../assets/images/portaluser.png'
-import '../controlpaneladmin.scss'
 import InternationalHeader from "./InternationalHeader";
-
+import styles from '../controlpaneladmin.scss';
 const OwnerPage = () => {
+    console.log(styles)
     const [ActivateLink, setActivateLink] = useState(null);
 
     const handleLinkClick = (linkName) => {
@@ -61,7 +61,7 @@ const OwnerPage = () => {
                 cell: (cell) => {
                     return (
                         <div className="text-danger d-flex text-end">
-                            <i className="bx bx-show me-2" style={{ color: "#41619A" }}></i>
+                            <i className="bx bx-show  fs-4" style={{ color: "#41619A" }}></i>
                             {/* Vertical Line */}
                             <div
                                 style={{
@@ -70,7 +70,7 @@ const OwnerPage = () => {
                                     margin: "0 8px",
                                 }}
                             ></div>
-                            <a href="#" className="text-danger mb-0">
+                            <a href="#" className="text-danger mb-0 fs-5">
                                 Deactivate
                             </a>
                         </div>
@@ -265,6 +265,31 @@ const OwnerPage = () => {
             "customers": 75,
             "status": "Deactivate"
         },
+    
+        {
+            "name": "Company G",
+            "main_manager": "Christopher Main",
+            "employees": 55,
+            "admins": 3,
+            "customers": 150,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 50,
+            "admins": 3,
+            "customers": 120,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 30,
+            "admins": 2,
+            "customers": 75,
+            "status": "Deactivate"
+        },
         {
             "name": "Baderom Pluss AS",
             "main_manager": "Camilla Larson",
@@ -273,6 +298,271 @@ const OwnerPage = () => {
             "customers": 200,
             "status": "Activate"
         },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 12,
+            "admins": 1,
+            "customers": 40,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 90,
+            "admins": 4,
+            "customers": 250,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Camilla Larson",
+            "employees": 20,
+            "admins": 2,
+            "customers": 60,
+            "status": "Activate"
+        },
+        {
+            "name": "Company G",
+            "main_manager": "Christopher Main",
+            "employees": 55,
+            "admins": 3,
+            "customers": 150,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 50,
+            "admins": 3,
+            "customers": 120,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 30,
+            "admins": 2,
+            "customers": 75,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 75,
+            "admins": 5,
+            "customers": 200,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 12,
+            "admins": 1,
+            "customers": 40,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 90,
+            "admins": 4,
+            "customers": 250,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Camilla Larson",
+            "employees": 20,
+            "admins": 2,
+            "customers": 60,
+            "status": "Activate"
+        },
+        {
+            "name": "Company G",
+            "main_manager": "Christopher Main",
+            "employees": 55,
+            "admins": 3,
+            "customers": 150,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 50,
+            "admins": 3,
+            "customers": 120,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 30,
+            "admins": 2,
+            "customers": 75,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 75,
+            "admins": 5,
+            "customers": 200,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 12,
+            "admins": 1,
+            "customers": 40,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 90,
+            "admins": 4,
+            "customers": 250,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Camilla Larson",
+            "employees": 20,
+            "admins": 2,
+            "customers": 60,
+            "status": "Activate"
+        },
+        {
+            "name": "Company G",
+            "main_manager": "Christopher Main",
+            "employees": 55,
+            "admins": 3,
+            "customers": 150,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 50,
+            "admins": 3,
+            "customers": 120,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 30,
+            "admins": 2,
+            "customers": 75,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 75,
+            "admins": 5,
+            "customers": 200,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 12,
+            "admins": 1,
+            "customers": 40,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 90,
+            "admins": 4,
+            "customers": 250,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Camilla Larson",
+            "employees": 20,
+            "admins": 2,
+            "customers": 60,
+            "status": "Activate"
+        },
+        {
+            "name": "Company G",
+            "main_manager": "Christopher Main",
+            "employees": 55,
+            "admins": 3,
+            "customers": 150,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 50,
+            "admins": 3,
+            "customers": 120,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 30,
+            "admins": 2,
+            "customers": 75,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 75,
+            "admins": 5,
+            "customers": 200,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 12,
+            "admins": 1,
+            "customers": 40,
+            "status": "Activate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Christopher Main",
+            "employees": 90,
+            "admins": 4,
+            "customers": 250,
+            "status": "Deactivate"
+        },
+        {
+            "name": "Build Forum",
+            "main_manager": "Camilla Larson",
+            "employees": 20,
+            "admins": 2,
+            "customers": 60,
+            "status": "Activate"
+        },
+        {
+            "name": "Company G",
+            "main_manager": "Christopher Main",
+            "employees": 55,
+            "admins": 3,
+            "customers": 150,
+            "status": "Activate"
+        },
+        {
+            "name": "Baderom Pluss AS",
+            "main_manager": "Camilla Larson",
+            "employees": 50,
+            "admins": 3,
+            "customers": 120,
+            "status": "Activate"
+        },
+        
         {
             "name": "Baderom Pluss AS",
             "main_manager": "Camilla Larson",
@@ -1424,2192 +1714,7 @@ const OwnerPage = () => {
             "admins": 3,
             "customers": 150,
             "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-
+        },     
     ]
     return (
         <>
@@ -3618,7 +1723,7 @@ const OwnerPage = () => {
                 <div className=" mt-4">
                     <div className="mb-4">
                         <p>
-                            <strong>Norway</strong> ^ <span>Licenses</span>
+                        <span>Licenses</span> ^ <strong>Norway</strong> 
                         </p>
                     </div>
                     <Row className="d-flex justify-content ">
@@ -3634,10 +1739,10 @@ const OwnerPage = () => {
                                     <p className="text-muted">Europe</p>
                                 </div>
                             </div>
-                            <div className="mt-4" style={{ lineHeight: "2.0" }}>
-                                <span className="fw-muted">Language:<span className="ms-2 fw-normal">Norwegian</span></span><br />
-                                <span className="fw-muted">Currency:<span className="ms-2 fw-normal">Norwegian Krone</span></span><br />
-                                <span className="fw-muted">Organisation number:<span className="ms-2 fw-normal">817158722</span></span>
+                            <div className= {`${styles.textColor} mt-4`} style={{ lineHeight: "2.0",fontWeight:"600" }}>
+                                <span className="fw-muted ">Language:<span className="ms-2 fw-normal" style={{color:"#3A465C"}}>Norwegian</span></span><br />
+                                <span className="fw-muted">Currency:<span className="ms-2 fw-normal "style={{color:"#3A465C"}}>Norwegian Krone</span></span><br />
+                                <span className="fw-muted">Organisation number:<span className="ms-2 fw-normal"style={{color:"#3A465C"}}>817158722</span></span>
                             </div>
                         </Col>
                         <Col className="justify-content-end">
@@ -3697,7 +1802,7 @@ const OwnerPage = () => {
                     </Row>
 
                     <h5 className="mt-4">Owner</h5>
-                    <Row className="my-3 flex-wrap p-3 align-items-center" style={{ background: "#F4F8FC" }}>
+                    <Row className="my-3 flex-wrap p-3 align-items-center border" style={{ background: "#F4F8FC" }}>
                         {/* Left Column: User Image and Details */}
                         <Col xs="12" md="6" className="d-flex align-items-center mb-3 mb-md-0 flex-wrap">
                             {/* User Image */}
@@ -3732,8 +1837,7 @@ const OwnerPage = () => {
                             </Col>
 
                             {/* Phone Number */}
-                            <Col xs="4" md="2
-    " className="d-flex align-items-center">
+                            <Col xs="4" md="2 " className="d-flex align-items-center">
                                 <i className="bx bx-phone me-2"></i>
                                 <p className="mb-0 text-muted">+4721607947</p>
                             </Col>
@@ -3789,7 +1893,6 @@ const OwnerPage = () => {
                             </a>
                         </Col>
                     </Row>
-
 
                     <TableContainer
                         columns={columns}

@@ -1358,7 +1358,7 @@ $pagination-padding-x-lg:           1.5rem;
 $pagination-font-size:              $font-size-base ;
 
 $pagination-color:                  var(--#{$prefix}secondary-color);
-// $pagination-bg:                     var(--#{$prefix}secondary-bg);
+$pagination-bg:                     var(--#{$prefix}secondary-bg);
 $pagination-border-radius:          var(--#{$prefix}border-radius);
 $pagination-border-width:           var(--#{$prefix}border-width);
 $pagination-margin-start:           calc(#{$pagination-border-width} * -1); // stylelint-disable-line function-disallowed-list
@@ -1374,14 +1374,14 @@ $pagination-hover-color:            var(--#{$prefix}link-hover-color);
 $pagination-hover-border-color:     var(--#{$prefix}border-color); // Todo in v6: remove this?
 
 $pagination-active-color:           $component-active-color;
-// $pagination-active-bg:              $component-active-bg;
+ $pagination-active-bg:              $component-active-bg;
 $pagination-active-border-color:    $component-active-bg;
 
 $pagination-disabled-color:         var(--#{$prefix}secondary-color);
 $pagination-disabled-bg:            var(--#{$prefix}secondary-bg);
 $pagination-disabled-border-color:  var(--#{$prefix}border-color);
 
-$pagination-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+$-transition:              color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 
 $pagination-border-radius-sm:       var(--#{$prefix}border-radius-sm);
 $pagination-border-radius-lg:       var(--#{$prefix}border-radius-lg);

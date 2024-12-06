@@ -11,7 +11,7 @@
     position: relative;
   }
  .search-icon {
-    position: absolute;
+    position: absolute ;
     margin-top: 20px;
     left: 1rem;
     transform: translateY(-50%);
@@ -25,4 +25,7 @@
   .theadClass {
     background-color: #41619A; /* Change this to your desired color */
     color: white; /* Adjust text color for contrast */
+  }
+  .textColor{
+          color:"#A8AFB9";
   }
