@@ -7,7 +7,7 @@ module.exports = {
           primaryKey: true,
         },
         userId:{
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
         },
         address: {
@@ -40,7 +40,7 @@ module.exports = {
         },
         organization_number: {
           type: Sequelize.STRING,
-          unique: true,
+          // unique: true,
           allowNull: false,
         },
         created_at: {

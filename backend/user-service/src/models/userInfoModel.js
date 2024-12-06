@@ -38,7 +38,7 @@ UserInfo.init({
   },
   organization_number: {
     type: DataTypes.STRING,
-    unique: true,
+    // unique: true,
     allowNull: false,
   },
 }, {
