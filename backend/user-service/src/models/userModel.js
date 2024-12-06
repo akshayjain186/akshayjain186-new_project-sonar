@@ -1,6 +1,6 @@
 
 const { DataTypes, Model } = require('sequelize');
-const {sequelize} = require('../../config/database'); // Adjust the path as per your project structure
+const {sequelize} = require('../../config/database'); 
 
 class User extends Model {}
 
@@ -39,10 +39,10 @@ User.init(
     },
   },
   {
-    sequelize, // The Sequelize instance
-    modelName: 'User', // The model name
-    tableName: 'Users', // Table name in the database
-    timestamps: true, // Add createdAt and updatedAt timestamps
+    sequelize, 
+    modelName: 'User', 
+    tableName: 'Users', 
+    timestamps: true, 
   }
 );
 
