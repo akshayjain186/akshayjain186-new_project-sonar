@@ -1,0 +1,8 @@
+/** Get Country List data */
+export const GET_COUNTRY_LIST = 'GET_COUNTRY_LIST';
+export const GET_LANGUAGE_LIST = 'GET_LANGUAGE_LIST';
+export const GET_CURRENCIES_LIST = 'GET_CURRENCIES_LIST';
+export const GET_CONTINENT_LIST = 'GET_CONTINENT_LIST';
+
+// post action
+export const POST_GENERAL_INFORMATION = 'POST_GENERAL_INFORMATION';

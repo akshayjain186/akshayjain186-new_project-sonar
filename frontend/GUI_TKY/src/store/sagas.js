@@ -1,6 +1,7 @@
 import { all, fork } from 'redux-saga/effects';
 import authSaga from './auth/login/saga';
 import LayoutSaga from "./layout/saga";
+import masterSaga from './master/saga';
 
 //import LayoutSaga from "../store/layout/saga"
 /**
@@ -22,5 +23,6 @@ export default function* rootSaga() {
   yield all([
     fork(authSaga),
     fork(LayoutSaga),
+    fork(masterSaga)
   ]);
 }

@@ -1,5 +1,12 @@
-import { POST_LOGIN,GET_USER_PROFILE } from './url_service'; // Import the specific URL constant
-import { post,get } from './api_service'; // Import the post method from api_service
+import {
+  POST_LOGIN,
+  GET_USER_PROFILE,
+  GET_COUNTRY_LIST,
+  GET_LANGUAGE_LIST,
+  GET_CURRENCIES_LIST,
+  GET_CONTINENT_LIST,
+} from './url_service'; // Import the specific URL constant
+import { post, get } from './api_service'; // Import the post method from api_service
 
 /**
  * Helper function to handle user login.
@@ -8,9 +15,8 @@ import { post,get } from './api_service'; // Import the post method from api_ser
  * @param {object} data - The login credentials (e.g., username, password).
  */
 const postLogin = (data) => {
-
   // Send the POST request to the login URL with the provided data
- return post(POST_LOGIN, data);
+  return post(POST_LOGIN, data);
 };
 
 /**
@@ -20,5 +26,18 @@ const postLogin = (data) => {
  * @returns {Promise} - Returns a promise that resolves to the user profile data.
  */
 export const getUserProfile = () => get(GET_USER_PROFILE);
+// master list
+export const getCountryListData = () => get(GET_COUNTRY_LIST);
+export const getLanguageListData = () => get(GET_LANGUAGE_LIST);
+export const getCurrenciesListData = () => get(GET_CURRENCIES_LIST);
+export const getContinentListData = () => get(GET_CONTINENT_LIST);
+
+export const postGeneralInformationData = (data) => {
+  console.log(data,'postGeneralInformationData')
+  return 
+
+  // post(GET_CONTINENT_LIST);
+}
+
 
 export { postLogin }; // Export the postLogin function for use in other parts of the application
