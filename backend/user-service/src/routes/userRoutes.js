@@ -16,6 +16,8 @@ router.post('/verify', verifyToken, (req, res) => {
   });
 
   //Forgot Password
-  router.post('/forgot-password',forgotPassword)
+  router.post('/forgot-password',forgotPassword);
+
+  // router.get('/user-list',getAllUsers);
 
 module.exports = router;
