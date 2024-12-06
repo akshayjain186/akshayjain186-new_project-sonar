@@ -17,7 +17,11 @@ const OwnerPage = () => {
     const handleLinkClick = (linkName) => {
         setActivateLink(linkName);
     };
+    const [activeTab, setActiveTab] = useState("Super admins"); // Default tab
 
+    const handleTabClick = (tabName) => {
+        setActiveTab(tabName);
+    };
     const columns = useMemo(
         () => [
 
@@ -69,7 +73,7 @@ const OwnerPage = () => {
                                     margin: "0 8px",
                                 }}
                             ></div>
-                            <a href="#" className="text-danger mb-0 fs-5">
+                            <a href="#" className="text-danger mb-0 fs-5 border-bottom ">
                                 Deactivate
                             </a>
                         </div>
@@ -1100,6 +1104,7 @@ const OwnerPage = () => {
         },
 
     ]
+    
     return (
         <>
             <InternationalHeader />
@@ -1107,7 +1112,7 @@ const OwnerPage = () => {
                 <div className="mt-4">
                     <div className="mb-4">
                         <p>
-                            <span className="text-color">Licenses</span> ^ <span className="text_light">Norway</span>
+                            <span className="text-color">Licenses</span>&nbsp;&nbsp; ^ &nbsp;&nbsp;<span className="text_light">Norway</span>
                         </p>
                     </div>
                     <Row className="d-flex justify-content ">
@@ -1232,65 +1237,85 @@ const OwnerPage = () => {
                     </Row>
 
 
-                    <Row className="mb-4 mt-5">
-                        <Col className="d-flex align-items-center border-bottom">
-                            {/* Managers Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Managers' ? 'border-bottom border-primary fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Managers')}
-                                style={{ textDecoration: ActivateLink === 'Managers' ? 'none' : 'none', color: ActivateLink === 'Managers' ? '#41619A' : 'black' }}
-                            >
-                                Managers
-                            </a>
+                {/* Tab Navigation */}
+                <Row className="mb-4 mt-5">
+                    <Col className="d-flex align-items-center border-bottom">
+                        {/* Managers Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Managers' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Managers')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Managers' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Managers
+                        </a>
 
-                            {/* Super Admins Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Super admins' ? 'border-bottom border-primary  fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Super admins')}
-                                style={{ textDecoration: ActivateLink === 'Super admins' ? 'none' : 'none', color: ActivateLink === 'Super admins' ? '#41619A' : 'black' }}
-                            >
-                                Super admins
-                            </a>
+                        {/* Super Admins Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Super admins' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Super admins')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Super admins' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Super admins
+                        </a>
 
-                            {/* Admins Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Admins' ? 'border-bottom border-primary fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Admins')}
-                                style={{ textDecoration: ActivateLink === 'Admins' ? 'none' : 'none', color: ActivateLink === 'Admins' ? '#41619A' : 'black' }}
-                            >
-                                Admins
-                            </a>
+                        {/* Admins Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Admins' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Admins')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Admins' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Admins
+                        </a>
 
-                            {/* Customers Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Customers' ? 'border-bottom border-primary  fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Customers')}
-                                style={{ textDecoration: ActivateLink === 'Customers' ? 'none' : 'none', color: ActivateLink === 'Customers' ? '#41619A' : 'black' }}
-                            >
-                                Customers
-                            </a>
-                        </Col>
-                    </Row>
-
-                    <TableContainer
-                        columns={columns}
-                        data={users || []}
-                        isGlobalFilter={false}
-                        isPagination={true}
-                        SearchPlaceholder="Search..."
-                        isCustomPageSize={false}
-                        isAddButton={false}
-                        buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
-                        buttonName="New Contact"
-                        tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"
-                        theadClass="table-light"
-                        paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
-                        pagination="pagination"
-                    />
+                        {/* Customers Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Customers' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Customers')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Customers' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Customers
+                        </a>
+                    </Col>
+                </Row>
+                    
+                <div className="tab-content mt-4">
+                    {activeTab === "Managers" && <p>No data available for Managers.</p>}
+                    {activeTab === "Admins" && <p>No data available for Admins.</p>}
+                    {activeTab === "Customers" && <p>No data available for Customers.</p>}
+                    {activeTab === "Super admins" && (
+                        <TableContainer
+                            columns={columns}
+                            data={users || []}
+                            isGlobalFilter={false}
+                            isPagination={true}
+                            SearchPlaceholder="Search..."
+                            isCustomPageSize={false}
+                  y          isAddButton={false}
+                            buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
+                            buttonName="New Contact"
+                            tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"
+                            theadClass="table-light"
+                            paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
+                            pagination="pagination"
+                        />
+                    )}
+                </div>
                 </div>
             </div>
         </>

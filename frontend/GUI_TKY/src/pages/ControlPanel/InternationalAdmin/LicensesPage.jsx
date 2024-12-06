@@ -7,6 +7,8 @@ import userprofile from "../../../assets/images/userprofile.png"
 import { Input, Row, Col, Button } from "reactstrap";
 import '../controlpaneladmin.scss';
 import InternationalHeader from "./InternationalHeader";
+import plus from '../../../assets/images/plus.png'
+import search from '../../../assets/images/searchIcon.png'
 function LicensesPage() {
   // useNavigate is a React Router hook used to programmatically navigate to different routes
   const navigate = useNavigate();
@@ -15,6 +17,7 @@ function LicensesPage() {
   const handleAddLicense = () => {
     navigate("/addnew");
   };
+  
   // License data 
   const licenses = {
     Europe: [
@@ -48,9 +51,9 @@ function LicensesPage() {
               <Input
                 type="search"
                 placeholder="Search..."
-                className="rounded-3 bg-transparent input"
+                className="rounded-3 bg-transparent input mt-1 "
               />
-              <i className="bx bx-search-alt-2 search-icon"></i>
+              <img src={search} alt="" className="search-icon" />
             </div>
           </Col>
           <Col xs="12" md="auto" className="text-md-end mt-2 mt-md-0">
@@ -58,15 +61,15 @@ function LicensesPage() {
             <Button
               className=" px-4 rounded-3 me-3"
               onClick={handleAddLicense}
-              style={{ background: "#41619A" }}
+              style={{ background: "#41619A",}}
             >
-              + icon
+             <img src={plus} alt="" className="me-1" /> Icon
             </Button>
           </Col>
         </Row>
 
         {/* License List Section */}
-        <Row className="m-4">
+        <Row className="mt-0 m-4">
           <Col>
             {Object.keys(licenses).map((region) => (
               <div key={region} className="mb-4">
@@ -74,11 +77,11 @@ function LicensesPage() {
                 {licenses[region].map((license, index) => (
                   <div
                     key={index}
-                    className="d-flex flex-column flex-md-row justify-content-between h-75 align-items-start align-items-md-center border rounded p-3 mb-2 bg-white"
+                    className="d-flex flex-column flex-md-row justify-content-between h-75 align-items-start align-items-md-center border rounded p-4 mb-2 bg-white"
                   >
                     {/* Country and Flag */}
-                    <div className="d-flex gap-2 align-items-center mb-2 mb-md-0">
-                      <div className="rounded-4 h-25 ">{license.flag}</div>
+                    <div className="d-flex gap-3 align-items-center mb-2 mb-md-0">
+                      <div className="rounded-4 h-25 ms-3 ">{license.flag}</div>
                       <p className="mb-0">{license.country}</p>
                     </div>
                     {/* License Info */}
@@ -87,12 +90,12 @@ function LicensesPage() {
                       style={{ width: "30%", maxWidth: "300px" }}
                     >
                       <div className="d-flex">
-                        <img src={userprofile} alt="Profile Icon" className="me-2" />
+                        <img src={userprofile} alt="Profile Icon" className="me-2 h-25"/>
                         <span>{license.name}</span>
                       </div>
                       <div className="d-flex align-items-center">
                         <img src={currency} alt="Currency Icon" className="me-2" />
-                        <span>{license.currency}</span>
+                        <span className="me-4">{license.currency}</span>
                       </div>
                     </div>
                   </div>

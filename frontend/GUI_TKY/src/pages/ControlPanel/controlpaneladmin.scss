@@ -75,3 +75,31 @@
   border-color: #41619A;
   border-bottom: #41619A;
 }
+.border-b{
+  border-bottom: red;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.form-control:focus,
+.form-select:focus {
+  border: 1px solid #41619A !important;
+  outline: none !important;
+}
+
+/* For select dropdowns */
+.form-select:focus {
+  border: 1px solid #41619A !important;
+}
+
+/* Apply a subtle transition effect */
+.form-control:focus,
+.form-select:focus {
+  transition: border 0.3s ease;
+}
