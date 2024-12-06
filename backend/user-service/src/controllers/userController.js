@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const Country = require('../models/countriesModel');
-const Currency = require('../models/currencyModel'); 
+const Currency = require('../models/currencyModel');
 const Language = require('../models/languagesModel');
 const Continent = require('../models/continentsModel');
 const User = require('../models/userModel');
@@ -44,7 +44,6 @@ const UserInfo = require('../models/userInfoModel');
 //     organization_number
 //   } = req.body;
 
-
 //   // Define allowed roles for registration
 //   const allowedRoleIds = [2, 3, 4, 5];
 
@@ -67,7 +66,6 @@ const UserInfo = require('../models/userInfoModel');
 //       Currency.findByPk(currency_id),
 //       Language.findByPk(language_id),
 //     ]);
-   
 
 //     if (!continent) return res.status(400).json({ error: 'Invalid continent_id.' });
 //     if (!country) return res.status(400).json({ error: 'Invalid country_id.' });
@@ -101,7 +99,7 @@ const UserInfo = require('../models/userInfoModel');
 //       postal_code,
 //       organization_number
 //     });
-    
+
 //     // Respond with the newly created user details (excluding sensitive data)
 //     res.status(201).json({
 //       message: 'User registered successfully.',
@@ -125,7 +123,7 @@ const UserInfo = require('../models/userInfoModel');
 //         },
 //       },
 //     });
-    
+
 //   } catch (error) {
 //     console.error('Registration error:', error);
 //     if (error.name === 'SequelizeUniqueConstraintError') {
@@ -141,7 +139,7 @@ const generatePassword = () => {
   // return Math.random().toString(36).slice(-8); // Generates an 8-character random password
 };
 
- // Nodemailer transporter configuration
+// Nodemailer transporter configuration
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -168,13 +166,15 @@ const registerUser = async (req, res) => {
     organization_number,
   } = req.body;
 
-  const allowedRoleIds = [2, 3, 4, 5]; 
+  const allowedRoleIds = [1,2, 3, 4, 5];
 
   try {
     // Validate roleId
     const numericRoleId = parseInt(roleId, 10);
     if (!allowedRoleIds.includes(numericRoleId)) {
-      return res.status(403).json({ error: 'You are not authorized to register users with this role.' });
+      return res.status(403).json({
+        error: 'You are not authorized to register users with this role.',
+      });
     }
 
     // Validate required fields
@@ -206,14 +206,20 @@ const registerUser = async (req, res) => {
       Language.findByPk(language_id),
     ]);
 
-    if (!continent) return res.status(400).json({ error: 'Invalid continent_id.' });
+    if (!continent)
+      return res.status(400).json({ error: 'Invalid continent_id.' });
     if (!country) return res.status(400).json({ error: 'Invalid country_id.' });
-    if (!currency) return res.status(400).json({ error: 'Invalid currency_id.' });
-    if (!language) return res.status(400).json({ error: 'Invalid language_id.' });
+    if (!currency)
+      return res.status(400).json({ error: 'Invalid currency_id.' });
+    if (!language)
+      return res.status(400).json({ error: 'Invalid language_id.' });
 
-     // Generate and hash the password
+    // Generate and hash the password
     const generatedPassword = generatePassword();
-    console.log("--------password for the login user----------->>>>",generatedPassword);
+    console.log(
+      '--------password for the login user----------->>>>',
+      generatedPassword
+    );
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
     //  // Generate a random password
@@ -224,7 +230,6 @@ const registerUser = async (req, res) => {
     //    .createHash('sha256')
     //    .update(password)
     //    .digest('hex');
-
 
     // Create the user
     const newUser = await User.create({
@@ -260,7 +265,8 @@ const registerUser = async (req, res) => {
 
     // Respond with success
     res.status(201).json({
-      message: 'User registered successfully. Password has been sent to the registered email address.',
+      message:
+        'User registered successfully. Password has been sent to the registered email address.',
       user: {
         id: newUser.id,
         name: newUser.name,
@@ -284,7 +290,9 @@ const registerUser = async (req, res) => {
   } catch (error) {
     console.error('Registration error:', error);
     if (error.name === 'SequelizeUniqueConstraintError') {
-      return res.status(409).json({ error: 'Email or mobile number already in use.' });
+      return res
+        .status(409)
+        .json({ error: 'Email or mobile number already in use.' });
     }
     res.status(500).json({ error: 'Server Error. Could not register user.' });
   }
@@ -325,13 +333,12 @@ const registerUser = async (req, res) => {
 //       { expiresIn: '1h' }
 //     );
 
-//     return res.json({ token }); 
+//     return res.json({ token });
 //   } catch (error) {
-//     console.error("Login error: ", error); 
-//     return res.status(500).json({ error: 'Server Error' }); 
+//     console.error("Login error: ", error);
+//     return res.status(500).json({ error: 'Server Error' });
 //   }
 // };
-
 
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -347,15 +354,22 @@ const loginUser = async (req, res) => {
       return res.status(400).json({ message: 'Invalid credentials' }); // Explicitly return
     }
 
-    const token = jwt.sign(
-      { userId: user.id },
-      process.env.JWT_SECRET,
-      { expiresIn: '1h' }
-    );
-
-    return res.json({ token }); // Explicitly return
+    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+      expiresIn: '1h',
+    });
+    console.log('ssssssss', user);
+    const userData = {
+      id: user.id,
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      mobile_no: user.mobile_no,
+      roleId: user.roleId,
+      isActive: true,
+    };
+    return res.json({ token, userData }); // Explicitly return
   } catch (error) {
-    console.error("Login error: ", error); // Log error for debugging
+    console.error('Login error: ', error); // Log error for debugging
     return res.status(500).json({ error: 'Server Error' }); // Explicitly return
   }
 };
@@ -417,7 +431,7 @@ const forgotPassword = async (req, res) => {
       status: 'success',
     });
   } catch (error) {
-    console.error("Forgot password error: ", error); // Log error for debugging
+    console.error('Forgot password error: ', error); // Log error for debugging
     return res.status(500).json({
       message: 'Something went wrong',
       error: error.message,
@@ -425,4 +439,4 @@ const forgotPassword = async (req, res) => {
   }
 };
 
-module.exports = { registerUser, loginUser ,forgotPassword };
+module.exports = { registerUser, loginUser, forgotPassword };
