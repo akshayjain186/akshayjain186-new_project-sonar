@@ -16,7 +16,6 @@ const UserInfo = require('../models/userInfoModel');
  * @param {string} req.body.name - The name of the new user.
  * @param {string} req.body.surname - The surname of the new user.
  * @param {string} req.body.email - The email address of the new user.
-* @param {string} req.body.password - The plain text password of the new user.
  * @param {number|string} req.body.roleId - The role ID of the new user (as number or string).
  * @param {number} req.body.mobile_no - The mobile number of the new user.
  * @param {boolean|string} req.body.isActive - The active status of the user (as boolean or string).
@@ -136,13 +135,13 @@ const UserInfo = require('../models/userInfoModel');
 //   }
 // };
 
-
 // Helper function to generate a random password
 const generatePassword = () => {
-  return crypto.randomBytes(8).toString('hex'); // Generates a 16-character random password
+  return crypto.randomBytes(4).toString('hex'); // Generates a 16-character random password
+  // return Math.random().toString(36).slice(-8); // Generates an 8-character random password
 };
 
-// Nodemailer transporter configuration
+ // Nodemailer transporter configuration
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -169,7 +168,7 @@ const registerUser = async (req, res) => {
     organization_number,
   } = req.body;
 
-  const allowedRoleIds = [2, 3, 4, 5]; // Allowed roles for registration
+  const allowedRoleIds = [2, 3, 4, 5]; 
 
   try {
     // Validate roleId
@@ -212,10 +211,20 @@ const registerUser = async (req, res) => {
     if (!currency) return res.status(400).json({ error: 'Invalid currency_id.' });
     if (!language) return res.status(400).json({ error: 'Invalid language_id.' });
 
-    // Generate and hash the password
+     // Generate and hash the password
     const generatedPassword = generatePassword();
+    console.log("--------password for the login user----------->>>>",generatedPassword);
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
+    //  // Generate a random password
+    //  const password = generatePassword();
+
+    //  // Hash the password before saving to the database
+    //  const hashedPassword = crypto
+    //    .createHash('sha256')
+    //    .update(password)
+    //    .digest('hex');
+
 
     // Create the user
     const newUser = await User.create({
@@ -281,8 +290,6 @@ const registerUser = async (req, res) => {
   }
 };
 
-
-
 /**
  * Authenticates a user and generates a JWT token.
  *
@@ -295,6 +302,37 @@ const registerUser = async (req, res) => {
  *
  * @throws {Error} - Returns a 500 status code if a server error occurs.
  */
+// const loginUser = async (req, res) => {
+//   const { email, password } = req.body;
+
+//   try {
+//     const user = await User.findOne({ where: { email } });
+//     if (!user) {
+//       return res.status(400).json({ message: 'User not found' });
+//     }
+
+//     const isMatch = await password;
+//     // console.log(" new password",password);
+//     // console.log(user.password);
+//     // console.log(isMatch);
+//     if (!isMatch) {
+//       return res.status(400).json({ message: 'Invalid credentials' });
+//     }
+
+//     const token = jwt.sign(
+//       { userId: user.id },
+//       process.env.JWT_SECRET,
+//       { expiresIn: '1h' }
+//     );
+
+//     return res.json({ token }); 
+//   } catch (error) {
+//     console.error("Login error: ", error); 
+//     return res.status(500).json({ error: 'Server Error' }); 
+//   }
+// };
+
+
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
@@ -321,7 +359,6 @@ const loginUser = async (req, res) => {
     return res.status(500).json({ error: 'Server Error' }); // Explicitly return
   }
 };
-
 /**
  * Initiates the password reset process by generating a token and sending a reset email.
  *

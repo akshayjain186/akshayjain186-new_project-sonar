@@ -1,9 +1,9 @@
+const { DataTypes, Model } = require('sequelize');
+const { sequelize } = require('../../config/database');  
 
-const { DataTypes } = require('sequelize');
-const sequelize = require('../../config/database');
+class Role extends Model {}
 
-
-const Role = sequelize.define('Role', {
+Role.init({
   name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -21,11 +21,16 @@ const Role = sequelize.define('Role', {
     type: DataTypes.TEXT, 
     allowNull: true,
   },
-  isActive:{
-    type: DataTypes.BOOLEAN, 
-    allowNull: false,        
-    defaultValue: true, 
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false,
+    defaultValue: true,
   },
+}, {
+  sequelize,
+  modelName: 'Role', 
+  tableName: 'roles', 
+  timestamps: true, 
 });
 
 module.exports = Role;

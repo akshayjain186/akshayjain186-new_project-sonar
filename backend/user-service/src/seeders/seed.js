@@ -1,31 +1,15 @@
-// const sequelize = require('../../config/database');
-// const seedRoles = require('./role-seeder'); // Adjust path if incorrect
 
-// (async () => {
-//   try {
-//     await sequelize.authenticate(); // Ensure the database connection works
-//     console.log('Database connected successfully.');
-
-//     await seedRoles(); // Run the seeder
-//     console.log('Seeding completed successfully!');
-//   } catch (error) {
-//     console.error('Error during seeding:', error);
-//   } finally {
-//     await sequelize.close(); // Close the database connection
-//   }
-// })();
 const { getEmojiFlag } = require('countries-list');
-const { continents, countries } = require('countries-list'); // package countries ,continents
+const { continents, countries } = require('countries-list'); 
 const { sequelize } = require('../../config/database');
 const Continent = require('../models/continentsModel');
 const Country = require('../models/countriesModel');
 const Currency = require('../models/currencyModel');
 const Language = require('../models/languagesModel');
-const iso6391 = require('iso-639-1'); // ISO 639-1 package
-const currencyCodes = require('currency-codes'); // Currency codes package
+const iso6391 = require('iso-639-1'); 
+const currencyCodes = require('currency-codes'); 
 const seedRoles = require('./role-seeder'); 
-// const seedProjectManageRole = require('./seedProjectManageRole');
-// const seedCategoriesAndSubcategories = require('./seedCategoriesAndSubcategories');
+
 
 
 (async () => {
@@ -104,8 +88,6 @@ const seedRoles = require('./role-seeder');
           console.error(`Error inserting country ${data.name}:`, error);
         }
       }   
-      await seedProjectManageRole();
-      await seedCategoriesAndSubcategories();
       await seedRoles();
    
 
