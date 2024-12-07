@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useReactTable, getCoreRowModel, getFilteredRowModel, getPaginationRowModel, getSortedRowModel, flexRender } from '@tanstack/react-table';
 import { rankItem } from '@tanstack/match-sorter-utils';
 import JobListGlobalFilter from "./GlobalSearchFilter";
+
+// Column Filter
 const Filter = ({ column }) => {
   const columnFilterValue = column.getFilterValue();
 
@@ -21,6 +23,7 @@ const Filter = ({ column }) => {
     </>
   );
 };
+
 // Global Filter
 const DebouncedInput = ({ value: initialValue, onChange, debounce = 500, ...props }) => {
   const [value, setValue] = useState(initialValue);
@@ -74,8 +77,10 @@ const getPaginationLinks = (totalPages, currentPage) => {
       paginationLinks.push(totalPages - 1);
     }
   }
+
   return paginationLinks;
 };
+
 const TableContainer = ({
   columns,
   data,
@@ -106,6 +111,7 @@ const TableContainer = ({
     });
     return itemRank.passed;
   };
+
   const table = useReactTable({
     columns,
     data,
@@ -136,7 +142,9 @@ const TableContainer = ({
     previousPage,
     getState
   } = table;
+
   const paginationLinks = getPaginationLinks(getPageOptions().length, getState().pagination.pageIndex);
+
   return (
     <Fragment>
       <Row className="mb-2">
@@ -157,6 +165,7 @@ const TableContainer = ({
             </select>
           </Col>
         )}
+
         {isGlobalFilter && <DebouncedInput
           value={globalFilter ?? ''}
           onChange={value => setGlobalFilter(String(value))}
@@ -175,12 +184,12 @@ const TableContainer = ({
       </Row>
       <div className={divClassName ? divClassName : "table-responsive"}>
         <Table hover className={tableClass} bordered={isBordered}>
-          <thead  className={theadClass}>
+          <thead className={theadClass}>
             {getHeaderGroups().map(headerGroup => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map(header => {
                   return (
-                    <th key={header.id} colSpan={header.colSpan} className={`${header.column.columnDef.enableSorting ? "sorting sorting_desc" : ""}`} style={{backgroundColor:"#F4F8FC",border:"none", fontWeight:"normal"}}>
+                    <th key={header.id} colSpan={header.colSpan} className={`${header.column.columnDef.enableSorting ? "sorting sorting_desc" : ""}`} style={{ backgroundColor: "#F4F8FC", border: "none", fontWeight: "400"}}>
                       {header.isPlaceholder ? null : (
                         <React.Fragment>
                           <div
@@ -221,7 +230,7 @@ const TableContainer = ({
                 <tr key={row.id} >
                   {row.getVisibleCells().map(cell => {
                     return (
-                      <td key={cell.id} style={{backgroundColor:"transparent",width:"20%",}}>
+                      <td key={cell.id} style={{ backgroundColor: "transparent", width: "20%", }}>
                         {flexRender(
                           cell.column.columnDef.cell,
                           cell.getContext()
@@ -235,48 +244,46 @@ const TableContainer = ({
           </tbody>
         </Table>
       </div>
-
       {isPagination && (
-  <Row className="mt-auto justify-content-end">
-    <Col sm={12} md={7} className="d-flex justify-content-end">
-      <div className="align-items-end">
-        <ul className={`${pagination} d-flex align-items-end`} style={{ gap: "10px" }}>
-          <li className={`paginate_button page-item previous ${!getCanPreviousPage() ? "disabled" : ""}`}>
-            <Link to="#" className="page-link" onClick={previousPage}>
-              <i className="mdi mdi-chevron-left"></i>
-            </Link>
-          </li>
-          {paginationLinks.map((item, key) => (
-            item === '...' ? (
-              <li key={key} className="paginate_button page-item">
-                <span className="page-link">...</span>
-              </li>
-            ) : (
-              <li
-                key={key}
-                className={`paginate_button page-item ${getState().pagination.pageIndex === item ? "" : ""}`}
-                style={{
-                  border: getState().pagination.pageIndex === item ? "" : "none",
-                  borderRadius: "4px",
-                }}
-              >
-                <Link to="#" className="page-link" onClick={() => setPageIndex(item)}>
-                  {item + 1}
-                </Link>
-              </li>
-            )
-          ))}
-          <li className={`paginate_button page-item next ${!getCanNextPage() ? "disable" : ""}`}>
-            <Link to="#" className="page-link" onClick={nextPage}>
-              <i className="mdi mdi-chevron-right"></i>
-            </Link>
-          </li>
-        </ul>
-      </div>
-    </Col>
-  </Row>
-)}
-
+        <Row>      
+          <Col sm={12} md={12}>
+            <div className="">
+              <ul className={`${pagination} d-flex align-items-center`} style={{ gap: "10px" }}>
+                <li className={`paginate_button page-item previous ${!getCanPreviousPage() ? "disabled" : ""}`}>
+                  <Link to="#" className="page-link" onClick={previousPage}>
+                    <i className="mdi mdi-chevron-left"></i>
+                  </Link>
+                </li>
+                {paginationLinks.map((item, key) => (
+                  item === '...' ? (
+                    <li key={key} className="paginate_button page-item disabled">
+                      <span className="page-link">...</span>
+                    </li>
+                  ) : (
+                    <li
+                      key={key} 
+                      className={`paginate_button page-item ${getState().pagination.pageIndex === item ? "" : ""}`}
+                      style={{
+                        border: getState().pagination.pageIndex === item ? "border-black" : "none",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      <Link to="#" className="page-link" onClick={() => setPageIndex(item)}>
+                        {item + 1}
+                      </Link>
+                    </li>
+                  )
+                ))}
+                <li className={`paginate_button page-item next ${!getCanNextPage() ? "disabled" : ""}`}>
+                  <Link to="#" className="page-link" onClick={nextPage}>
+                    <i className="mdi mdi-chevron-right"></i>
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </Col>
+        </Row>
+      )}
     </Fragment>
   );
 };
