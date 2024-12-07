@@ -10,15 +10,18 @@ import companies from '../../../assets/images/companies.png'
 import product from '../../../assets/images/product.png'
 import portaluser from '../../../assets/images/portaluser.png'
 import InternationalHeader from "./InternationalHeader";
-import styles from '../controlpaneladmin.scss';
+import '../controlpaneladmin.scss';
 const OwnerPage = () => {
-    console.log(styles)
     const [ActivateLink, setActivateLink] = useState(null);
 
     const handleLinkClick = (linkName) => {
         setActivateLink(linkName);
     };
+    const [activeTab, setActiveTab] = useState("Super admins"); // Default tab
 
+    const handleTabClick = (tabName) => {
+        setActiveTab(tabName);
+    };
     const columns = useMemo(
         () => [
 
@@ -61,7 +64,7 @@ const OwnerPage = () => {
                 cell: (cell) => {
                     return (
                         <div className="text-danger d-flex text-end">
-                            <i className="bx bx-show  fs-4" style={{ color: "#41619A" }}></i>
+                            <i className="bx bx-show  fs-4 text_blue"></i>
                             {/* Vertical Line */}
                             <div
                                 style={{
@@ -70,7 +73,7 @@ const OwnerPage = () => {
                                     margin: "0 8px",
                                 }}
                             ></div>
-                            <a href="#" className="text-danger mb-0 fs-5">
+                            <a href="#" className="text-danger mb-0 fs-5 border-bottom ">
                                 Deactivate
                             </a>
                         </div>
@@ -265,7 +268,7 @@ const OwnerPage = () => {
             "customers": 75,
             "status": "Deactivate"
         },
-    
+
         {
             "name": "Company G",
             "main_manager": "Christopher Main",
@@ -562,287 +565,7 @@ const OwnerPage = () => {
             "customers": 120,
             "status": "Activate"
         },
-        
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
+
         {
             "name": "Baderom Pluss AS",
             "main_manager": "Camilla Larson",
@@ -1379,351 +1102,17 @@ const OwnerPage = () => {
             "customers": 150,
             "status": "Activate"
         },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 50,
-            "admins": 3,
-            "customers": 120,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 30,
-            "admins": 2,
-            "customers": 75,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 75,
-            "admins": 5,
-            "customers": 200,
-            "status": "Activate"
-        },
-        {
-            "name": "Baderom Pluss AS",
-            "main_manager": "Camilla Larson",
-            "employees": 12,
-            "admins": 1,
-            "customers": 40,
-            "status": "Activate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Christopher Main",
-            "employees": 90,
-            "admins": 4,
-            "customers": 250,
-            "status": "Deactivate"
-        },
-        {
-            "name": "Build Forum",
-            "main_manager": "Camilla Larson",
-            "employees": 20,
-            "admins": 2,
-            "customers": 60,
-            "status": "Activate"
-        },
-        {
-            "name": "Company G",
-            "main_manager": "Christopher Main",
-            "employees": 55,
-            "admins": 3,
-            "customers": 150,
-            "status": "Activate"
-        },     
+
     ]
+    
     return (
         <>
             <InternationalHeader />
-            <div className="m-5 ">
-                <div className=" mt-4">
+            <div className="m-5">
+                <div className="mt-4">
                     <div className="mb-4">
                         <p>
-                        <span>Licenses</span> ^ <strong>Norway</strong> 
+                            <span className="text-color">Licenses</span>&nbsp;&nbsp; ^ &nbsp;&nbsp;<span className="text_light">Norway</span>
                         </p>
                     </div>
                     <Row className="d-flex justify-content ">
@@ -1739,10 +1128,10 @@ const OwnerPage = () => {
                                     <p className="text-muted">Europe</p>
                                 </div>
                             </div>
-                            <div className= {`${styles.textColor} mt-4`} style={{ lineHeight: "2.0",fontWeight:"600" }}>
-                                <span className="fw-muted ">Language:<span className="ms-2 fw-normal" style={{color:"#3A465C"}}>Norwegian</span></span><br />
-                                <span className="fw-muted">Currency:<span className="ms-2 fw-normal "style={{color:"#3A465C"}}>Norwegian Krone</span></span><br />
-                                <span className="fw-muted">Organisation number:<span className="ms-2 fw-normal"style={{color:"#3A465C"}}>817158722</span></span>
+                            <div className="mt-4 textContaint">
+                                <span className="text-color fw-muted">Language:<span className="ms-2 fw-normal text_light" >Norwegian</span></span><br />
+                                <span className=" text-color fw-muted">Currency:<span className="ms-2 fw-normal text_light ">Norwegian Krone</span></span><br />
+                                <span className=" text-color fw-muted">Organisation number:<span className="ms-2 fw-normal text_light">817158722</span></span>
                             </div>
                         </Col>
                         <Col className="justify-content-end">
@@ -1752,22 +1141,22 @@ const OwnerPage = () => {
 
                                     <div className=" border border-2 p-3 d-flex justify-content-between rounded-3 flex-wrap">
                                         <div>
-                                            <span className="text-muted">PORTAL USERS</span>
-                                            <p className="fs-3 fw-bold" style={{ color: "#41619A" }}>4,566</p>
+                                            <span className="text-color text-muted">PORTAL USERS</span>
+                                            <p className="fs-3 fw-bold text_blue">4,566</p>
                                         </div>
                                         <div className="d-flex justify-content-end ">
-                                            <img src={portaluser} alt="" style={{ height: "15px", width: "15px" }} className="me-2 " />
+                                            <img src={portaluser} alt="" className="me-2 icon-style " />
                                         </div>
                                     </div>
                                 </div>
                                 <div className="box-design">
                                     <div className=" border border-2 p-3 d-flex justify-content-between rounded-3 flex-wrap">
                                         <div>
-                                            <span className="text-muted">CUSTOMERS</span>
-                                            <p className="fs-3 fw-bold" style={{ color: "#41619A" }}>1,546</p>
+                                            <span className="text-color text-muted">CUSTOMERS</span>
+                                            <p className="fs-3 fw-bold text_blue" >1,546</p>
                                         </div>
                                         <div className="d-flex justify-content-end ">
-                                            <img src={customer} alt="" style={{ height: "15px", width: "15px" }} className="me-2 " />
+                                            <img src={customer} alt="" className="me-2 icon-style  " />
                                         </div>
 
                                     </div>
@@ -1777,11 +1166,11 @@ const OwnerPage = () => {
                                 <div className="box-design">
                                     <div className=" border border-2 p-3  d-flex justify-content-between rounded-3 flex-wrap">
                                         <div>
-                                            <span className="text-muted">COMPANIES</span>
-                                            <p className="fs-3 fw-bold" style={{ color: "#41619A" }}>587</p>
+                                            <span className="text-color text-muted">COMPANIES</span>
+                                            <p className="fs-3 fw-bold text_blue" >587</p>
                                         </div>
                                         <div className="d-flex justify-content-end ">
-                                            <img src={companies} alt="" style={{ height: "15px", width: "15px" }} className="me-2 " />
+                                            <img src={companies} alt="" className="me-2 icon-style " />
                                         </div>
                                     </div>
                                 </div>
@@ -1789,11 +1178,11 @@ const OwnerPage = () => {
 
                                     <div className=" border border-2 p-3  d-flex justify-content-between rounded-3 flex-wrap">
                                         <div>
-                                            <span className="text-muted">PRODUCTS</span>
-                                            <p className="fs-3 fw-bold" style={{ color: "#41619A" }}>5,445</p>
+                                            <span className="text-color text-muted">PRODUCTS</span>
+                                            <p className="fs-3 fw-bold text_blue" >5,445</p>
                                         </div>
                                         <div className="d-flex justify-content-end ">
-                                            <img src={product} alt="" style={{ height: "15px", width: "15px" }} className="me-2 " />
+                                            <img src={product} alt="" className="me-2 icon-style" />
                                         </div>
                                     </div>
                                 </div>
@@ -1802,19 +1191,18 @@ const OwnerPage = () => {
                     </Row>
 
                     <h5 className="mt-4">Owner</h5>
-                    <Row className="my-3 flex-wrap p-3 align-items-center border" style={{ background: "#F4F8FC" }}>
+                    <Row className="my-3 flex-wrap p-3 align-items-center border bg-sky">
                         {/* Left Column: User Image and Details */}
                         <Col xs="12" md="6" className="d-flex align-items-center mb-3 mb-md-0 flex-wrap">
                             {/* User Image */}
                             <img
                                 src={user}
                                 alt="Owner"
-                                className="rounded-circle me-3"
-                                style={{ width: "50px", height: "50px" }}
+                                className="rounded-circle me-3 owner-img"
                             />
                             {/* User Name and Email */}
                             <div>
-                                <h5 className="mb-1">Harry Stone</h5>
+                                <h5 className="mb-1 text_light">Harry Stone</h5>
                                 <p className="mb-0 text-muted">harry.stone@gmail.com</p>
                             </div>
                         </Col>
@@ -1830,85 +1218,104 @@ const OwnerPage = () => {
                                 <img
                                     src={location}
                                     alt="Location Icon"
-                                    style={{ height: "15px", width: "15px" }}
-                                    className="me-2"
+                                    className="me-2 icon-style"
                                 />
-                                <p className="mb-0 text-muted">Vossegata 22, 0475 Oslo</p>
+                                <p className="mb-0  text_light">Vossegata 22, 0475 Oslo</p>
                             </Col>
 
                             {/* Phone Number */}
                             <Col xs="4" md="2 " className="d-flex align-items-center">
                                 <i className="bx bx-phone me-2"></i>
-                                <p className="mb-0 text-muted">+4721607947</p>
+                                <p className="mb-0 d text_light">+4721607947</p>
                             </Col>
                             {/* Email */}
                             <Col xs="3" md="4" className="d-flex align-items-center col-wrap">
                                 <i className="bx bx-envelope me-2"></i>
-                                <p className="mb-0 text-muted">tyler_hopp@gmail.com</p>
+                                <p className="mb-0  text_light">tyler_hopp@gmail.com</p>
                             </Col>
                         </Col>
                     </Row>
 
 
-                    <Row className="mb-4 mt-5">
-                        <Col className="d-flex align-items-center border-bottom">
-                            {/* Managers Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Managers' ? 'border-bottom border-primary fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Managers')}
-                                style={{ textDecoration: ActivateLink === 'Managers' ? 'none' : 'none', color: ActivateLink === 'Managers' ? '#41619A' : 'black' }}
-                            >
-                                Managers
-                            </a>
+                {/* Tab Navigation */}
+                <Row className="mb-4 mt-5">
+                    <Col className="d-flex align-items-center border-bottom">
+                        {/* Managers Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Managers' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Managers')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Managers' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Managers
+                        </a>
 
-                            {/* Super Admins Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Super admins' ? 'border-bottom border-primary  fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Super admins')}
-                                style={{ textDecoration: ActivateLink === 'Super admins' ? 'none' : 'none', color: ActivateLink === 'Super admins' ? '#41619A' : 'black' }}
-                            >
-                                Super admins
-                            </a>
+                        {/* Super Admins Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Super admins' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Super admins')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Super admins' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Super admins
+                        </a>
 
-                            {/* Admins Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Admins' ? 'border-bottom border-primary fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Admins')}
-                                style={{ textDecoration: ActivateLink === 'Admins' ? 'none' : 'none', color: ActivateLink === 'Admins' ? '#41619A' : 'black' }}
-                            >
-                                Admins
-                            </a>
+                        {/* Admins Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Admins' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Admins')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Admins' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Admins
+                        </a>
 
-                            {/* Customers Link */}
-                            <a
-                                href="#"
-                                className={`me-4 anchor-text ${ActivateLink === 'Customers' ? 'border-bottom border-primary  fw-bold' : ''}`}
-                                onClick={() => handleLinkClick('Customers')}
-                                style={{ textDecoration: ActivateLink === 'Customers' ? 'none' : 'none', color: ActivateLink === 'Customers' ? '#41619A' : 'black' }}
-                            >
-                                Customers
-                            </a>
-                        </Col>
-                    </Row>
-
-                    <TableContainer
-                        columns={columns}
-                        data={users || []}
-                        isGlobalFilter={false}
-                        isPagination={true}
-                        SearchPlaceholder="Search..."
-                        isCustomPageSize={false}
-                        isAddButton={false}
-                        buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
-                        buttonName="New Contact"
-                        tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"
-                        theadClass="table-light"
-                        paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
-                        pagination="pagination"
-                    />
+                        {/* Customers Tab */}
+                        <a
+                            href="#"
+                            className={`me-4 anchor-text ${activeTab === 'Customers' ? 'border-bottom border-primary fw-bold' : ''}`}
+                            onClick={() => handleTabClick('Customers')}
+                            style={{
+                                textDecoration: "none",
+                                color: activeTab === 'Customers' ? '#41619A' : 'black',
+                            }}
+                        >
+                            Customers
+                        </a>
+                    </Col>
+                </Row>
+                    
+                <div className="tab-content mt-4">
+                    {activeTab === "Managers" && <p>No data available for Managers.</p>}
+                    {activeTab === "Admins" && <p>No data available for Admins.</p>}
+                    {activeTab === "Customers" && <p>No data available for Customers.</p>}
+                    {activeTab === "Super admins" && (
+                        <TableContainer
+                            columns={columns}
+                            data={users || []}
+                            isGlobalFilter={false}
+                            isPagination={true}
+                            SearchPlaceholder="Search..."
+                            isCustomPageSize={false}
+                  y          isAddButton={false}
+                            buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
+                            buttonName="New Contact"
+                            tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"
+                            theadClass="table-light"
+                            paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
+                            pagination="pagination"
+                        />
+                    )}
+                </div>
                 </div>
             </div>
         </>

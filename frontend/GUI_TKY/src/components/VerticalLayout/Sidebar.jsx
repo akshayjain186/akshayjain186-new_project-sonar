@@ -13,7 +13,7 @@ import logo from "../../assets/images/logo.svg";
 
 import logoDark from "../../assets/images/logo-dark.png";
 import Group from "../../assets/images/Group.png"
-import Icon from "../../assets/images/Icon.png"
+// import Icon from "../../assets/images/Icon.png"
 
 const Sidebar = (props) => {
 

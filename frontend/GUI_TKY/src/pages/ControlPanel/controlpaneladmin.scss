@@ -1,31 +1,105 @@
-.box-design{
-    width: 40%;
+.box-design {
+  width: 40%;
 }
-.color-blue{
-    background-color: #41619A;
+
+.text_blue {
+  color: #41619A;
 }
-.bg-transparent{
-    background-color: transparent;
+
+.color-blue {
+  background-color: #41619A;
 }
+
+.bg-transparent {
+  background-color: transparent;
+}
+
 .search-box {
-    position: relative;
-  }
- .search-icon {
-    position: absolute ;
-    margin-top: 20px;
-    left: 1rem;
-    transform: translateY(-50%);
-    font-size: 2.6rem;
-    color: #888;
-  }
+  position: relative;
+}
+
+.search-icon {
+  position: absolute;
+  margin-top: 20px;
+  left: 1rem;
+  transform: translateY(-50%);
+  font-size: 2.6rem;
+  color: #888;
+}
+
+.input {
+  padding-left: 2.5rem;
+}
+
+.theadClass {
+  background-color: #41619A;
+
+  color: white;
   
-  .input {
-    padding-left: 2.5rem; /* Adjusts space for the icon */
-  }
-  .theadClass {
-    background-color: #41619A; /* Change this to your desired color */
-    color: white; /* Adjust text color for contrast */
-  }
-  .textColor{
-          color:"#A8AFB9";
-  }
+}
+
+.textContaint {
+  font-weight: 600;
+  line-height: 2.0;
+}
+
+.text-color {
+  color: #A8AFB9;
+}
+
+.text_light {
+  color: #3A465C;
+}
+
+.icon-style {
+  height: 15px;
+  width: 15px;
+}
+
+.bg-sky {
+  background-color: #F4F8FC;
+}
+
+.owner-img {
+  height: 50px;
+  width: 50px;
+}
+
+.vertical-line {
+  border-left: "1px solid #EAEEF4";
+  height: "20px";
+  margin: "0 8px";
+
+}
+.border-color{
+  border-color: #41619A;
+  border-bottom: #41619A;
+}
+.border-b{
+  border-bottom: red;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+.form-control:focus,
+.form-select:focus {
+  border: 1px solid #41619A !important;
+  outline: none !important;
+}
+
+/* For select dropdowns */
+.form-select:focus {
+  border: 1px solid #41619A !important;
+}
+
+/* Apply a subtle transition effect */
+.form-control:focus,
+.form-select:focus {
+  transition: border 0.3s ease;
+}
