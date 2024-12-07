@@ -32,7 +32,6 @@ const getAllCurrencies = async (req, res) => {
   }
 };
 
-
 // Get a single currency by its code
 const getCurrencyByCode = async (req, res) => {
     try {

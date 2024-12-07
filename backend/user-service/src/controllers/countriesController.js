@@ -33,7 +33,6 @@ const getAllCountries = async (req, res) => {
   }
 };
 
-
 const getCountryById = async (req, res) => {
   try {
     const {
