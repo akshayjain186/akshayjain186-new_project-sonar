@@ -165,7 +165,7 @@ const registerUser = async (req, res) => {
       text: `Hello ${name} ${surname},\n\nYour account has been successfully created.\n\nYour login credentials are:\nEmail: ${email}\nPassword: ${generatedPassword}\n\nPlease change your password after logging in for the first time.\n\nThank you,\nTeam`,
     });
 
-    // Respond with success
+    // success Response
     res.status(201).json({
       message: 'User registered successfully. Password has been sent to the registered email address.',
       user: {
@@ -300,67 +300,55 @@ const loginUser = async (req, res) => {
  * @throws {Error} - Returns a 500 status code if a server error occurs.
  */
 
-const forgotPassword = async (req, res) => {
-  const {
-    email
-  } = req.body;
+// const forgotPassword = async (req, res) => {
+//   const { email } = req.body;
 
-  try {
-    // Check if the user exists
-    const user = await User.findOne({
-      where: {
-        email
-      }
-    });
+//   try {
+//     // Check if the user exists
+//     const user = await User.findOne({ where: { email } });
 
-    if (!user) {
-      return res.status(400).json({
-        message: 'User not found'
-      });
-    }
+//     if (!user) {
+//       return res.status(400).json({ message: 'User not found' });
+//     }
 
-    // Generate a secure token
-    const resetToken = crypto.randomBytes(32).toString('hex');
-    const resetTokenExpiry = Date.now() + 3600000; // Token valid for 1 hour
+//     // Generate a secure token
+//     const resetToken = crypto.randomBytes(32).toString('hex');
+//     const resetTokenExpiry = Date.now() + 3600000; // Token valid for 1 hour
 
-    // Save the reset token and expiry in the database
-    user.resetToken = resetToken;
-    user.resetTokenExpiry = resetTokenExpiry;
-    await user.save();
+//     // Save the reset token and expiry in the database
+//     user.resetToken = resetToken;
+//     user.resetTokenExpiry = resetTokenExpiry;
+//     await user.save();
 
-    // Create the reset link
-    const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
+//     // Create the reset link
+//     const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
 
-    // Configure nodemailer
-    const transporter = nodemailer.createTransport({
-      service: 'your-email-service', // e.g., Gmail
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD,
-      },
-    });
+//     // Configure nodemailer
+//     const transporter = nodemailer.createTransport({
+//       service: 'your-email-service', // e.g., Gmail
+//       auth: {
+//         user: process.env.EMAIL_USER,
+//         pass: process.env.EMAIL_PASSWORD,
+//       },
+//     });
 
-    // Email options
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: email,
-      subject: 'Password Reset Request',
-      text: `You requested a password reset. Click the link to reset your password: ${resetLink}`,
-    };
+//     // Email options
+//     const mailOptions = {
+//       from: process.env.EMAIL_USER,
+//       to: email,
+//       subject: 'Password Reset Request',
+//       text: `You requested a password reset. Click the link to reset your password: ${resetLink}`,
+//     };
 
-    // Send email
-    await transporter.sendMail(mailOptions);
+//     // Send email
+//     await transporter.sendMail(mailOptions);
 
-    return res.json({
-      message: 'Password reset link sent to your email.'
-    });
-  } catch (error) {
-    console.error('Forgot password error: ', error);
-    return res.status(500).json({
-      error: 'Server Error'
-    });
-  }
-};
+//     return res.json({ message: 'Password reset link sent to your email.' });
+//   } catch (error) {
+//     console.error('Forgot password error: ', error);
+//     return res.status(500).json({ error: 'Server Error' });
+//   }
+// };
 
 const getAllUsers = async (req, res) => {
   try {
@@ -473,7 +461,6 @@ const getUserById = async (req, res) => {
 module.exports = {
   registerUser,
   loginUser,
-  forgotPassword,
   getAllUsers,
   getUserById,
 };
