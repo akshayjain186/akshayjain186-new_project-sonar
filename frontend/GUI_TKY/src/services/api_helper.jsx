@@ -5,6 +5,7 @@ import {
   GET_LANGUAGE_LIST,
   GET_CURRENCIES_LIST,
   GET_CONTINENT_LIST,
+  POST_REGISTER_USER,
 } from './url_service'; // Import the specific URL constant
 import { post, get } from './api_service'; // Import the post method from api_service
 
@@ -18,7 +19,17 @@ const postLogin = (data) => {
   // Send the POST request to the login URL with the provided data
   return post(POST_LOGIN, data);
 };
-
+/**
+ * Helper function to handle user registration.
+ * Sends registration data to the server via a POST request.
+ *
+ * @param {object} userData - The registration information (name, email, password, etc.).
+ */
+export const postRegister = (data) => {
+  console.log(data,"postRegister")
+  return post(POST_REGISTER_USER, data);
+  
+}
 /**
  * Fetches the user profile from the server.
  * Sends a GET request to retrieve the user's profile data.
