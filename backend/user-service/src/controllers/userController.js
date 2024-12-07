@@ -10,6 +10,7 @@ const User = require('../models/userModel');
 const UserInfo = require('../models/userInfoModel');
 const Role = require('../models/roleModel');
 
+
 /**
  * Registers a new user in the database with role-based authorization.
  *
@@ -27,11 +28,11 @@ const Role = require('../models/roleModel');
 
 // Helper function to generate a random password
 const generatePassword = () => {
-  return crypto.randomBytes(4).toString('hex'); 
- 
+  return crypto.randomBytes(4).toString('hex');
+
 };
 
- // Nodemailer 
+// Nodemailer 
 const transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
@@ -59,7 +60,7 @@ const registerUser = async (req, res) => {
     organization_number,
   } = req.body;
 
-  const allowedRoleIds = [1,2, 3, 4, 5]; 
+  const allowedRoleIds = [1, 2, 3, 4, 5];
 
   try {
     // Validate roleId
@@ -70,10 +71,12 @@ const registerUser = async (req, res) => {
       });
     }
 
-     // Fetch role from 'roles' table
-     const role = await Role.findByPk(numericRoleId); // assuming Role is your model for the 'roles' table
-     if (!role) return res.status(400).json({ error: 'Invalid role ID.' });
- 
+    // Fetch role from 'roles' table
+    const role = await Role.findByPk(numericRoleId); // assuming Role is your model for the 'roles' table
+    if (!role) return res.status(400).json({
+      error: 'Invalid role ID.'
+    });
+
     // Validate required fields
     const requiredFields = {
       name,
@@ -91,7 +94,9 @@ const registerUser = async (req, res) => {
 
     for (const [key, value] of Object.entries(requiredFields)) {
       if (!value) {
-        return res.status(400).json({ error: `${key} is required.` });
+        return res.status(400).json({
+          error: `${key} is required.`
+        });
       }
     }
 
@@ -104,12 +109,20 @@ const registerUser = async (req, res) => {
     ]);
 
     if (!continent)
-      return res.status(400).json({ error: 'Invalid continent_id.' });
-    if (!country) return res.status(400).json({ error: 'Invalid country_id.' });
+      return res.status(400).json({
+        error: 'Invalid continent_id.'
+      });
+    if (!country) return res.status(400).json({
+      error: 'Invalid country_id.'
+    });
     if (!currency)
-      return res.status(400).json({ error: 'Invalid currency_id.' });
+      return res.status(400).json({
+        error: 'Invalid currency_id.'
+      });
     if (!language)
-      return res.status(400).json({ error: 'Invalid language_id.' });
+      return res.status(400).json({
+        error: 'Invalid language_id.'
+      });
 
     // Generate and hash the password
     const generatedPassword = generatePassword();
@@ -119,7 +132,7 @@ const registerUser = async (req, res) => {
     );
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
-   
+
     // Create the user
     const newUser = await User.create({
       name,
@@ -154,8 +167,7 @@ const registerUser = async (req, res) => {
 
     // Respond with success
     res.status(201).json({
-      message:
-        'User registered successfully. Password has been sent to the registered email address.',
+      message: 'User registered successfully. Password has been sent to the registered email address.',
       user: {
         id: newUser.id,
         name: newUser.name,
@@ -182,9 +194,13 @@ const registerUser = async (req, res) => {
     if (error.name === 'SequelizeUniqueConstraintError') {
       return res
         .status(409)
-        .json({ error: 'Email or mobile number already in use.' });
+        .json({
+          error: 'Email or mobile number already in use.'
+        });
     }
-    res.status(500).json({ error: 'Server Error. Could not register user.' });
+    res.status(500).json({
+      error: 'Server Error. Could not register user.'
+    });
   }
 };
 
@@ -202,31 +218,50 @@ const registerUser = async (req, res) => {
  */
 
 const loginUser = async (req, res) => {
-  const { email, password } = req.body;
+  const {
+    email,
+    password
+  } = req.body;
 
   try {
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: {
+        email
+      }
+    });
 
     if (!user) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({
+        message: 'User not found'
+      });
     }
 
     // Compare the password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      return res.status(400).json({ message: 'Invalid credentials' });
+      return res.status(400).json({
+        message: 'Invalid credentials'
+      });
     }
 
     // Fetch role details using roleId
-    const role = await Role.findOne({ where: { id: user.roleId } });
+    const role = await Role.findOne({
+      where: {
+        id: user.roleId
+      }
+    });
 
     if (!role) {
-      return res.status(400).json({ message: 'Role not found' });
+      return res.status(400).json({
+        message: 'Role not found'
+      });
     }
 
     // Generate JWT token
-    const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, {
+    const token = jwt.sign({
+      userId: user.id
+    }, process.env.JWT_SECRET, {
       expiresIn: '1h',
     });
 
@@ -237,14 +272,19 @@ const loginUser = async (req, res) => {
       surname: user.surname,
       email: user.email,
       mobile_no: user.mobile_no,
-      role, 
-      isActive: user.isActive, 
+      role,
+      isActive: user.isActive,
     };
 
-    return res.json({ token, userData });
+    return res.json({
+      token,
+      userData
+    });
   } catch (error) {
     console.error('Login error: ', error);
-    return res.status(500).json({ error: 'Server Error' });
+    return res.status(500).json({
+      error: 'Server Error'
+    });
   }
 };
 
@@ -261,14 +301,22 @@ const loginUser = async (req, res) => {
  */
 
 const forgotPassword = async (req, res) => {
-  const { email } = req.body;
+  const {
+    email
+  } = req.body;
 
   try {
     // Check if the user exists
-    const user = await User.findOne({ where: { email } });
+    const user = await User.findOne({
+      where: {
+        email
+      }
+    });
 
     if (!user) {
-      return res.status(400).json({ message: 'User not found' });
+      return res.status(400).json({
+        message: 'User not found'
+      });
     }
 
     // Generate a secure token
@@ -303,14 +351,129 @@ const forgotPassword = async (req, res) => {
     // Send email
     await transporter.sendMail(mailOptions);
 
-    return res.json({ message: 'Password reset link sent to your email.' });
+    return res.json({
+      message: 'Password reset link sent to your email.'
+    });
   } catch (error) {
     console.error('Forgot password error: ', error);
-    return res.status(500).json({ error: 'Server Error' });
+    return res.status(500).json({
+      error: 'Server Error'
+    });
+  }
+};
+
+const getAllUsers = async (req, res) => {
+  try {
+    const { roleId } = req.query;
+    const users = await User.findAll({
+      where: roleId ? { roleId } : {}, 
+      attributes: {
+        exclude: ['password'], 
+      },
+    });
+
+    if (users.length === 0) {
+      return res.status(404).json({
+        message: 'No users found.',
+      });
+    }
+    const usersWithInfo = await Promise.all(users.map(async (user) => {
+      const userInfo = await UserInfo.findOne({
+        where: { userId: user.id },
+      });
+      const continent = userInfo ? await Continent.findByPk(userInfo.continent_id) : null;
+      const country = userInfo ? await Country.findByPk(userInfo.country_id) : null;
+      const currency = userInfo ? await Currency.findByPk(userInfo.currency_id) : null;
+      const language = userInfo ? await Language.findByPk(userInfo.language_id) : null;
+      return {
+        id: user.id,
+        name: user.name,
+        surname: user.surname,
+        email: user.email,
+        mobile_no: user.mobile_no,
+        roleId: user.roleId, 
+        userInfo: userInfo ? {
+          address: userInfo.address,
+          city: userInfo.city,
+          postal_code: userInfo.postal_code,
+          continent: continent ? continent.name : null,
+          country: country ? country.name : null,
+          currency: currency ? currency.name : null,
+          language: language ? language.name : null,
+          organization_number: userInfo.organization_number,
+        } : {},
+      };
+    }));
+    res.status(200).json({
+      message: 'Users retrieved successfully',
+      data: usersWithInfo,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      error: 'Server Error. Could not fetch users.',
+    });
   }
 };
 
 
+const getUserById = async (req, res) => {
+  const userId = req.params.id; 
+  try {
+    const user = await User.findOne({
+      where: { id: userId },
+      attributes: {
+        exclude: ['password'],  
+      },
+    });
 
+    if (!user) {
+      return res.status(404).json({
+        message: 'User not found.',
+      });
+    }
+    const userInfo = await UserInfo.findOne({
+      where: { userId: user.id },
+    });
+    const continent = userInfo ? await Continent.findByPk(userInfo.continent_id) : null;
+    const country = userInfo ? await Country.findByPk(userInfo.country_id) : null;
+    const currency = userInfo ? await Currency.findByPk(userInfo.currency_id) : null;
+    const language = userInfo ? await Language.findByPk(userInfo.language_id) : null;
 
-module.exports = { registerUser, loginUser ,forgotPassword };
+    const userWithInfo = {
+      id: user.id,
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      mobile_no: user.mobile_no,
+      userInfo: userInfo ? {
+        address: userInfo.address,
+        city: userInfo.city,
+        postal_code: userInfo.postal_code,
+        continent: continent ? continent.name : null,
+        country: country ? country.name : null,
+        currency: currency ? currency.name : null,
+        language: language ? language.name : null,
+        organization_number: userInfo.organization_number,
+      } : {},
+    };
+
+    res.status(200).json({
+      message: 'User retrieved successfully',
+      data: userWithInfo,
+    });
+  } catch (error) {
+    console.error('Error fetching user:', error);
+    res.status(500).json({
+      error: 'Server Error. Could not fetch user.',
+    });
+  }
+};
+
+module.exports = {
+  registerUser,
+  loginUser,
+  forgotPassword,
+  getAllUsers,
+  getUserById,
+};
