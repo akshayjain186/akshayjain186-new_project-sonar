@@ -2,7 +2,6 @@ const express = require('express');
 const {
   registerUser,
   loginUser,
-  forgotPassword,
   getAllUsers,
   getUserById,
   
@@ -32,7 +31,7 @@ router.post('/verify', verifyToken, (req, res) => {
 //   });
 
 //Forgot Password
-router.post('/forgot-password', forgotPassword);
+// router.post('/forgot-password', forgotPassword);
 
 router.get('/users-list', getAllUsers);
 
