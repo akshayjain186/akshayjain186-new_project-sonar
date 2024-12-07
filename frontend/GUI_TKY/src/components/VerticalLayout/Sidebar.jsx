@@ -41,9 +41,9 @@ const Sidebar = (props) => {
 
           <Link to="/" className="logo logo-light">
             <span className="me-2 ">
-              <img src={Icon} alt="" height="30" width="30"  onClick={() => {
+              {/* <img src={Icon} alt="" height="30" width="30"  onClick={() => {
                 tToggle();
-              }}/>
+              }}/> */}
             </span>
             <span className="logo-lg ms-2 me-n2">
               <img src={Group} alt="" height="19" />
