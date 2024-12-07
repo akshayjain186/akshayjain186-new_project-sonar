@@ -5,6 +5,7 @@ const {
   forgotPassword,
   getAllUsers,
   getUserById,
+  
 } = require('../controllers/userController');
 const {
   verifyToken
@@ -29,10 +30,8 @@ router.post('/verify', verifyToken, (req, res) => {
 //Forgot Password
 router.post('/forgot-password', forgotPassword);
 
-router.get('/', getAllUsers);
+router.get('/users-list', getAllUsers);
 
 router.get('/:id', getUserById);
-
-
 
 module.exports = router;

@@ -363,8 +363,9 @@ const forgotPassword = async (req, res) => {
 
 const getAllUsers = async (req, res) => {
   try {
-    
+    const { roleId } = req.query;
     const users = await User.findAll({
+      where: roleId ? { roleId } : {}, 
       attributes: {
         exclude: ['password'], 
       },
@@ -379,18 +380,17 @@ const getAllUsers = async (req, res) => {
       const userInfo = await UserInfo.findOne({
         where: { userId: user.id },
       });
-
       const continent = userInfo ? await Continent.findByPk(userInfo.continent_id) : null;
       const country = userInfo ? await Country.findByPk(userInfo.country_id) : null;
       const currency = userInfo ? await Currency.findByPk(userInfo.currency_id) : null;
       const language = userInfo ? await Language.findByPk(userInfo.language_id) : null;
-
       return {
         id: user.id,
         name: user.name,
         surname: user.surname,
         email: user.email,
         mobile_no: user.mobile_no,
+        roleId: user.roleId, 
         userInfo: userInfo ? {
           address: userInfo.address,
           city: userInfo.city,
@@ -403,17 +403,18 @@ const getAllUsers = async (req, res) => {
         } : {},
       };
     }));
-
     res.status(200).json({
       message: 'Users retrieved successfully',
       data: usersWithInfo,
     });
   } catch (error) {
+    console.error(error);
     res.status(500).json({
       error: 'Server Error. Could not fetch users.',
     });
   }
 };
+
 
 const getUserById = async (req, res) => {
   const userId = req.params.id; 
