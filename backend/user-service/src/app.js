@@ -5,8 +5,8 @@ const cors = require('cors');
 const userRoutes = require('./routes/userRoutes');
 const { sequelize } = require('../config/database');
 const continentRoutes = require('./routes/continentRoutes');
-const countryRoutes = require('./routes/countriesRoutes'); // Import the routes
-const currencyRoutes = require('./routes/currencyRoutes'); // Adjust path if necessary
+const countryRoutes = require('./routes/countriesRoutes'); 
+const currencyRoutes = require('./routes/currencyRoutes'); 
 const languageRoutes = require('./routes/languagesRoutes')
 
 

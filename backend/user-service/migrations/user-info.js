@@ -43,11 +43,11 @@ module.exports = {
           // unique: true,
           allowNull: false,
         },
-        created_at: {
+        createdAt: {
           type: Sequelize.DATE,
           defaultValue: Sequelize.NOW,
         },
-        updated_at: {
+        updatedAt: {
           type: Sequelize.DATE,
           defaultValue: Sequelize.NOW,
         },
