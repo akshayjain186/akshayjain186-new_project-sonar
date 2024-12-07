@@ -107,45 +107,9 @@ const deleteCountryById = async (req, res) => {
 };
 
 
-const searchCountryByName = async (req, res) => {
-  try {
-    const { name } = req.query;
-    if (!name) {
-      return res.status(400).json({
-        message: "Country name is required for search",
-      });
-    }
-    const countries = await Country.findAll({
-      where: {
-        name: {
-          [Op.like]: `%${name}%`, // Use Op.like for MySQL (case-insensitive by default)
-        },
-      },
-    });
-
-    if (!countries || countries.length === 0) {
-      return res.status(404).json({
-        message: "Country not found",
-      });
-    }
-
-    res.status(200).json({
-      message: "Countries fetched successfully",
-      countries,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: "An error occurred while searching for the country",
-      error: error.message,
-    });
-  }
-};
-
 module.exports = {
   getAllCountries,
   getCountryById,
   updateCountryById,
   deleteCountryById,
-  searchCountryByName
-
 };

@@ -26,7 +26,7 @@ const Role = require('../models/roleModel');
  * @returns {void} - Sends a JSON response with the new user's details or an error message.
  */
 
-// Helper function to generate a random password
+//  function to generate a random password
 const generatePassword = () => {
   return crypto.randomBytes(4).toString('hex');
 
@@ -72,7 +72,7 @@ const registerUser = async (req, res) => {
     }
 
     // Fetch role from 'roles' table
-    const role = await Role.findByPk(numericRoleId); // assuming Role is your model for the 'roles' table
+    const role = await Role.findByPk(numericRoleId); 
     if (!role) return res.status(400).json({
       error: 'Invalid role ID.'
     });
@@ -100,7 +100,7 @@ const registerUser = async (req, res) => {
       }
     }
 
-    // Validate foreign keys
+    //  This Validate foreign keys
     const [continent, country, currency, language] = await Promise.all([
       Continent.findByPk(continent_id),
       Country.findByPk(country_id),
@@ -177,7 +177,7 @@ const registerUser = async (req, res) => {
         roleId: role.roleId,
         roleName: role.name,
         isActive: newUser.isActive,
-        userInfo: {
+        // userInfo: {
           continent: continent.name,
           country: country.name,
           currency: currency.name,
@@ -186,7 +186,7 @@ const registerUser = async (req, res) => {
           city: newUserInfo.city,
           postal_code: newUserInfo.postal_code,
           organization_number: newUserInfo.organization_number,
-        },
+        // },
       },
     });
   } catch (error) {
@@ -236,7 +236,7 @@ const loginUser = async (req, res) => {
       });
     }
 
-    // Compare the password
+    // Compare the password with hashed password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
@@ -265,7 +265,6 @@ const loginUser = async (req, res) => {
       expiresIn: '1h',
     });
 
-    // userData object
     const userData = {
       id: user.id,
       name: user.name,
@@ -300,64 +299,44 @@ const loginUser = async (req, res) => {
  * @throws {Error} - Returns a 500 status code if a server error occurs.
  */
 
-// const forgotPassword = async (req, res) => {
-//   const { email } = req.body;
 
-//   try {
-//     // Check if the user exists
-//     const user = await User.findOne({ where: { email } });
 
-//     if (!user) {
-//       return res.status(400).json({ message: 'User not found' });
-//     }
 
-//     // Generate a secure token
-//     const resetToken = crypto.randomBytes(32).toString('hex');
-//     const resetTokenExpiry = Date.now() + 3600000; // Token valid for 1 hour
 
-//     // Save the reset token and expiry in the database
-//     user.resetToken = resetToken;
-//     user.resetTokenExpiry = resetTokenExpiry;
-//     await user.save();
 
-//     // Create the reset link
-//     const resetLink = `${process.env.FRONTEND_URL}/reset-password/${resetToken}`;
-
-//     // Configure nodemailer
-//     const transporter = nodemailer.createTransport({
-//       service: 'your-email-service', // e.g., Gmail
-//       auth: {
-//         user: process.env.EMAIL_USER,
-//         pass: process.env.EMAIL_PASSWORD,
-//       },
-//     });
-
-//     // Email options
-//     const mailOptions = {
-//       from: process.env.EMAIL_USER,
-//       to: email,
-//       subject: 'Password Reset Request',
-//       text: `You requested a password reset. Click the link to reset your password: ${resetLink}`,
-//     };
-
-//     // Send email
-//     await transporter.sendMail(mailOptions);
-
-//     return res.json({ message: 'Password reset link sent to your email.' });
-//   } catch (error) {
-//     console.error('Forgot password error: ', error);
-//     return res.status(500).json({ error: 'Server Error' });
-//   }
-// };
+/**
+ * Retrieves all users based on filtering, pagination, and search criteria, and groups them by continent.
+ *
+ * @param {Object} req - The request object containing query parameters.
+ * @param {Object} req.query - The query parameters of the request.
+ * @param {string} req.query.roleId - The optional role ID to filter users by their role.
+ * @param {string} req.query.search - The optional search term to filter users  country, continent, or currency,
+ * @param {number} req.query.page - The page number for pagination (default is 1).
+ * @param {number} req.query.limit - The number of users to fetch per page (default is 10).
+ * @param {Object} res - The response object for sending HTTP responses.
+ *
+ * @returns {void} - Sends a JSON response with user data, grouped by continent, and pagination metadata.
+ *
+ * @throws {Error} - Returns a 500 status code if a server error occurs during the operation.
+ * @throws {Error} - Returns a 404 status code if no users are found matching the search or filter criteria.
+ */
 
 const getAllUsers = async (req, res) => {
   try {
-    const { roleId } = req.query;
-    const users = await User.findAll({
-      where: roleId ? { roleId } : {}, 
-      attributes: {
-        exclude: ['password'], 
-      },
+    const { roleId, search, page = 1, limit = 10 } = req.query;
+
+    // Filter users based on roleId 
+    const whereClause = roleId ? { roleId } : {};
+
+    // Calculate offset for pagination
+    const offset = (page - 1) * limit;
+
+    // Fetch users with pagination
+    const { rows: users, count: totalUsers } = await User.findAndCountAll({
+      where: whereClause,
+      attributes: { exclude: ['password'] },
+      limit: parseInt(limit),
+      offset: parseInt(offset),
     });
 
     if (users.length === 0) {
@@ -365,36 +344,86 @@ const getAllUsers = async (req, res) => {
         message: 'No users found.',
       });
     }
-    const usersWithInfo = await Promise.all(users.map(async (user) => {
-      const userInfo = await UserInfo.findOne({
-        where: { userId: user.id },
+
+    // Process users and add additional info
+    const usersWithInfo = await Promise.all(
+      users.map(async (user) => {
+        const userInfo = await UserInfo.findOne({ where: { userId: user.id } });
+        const countryData = userInfo ? await Country.findByPk(userInfo.country_id) : null;
+        const continentData = userInfo ? await Continent.findByPk(userInfo.continent_id) : null;
+        const currencyData = userInfo ? await Currency.findByPk(userInfo.currency_id) : null;
+
+        return {
+          id: user.id,
+          name: user.name,
+          surname: user.surname,
+          email: user.email,
+          mobile_no: user.mobile_no,
+          roleId: user.roleId,
+          address: userInfo?.address || null,
+          city: userInfo?.city || null,
+          postal_code: userInfo?.postal_code || null,
+          country: countryData?.name || null,
+          continent: continentData?.name || null,
+          currency: currencyData?.name || null,
+          organization_number: userInfo?.organization_number || null,
+        };
+      })
+    );
+
+    // Filter users based on the search parameter
+    const filteredUsers = search
+      ? usersWithInfo.filter(
+          (user) =>
+            (user.country && user.country.toLowerCase().includes(search.toLowerCase())) ||
+            (user.continent && user.continent.toLowerCase().includes(search.toLowerCase())) ||
+            (user.currency && user.currency.toLowerCase().includes(search.toLowerCase())) ||
+            user.name.toLowerCase().includes(search.toLowerCase()) ||
+            user.surname.toLowerCase().includes(search.toLowerCase()) ||
+            user.email.toLowerCase().includes(search.toLowerCase())
+        )
+      : usersWithInfo;
+
+    if (filteredUsers.length === 0) {
+      return res.status(404).json({
+        message: 'No users found for the specified criteria.',
       });
-      const continent = userInfo ? await Continent.findByPk(userInfo.continent_id) : null;
-      const country = userInfo ? await Country.findByPk(userInfo.country_id) : null;
-      const currency = userInfo ? await Currency.findByPk(userInfo.currency_id) : null;
-      const language = userInfo ? await Language.findByPk(userInfo.language_id) : null;
-      return {
-        id: user.id,
-        name: user.name,
-        surname: user.surname,
-        email: user.email,
-        mobile_no: user.mobile_no,
-        roleId: user.roleId, 
-        userInfo: userInfo ? {
-          address: userInfo.address,
-          city: userInfo.city,
-          postal_code: userInfo.postal_code,
-          continent: continent ? continent.name : null,
-          country: country ? country.name : null,
-          currency: currency ? currency.name : null,
-          language: language ? language.name : null,
-          organization_number: userInfo.organization_number,
-        } : {},
-      };
-    }));
+    }
+
+    // Group users by continent
+    const usersGroupedByContinent = filteredUsers.reduce((acc, user) => {
+      const continent = user.continent || 'Unknown'; // Group users without a continent under 'Unknown'
+      if (!acc[continent]) {
+        acc[continent] = [];
+      }
+      acc[continent].push(user);
+      return acc;
+    }, {});
+
+    // Pagination metadata
+    const totalPages = Math.ceil(totalUsers / limit);
+    const currentPage = parseInt(page);
+
+    // Generate HTTPS links for pagination
+    const protocol = req.protocol === 'http' ? 'https' : req.protocol;
+    const host = req.get('host');
+
+    const previousPage =
+      currentPage > 1 ? `${protocol}://${host}/users?page=${currentPage - 1}&limit=${limit}` : null;
+
+    const nextPage =
+      currentPage < totalPages ? `${protocol}://${host}/users?page=${currentPage + 1}&limit=${limit}` : null;
+
     res.status(200).json({
       message: 'Users retrieved successfully',
-      data: usersWithInfo,
+      data: usersGroupedByContinent,
+      pagination: {
+        // totalUsers,
+        currentPage,
+        totalPages,
+        previousPage,
+        nextPage,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -434,7 +463,7 @@ const getUserById = async (req, res) => {
       surname: user.surname,
       email: user.email,
       mobile_no: user.mobile_no,
-      userInfo: userInfo ? {
+      // userInfo: userInfo ? {
         address: userInfo.address,
         city: userInfo.city,
         postal_code: userInfo.postal_code,
@@ -443,7 +472,7 @@ const getUserById = async (req, res) => {
         currency: currency ? currency.name : null,
         language: language ? language.name : null,
         organization_number: userInfo.organization_number,
-      } : {},
+      // } : {},
     };
 
     res.status(200).json({

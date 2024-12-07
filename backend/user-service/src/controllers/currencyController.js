@@ -74,7 +74,6 @@ const getCurrencyByCode = async (req, res) => {
     }
   };
   
-
 // Update a currency by its code
 const updateCurrency = async (req, res) => {
   try {
