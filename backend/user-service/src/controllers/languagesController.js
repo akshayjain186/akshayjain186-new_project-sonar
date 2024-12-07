@@ -1,27 +1,6 @@
 const Language = require('../models/languagesModel');
 const { Op } = require('sequelize');  
 
-// const getAllLanguages = async (req, res) => {
-//   try {
-//     const languages = await Language.findAll();
-//     if (languages.length === 0) {
-//       return res.status(404).json({
-//         message: 'No languages found'
-//       });
-//     }
-//     res.status(200).json({
-//       message: 'Languages fetched successfully',
-//       languages,
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       message: 'Error fetching languages',
-//       error: error.message,
-//     });
-//   }
-// };
-
-
 const getAllLanguages = async (req, res) => {
   console.log('getAllLanguages called');
   try {
@@ -145,7 +124,7 @@ const searchLanguages = async (req, res) => {
     }
     if (code) {
       conditions.code = {
-        [Op.like]: `%${code}%`, // Case-insensitive search for code
+        [Op.like]: `%${code}%`, 
       };
     }
     const languages = await Language.findAll({

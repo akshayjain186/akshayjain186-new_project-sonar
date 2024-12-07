@@ -1,20 +1,37 @@
 const Currency = require('../models/currencyModel'); 
+const { Op } = require('sequelize');
 
-// Get all currencies
 const getAllCurrencies = async (req, res) => {
   try {
-    const currencies = await Currency.findAll();
+    const { name } = req.query; 
+    const currencies = await Currency.findAll({
+      where: {
+        ...(name && { name: { [Op.like]: `%${name}%` } }) 
+      }
+    });
+
+    if (!currencies || currencies.length === 0) {
+      return res.status(404).json({
+        message: "No currencies found",
+      });
+    }
+    const currencyDetails = currencies.map((currency) => ({
+      id: currency.id,  
+      name: currency.name, 
+    }));
+
     res.status(200).json({
-      message: 'Currencies fetched successfully',
-      currencies,
+      message: "Currencies fetched successfully",
+      currencies: currencyDetails, 
     });
   } catch (error) {
     res.status(500).json({
-      message: 'Error fetching currencies',
+      message: "An error occurred while fetching currencies",
       error: error.message,
     });
   }
 };
+
 
 // Get a single currency by its code
 const getCurrencyByCode = async (req, res) => {
@@ -103,8 +120,6 @@ const deleteCurrency = async (req, res) => {
     });
   }
 };
-
-
 
 module.exports = {
   getAllCurrencies,

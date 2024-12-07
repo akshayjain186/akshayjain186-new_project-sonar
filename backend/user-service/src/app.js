@@ -9,8 +9,6 @@ const countryRoutes = require('./routes/countriesRoutes'); // Import the routes
 const currencyRoutes = require('./routes/currencyRoutes'); // Adjust path if necessary
 const languageRoutes = require('./routes/languagesRoutes')
 
-
-
 const app = express();
 
 // Middleware
