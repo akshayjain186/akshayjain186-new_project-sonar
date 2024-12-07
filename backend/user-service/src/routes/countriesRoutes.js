@@ -9,7 +9,7 @@ const {
 
 const router = express.Router();
 
-router.get("/fetch", getAllCountries);
+router.get("/", getAllCountries);
 router.get("/:id", getCountryById);
 router.put("/:id", updateCountryById);
 router.delete("/:id", deleteCountryById);
