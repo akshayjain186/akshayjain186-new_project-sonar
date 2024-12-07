@@ -8,7 +8,7 @@ const {
     searchLanguages
 } = require('../controllers/languagesController');
 
-router.get('/fetch', getAllLanguages);
+router.get('/', getAllLanguages);
 router.get('/:id', getLanguageById)
 router.put('/:id', updateLanguage);
 router.delete('/:id', deleteLanguage)

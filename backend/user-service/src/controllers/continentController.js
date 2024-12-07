@@ -17,15 +17,27 @@ const groupCountriesByContinent = () => {
       return continents;
   };
   
+
   const getAllContinents = async (req, res) => {
     try {
-      const continents = await Continent.findAll();
-        const response = continents.map((continent) => {
+      const { name } = req.query;
+        const continents = await Continent.findAll({
+        where: name ? {
+          name: {
+            [Op.like]: `%${name}%` 
+          }
+        } : {},
+        // Set collation for case-insensitive search
+        collation: 'utf8_general_ci' 
+      });
+  
+      const response = continents.map((continent) => {
         return {
           id: continent.id,
           name: continent.name,
         };
       });
+  
       res.status(200).json({
         message: 'Continents fetched successfully',
         data: response, 
@@ -37,7 +49,7 @@ const groupCountriesByContinent = () => {
       });
     }
   };
-
+  
 const getContinentById = async (req, res) => {
   try {
     const continentId = req.params.id;

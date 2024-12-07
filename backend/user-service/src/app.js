@@ -9,8 +9,6 @@ const countryRoutes = require('./routes/countriesRoutes');
 const currencyRoutes = require('./routes/currencyRoutes'); 
 const languageRoutes = require('./routes/languagesRoutes')
 
-
-
 const app = express();
 
 // Middleware
