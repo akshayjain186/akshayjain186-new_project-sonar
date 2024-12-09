@@ -21,7 +21,7 @@ function LicensesPage() {
     navigate('/addnew');
   };
   const userOwnerPage = (userId) => {
-    navigate('/owner/'+1);
+    navigate(`/owner/${userId}`);
   };
   
 
