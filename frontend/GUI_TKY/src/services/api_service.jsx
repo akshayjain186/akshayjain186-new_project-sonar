@@ -43,7 +43,7 @@ export function post(url, data, config = {}) {
   return axiosApi
     .post(url, { ...data }, { ...config })
     .then((response) => {
-      console.log(response);
+      console.log("response",response);
       return response;
     });
 }

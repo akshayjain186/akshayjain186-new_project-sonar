@@ -4,6 +4,7 @@ import LayoutSaga from "./layout/saga";
 import masterSaga from './master/saga';
 import usersListSaga from './users/saga';
 
+import RegisterUserSaga from './Ragister/saga';
 //import LayoutSaga from "../store/layout/saga"
 /**
  * Root saga for the application.
@@ -25,6 +26,7 @@ export default function* rootSaga() {
     fork(authSaga),
     fork(LayoutSaga),
     fork(masterSaga),
-    fork(usersListSaga)
+    fork(usersListSaga),
+    fork(RegisterUserSaga)
   ]);
 }
