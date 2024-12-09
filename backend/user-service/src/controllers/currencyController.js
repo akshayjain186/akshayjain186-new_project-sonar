@@ -1,6 +1,7 @@
 const Currency = require('../models/currencyModel'); 
 const { Op } = require('sequelize');
 
+//This Function is used to get all currencies
 const getAllCurrencies = async (req, res) => {
   try {
     const { name } = req.query; 
@@ -32,7 +33,6 @@ const getAllCurrencies = async (req, res) => {
   }
 };
 
-
 // Get a single currency by its code
 const getCurrencyByCode = async (req, res) => {
     try {
@@ -54,6 +54,7 @@ const getCurrencyByCode = async (req, res) => {
     }
   };
 
+//Get Currency By its Id  
   const getCurrencyById = async (req, res) => {
     try {
       const { id } = req.params;       

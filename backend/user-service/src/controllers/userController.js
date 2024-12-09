@@ -287,22 +287,6 @@ const loginUser = async (req, res) => {
   }
 };
 
-/**
- * Initiates the password reset process by generating a token and sending a reset email.
- *
- * @param {Object} req - The request object containing the user's email.
- * @param {string} req.body.email - The email address of the user requesting a password reset.
- * @param {Object} res - The response object for sending HTTP responses.
- *
- * @returns {void} - Sends a JSON response with success or error details.
- *
- * @throws {Error} - Returns a 500 status code if a server error occurs.
- */
-
-
-
-
-
 
 /**
  * Retrieves all users based on filtering, pagination, and search criteria, and groups them by continent.
@@ -328,7 +312,7 @@ const getAllUsers = async (req, res) => {
     // Filter users based on roleId 
     const whereClause = roleId ? { roleId } : {};
 
-    // Calculate offset for pagination
+    // Calculate for pagination
     const offset = (page - 1) * limit;
 
     // Fetch users with pagination
@@ -392,7 +376,7 @@ const getAllUsers = async (req, res) => {
 
     // Group users by continent
     const usersGroupedByContinent = filteredUsers.reduce((acc, user) => {
-      const continent = user.continent || 'Unknown'; // Group users without a continent under 'Unknown'
+      const continent = user.continent || 'Unknown'; 
       if (!acc[continent]) {
         acc[continent] = [];
       }
@@ -432,6 +416,20 @@ const getAllUsers = async (req, res) => {
     });
   }
 };
+
+/**
+ * Retrieves a user by their ID and returns detailed user information, including associated data like continent, country, currency, and language.
+ *
+ * @param {Object} req - The request object containing route parameters and query information.
+ * @param {Object} req.params - The route parameters of the request.
+ * @param {string} req.params.id - The ID of the user to retrieve.
+ * @param {Object} res - The response object for sending HTTP responses.
+ *
+ * @returns {void} - Sends a JSON response containing the user data, including user information (address, city, continent, country, currency, language, etc.).
+ *
+ * @throws {Error} - Returns a 500 status code if a server error occurs during the operation.
+ * @throws {Error} - Returns a 404 status code if the user with the specified ID is not found.
+ */
 
 
 const getUserById = async (req, res) => {

@@ -4,6 +4,7 @@ const Country = require('../models/countriesModel');
 const countriesList = require('countries-list');
 const countries = countriesList.countries;
 
+// Get Countries By Continent
 const groupCountriesByContinent = () => {
   const continents = {};
   for (const countryCode in countries) {
@@ -17,6 +18,7 @@ const groupCountriesByContinent = () => {
   return continents;
 };
 
+// Get All Continents
 const getAllContinents = async (req, res) => {
   try {
     const { name } = req.query;
@@ -51,6 +53,7 @@ const getAllContinents = async (req, res) => {
   }
 };
 
+// Get continents By Id
 const getContinentById = async (req, res) => {
   try {
     const continentId = req.params.id;
@@ -77,6 +80,7 @@ const getContinentById = async (req, res) => {
   }
 };
 
+// Get Countries By Continent Id
 const getCountriesByContinentId = async (continentId) => {
   return await Country.findAll({ where: { continentId } });
 };
