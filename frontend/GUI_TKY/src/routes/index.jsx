@@ -1,5 +1,6 @@
 import { Navigate } from 'react-router-dom';
 import {  Login, SignUp,Dashboard ,AddnewPage,LicensesPage,OwnerPage} from '@/pages';
+import Index from '@/pages/Users';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
@@ -11,6 +12,7 @@ const publicRoutes = [
   { path: '/addnew', component: <AddnewPage /> },
   { path: '/licenses', component: <LicensesPage /> },
   { path: '/owner', component: <OwnerPage /> },
+  {path: '/users', component: <Index/>}
 
 
 ];
