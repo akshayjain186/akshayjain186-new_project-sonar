@@ -417,7 +417,6 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-
 /**
  * Retrieves a user by their ID and returns detailed user information, including associated data like continent, country, currency, and language.
  *

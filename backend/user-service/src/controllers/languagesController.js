@@ -3,6 +3,7 @@ const {
   Op
 } = require('sequelize');
 
+// Get All languages
 const getAllLanguages = async (req, res) => {
     try {
       const { name } = req.query; 
@@ -30,8 +31,9 @@ const getAllLanguages = async (req, res) => {
         error: error.message,
       });
     }
-  };
+};
 
+// Get language By its Id 
 const getLanguageById = async (req, res) => {
   try {
     const {
@@ -56,6 +58,7 @@ const getLanguageById = async (req, res) => {
   }
 };
 
+// Update Language By its Id
 const updateLanguage = async (req, res) => {
   try {
     const {
@@ -87,6 +90,7 @@ const updateLanguage = async (req, res) => {
   }
 };
 
+// Delete Language By its Id
 const deleteLanguage = async (req, res) => {
   try {
     const {

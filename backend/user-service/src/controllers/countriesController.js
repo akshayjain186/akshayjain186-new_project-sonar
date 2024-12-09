@@ -1,6 +1,8 @@
 const Country = require("../models/countriesModel");
 const { Op } = require("sequelize");
 
+
+//Get All Countries 
 const getAllCountries = async (req, res) => {
   try {
     const { name } = req.query; 
@@ -33,6 +35,7 @@ const getAllCountries = async (req, res) => {
   }
 };
 
+//Get Country By Its Id
 const getCountryById = async (req, res) => {
   try {
     const {
@@ -57,6 +60,7 @@ const getCountryById = async (req, res) => {
   }
 };
 
+//Update Country By its Id
 const updateCountryById = async (req, res) => {
   try {
     const {
@@ -82,6 +86,7 @@ const updateCountryById = async (req, res) => {
   }
 };
 
+//Delte Country By its Id
 const deleteCountryById = async (req, res) => {
   try {
     const {
@@ -104,7 +109,6 @@ const deleteCountryById = async (req, res) => {
     });
   }
 };
-
 
 module.exports = {
   getAllCountries,
