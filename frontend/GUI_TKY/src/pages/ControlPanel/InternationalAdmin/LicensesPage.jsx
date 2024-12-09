@@ -16,6 +16,7 @@ function LicensesPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [usersListData, setUsersListData] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
   // Handler for adding a new license
   const handleAddLicense = () => {
     navigate('/addnew');
@@ -27,7 +28,7 @@ function LicensesPage() {
 
   useEffect(() => {
     dispatch(
-      getUsersListData({ roleId: 2, search: '' }, (response, error) => {
+      getUsersListData({ roleId: 2, search: searchQuery }, (response, error) => {
         console.log('xaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
         if (response?.status === 200) {
           setUsersListData(response?.data.data);
@@ -36,7 +37,11 @@ function LicensesPage() {
         }
       })
     );
-  }, []);
+  }, [searchQuery]);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+};
   return (
     <>
       <InternationalHeader />
@@ -56,7 +61,22 @@ function LicensesPage() {
                 type="search"
                 placeholder="Search..."
                 className="rounded-3 bg-transparent input mt-1 "
+                value={searchQuery}
+                onChange={handleSearchChange}
               />
+              {/* <Input
+                        name="search"
+                        style={{
+                            outline: "none",
+                            boxShadow: "none",
+                            borderRadius: "6px"
+                        }}
+                        className="form-control"
+                        placeholder="Search"
+                        type="text"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    /> */}
               <img src={search} alt="" className="search-icon" />
             </div>
           </Col>

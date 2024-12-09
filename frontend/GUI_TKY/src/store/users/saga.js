@@ -5,7 +5,6 @@ import { getUsersListData,getUsersDetailsById } from '@/services/api_helper';
 
 function* fetchUsersList(action) {
    const { roleId ,search} = action.payload;
-   console.log('fetchUsersList',roleId ,search)
   try {
     const response = yield call(getUsersListData, {roleId ,search});
     if (action.callback) {
@@ -20,7 +19,6 @@ function* fetchUsersList(action) {
 }
 
 function* fetchUsersDetailsById(action) {
-  console.log('sssssssssssssssss',action)
  try {
    const response = yield call(getUsersDetailsById, action.payload);
    if (action.callback) {

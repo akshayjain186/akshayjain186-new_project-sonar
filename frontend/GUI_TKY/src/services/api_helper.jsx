@@ -48,8 +48,12 @@ export const getUsersDetailsById = (payload) => {
   const apiUrl = `${GET_USERS_DETAILS_BY_ID}/${payload.userId}`;
   return get(apiUrl);
 };
+// export const getUsersListData = (roleId ,search) => get(GET_USERS_LIST_BY_ROLE_ID);
 
-export const getUsersListData = (roleId ,search) => get(GET_USERS_LIST_BY_ROLE_ID);
+export const getUsersListData = ({roleId ,search}) => {
+  const apiUrl = `${GET_USERS_LIST_BY_ROLE_ID}/?roleId=${roleId}&serch=${search}`;
+  return get(apiUrl);
+};
 
 
 
@@ -57,7 +61,6 @@ export const postGeneralInformationData = (data) => {
   console.log(data,'postGeneralInformationData')
   return 
 
-  // post(GET_CONTINENT_LIST);
 }
 
 
