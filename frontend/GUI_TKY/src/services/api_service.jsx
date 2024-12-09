@@ -24,6 +24,7 @@ axiosApi.interceptors.response.use(
  * @returns {Promise<Object>} - The response data from the GET request.
  */
 export function get(url, config = {}) {
+  console.log('llllllllllllllllllllllllllllllllllllllll');
   return axiosApi
     .get(url, { ...config })
     .then((response) => response);

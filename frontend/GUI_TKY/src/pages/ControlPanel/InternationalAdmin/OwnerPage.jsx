@@ -1,5 +1,5 @@
-import React from "react";
-import { useState, useMemo } from "react";
+import React, { useEffect, useState ,useMemo} from 'react';
+
 import { Col, Row, } from "reactstrap";
 import flag from '../../../assets/images/flag-round.png'
 import user from '../../../assets/images/user.png'
@@ -10,10 +10,13 @@ import companies from '../../../assets/images/companies.png'
 import product from '../../../assets/images/product.png'
 import portaluser from '../../../assets/images/portaluser.png'
 import InternationalHeader from "./InternationalHeader";
+import { getUserDetailsData } from '@/store/actions';
 import '../controlpaneladmin.scss';
+import { useDispatch } from 'react-redux';
 const OwnerPage = () => {
+    const dispatch = useDispatch();
     const [ActivateLink, setActivateLink] = useState(null);
-
+    const [usersDetailsData, setUsersDetailsData] = useState([]);
     const handleLinkClick = (linkName) => {
         setActivateLink(linkName);
     };
@@ -1105,6 +1108,18 @@ const OwnerPage = () => {
 
     ]
     
+    useEffect(() => {
+        dispatch(
+            getUserDetailsData({ }, (response, error) => {
+            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
+            if (response?.status === 200) {
+                setUsersDetailsData(response?.data.data);
+            } else {
+                setUsersDetailsData([]);
+            }
+          })
+        );
+      }, []);
     return (
         <>
             <InternationalHeader />
@@ -1112,7 +1127,7 @@ const OwnerPage = () => {
                 <div className="mt-4">
                     <div className="mb-4">
                         <p>
-                            <span className="text-color">Licenses</span>&nbsp;&nbsp; ^ &nbsp;&nbsp;<span className="text_light">Norway</span>
+                            <span className="text-color">Licenses</span>&nbsp;&nbsp; ^ &nbsp;&nbsp;<span className="text_light">{usersDetailsData?.country}</span>
                         </p>
                     </div>
                     <Row className="d-flex justify-content ">
@@ -1124,14 +1139,14 @@ const OwnerPage = () => {
                                     className="me-4"
                                 />
                                 <div>
-                                    <h4 className="mb-1">Norway</h4>
-                                    <p className="text-muted">Europe</p>
+                                    <h4 className="mb-1">{usersDetailsData?.country}</h4>
+                                    <p className="text-muted">{usersDetailsData?.continent}</p>
                                 </div>
                             </div>
                             <div className="mt-4 textContaint">
-                                <span className="text-color fw-muted">Language:<span className="ms-2 fw-normal text_light" >Norwegian</span></span><br />
-                                <span className=" text-color fw-muted">Currency:<span className="ms-2 fw-normal text_light ">Norwegian Krone</span></span><br />
-                                <span className=" text-color fw-muted">Organisation number:<span className="ms-2 fw-normal text_light">817158722</span></span>
+                                <span className="text-color fw-muted">Language:<span className="ms-2 fw-normal text_light" >{usersDetailsData?.language}</span></span><br />
+                                <span className=" text-color fw-muted">Currency:<span className="ms-2 fw-normal text_light ">{usersDetailsData?.currency}</span></span><br />
+                                <span className=" text-color fw-muted">Organisation number:<span className="ms-2 fw-normal text_light">{usersDetailsData?.mobile_no}</span></span>
                             </div>
                         </Col>
                         <Col className="justify-content-end">
@@ -1202,8 +1217,8 @@ const OwnerPage = () => {
                             />
                             {/* User Name and Email */}
                             <div>
-                                <h5 className="mb-1 text_light">Harry Stone</h5>
-                                <p className="mb-0 text-muted">harry.stone@gmail.com</p>
+                                <h5 className="mb-1 text_light">{usersDetailsData?.name}</h5>
+                                <p className="mb-0 text-muted">{usersDetailsData?.email}</p>
                             </div>
                         </Col>
 
@@ -1220,18 +1235,18 @@ const OwnerPage = () => {
                                     alt="Location Icon"
                                     className="me-2 icon-style"
                                 />
-                                <p className="mb-0  text_light">Vossegata 22, 0475 Oslo</p>
+                                <p className="mb-0  text_light">{usersDetailsData?.address}</p>
                             </Col>
 
                             {/* Phone Number */}
                             <Col xs="4" md="2 " className="d-flex align-items-center">
                                 <i className="bx bx-phone me-2"></i>
-                                <p className="mb-0 d text_light">+4721607947</p>
+                                <p className="mb-0 d text_light">{usersDetailsData?.mobile_no}</p>
                             </Col>
                             {/* Email */}
                             <Col xs="3" md="4" className="d-flex align-items-center col-wrap">
                                 <i className="bx bx-envelope me-2"></i>
-                                <p className="mb-0  text_light">tyler_hopp@gmail.com</p>
+                                <p className="mb-0  text_light">{usersDetailsData?.email}</p>
                             </Col>
                         </Col>
                     </Row>

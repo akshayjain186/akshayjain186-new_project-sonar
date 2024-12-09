@@ -1,7 +1,15 @@
-import { GET_COUNTRY_LIST } from './actionTypes';
+import { GET_USERS_LIST_BY_ROLE_ID ,GET_USERS_DETAILS_BY_ID} from './actionTypes';
 
-export const getCountryListData = ({}, callback) => ({
-  type: GET_COUNTRY_LIST,
+export const getUsersListData = ({ roleId, search }, callback) => ({
+  type: GET_USERS_LIST_BY_ROLE_ID,
+  payload: { roleId, search },
+  callback,
+});
+
+
+export const getUserDetailsData = ({  }, callback) => ({
+  type: GET_USERS_DETAILS_BY_ID,
   payload: {},
   callback,
 });
+

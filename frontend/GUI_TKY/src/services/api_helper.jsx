@@ -5,6 +5,8 @@ import {
   GET_LANGUAGE_LIST,
   GET_CURRENCIES_LIST,
   GET_CONTINENT_LIST,
+  GET_USERS_LIST_BY_ROLE_ID,
+  GET_USERS_DETAILS_BY_ID
 } from './url_service'; // Import the specific URL constant
 import { post, get } from './api_service'; // Import the post method from api_service
 
@@ -31,6 +33,11 @@ export const getCountryListData = () => get(GET_COUNTRY_LIST);
 export const getLanguageListData = () => get(GET_LANGUAGE_LIST);
 export const getCurrenciesListData = () => get(GET_CURRENCIES_LIST);
 export const getContinentListData = () => get(GET_CONTINENT_LIST);
+export const getUsersDetailsById = () => get(GET_USERS_DETAILS_BY_ID);
+
+export const getUsersListData = (roleId ,search) => get(GET_USERS_LIST_BY_ROLE_ID);
+
+
 
 export const postGeneralInformationData = (data) => {
   console.log(data,'postGeneralInformationData')

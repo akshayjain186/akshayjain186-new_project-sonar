@@ -1,25 +1,42 @@
 import { takeEvery, fork, put, all, call } from 'redux-saga/effects';
-import { GET_COUNTRY_LIST } from './actionTypes';
+import { GET_USERS_LIST_BY_ROLE_ID,GET_USERS_DETAILS_BY_ID } from './actionTypes';
 
-import { getCountryListData } from '@/services/api_helper';
+import { getUsersListData,getUsersDetailsById } from '@/services/api_helper';
 
-function* fetchCountryList(action) {
-  // const { customerList_filter } = action.payload;
+function* fetchUsersList(action) {
+   const { roleId ,search} = action.payload;
+   console.log('fetchUsersList',roleId ,search)
   try {
-    const response = yield call(getCountryListData, {});
+    const response = yield call(getUsersListData, {roleId ,search});
     if (action.callback) {
       action.callback(response);
     }
   } catch (error) {
-    console.error('Error fetching country list:', error);
+    console.error('Error fetching users list:', error);
     if (action.callback) {
       action.callback(null, error);
     }
   }
 }
 
-function* masterSaga() {
-  yield takeEvery(GET_COUNTRY_LIST, fetchCountryList);
+function* fetchUsersDetailsById(action) {
+ try {
+   const response = yield call(getUsersDetailsById, {});
+   if (action.callback) {
+     action.callback(response);
+   }
+ } catch (error) {
+   console.error('Error fetching users list:', error);
+   if (action.callback) {
+     action.callback(null, error);
+   }
+ }
 }
 
-export default masterSaga;
+function* usersListSaga() {
+  yield takeEvery(GET_USERS_LIST_BY_ROLE_ID, fetchUsersList);
+  yield takeEvery(GET_USERS_DETAILS_BY_ID, fetchUsersDetailsById);
+  
+}
+
+export default usersListSaga;
