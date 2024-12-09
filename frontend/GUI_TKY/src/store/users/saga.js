@@ -20,8 +20,9 @@ function* fetchUsersList(action) {
 }
 
 function* fetchUsersDetailsById(action) {
+  console.log('sssssssssssssssss',action)
  try {
-   const response = yield call(getUsersDetailsById, {});
+   const response = yield call(getUsersDetailsById, action.payload);
    if (action.callback) {
      action.callback(response);
    }

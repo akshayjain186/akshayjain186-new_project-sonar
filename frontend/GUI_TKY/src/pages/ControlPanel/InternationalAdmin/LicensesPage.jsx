@@ -20,7 +20,10 @@ function LicensesPage() {
   const handleAddLicense = () => {
     navigate('/addnew');
   };
-
+  const userOwnerPage = (userId) => {
+    navigate('/owner/'+1);
+  };
+  
 
   useEffect(() => {
     dispatch(
@@ -70,16 +73,16 @@ function LicensesPage() {
         </Row>
 
         {/* License List Section */}
-        <Row className="mt-0 m-4">
+        <Row className="mt-0 m-4" >
           <Col>
             {Object.keys(usersListData).map((region) => (
-              <div key={region} className="mb-4">
+              <div key={region} className="mb-4" >
                 <h5 className="mt-4">{region}</h5>
                 {usersListData[region].map((license, index) => (
                   <div
                     key={index}
                     className="d-flex flex-column flex-md-row justify-content-between h-75 align-items-start align-items-md-center border rounded p-4 mb-2 bg-white"
-                  >
+                    onClick={()=>userOwnerPage(license.id)}>
                     {/* User Info */}
                     <div className="d-flex gap-3 align-items-center mb-2 mb-md-0">
                       <div className="rounded-4 h-25 ms-3">

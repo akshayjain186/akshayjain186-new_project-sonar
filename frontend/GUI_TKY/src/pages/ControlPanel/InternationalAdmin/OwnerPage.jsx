@@ -13,8 +13,10 @@ import InternationalHeader from "./InternationalHeader";
 import { getUserDetailsData } from '@/store/actions';
 import '../controlpaneladmin.scss';
 import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router';
 const OwnerPage = () => {
     const dispatch = useDispatch();
+    const { id } = useParams();
     const [ActivateLink, setActivateLink] = useState(null);
     const [usersDetailsData, setUsersDetailsData] = useState([]);
     const handleLinkClick = (linkName) => {
@@ -1109,8 +1111,9 @@ const OwnerPage = () => {
     ]
     
     useEffect(() => {
+        const userId = id;
         dispatch(
-            getUserDetailsData({ }, (response, error) => {
+            getUserDetailsData({userId }, (response, error) => {
             console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
             if (response?.status === 200) {
                 setUsersDetailsData(response?.data.data);

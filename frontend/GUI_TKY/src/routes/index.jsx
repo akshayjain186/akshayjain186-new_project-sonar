@@ -17,7 +17,7 @@ const authProtectedRoutes = [
 const authControleAdminRoutes = [
   { path: '/addnew', component: <AddnewPage /> },
   { path: '/licenses', component: <LicensesPage /> },
-  { path: '/owner', component: <OwnerPage /> },
+  { path: '/owner/:id', component: <OwnerPage /> },
 ];
 const publicRoutes = [
   // { path: '/login', component: <Login /> },

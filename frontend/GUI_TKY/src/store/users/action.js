@@ -7,9 +7,9 @@ export const getUsersListData = ({ roleId, search }, callback) => ({
 });
 
 
-export const getUserDetailsData = ({  }, callback) => ({
+export const getUserDetailsData = ({userId  }, callback) => ({
   type: GET_USERS_DETAILS_BY_ID,
-  payload: {},
+  payload: {userId},
   callback,
 });
 

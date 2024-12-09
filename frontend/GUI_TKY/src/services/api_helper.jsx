@@ -44,7 +44,10 @@ export const getCountryListData = () => get(GET_COUNTRY_LIST);
 export const getLanguageListData = () => get(GET_LANGUAGE_LIST);
 export const getCurrenciesListData = () => get(GET_CURRENCIES_LIST);
 export const getContinentListData = () => get(GET_CONTINENT_LIST);
-export const getUsersDetailsById = () => get(GET_USERS_DETAILS_BY_ID);
+export const getUsersDetailsById = (payload) => {
+  const apiUrl = `${GET_USERS_DETAILS_BY_ID}/${payload.userId}`;
+  return get(apiUrl);
+};
 
 export const getUsersListData = (roleId ,search) => get(GET_USERS_LIST_BY_ROLE_ID);
 
