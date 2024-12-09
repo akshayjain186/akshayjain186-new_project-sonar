@@ -62,7 +62,7 @@ const OwnerPage = () => {
 
             },
             {
-                header: 'Action',
+                header: 'Actions',
                 enableColumnFilter: false,
                 enableSorting: false,
                 accessorKey: "status",
@@ -78,7 +78,7 @@ const OwnerPage = () => {
                                     margin: "0 8px",
                                 }}
                             ></div>
-                            <a href="#" className="text-danger mb-0 fs-5 border-bottom ">
+                            <a href="#" className="text-danger mb-0 fs-5 border-bottom">
                                 Deactivate
                             </a>
                         </div>
