@@ -49,7 +49,7 @@ const AddnewPage = () => {
     name: "",
     surname: "",
     email: "",
-    roleId: 3,
+    roleId: 2,
     mobile_no: "",
     isActive: "true",// new update 6.30 dec 10 
     continent_id: null,
@@ -187,7 +187,7 @@ const AddnewPage = () => {
       name: "",
       surname: "",
       email: "",
-      roleId: 3,
+      roleId: 2,
       mobile_no: "",
       isActive: "",
       continent_id: null,
