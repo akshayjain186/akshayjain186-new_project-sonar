@@ -7,10 +7,13 @@
 
 /**
  * @swagger
+ * security:
+ *   - bearerAuth: []  # This applies bearer authentication globally
+
  * /api/continents:
  *   get:
  *     summary: Retrieve a list of all continents
- *     description: Returns all continents available in the database.
+ *     description: Fetches all the continents available in the database.
  *     tags: [Continents]
  *     parameters:
  *       - in: query
@@ -35,6 +38,8 @@
  *                   name:
  *                     type: string
  *                     description: Name of the continent
+ *       401:
+ *         description: Unauthorized. Authentication is required.
  *       500:
  *         description: An internal server error occurred.
  */
@@ -44,7 +49,7 @@
  * /api/continents/{id}:
  *   get:
  *     summary: Retrieve a specific continent by ID
- *     description: Returns the details of a continent based on its unique ID.
+ *     description: Fetches the details of a continent based on its unique ID.
  *     tags: [Continents]
  *     parameters:
  *       - in: path
@@ -69,6 +74,8 @@
  *                   description: Name of the continent
  *       400:
  *         description: Bad request. The ID supplied is invalid.
+ *       401:
+ *         description: Unauthorized. Authentication is required.
  *       404:
  *         description: The requested continent was not found.
  *       500:

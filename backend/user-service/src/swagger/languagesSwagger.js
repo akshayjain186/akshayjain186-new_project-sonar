@@ -7,6 +7,12 @@
 
 /**
  * @swagger
+ * security:
+ *   - bearerAuth: []  # This applies bearer authentication globally to all endpoints
+ */
+
+/**
+ * @swagger
  * /api/languages:
  *   get:
  *     summary: Retrieve a list of all languages
@@ -46,6 +52,7 @@
  *       500:
  *         description: An internal server error occurred.
  */
+
 /**
  * @swagger
  * /api/languages/{id}:
