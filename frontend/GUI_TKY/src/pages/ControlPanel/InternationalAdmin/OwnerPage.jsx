@@ -10,6 +10,7 @@ import companies from '../../../assets/images/companies.png'
 import product from '../../../assets/images/product.png'
 import portaluser from '../../../assets/images/portaluser.png'
 import InternationalHeader from "./InternationalHeader";
+import active from "../../../assets/images/active.png"
 import { getUserDetailsData } from '@/store/actions';
 import '../controlpaneladmin.scss';
 import { useDispatch } from 'react-redux';
@@ -69,7 +70,7 @@ const OwnerPage = () => {
                 cell: (cell) => {
                     return (
                         <div className="text-danger d-flex text-end">
-                            <i className="bx bx-show  fs-4 text_blue"></i>
+                            <img src={active} alt="" className='h-25 ,w-25' />
                             {/* Vertical Line */}
                             <div
                                 style={{
@@ -78,9 +79,30 @@ const OwnerPage = () => {
                                     margin: "0 8px",
                                 }}
                             ></div>
-                            <a href="#" className="text-danger mb-0 fs-5 border-bottom">
-                                Deactivate
-                            </a>
+                            {/* Deactivate Link */}
+                <a
+                    href="#"
+                    className="mb-0 fs-5 border-bottom deactivate-link"
+                    style={{
+                        position: "relative",
+                        textDecoration: "none",
+                        color:"#CA3D35"
+                        // paddingBottom: "2px",
+                    }}
+                >
+                    Deactivate
+                    <span
+                        style={{
+                            position: "absolute",
+                            bottom: "-2px",
+                            left: "0",
+                            width: "100%",
+                            height: "2px",
+                            backgroundColor: "#CA3D35",
+                            content: '""',
+                        }}
+                    ></span>
+                </a>
                         </div>
                     );
                 }

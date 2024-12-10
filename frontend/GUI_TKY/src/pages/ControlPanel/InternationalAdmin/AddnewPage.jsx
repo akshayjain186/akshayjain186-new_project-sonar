@@ -31,6 +31,12 @@ const AddnewPage = () => {
   const [countryListData, setCountryListDataData] = useState([]);
   const [languageListData, setLanguageListData] = useState([]);
   const [currenciesListData, setCurrenciesListData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [continentSearchQuery, setContinentSearchQuery] = useState("");
+  const [countrySearchQuery, setCountrySearchQuery] = useState("");
+  const [currencySearchQuery, setCurrencySearchQuery] = useState("");
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // States for Currency Dropdown Search
   const [formData, setFormData] = useState({
     name: '',
     surname: '',
@@ -49,6 +55,15 @@ const AddnewPage = () => {
   });
 
 
+  const filteredContinents = continentListData?.filter(continent =>
+    continent.name.toLowerCase().includes(continentSearchQuery.toLowerCase())
+  );
+
+
+
+  const filteredCurrencies = currenciesListData?.filter(currency =>
+    currency.name.toLowerCase().includes(currencySearchQuery.toLowerCase())
+  );
 
 
   useEffect(() => {
@@ -110,7 +125,22 @@ const AddnewPage = () => {
       [name]: integerFields.includes(name) ? parseInt(value, 10) : value,
     }));
   };
+  const [searchQuery, setSearchQuery] = useState("");
 
+
+
+
+
+  // Toggle dropdown visibility
+  const toggleDropdown = () => setIsDropdownOpen(!isDropdownOpen);
+
+  // Filter currencies based on search input
+
+  // Handle selection of a currency
+  const handleSelect = (currencyId) => {
+    formik.setFieldValue("currency_id", currencyId);
+    setIsDropdownOpen(false); // Close dropdown
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the form from reloading the page
@@ -134,7 +164,7 @@ const AddnewPage = () => {
       email: '',
       roleId: 3,
       mobile_no: '',
-      isActive:"",
+      isActive: "",
       continent_id: null,
       country_id: null,
       currency_id: null,
@@ -144,8 +174,8 @@ const AddnewPage = () => {
       postal_code: '',
       organization_number: '',
     },
-  
-    
+
+
 
     // Validation schema
     validationSchema: yup.object({
@@ -182,22 +212,61 @@ const AddnewPage = () => {
         .matches(/^[0-9]+$/, 'Only numbers are allowed')
         .required('Postal code is required'),
     }),
-    onSubmit: (values ,{resetForm}) => {
-      console.log("values",values)
+    onSubmit: (values, { resetForm }) => {
+      console.log("values", values)
       dispatch(registerUser(values, (response, error) => {
         if (response?.status === 201) {
           alert('User registered successfully!');
           resetForm()
           navigate("/licenses")
-        } 
+        }
         else {
           console.error('Registration failed:', error);
           alert('Registration failed: ');
         }
-    
+
       }));
     },
   });
+  
+  // State for dropdown visibility
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
+
+  // State for search query in the dropdown
+  const [languageSearchQuery, setLanguageSearchQuery] = useState("");
+
+  // State for filtered languages (based on the search query)
+  const [filteredLanguages, setFilteredLanguages] = useState(languageListData);
+
+  // Function to toggle dropdown visibility
+  const toggleLanguageDropdown = () => {
+    setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
+  };
+
+  // Function to handle language selection
+  const handleLanguageSelect = (id) => {
+    formik.setFieldValue("language_id", id); // Set selected language ID in Formik
+    setIsLanguageDropdownOpen(false); // Close the dropdown
+  };
+
+  // Effect to filter languages based on the search query
+  useEffect(() => {
+    setFilteredLanguages(
+      languageListData.filter((language) =>
+        language.name.toLowerCase().includes(languageSearchQuery.toLowerCase())
+      )
+    );
+  }, [languageSearchQuery, languageListData]); // Re-run filtering when query or data changes
+  const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
+  const [filteredCountries, setFilteredCountries] = useState(countryListData || []);
+
+  const toggleCountryDropdown = () => {
+    setIsCountryDropdownOpen((prev) => !prev);
+  };
+  const handleCountrySelect = (id) => {
+    formik.setFieldValue("country_id", id);
+    setIsCountryDropdownOpen(false);
+  };
 
   return (
     <React.Fragment>
@@ -222,32 +291,87 @@ const AddnewPage = () => {
               <div className='border border-2 p-4 rounded-3'>
                 <p className="fw-bold fs-5">General information</p>
                 {/* Continent Dropdown */}
-                <div>
-                  <Label className="mb-0">Continent</Label>
-                  <select
-                    name="continent_id"
-                    value={formik.values.continent_id || ""}
+                {/* <div className="mb-3 ajax-select mt-3 mt-lg-0 select2-container">
+                  <label>Continent</label>
+                  <div className="dropdown">
+                    <button type="button" className="dropbtn" onClick={() => setIsDropdownOpen(true)}>
+                      {formik.values.continent_id ? continentListData.find(c => c.id === formik.values.continent_id)?.name : "Select Continent"}
+                    </button>
 
-                    className={`form-select rounded-3 bg-transparent ${formik.touched.continent_id && formik.errors.continent_id
-                      ? 'is-invalid'
-                      : ''
-                      }`} placeholder="Choose continent"
-                    onChange={formik.handleChange}
-                  >
-                    <option value="">Select continent</option>
-                    {continentListData?.map((continent, index) => (
-                      <option key={continent?.id} value={continent?.id}>
-                        {continent?.name}
-                      </option>
-                    ))}
-                  </select>
-                  {formik.touched.continent_id && formik.errors.continent_id && (
-                    <div className="text-danger">{formik.errors.continent_id}</div>
-                  )}
-                </div>
+                    {isDropdownOpen && (
+                      <div className="dropdown-content">
+                        <input
+                          type="text"
+                          placeholder="Search..."
+                          className="dropdown-search"
+                          value={continentSearchQuery}
+                          onChange={(e) => setContinentSearchQuery(e.target.value)}
+                        />
+                        {filteredContinents?.length > 0 ? (
+                          filteredContinents.map(continent => (
+                            <div key={continent.id} className="dropdown-item" onClick={() => formik.setFieldValue('continent_id', continent.id)}>
+                              {continent.name}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="dropdown-item">No results found</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+
+                </div> */}
+                <div className="mb-3 ajax-select mt-3">
+  <label className="mb-0 mt-3">Continent</label>
+  <div className="dropdown">
+    <button
+      type="button"
+      className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.continent_id && formik.errors.continent_id ? "is-invalid" : ""}`}
+      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+    >
+      {formik.values.continent_id
+        ? continentListData.find((continent) => continent.id === formik.values.continent_id)?.name
+        : "Select Continent"}
+    </button>
+
+    {isDropdownOpen && (
+      <div className="dropdown-content">
+        <input
+          type="text"
+          id="searchContinentInput"
+          placeholder="Search..."
+          className="dropdown-search"
+          value={continentSearchQuery}
+          onChange={(e) => setContinentSearchQuery(e.target.value)}
+        />
+        {filteredContinents?.length > 0 ? (
+          filteredContinents.map((continent) => (
+            <div
+              key={continent.id}
+              className="dropdown-item"
+              onClick={() => {
+                formik.setFieldValue("continent_id", continent.id);
+                setIsDropdownOpen(false);
+              }}
+            >
+              {continent.name}
+            </div>
+          ))
+        ) : (
+          <div className="dropdown-item">No results found</div>
+        )}
+      </div>
+    )}
+  </div>
+  {formik.touched.continent_id && formik.errors.continent_id && (
+    <div className="text-danger">{formik.errors.continent_id}</div>
+  )}
+</div>
+
 
                 {/* Country Dropdown */}
-                <div>
+                {/* <div>
                   <Label className="mb-0 mt-3">Country</Label>
                   <select
                     name="country_id"
@@ -269,10 +393,56 @@ const AddnewPage = () => {
                   {formik.touched.country_id && formik.errors.country_id && (
                     <div className="text-danger">{formik.errors.country_id}</div>
                   )}
+                </div> */}
+                <div className="mb-3 ajax-select mt-3">
+                  <label className="mb-0 mt-3">Country</label>
+                  <div className="dropdown">
+                    <button
+                      type="button"
+                      className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.country_id && formik.errors.country_id ? "is-invalid" : ""
+                        }`}
+                      onClick={toggleCountryDropdown}
+                    >
+                      {formik.values.country_id
+                        ? countryListData.find((country) => country.id === formik.values.country_id)?.name
+                        : "Select country"}
+                    </button>
+
+                    {isCountryDropdownOpen && (
+                      <div className="dropdown-content">
+                        <input
+                          type="text"
+                          id="searchCountryInput"
+                          placeholder="Search..."
+                          className="dropdown-search"
+                          value={countrySearchQuery}
+                          onChange={(e) => setCountrySearchQuery(e.target.value)}
+                        />
+                        {filteredCountries?.length > 0 ? (
+                          filteredCountries.map((country) => (
+                            <div
+                              key={country.id}
+                              className="dropdown-item"
+                              onClick={() => handleCountrySelect(country.id)}
+                            >
+                              {country.name}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="dropdown-item">No results found</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  {formik.touched.country_id && formik.errors.country_id && (
+                    <div className="text-danger">{formik.errors.country_id}</div>
+                  )}
                 </div>
 
+
+
                 {/* Language Dropdown */}
-                <div>
+                {/* <div>
                   <Label className="mb-0 mt-3">Language</Label>
                   <select
                     name="language_id"
@@ -293,10 +463,57 @@ const AddnewPage = () => {
                   {formik.touched.language_id && formik.errors.language_id && (
                     <div className="text-danger">{formik.errors.language_id}</div>
                   )}
+                </div> */}
+                <div className="mb-3 ajax-select mt-3 mt-lg-0 select2-container">
+                  <label className="mb-0 mt-3">Language</label>
+                  <div className="dropdown">
+                    <button
+                      type="button"
+                      className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.language_id && formik.errors.language_id ? "is-invalid" : ""
+                        }`}
+                      onClick={toggleLanguageDropdown}
+                    >
+                      {formik.values.language_id
+                        ? languageListData.find((language) => language.id === formik.values.language_id)?.name
+                        : "Select language"}
+                    </button>
+
+                    {isLanguageDropdownOpen && (
+                      <div className="dropdown-content">
+                        <input
+                          type="text"
+                          id="searchInput"
+                          placeholder="Search..."
+                          className="dropdown-search"
+                          value={languageSearchQuery}
+                          onChange={(e) => setLanguageSearchQuery(e.target.value)}
+                        />
+                        {filteredLanguages?.length > 0 ? (
+                          filteredLanguages.map((language) => (
+                            <div
+                              key={language.id}
+                              className="dropdown-item"
+                              onClick={() => handleLanguageSelect(language.id)}
+                            >
+                              {language.name}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="dropdown-item">No results found</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+
+                  {formik.touched.language_id && formik.errors.language_id && (
+                    <div className="text-danger">{formik.errors.language_id}</div>
+                  )}
                 </div>
 
+
+
                 {/* Currency Dropdown */}
-                <div className="mb-3 ajax-select mt-3 mt-lg-0 select2-container">
+                {/* <div className="mb-3 ajax-select mt-3 mt-lg-0 select2-container">
                   <Label className="mb-0 mt-3">Currency</Label>
                   <select
                     name="currency_id"
@@ -318,7 +535,53 @@ const AddnewPage = () => {
                   {formik.touched.currency_id && formik.errors.currency_id && (
                     <div className="text-danger">{formik.errors.currency_id}</div>
                   )}
+                </div> */}
+                <div className="mb-3 ajax-select mt-3 mt-lg-0 select2-container">
+                  <label className="mb-0 mt-3">Currency</label>
+                  <div className="dropdown">
+                    <button
+                      type="button"
+                      className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.currency_id && formik.errors.currency_id ? "is-invalid" : ""
+                        }`}
+                      onClick={toggleDropdown}
+                    >
+                      {formik.values.currency_id
+                        ? currenciesListData.find((currency) => currency.id === formik.values.currency_id)?.name
+                        : "Select currency"}
+                    </button>
+
+                    {isDropdownOpen && (
+                      <div className="dropdown-content">
+                        <input
+                          type="text"
+                          id="searchInput"
+                          placeholder="Search..."
+                          className="dropdown-search"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                        />
+                        {filteredCurrencies?.length > 0 ? (
+                          filteredCurrencies.map((currency) => (
+                            <div
+                              key={currency.id}
+                              className="dropdown-item"
+                              onClick={() => handleSelect(currency.id)}
+                            >
+                              {currency.name}
+                            </div>
+                          ))
+                        ) : (
+                          <div className="dropdown-item">No results found</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  {formik.touched.currency_id && formik.errors.currency_id && (
+                    <div className="text-danger">{formik.errors.currency_id}</div>
+                  )}
                 </div>
+
+
 
                 {/* Organisation Number */}
                 <div className="mb-3 templating-select select2-container ">
@@ -328,8 +591,8 @@ const AddnewPage = () => {
                     value={formik.values.organization_number}
                     type="text"
                     className={`form-control rounded-3 bg-transparent ${formik.touched.organization_number && formik.errors.organization_number
-                        ? 'is-invalid'
-                        : ''
+                      ? 'is-invalid'
+                      : ''
                       }`}
                     placeholder="Text here..."
                     onChange={formik.handleChange}
@@ -355,8 +618,8 @@ const AddnewPage = () => {
                           value={formik.values.name}
                           type="text"
                           className={`form-control  rounded-3 bg-transparent ${formik.touched.name && formik.errors.name
-                              ? 'is-invalid'
-                              : ''
+                            ? 'is-invalid'
+                            : ''
                             }`} placeholder="Harry"
                           onChange={formik.handleChange}
                         />
@@ -373,8 +636,8 @@ const AddnewPage = () => {
                           value={formik.values.surname}
                           type="text"
                           className={`form-control rounded-3 bg-transparent ${formik.touched.surname && formik.errors.surname
-                              ? 'is-invalid'
-                              : ''
+                            ? 'is-invalid'
+                            : ''
                             }`} placeholder="Stone"
                           onChange={formik.handleChange}
                         />
@@ -392,8 +655,8 @@ const AddnewPage = () => {
                         value={formik.values.email}
                         type="email"
                         className={`form-control rounded-3 bg-transparent ${formik.touched.email && formik.errors.email
-                            ? 'is-invalid'
-                            : ''
+                          ? 'is-invalid'
+                          : ''
                           }`} placeholder="post@artbuild.com"
                         onChange={formik.handleChange}
                       />
@@ -441,8 +704,8 @@ const AddnewPage = () => {
                         value={formik.values.address}
                         type="text"
                         className={`form-control  rounded-3 bg-transparent ${formik.touched.address && formik.errors.address
-                            ? 'is-invalid'
-                            : ''
+                          ? 'is-invalid'
+                          : ''
                           }`} placeholder="Vossegata 22"
                         onChange={formik.handleChange}
 
@@ -461,8 +724,8 @@ const AddnewPage = () => {
                           value={formik.values.city}
                           type="text"
                           className={`form-control rounded-3 bg-transparent ${formik.touched.city && formik.errors.city
-                              ? 'is-invalid'
-                              : ''
+                            ? 'is-invalid'
+                            : ''
                             }`} placeholder="Oslo"
                           onChange={formik.handleChange}
                         />
@@ -477,8 +740,8 @@ const AddnewPage = () => {
                           value={formik.values.postal_code}
                           type="number"
                           className={`form-control  rounded-3 bg-transparent ${formik.touched.postal_code && formik.errors.postal_code
-                              ? 'is-invalid'
-                              : ''
+                            ? 'is-invalid'
+                            : ''
                             }`} placeholder="0475"
                           onChange={formik.handleChange}
                         />
@@ -492,11 +755,7 @@ const AddnewPage = () => {
               </div>
             </Col>
           </Col>
-
-
-
         </Row>
-
         <Row>
           <Col lg="12" className="text-center mt-4">
             <Button type="submit" className="btn btn-primary px-5">
