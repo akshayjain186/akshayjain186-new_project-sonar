@@ -11,7 +11,7 @@ import SuperAdmins from './SuperAdminUser/SuperAdminUser';
 import AdminUser from './AdminUser/AdminUser';
 import CustomerUser from './CustomerUser/CustomerUser';
 
-const Index = () => {
+const Users = () => {
   const [activeTab, setActiveTab] = useState(0);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Check if screen size is small
@@ -70,4 +70,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Users;
