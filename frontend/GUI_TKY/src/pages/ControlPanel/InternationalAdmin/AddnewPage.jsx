@@ -51,7 +51,7 @@ const AddnewPage = () => {
     email: "",
     roleId: 3,
     mobile_no: "",
-    isActive: "",
+    isActive: "true",// new update 6.30 dec 10 
     continent_id: null,
     country_id: null,
     currency_id: null,
@@ -671,7 +671,7 @@ const AddnewPage = () => {
                     </div>
 
                     {/* City and Postal Code */}
-                    <div className="d-flex gap-2 mt-2">
+                    <div className="d-flex gap-2 mt-">
                       <div className="w-75">
                         <Label className="mb-0 mt-3">City</Label>
                         <Input
