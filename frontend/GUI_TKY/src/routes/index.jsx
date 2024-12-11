@@ -7,12 +7,14 @@ import {
   LicensesPage,
   OwnerPage,
 } from '@/pages';
+import GenralWorkerDashbord from '@/pages/Genralworker/GenralWorkerDashbord';
 
 const authUser = JSON.parse(localStorage.getItem('authUser')) || null;
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
   { path: '/', exact: true, component: <Navigate to="/dashboard" /> },
+  { path: '/genralworker', component: <GenralWorkerDashbord /> },
 ];
 const authControleAdminRoutes = [
   { path: '/addnew', component: <AddnewPage /> },
