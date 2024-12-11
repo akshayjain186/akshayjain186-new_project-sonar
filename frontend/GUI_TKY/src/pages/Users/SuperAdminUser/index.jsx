@@ -1,19 +1,16 @@
+
+
 import React, { useState } from 'react';
 import {
-  Box,
-  Typography,
-  Grid,
   Tab,
   Tabs,
   Card,
-  CardContent,
-  Avatar,
-  Chip,
-  Divider,
-  Rating,
-  IconButton,
+  Row,
+  Col,
+  Image,
   Button,
-} from '@mui/material';
+  Badge,
+} from 'react-bootstrap';
 import groupLogo from '../../../assets/images/users/usersview/group logo.png';
 import bathroomIcon from '../../../assets/images/users/usersview/bathroom icon.png';
 import kitchenIcon from '../../../assets/images/users/usersview/kitchen icon.png';
@@ -21,15 +18,16 @@ import toiletIcon from '../../../assets/images/users/usersview/toilet icon.png';
 import facadeIcon from '../../../assets/images/users/usersview/fecade icon.png';
 import dsbqualification from '../../../assets/images/users/usersview/dsb quali.png';
 import mvaqualification from '../../../assets/images/users/usersview/mva quali.png';
-import EditIcon from '@mui/icons-material/Edit';
-import FmdGoodIcon from '@mui/icons-material/FmdGood';
-import CheckIcon from '@mui/icons-material/Check';
+import EditIcon from '../../../assets/images/users/usersview/edit icon.png';
+import FmdGoodIcon from '../../../assets/images/users/usersview/material-symbols_location-on.png';
+import CheckIcon from '../../../assets/images/users/usersview/right icon.png'; // Checkmark icon
+
 import Employee from '../UsersView/Emloyee/Employee';
 
 const TabPanel = ({ children, value, index }) => {
   return (
     <div role="tabpanel" hidden={value !== index}>
-      {value === index && <Box p={2}>{children}</Box>}
+      {value === index && <div className="p-2">{children}</div>}
     </div>
   );
 };
@@ -38,226 +36,212 @@ export default function UserView() {
   const [tabIndex, setTabIndex] = useState(0);
   const [rating, setRating] = useState(5);
 
-  const handleTabChange = (event, newValue) => {
-    setTabIndex(newValue);
+  const handleTabChange = (eventKey) => {
+    setTabIndex(eventKey);
   };
 
   return (
-    <Box p={2} sx={{ maxWidth: 1200, margin: 'auto' }}>
+    <div className="container py-4">
       {/* Header Section */}
-      <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} sm={6} md={8}>
-          <Box display="flex" alignItems="center" gap={2}>
-            <Avatar
-              variant="square"
-              src={groupLogo}
-              sx={{ width: 120, height: 120 }}
-            />
-            <Box>
-              <Typography variant="h5" fontWeight="bold">
-                Baderom Pluss AS
-              </Typography>
-              <Typography variant="body2">Member since 22.12.2021</Typography>{' '}
-              <br />
-              <Box display="flex" alignItems="center" gap={1}>
-                <Rating value={rating} precision={0.5} readOnly size="small" />
-                <Typography variant="body2">5 reviews</Typography>
-              </Box>
-            </Box>
-          </Box>
+      <Row className="mb-4">
+        <Col xs={12} md={8}>
+          <Row>
+            <Col xs={4}>
+              <Image
+                src={groupLogo}
+                alt="Group Logo"
+                rounded
+                // className="w-10"
+                className="img-fluid"
+              />
+            </Col>
+            <Col xs={8}>
+              <h5>
+                <strong>Baderom Pluss AS</strong>
+              </h5>
+              <p>Member since 22.12.2021</p>
+              <div className="d-flex align-items-center">
+                {/* Rating */}
+                <span className="me-2">{rating} ⭐</span>
+                <rating value={rating} precision={0.5} readOnly size="small" />
+                <span>5 reviews</span>
+              </div>
+            </Col>
+            <Row className="mb-4">
+              <Col xs={12} className="text-center text-md-start">
+                <Badge bg="light" className="me-2 mb-2">
+                  <Image
+                    src={bathroomIcon}
+                    alt="Bathroom"
+                    width="16"
+                    height="16"
+                  />{' '}
+                  Bathroom
+                </Badge>
+                <Badge bg="light" className="me-2 mb-2">
+                  <Image
+                    src={kitchenIcon}
+                    alt="Kitchen"
+                    width="16"
+                    height="16"
+                  />{' '}
+                  Kitchen
+                </Badge>
+                <Badge bg="light" className="me-2 mb-2">
+                  <Image src={toiletIcon} alt="Toilet" width="16" height="16" />{' '}
+                  Toilet
+                </Badge>
+                <Badge bg="light" className="me-2 mb-2">
+                  <Image src={facadeIcon} alt="Facade" width="16" height="16" />{' '}
+                  Facade
+                </Badge>
+              </Col>
+            </Row>
+          </Row>
+        </Col>
 
-          <Typography sx={{ display: 'flex', gap: 1, marginTop: 2 }}>
-            <Chip
-              label="Bathroom"
-              variant="contained"
-              size="small"
-              sx={{ background: '#EAEEF4' }}
-              icon={<img src={bathroomIcon} alt="bathroom" />}
-            />
-            <Chip
-              label="Kitchen"
-              variant="contained"
-              size="small"
-              sx={{ background: '#EAEEF4' }}
-              icon={<img src={kitchenIcon} alt="kitchen" />}
-            />
-            <Chip
-              label="Toilet"
-              variant="contained"
-              size="small"
-              sx={{ background: '#EAEEF4' }}
-              icon={<img src={toiletIcon} alt="toilet" />}
-            />
-            <Chip
-              label="Facade"
-              variant="contained"
-              size="small"
-              sx={{ background: '#EAEEF4' }}
-              icon={<img src={facadeIcon} alt="facade" />}
-            />
-          </Typography>
-        </Grid>
-
-        <Grid
-          item
-          xs={12}
-          sm={6}
-          md={4}
-          textAlign={{ xs: 'left', sm: 'right' }}
-        >
-          <Card variant="outlined">
-            <CardContent sx={{ textAlign: 'left' }}>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography variant="subtitle1" fontWeight="bold">
-                  Super admin BASIC
-                </Typography>
-                <IconButton size="small">
-                  <EditIcon />
-                </IconButton>
-              </Box>
-              <Typography variant="body2" display="flex" alignItems="center">
-                <CheckIcon fontSize="small" sx={{ marginRight: 1 }} />
-                3/10 areas
-              </Typography>
-              <Typography variant="body2" display="flex" alignItems="center">
-                <CheckIcon fontSize="small" sx={{ marginRight: 1 }} />
-                31/50 employees
-              </Typography>
-              <Typography variant="body2" display="flex" alignItems="center">
-                <CheckIcon fontSize="small" sx={{ marginRight: 1 }} />
-                6/10 admins
-              </Typography>
-              <Box
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-              >
-                <Typography variant="h6">800 kr/month</Typography>
-              </Box>
-            </CardContent>
+        {/* Card Section */}
+        <Col xs={12} md={4}>
+          <Card>
+            <Card.Body>
+              <Row className="d-flex justify-content-between">
+                <Col>
+                  <strong>Super admin BASIC</strong>
+                </Col>
+                <Col className="text-end">
+                  <Button variant="link" size="sm">
+                    <Image src={EditIcon} alt="Edit" width="20" height="20" />
+                  </Button>
+                </Col>
+              </Row>
+              <div className="d-flex align-items-center">
+                <Image src={CheckIcon} alt="Check" width="16" height="16" />
+                <span>3/10 areas</span>
+              </div>
+              <div className="d-flex align-items-center">
+                <Image src={CheckIcon} alt="Check" width="16" height="16" />
+                <span>31/50 employees</span>
+              </div>
+              <div className="d-flex align-items-center">
+                <Image src={CheckIcon} alt="Check" width="16" height="16" />{' '}
+                <span>6/10 admins</span>
+              </div>
+              <div className="d-flex justify-content-end ">
+                <h6>800 kr/month</h6>
+              </div>
+            </Card.Body>
           </Card>
-        </Grid>
-      </Grid>
+        </Col>
+      </Row>
 
-      {/* Address Section */}
-      <Grid container spacing={2} mt={3} justifyContent="space-between">
-        <Grid item xs={12} sm={3}>
-          <Typography variant="subtitle2" fontWeight="bold">
-            Address:
-          </Typography>
-          <Typography variant="body2">Vossgata 22, 0475 Oslo</Typography>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Typography variant="subtitle2" fontWeight="bold">
-            Organization number:
-          </Typography>
-          <Typography variant="body2">817158722</Typography>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Typography variant="subtitle2" fontWeight="bold">
-            Email:
-          </Typography>
-          <Typography variant="body2">post@baderom.no</Typography>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Typography variant="subtitle2" fontWeight="bold">
-            Account number:
-          </Typography>
-          <Typography variant="body2">NO93 8601 1117 947</Typography>
-        </Grid>
-      </Grid>
+      <Row className="mb-3">
+        <Col xs={12} sm={3}>
+          <strong>Address:</strong>
+          <p>Vossgata 22, 0475 Oslo</p>
+        </Col>
+        <Col xs={12} sm={3}>
+          <strong>Organization number:</strong>
+          <p>817158722</p>
+        </Col>
+        <Col xs={12} sm={3}>
+          <strong>Email:</strong>
+          <p>post@baderom.no</p>
+        </Col>
+        <Col xs={12} sm={3}>
+          <strong>Account number:</strong>
+          <p>NO93 8601 1117 947</p>
+        </Col>
+      </Row>
 
-      <Grid container spacing={2} mt={1}>
-        <Grid item xs={12} sm={8}>
-          <Typography variant="subtitle2" fontWeight="bold">
-            Description:
-          </Typography>
-          <Typography variant="body2">
+      {/* Description Section */}
+      <Row className="mb-3">
+        <Col xs={12} sm={8}>
+          <strong>Description:</strong>
+          <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam.
-          </Typography>
-        </Grid>
-      </Grid>
+          </p>
+        </Col>
+      </Row>
 
       {/* Areas Section */}
-      <Box mt={3}>
-        <Typography variant="subtitle2" fontWeight="bold">
-          Areas:
-        </Typography>
-        <Typography
-          variant="body2"
-          display="flex"
-          flexDirection="column"
-          alignItems="flex-start"
-        >
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <FmdGoodIcon fontSize="small" sx={{ marginRight: 1 }} />
-            Oslo,
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <FmdGoodIcon fontSize="small" sx={{ marginRight: 1 }} />
-            Viken (all cities),
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center' }}>
-            <FmdGoodIcon fontSize="small" sx={{ marginRight: 1 }} />
+      <div className="mt-3">
+        <strong>Areas:</strong>
+        <ul style={{ padding: 'inherit' }}>
+          <li style={{ listStyleType: 'none' }}>
+            <Image src={FmdGoodIcon} alt="Location" width="16" height="16" />{' '}
+            Oslo
+          </li>
+          <li style={{ listStyleType: 'none' }}>
+            <Image src={FmdGoodIcon} alt="Location" width="16" height="16" />{' '}
+            Viken (all cities)
+          </li>
+          <li style={{ listStyleType: 'none' }}>
+            <Image src={FmdGoodIcon} alt="Location" width="16" height="16" />{' '}
             Vestfold og Telemark (all cities)
-          </div>
-        </Typography>
-      </Box>
+          </li>
+        </ul>
+      </div>
 
       {/* Qualifications Section */}
-      <Box mt={3}>
-        <Typography variant="subtitle2" fontWeight="bold">
-          Qualifications:
-        </Typography>
-        <Box display="flex" gap={2} mt={1}>
-          <Avatar
-            variant="square"
+      <div className="mt-3">
+        <strong>Qualifications:</strong>
+        <div className="d-flex gap-2 mt-2">
+          <Image
             src={dsbqualification}
             alt="Qualification 1"
-            sx={{ width: 70, height: 70 }}
+            width="70"
+            height="70"
+            rounded
           />
-          <Avatar
-            variant="square"
+          <Image
             src={mvaqualification}
             alt="Qualification 2"
-            sx={{ width: 70, height: 70 }}
+            width="70"
+            height="70"
+            rounded
           />
-        </Box>
-      </Box>
+        </div>
+      </div>
 
       {/* Tabs Section */}
-      <Box mt={4}>
+      <div className="mt-4">
+        <style jsx>{`
+          .custom-tabs .nav-item {
+            margin-right: 10px; /* Adjust as needed */
+          }
+
+          .custom-tabs .nav-link.active {
+            color: blue !important;
+            font-weight: bold;
+            background-color: transparent !important;
+          }
+
+          .custom-tabs .nav-link {
+            color: gray !important;
+          }
+        `}</style>
         <Tabs
-          value={tabIndex}
-          onChange={handleTabChange}
-          variant="scrollable"
-          scrollButtons="auto"
+          activeKey={tabIndex}
+          onSelect={handleTabChange}
+          className="mb-3 custom-tabs"
+          justify
         >
-          <Tab label="Managers" />
-          <Tab label="Employees" />
-          <Tab label="Admins" />
-          <Tab label="Customers" />
+          <Tab eventKey={0} title="Managers">
+            <div>Manager details go here...</div>
+          </Tab>
+          <Tab eventKey={1} title="Employees">
+            <Employee />
+          </Tab>
+          <Tab eventKey={2} title="Admins">
+            <div>Admin details go here...</div>
+          </Tab>
+          <Tab eventKey={3} title="Customers">
+            <div>Customer details go here...</div>
+          </Tab>
         </Tabs>
-        <TabPanel value={tabIndex} index={0}>
-        <Typography>Manager details go here...</Typography>
-        </TabPanel>
-        <TabPanel value={tabIndex} index={1}>
-         
-          <Employee/>
-        </TabPanel>
-        <TabPanel value={tabIndex} index={2}>
-          <Typography>Admin details go here...</Typography>
-        </TabPanel>
-        <TabPanel value={tabIndex} index={3}>
-          <Typography>Customer details go here...</Typography>
-        </TabPanel>
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 }

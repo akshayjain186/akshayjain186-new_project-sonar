@@ -14,7 +14,7 @@ import CustomerUser from './CustomerUser/CustomerUser';
 const Users = () => {
   const [activeTab, setActiveTab] = useState(0);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); // Check if screen size is small
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm')); 
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);

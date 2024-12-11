@@ -143,8 +143,8 @@ const Employee = () => {
   );
 
   return (
-    <Box>
-      {/* Table with Pagination */}
+    <div>
+
       <TableContainer
         columns={columns}
         data={rows || []}
@@ -160,7 +160,7 @@ const Employee = () => {
         paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
         pagination="pagination"
       />
-    </Box>
+    </div>
   );
 };
 

@@ -12,6 +12,7 @@ import UserView from '@/pages/Users/SuperAdminUser';
 import AdminUserView from '@/pages/Users/AdminUser';
 import CustomerUserProfile from '@/pages/Users/CustomerUser';
 import AdminViewPlan from '@/pages/Users/AdminUser/AdminView/AdminViewPlan';
+import Leads from '@/pages/Leades';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
@@ -28,6 +29,8 @@ const publicRoutes = [
   { path: '/AdminUserView', component: <AdminUserView /> },
   { path: '/CustomerUserProfile', component: <CustomerUserProfile /> },
   { path: '/AdminViewPlan', component: <AdminViewPlan /> },
+  { path: '/leads', component: <Leads /> },
+
 ];
 
 export { authProtectedRoutes, publicRoutes };
