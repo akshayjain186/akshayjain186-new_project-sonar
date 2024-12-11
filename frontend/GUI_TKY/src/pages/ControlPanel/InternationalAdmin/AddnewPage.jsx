@@ -43,24 +43,8 @@ const AddnewPage = () => {
   const [isContinentDropdownOpen, setIsContinentDropdownOpen] = useState(false);
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [filteredCountries, setFilteredCountries] = useState([]);
-
+  const [continentId, setContinentId] = useState(null)
   // States for Currency Dropdown Search
-  const [formData, setFormData] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    roleId: 2,
-    mobile_no: "",
-    isActive: "true",// new update 6.30 dec 10 
-    continent_id: null,
-    country_id: null,
-    currency_id: null,
-    language_id: null,
-    address: "",
-    city: "",
-    postal_code: "",
-    organization_number: "",
-  });
   const filteredContinents = continentListData?.filter((continent) =>
     continent.name.toLowerCase().includes(continentSearchQuery.toLowerCase())
   );
@@ -84,16 +68,7 @@ const AddnewPage = () => {
     }));
   };
   const [searchQuery, setSearchQuery] = useState("");
-  const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the form from reloading the page
-    try {
-      dispatch(
-        postGeneralInformation(formData, (response, error) => {
-          console.log(response, "response");
-        })
-      );
-    } catch (error) { }
-  };
+
   // Function to toggle dropdown visibility
   const toggleLanguageDropdown = () => {
     setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
@@ -132,55 +107,70 @@ const AddnewPage = () => {
     setSearchQuery(""); // Reset search input
   };
 
+  const handleContinentChange = (event) => {
+    const continentId = event.target.value;
+    setSelectedContinent(continentId); // Update selected continent
+
+    if (continentId) {
+      getCountryListDataByContinent(continentId)
+        .then(response => {
+          setCountries(response); // Set the countries based on selected continent
+        })
+        .catch(error => {
+          console.error('Error fetching countries:', error);
+        });
+    } else {
+      setCountries([]); // If no continent is selected, clear the countries
+    }
+  };
+
 
   useEffect(() => {
-    dispatch(
-      getCountryListData({}, (response, error) => {
-        if (
-          response?.status === 200 &&
-          response?.data?.message === "Countries fetched successfully"
-        ) {
-          setCountryListDataData(response?.data?.countries);
-        } else {
-          setCountryListDataData([]);
-        }
-      })
-    );
-    dispatch(
-      getContinentListData({}, (response, error) => {
-        if (response?.status === 200) {
-          setContinentListData(response?.data?.data);
-        } else {
-          setContinentListData([]);
-        }
-      })
-    );
-    dispatch(
-      getLanguageListData({}, (response, error) => {
-        if (
-          response?.status === 200 &&
-          response?.data?.message === "Languages fetched successfully"
-        ) {
-          setLanguageListData(response?.data?.languages);
-        } else {
-          setLanguageListData([]);
-        }
-      })
-    );
-    dispatch(
-      getCurrenciesListData({}, (response, error) => {
-        if (
-          response?.status === 200 &&
-          response?.data?.message === "Currencies fetched successfully"
-        ) {
-          setCurrenciesListData(response?.data?.currencies);
-        } else {
-          setCurrenciesListData([]);
-        }
-      })
-    );
-  }, []);
+    if (continentId || continentId === null) {
+      dispatch(
+        getCountryListData({ continentId }, (response, error) => {
+          if (
+            response?.status === 200
+          ) {
+            setCountryListDataData(response?.data?.countries);
+            
+          } else {
+            setCountryListDataData([]);
+          }
+        })
+      );
+    }
+    if (continentId === null) {
+      dispatch(
+        getContinentListData({}, (response, error) => {
+          if (response?.status === 200) {
+            setContinentListData(response?.data?.data);
+          } else {
+            setContinentListData([]);
+          }
+        })
+      );
+      dispatch(
+        getLanguageListData({}, (response, error) => {
+          if (response?.status === 200 && response?.data?.message === "Languages fetched successfully") {
+            setLanguageListData(response?.data?.languages);
+          } else {
+            setLanguageListData([]);
+          }
+        })
+      );
+      dispatch(
+        getCurrenciesListData({}, (response, error) => {
+          if (response?.status === 200 && response?.data?.message === "Currencies fetched successfully") {
+            setCurrenciesListData(response?.data?.currencies);
+          } else {
+            setCurrenciesListData([]);
+          }
+        })
+      );
+    }
 
+  }, [continentId]);
   // Formik setup
   const formik = useFormik({
     initialValues: {
@@ -243,6 +233,8 @@ const AddnewPage = () => {
             alert("User registered successfully!");
             resetForm();
             navigate("/licenses");
+            setContinentId(null);
+
           } else {
             console.error("Registration failed:", error);
             alert("Registration failed: ");
@@ -280,12 +272,16 @@ const AddnewPage = () => {
                     <button
                       type="button"
                       className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.continent_id &&
-                          formik.errors.continent_id
-                          ? "is-invalid"
-                          : ""
+                        formik.errors.continent_id
+                        ? "is-invalid"
+                        : ""
                         }`}
                       onClick={() => {
                         setIsContinentDropdownOpen(!isContinentDropdownOpen);
+                        formik.setFieldValue(
+                          "country_id",
+                          null
+                        );
                         setIsCurrencyDropdownOpen(false); // Close currency dropdown
                       }}
                     >
@@ -319,6 +315,7 @@ const AddnewPage = () => {
                                   continent.id
                                 );
                                 setIsContinentDropdownOpen(false);
+                                setContinentId(continent.id)
                               }}
                             >
                               {continent.name}
@@ -344,8 +341,8 @@ const AddnewPage = () => {
                     <button
                       type="button"
                       className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.country_id && formik.errors.country_id
-                          ? "is-invalid"
-                          : ""
+                        ? "is-invalid"
+                        : ""
                         }`}
                       onClick={() => {
                         setIsCountryDropdownOpen(!isCountryDropdownOpen);
@@ -415,8 +412,8 @@ const AddnewPage = () => {
                     <button
                       type="button"
                       className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.language_id && formik.errors.language_id
-                          ? "is-invalid"
-                          : ""
+                        ? "is-invalid"
+                        : ""
                         }`}
                       onClick={toggleLanguageDropdown}
                     >
@@ -477,8 +474,8 @@ const AddnewPage = () => {
                     <button
                       type="button"
                       className={`dropbtn form-select rounded-3 bg-transparent ${formik.touched.currency_id && formik.errors.currency_id
-                          ? "is-invalid"
-                          : ""
+                        ? "is-invalid"
+                        : ""
                         }`}
                       onClick={handleDropdownToggle}
                     >
@@ -534,9 +531,9 @@ const AddnewPage = () => {
                     value={formik.values.organization_number}
                     type="text"
                     className={`form-control rounded-3 bg-transparent ${formik.touched.organization_number &&
-                        formik.errors.organization_number
-                        ? "is-invalid"
-                        : ""
+                      formik.errors.organization_number
+                      ? "is-invalid"
+                      : ""
                       }`}
                     placeholder="Text here..."
                     onChange={formik.handleChange}
@@ -565,8 +562,8 @@ const AddnewPage = () => {
                           value={formik.values.name}
                           type="text"
                           className={`form-control  rounded-3 bg-transparent ${formik.touched.name && formik.errors.name
-                              ? "is-invalid"
-                              : ""
+                            ? "is-invalid"
+                            : ""
                             }`}
                           placeholder="Harry"
                           onChange={formik.handleChange}
@@ -586,8 +583,8 @@ const AddnewPage = () => {
                           value={formik.values.surname}
                           type="text"
                           className={`form-control rounded-3 bg-transparent ${formik.touched.surname && formik.errors.surname
-                              ? "is-invalid"
-                              : ""
+                            ? "is-invalid"
+                            : ""
                             }`}
                           placeholder="Stone"
                           onChange={formik.handleChange}
@@ -608,8 +605,8 @@ const AddnewPage = () => {
                         value={formik.values.email}
                         type="email"
                         className={`form-control rounded-3 bg-transparent ${formik.touched.email && formik.errors.email
-                            ? "is-invalid"
-                            : ""
+                          ? "is-invalid"
+                          : ""
                           }`}
                         placeholder="post@artbuild.com"
                         onChange={formik.handleChange}
@@ -625,8 +622,6 @@ const AddnewPage = () => {
                       <InputGroup className="mb-3">
                         <InputGroupText className="p-0">
                           <select
-                            //   name="mobile_no"
-                            //   value={formData.mobile_no}
                             className="form-select border-0  bg-transparent"
                             style={{ width: "80px" }}
                             onChange={formik.handleChange}
@@ -647,6 +642,9 @@ const AddnewPage = () => {
                           onChange={formik.handleChange}
                         />
                       </InputGroup>
+                      {formik.touched.mobile_no && formik.errors.mobile_no && (
+                        <div className="text-danger">{formik.errors.mobile_no}</div>
+                      )}
                     </div>
 
                     {/* Address Input */}
@@ -657,8 +655,8 @@ const AddnewPage = () => {
                         value={formik.values.address}
                         type="text"
                         className={`form-control  rounded-3 bg-transparent ${formik.touched.address && formik.errors.address
-                            ? "is-invalid"
-                            : ""
+                          ? "is-invalid"
+                          : ""
                           }`}
                         placeholder="Vossegata 22"
                         onChange={formik.handleChange}
@@ -679,8 +677,8 @@ const AddnewPage = () => {
                           value={formik.values.city}
                           type="text"
                           className={`form-control rounded-3 bg-transparent ${formik.touched.city && formik.errors.city
-                              ? "is-invalid"
-                              : ""
+                            ? "is-invalid"
+                            : ""
                             }`}
                           placeholder="Oslo"
                           onChange={formik.handleChange}
@@ -700,9 +698,9 @@ const AddnewPage = () => {
                           value={formik.values.postal_code}
                           type="number"
                           className={`form-control  rounded-3 bg-transparent ${formik.touched.postal_code &&
-                              formik.errors.postal_code
-                              ? "is-invalid"
-                              : ""
+                            formik.errors.postal_code
+                            ? "is-invalid"
+                            : ""
                             }`}
                           placeholder="0475"
                           onChange={formik.handleChange}
@@ -729,7 +727,7 @@ const AddnewPage = () => {
           </Col>
         </Row>
       </form>
-    </React.Fragment>
+    </React.Fragment >
   );
 };
 

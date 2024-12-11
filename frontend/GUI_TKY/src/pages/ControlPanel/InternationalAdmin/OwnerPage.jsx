@@ -1346,7 +1346,7 @@ const OwnerPage = () => {
                             isPagination={true}
                             SearchPlaceholder="Search..."
                             isCustomPageSize={false}
-                  y          isAddButton={false}
+                           isAddButton={false}
                             buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
                             buttonName="New Contact"
                             tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"

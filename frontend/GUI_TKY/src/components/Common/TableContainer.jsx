@@ -266,6 +266,7 @@ const TableContainer = ({
                       style={{
                         border: getState().pagination.pageIndex === item ? "border-black" : "none",
                         borderRadius: "4px",
+                        
                       }}
                     >
                       <Link to="#" className="page-link" onClick={() => setPageIndex(item)}>

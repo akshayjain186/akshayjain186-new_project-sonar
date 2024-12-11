@@ -12,9 +12,9 @@ export const getContinentListData = ({}, callback) => ({
   callback,
 });
 
-export const getCountryListData = ({}, callback) => ({
+export const getCountryListData = ({continentId}, callback) => ({
   type: GET_COUNTRY_LIST,
-  payload: {},
+  payload: {continentId},
   callback,
 });
 

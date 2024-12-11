@@ -16,9 +16,9 @@ import {
 } from '@/services/api_helper';
 
 function* fetchCountryList(action) {
-  // const { customerList_filter } = action.payload;
+  const { continentId } = action.payload;
   try {
-    const response = yield call(getCountryListData, {});
+    const response = yield call(getCountryListData, {continentId});
     if (action.callback) {
       action.callback(response);
     }

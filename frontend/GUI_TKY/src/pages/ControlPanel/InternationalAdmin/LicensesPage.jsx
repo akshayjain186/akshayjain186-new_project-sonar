@@ -121,7 +121,8 @@ function LicensesPage() {
                           alt="Profile Icon"
                           className="me-2 h-25"
                         />
-                        <span>{license.organization_number}</span>
+                        {/* organization_number */}
+                        <span>{license.name}</span>
                       </div>
                       <div className="d-flex align-items-center">
                       <img src={currency} alt="Currency Icon" className="me-2" />

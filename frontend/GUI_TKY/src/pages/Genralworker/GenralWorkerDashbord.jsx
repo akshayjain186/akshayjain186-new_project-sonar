@@ -9,15 +9,15 @@ const GeneralWorkerDashboard = () => {
       <div className="mt-5 py-5">
         <div className="row g-4">
           <div className="col-md-3">
-            <div className="card text-center ">
+            <div className="card d-flex justify-content-between">
               <div className="card-body">
                 <h6 className="card-title">PORTAL USERS</h6>
-                <h3 className="card-text">60</h3>
+                <h3 className="card-tex">60</h3>
               </div>
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card text-center">
+            <div className="card ">
               <div className="card-body">
                 <h6 className="card-title">NEW LEADS</h6>
                 <h3 className="card-text">6</h3>
@@ -25,7 +25,7 @@ const GeneralWorkerDashboard = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card text-center">
+            <div className="card">
               <div className="card-body">
                 <h6 className="card-title">COMPANIES</h6>
                 <h3 className="card-text">48</h3>
@@ -33,10 +33,13 @@ const GeneralWorkerDashboard = () => {
             </div>
           </div>
           <div className="col-md-3">
-            <div className="card text-center ">
+            <div className="card d-flex justify-content-between">
               <div className="card-body">
                 <h6 className="card-title">PRODUCTS</h6>
                 <h3 className="card-text">578</h3>
+              </div>
+              <div>
+                <img src="" alt="icon" />
               </div>
             </div>
           </div>
@@ -65,7 +68,7 @@ const GeneralWorkerDashboard = () => {
                 </thead>
                 <tbody>
                   {[...Array(5)].map((_, index) => (
-                    <tr key={index}>
+                    <tr key={index} className="">
                       <td>19</td>
                       <td>Alan Cooper</td>
                       <td>alan.cooper@gmail.com</td>
