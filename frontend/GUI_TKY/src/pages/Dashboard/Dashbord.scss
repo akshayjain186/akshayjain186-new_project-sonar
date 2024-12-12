@@ -1,0 +1,49 @@
+/* Add border to thead */
+.table thead {
+    border-bottom: 1px solid #EAEEF4; /* or any color you want */
+    border-top: 1px solid #EAEEF4;
+  }
+  /* Remove all table borders */
+.table, .table th, .table td {
+  border: none;
+}
+
+
+  
+/* Container for the buttons */
+.d-flex {
+  display: flex;
+  align-items: center; /* Vertically align the buttons */
+}
+
+/* Add a vertical line between buttons */
+.vertical-line {
+  border-left: 2px solid #EAEEF4; /* Adjust the color and thickness as needed */
+  height: 20px; /* Adjust the height to your preference */
+  margin: 0 ; /* Space between buttons */
+}
+/* Add padding to table header cells */
+.table thead th {
+  padding-top: 15px; /* Space above the text */
+  padding-bottom: 15px; /* Space below the text */
+}
+
+/* Optional: Add margin to the header row */
+.table thead tr {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.line {
+  width: 100%; /* Make the line take up the full width of the container */
+  height: 2px; /* Set the thickness of the line */
+  background-color: red; /* Set the color of the line */
+  margin-top: 4px; /* Space between the text and the line */
+}
+.text-color{
+  color:#A8AFB9;
+ 
+}
+.number-color{
+  color: #41619A;
+  font-weight: bold;
+}

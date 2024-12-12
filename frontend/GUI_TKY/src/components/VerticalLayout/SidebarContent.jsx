@@ -152,6 +152,42 @@ const SidebarContent = (props) => {
                 <span>{props.t("Dashboard")}</span>
               </Link>
             </li>
+            <li>
+              <Link to="/">
+                <i className="bx bx-briefcase-alt"></i>
+                <span>{props.t("Users")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <i className="bx bx-briefcase-alt"></i>
+                <span>{props.t("Leads")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <i className="bx bx-briefcase-alt"></i>
+                <span>{props.t("Economy")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <i className="bx bx-briefcase-alt"></i>
+                <span>{props.t("Product")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <i className="bx bx-briefcase-alt"></i>
+                <span>{props.t("Time report")}</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/">
+                <i className="bx bx-briefcase-alt"></i>
+                <span>{props.t("Templates")}</span>
+              </Link>
+            </li>
             
           </ul>
         </div>

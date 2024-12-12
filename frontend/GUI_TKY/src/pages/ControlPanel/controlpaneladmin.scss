@@ -107,8 +107,36 @@ input[type="number"] {
 
 
 
+.dropdown-search-container {
+  position: relative;
+  width: 100%; 
+}
 
+.dropdown-search {
+  padding-left: 30px; /* Ensure space for the icon */
+  width: 100%;
+  padding-right: 10px;
+  height: 35px;  /* Adjust height if necessary */
+  font-size: 14px; /* Adjust font size */
+}
 
+.search-icon {
+  position: absolute;
+  left: 20px; /* Position the icon on the left */
+  top: 1%;
+  // bottom: 2%;
+  transform: translateY(-50%); /* Vertically center the icon */
+  width: 24px; /* Adjust the size of the icon */
+  height: 20px;
+}
+.dropdown-search::placeholder {
+  padding-left: 35px; /* Shift the placeholder text to the right, next to the icon */
+}
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center; /* Align the icon and text in the same line */
+}
 
 
 
@@ -174,6 +202,7 @@ input[type="number"] {
 
 .ajax-select .dropdown-item {
   padding: 10px;
+  border-bottom: 1px solid #EAEEF4;
   cursor: pointer;
   transition: background-color 0.2s;
 }

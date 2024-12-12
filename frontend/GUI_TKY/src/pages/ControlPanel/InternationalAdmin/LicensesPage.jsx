@@ -112,8 +112,8 @@ function LicensesPage() {
                     </div>
                     {/* License Info */}
                     <div
-                      className="d-flex flex-column flex-md-row align-items-start align-items-center justify-content-between"
-                      style={{ width: '30%', maxWidth: '300px' }}
+                      className="d-flex flex-column flex-md-row align-items-start align-items-center justify-content-between gap-4"
+                      style={{ width: '50%', maxWidth: '500px' }}
                     >
                       <div className="d-flex">
                         <img
@@ -124,9 +124,9 @@ function LicensesPage() {
                         {/* organization_number */}
                         <span>{license.name}</span>
                       </div>
-                      <div className="d-flex align-items-center">
-                      <img src={currency} alt="Currency Icon" className="me-2" />
-                        <span className="me-4">{license.currency}</span>
+                      <div className="d-flex " style={{width:"30%"}}>
+                      <img src={currency} alt="Currency Icon" className="me-2 text-start" />
+                        <span className="">{license.currency}</span>
                       </div>
                     </div>
                   </div>

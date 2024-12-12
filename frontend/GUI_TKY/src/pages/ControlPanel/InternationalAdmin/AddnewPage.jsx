@@ -14,6 +14,8 @@ import { useDispatch } from "react-redux";
 //  logo image
 import "../controlpaneladmin.scss";
 import InternationalHeader from "./InternationalHeader";
+import search from '../../../assets/images/searchIcon.png';
+
 import {
   getCountryListData,
   getCurrenciesListData,
@@ -133,7 +135,7 @@ const AddnewPage = () => {
             response?.status === 200
           ) {
             setCountryListDataData(response?.data?.countries);
-            
+
           } else {
             setCountryListDataData([]);
           }
@@ -254,9 +256,9 @@ const AddnewPage = () => {
           {/* Left Column for General Information */}
           <div className="mb-2">
             <p className="mt-3">
-              <span className="text-muted">Licenses</span> &nbsp;&nbsp;^{" "}
+              <span className="text-muted mb-2">Licenses</span> &nbsp;&nbsp;<span className='mt-5'>^</span>{" "}
               &nbsp;&nbsp;
-              <span>Add new</span>
+              <span className="mb-4">Add new</span>
             </p>
           </div>
           <Col lg="12" className="d-flex justify-content gap-4">
@@ -294,16 +296,21 @@ const AddnewPage = () => {
                     </button>
                     {isContinentDropdownOpen && (
                       <div className="dropdown-content">
-                        <input
-                          type="text"
-                          id="searchContinentInput"
-                          placeholder="Search..."
-                          className="dropdown-search"
-                          value={continentSearchQuery}
-                          onChange={(e) =>
-                            setContinentSearchQuery(e.target.value)
-                          }
-                        />
+                        <div className="input-with-icon ">
+
+
+                          <input
+                            type="search"
+                            id="searchContinentInput"
+                            placeholder="Search..."
+                            className="dropdown-search rounded-3 bg-transparent input mt-1 "
+                            value={continentSearchQuery}
+                            onChange={(e) =>
+                              setContinentSearchQuery(e.target.value)
+                            }
+                          />
+                          <img src={search} alt="" className="search-icon" />
+                        </div>
                         {filteredContinents?.length > 0 ? (
                           filteredContinents.map((continent) => (
                             <div
@@ -359,25 +366,30 @@ const AddnewPage = () => {
                     </button>
 
                     {isCountryDropdownOpen && (
+
                       <div className="dropdown-content">
-                        {/* Search Input inside Dropdown */}
-                        <input
-                          type="text"
-                          id="searchCountryInput"
-                          placeholder="Search..."
-                          className="dropdown-search"
-                          value={countrySearchQuery}
-                          onChange={(e) => {
-                            const query = e.target.value.toLowerCase();
-                            setCountrySearchQuery(query);
+                        <div className="input-with-icon">
 
-                            const filtered = countryListData.filter((country) =>
-                              country.name.toLowerCase().includes(query)
-                            );
-                            setFilteredCountries(filtered);
-                          }}
-                        />
 
+                          {/* Search Input inside Dropdown */}
+                          <img src={search} alt="" className="search-icon" />
+                          <input
+                            type="text"
+                            id="searchCountryInput"
+                            placeholder="Search..."
+                            className="dropdown-search rounded-3 bg-transparent input mt-1"
+                            value={countrySearchQuery}
+                            onChange={(e) => {
+                              const query = e.target.value.toLowerCase();
+                              setCountrySearchQuery(query);
+
+                              const filtered = countryListData.filter((country) =>
+                                country.name.toLowerCase().includes(query)
+                              );
+                              setFilteredCountries(filtered);
+                            }}
+                          />
+                        </div>
                         {/* Render Country List */}
                         {filteredCountries?.length > 0 ? (
                           filteredCountries.map((country) => (
@@ -427,22 +439,29 @@ const AddnewPage = () => {
 
                     {isLanguageDropdownOpen && (
                       <div className="dropdown-content">
-                        <input
-                          type="text"
-                          id="searchInput"
-                          placeholder="Search..."
-                          className="dropdown-search"
-                          value={languageSearchQuery}
-                          onChange={(e) => {
-                            const query = e.target.value.toLowerCase();
-                            setLanguageSearchQuery(query);
-                            const filtered = languageListData.filter(
-                              (language) =>
-                                language.name.toLowerCase().includes(query)
-                            );
-                            setFilteredLanguages(filtered);
-                          }}
-                        />
+                        <div className="dropdown-search-container">
+                          <div className="input-with-icon">
+                            <img src={search} alt="" className="search-icon" />
+
+                            <input
+                              type="text"
+                              id="searchInput"
+                              placeholder="Search..."
+                              className="dropdown-search rounded-3 bg-transparent input mt-1"
+                              value={languageSearchQuery}
+                              onChange={(e) => {
+                                const query = e.target.value.toLowerCase();
+                                setLanguageSearchQuery(query);
+                                const filtered = languageListData.filter(
+                                  (language) =>
+                                    language.name.toLowerCase().includes(query)
+                                );
+                                setFilteredLanguages(filtered);
+                              }}
+                            />
+
+                          </div>
+                        </div>
                         {filteredLanguages?.length > 0 ? (
                           filteredLanguages.map((language) => (
                             <div
@@ -489,16 +508,18 @@ const AddnewPage = () => {
                     {/* Dropdown Content */}
                     {isCurrencyDropdownOpen && (
                       <div className="dropdown-content">
-                        {/* Search Input */}
-                        <input
-                          type="text"
-                          id="currencySearchInput"
-                          placeholder="Search currencies..."
-                          className="dropdown-search"
-                          value={searchQuery}
-                          onChange={handleSearchChange}
-                        />
-
+                        <div className="input-with-icon">
+                          <img src={search} alt="" className="search-icon" />
+                          {/* Search Input */}
+                          <input
+                            type="text"
+                            id="currencySearchInput"
+                            placeholder="Search currencies..."
+                            className="dropdown-search rounded-3 bg-transparent input mt-1"
+                            value={searchQuery}
+                            onChange={handleSearchChange}
+                          />
+                        </div>
                         {/* Render Filtered List */}
                         {filteredCurrencies.length > 0 ? (
                           filteredCurrencies.map((currency) => (

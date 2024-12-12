@@ -524,7 +524,7 @@ const TableContainer = ({
     <Col sm={12} md={7} className="d-flex justify-content-end">
       <div className="align-items-end">
         <ul className={`${pagination} d-flex align-items-end`} style={{ gap: "10px" }}>
-          <li className={`paginate_button page-item previous ${!getCanPreviousPage() ? "disabled" : ""}`}>
+          <li className={`paginate_button page-item previous ${!getCanPreviousPage() ? "border" : ""}`}>
             <Link to="#" className="page-link" onClick={previousPage}>
               <i className="mdi mdi-chevron-left"></i>
             </Link>
