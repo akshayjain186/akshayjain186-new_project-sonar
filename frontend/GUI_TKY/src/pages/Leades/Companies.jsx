@@ -4,104 +4,103 @@ import TableContainer from '../../components/Common/TableContainer';
 const Companies = () => {
   const rows = [
     {
-        id:1990,
+      id: 1990,
       Companyname: 'Tyler Hopper',
-     
+
       Email: 'john__snow@gmil.com',
-      manager:'Harry Stone',
-      MobileNumber:'+4721607947',
-      Typeofproject:'Big job',
-      date: '22.01.2021',
-    
-    },
-    {
-        id:1989,
-        Companyname: 'Oliver Grehem',
-        Email: 'oliver1977@gmail.com',
-        manager:'Harry Stone',
-        MobileNumber:'+4721607947',
-        Typeofproject:'Small job',
-        date: '25.12.2022 11:15',
-    },
-    {
-        id:1990,
-        Companyname: 'Tyler Hopper',
-        Email: 'john__snow@gmil.com',
-        manager:'Harry Stone',
-        MobileNumber:'+4721607947',
-        Typeofproject:'Big job',
-        date: '25.12.2022 11:15',
-    },
-    {
-        id:1990,
-        Companyname: 'Tyler Hopper',
-      Email: 'john__snow@gmil.com',
-      manager:'Harry Stone',
-      MobileNumber:'+4721607947',
-      Typeofproject:'Big job',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
       date: '22.01.2021',
     },
     {
-        id:1990,
-        Companyname: 'Tyler Hopper',
+      id: 1989,
+      Companyname: 'Oliver Grehem',
+      Email: 'oliver1977@gmail.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '25.12.2022 11:15',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
       Email: 'john__snow@gmil.com',
-      manager:'Harry Stone',
-      MobileNumber:'+4721607947',
-      Typeofproject:'Big job',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '25.12.2022 11:15',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
+      Email: 'john__snow@gmil.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
       date: '22.01.2021',
     },
     {
-        id:1990,
-        Companyname: 'Tyler Hopper',
-        Email: 'john__snow@gmil.com',
-        manager:'Harry Stone',
-        MobileNumber:'+4721607947',
-        Typeofproject:'Big job',
-        date: '22.01.2021',
-    },
-    {
-        id:1990,
-        Companyname: 'Tyler Hopper',
+      id: 1990,
+      Companyname: 'Tyler Hopper',
       Email: 'john__snow@gmil.com',
-      manager:'Harry Stone',
-      MobileNumber:'+4721607947',
-      Typeofproject:'Big job',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
       date: '22.01.2021',
     },
     {
-        id:1990,
-        Companyname: 'Tyler Hopper',
-        Email: 'john__snow@gmil.com',
-        manager:'Harry Stone',
-        MobileNumber:'+4721607947',
-        Typeofproject:'Big job',
-        date: '22.01.2021',
-    },
-    {
-        id:1990,
-        Companyname: 'Tyler Hopper',
-        Email: 'john__snow@gmil.com',
-        manager:'Harry Stone',
-        MobileNumber:'+4721607947',
-        Typeofproject:'Big job',
-        date: '22.01.2021',
-    },
-    {
-        id:1990,
-        Companyname: 'Tyler Hopper',
-        Email: 'john__snow@gmil.com',
-        manager:'Harry Stone',
-        MobileNumber:'+4721607947',
-        Typeofproject:'Big job',
-        date: '22.01.2021',
-    },
-    {
-        id:1990,
-        Companyname: 'Tyler Hopper',
+      id: 1990,
+      Companyname: 'Tyler Hopper',
       Email: 'john__snow@gmil.com',
-      manager:'Harry Stone',
-      MobileNumber:'+4721607947',
-      Typeofproject:'Big job',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '22.01.2021',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
+      Email: 'john__snow@gmil.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '22.01.2021',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
+      Email: 'john__snow@gmil.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '22.01.2021',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
+      Email: 'john__snow@gmil.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '22.01.2021',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
+      Email: 'john__snow@gmil.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
+      date: '22.01.2021',
+    },
+    {
+      id: 1990,
+      Companyname: 'Tyler Hopper',
+      Email: 'john__snow@gmil.com',
+      manager: 'Harry Stone',
+      MobilePhone: '+4721607947',
+      city: 'oslo',
       date: '22.01.2021',
     },
   ];
@@ -133,14 +132,14 @@ const Companies = () => {
         enableSorting: true,
       },
       {
-        header: 'Mobile Number',
-        accessorKey: 'MobileNumber',
+        header: 'Mobile Phone',
+        accessorKey: 'MobilePhone',
         enableColumnFilter: false,
         enableSorting: true,
       },
       {
-        header: 'Type of project',
-        accessorKey: 'Typeofproject',
+        header: 'city',
+        accessorKey: 'city',
         enableColumnFilter: false,
         enableSorting: true,
       },
@@ -178,22 +177,17 @@ const Companies = () => {
     <div>
       {/* Top Bar */}
       <div className="row mb-2 align-items-center">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-            <div className="d-flex" style={{ maxWidth: '100%', width: '500px' }}>
-              <input
-                type="text"
-                className="form-control me-3 mb-2"
-                placeholder="Search..."
-               
-              />
-              <input
-                type="date"
-                className="form-control me-3 mb-2"
-               
-              />
-            </div>
-            <p className="mb-0">Total Requests: 234</p>
+        <div className="d-flex justify-content-between align-items-center mb-3">
+          <div className="d-flex" style={{ maxWidth: '100%', width: '500px' }}>
+            <input
+              type="text"
+              className="form-control me-3 mb-2"
+              placeholder="Search..."
+            />
+            <input type="date" className="form-control me-3 mb-2" />
           </div>
+          <p className="mb-0">Total Requests: 234</p>
+        </div>
       </div>
 
       {/* Table with Pagination */}

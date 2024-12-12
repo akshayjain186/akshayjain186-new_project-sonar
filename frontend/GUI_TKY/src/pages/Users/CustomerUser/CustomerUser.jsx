@@ -211,6 +211,7 @@
 
 import React, { useMemo } from 'react';
 import TableContainer from '../../../components/Common/TableContainer';
+import plusIcon from '../../../assets/images/users/usersview/plus icon.png'
 
 const CustomerUser = () => {
   const rows = [
@@ -373,6 +374,7 @@ const CustomerUser = () => {
               background: '#41619A',
             }}
           >
+                <img src={plusIcon} alt="" />
             <i className="bi bi-plus-lg me-2"></i> Icon
           </button>
         </div>

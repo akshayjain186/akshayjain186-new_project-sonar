@@ -70,7 +70,7 @@ export default function Leads() {
   const [key, setKey] = useState('customers');
 
   return (
-    <div className="container mt-4">
+    <div className="card card-header mt-4">
       <h2 className="mb-4">Leads</h2>
       <Tabs
         id="leads-tabs"
@@ -78,12 +78,12 @@ export default function Leads() {
         onSelect={(k) => setKey(k)}
         className="mb-3 custom-tabs"
       >
-        <Tab eventKey="customers" title="Customers">
+        <div eventKey="customers" title="Customers">
           <Customers />
-        </Tab>
-        <Tab eventKey="companies" title="Companies">
+        </div>
+        <div eventKey="companies" title="Companies">
           <Companies />
-        </Tab>
+        </div>
       </Tabs>
 
       <style jsx>{`
