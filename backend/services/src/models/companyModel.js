@@ -48,22 +48,6 @@ CompanyModel.init({
         type: DataTypes.JSON,
         allowNull: false,
     },
-    continentId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    countryId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-    },
-    languageId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    currencyId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
 }, {
     sequelize,
     modelName: 'CompanyModel',

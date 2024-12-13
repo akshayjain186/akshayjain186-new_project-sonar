@@ -7,6 +7,12 @@
 
 /**
  * @swagger
+ * security:
+ *   - bearerAuth: []  # This applies bearer authentication globally to all endpoints
+ */
+
+/**
+ * @swagger
  * /api/countries:
  *   get:
  *     summary: Retrieve a list of all countries
