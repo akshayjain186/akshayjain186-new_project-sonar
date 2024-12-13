@@ -10,7 +10,7 @@ module.exports = {
         primaryKey: true,
       },
       userId: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       companyName: {

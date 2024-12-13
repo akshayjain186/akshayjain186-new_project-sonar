@@ -494,9 +494,11 @@ const deleteUserAndCompanyById = async (req, res) => {
   }
 };
 
+
 module.exports = {
   registerCompany,
   getCompanyDetails,
   updateCompanyDetails,
   deleteUserAndCompanyById,
+
 };
