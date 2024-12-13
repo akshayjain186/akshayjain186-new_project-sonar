@@ -7,11 +7,11 @@ export default function SendInvitationForm() {
       <div className="card p-4 shadow" style={{ maxWidth: '500px', width: '100%' }}>
         <h2 className="text-center mb-4">Send Invitation</h2>
         <p className="text-center mb-4">
-          Enter the email address of the person you want to invite.
+        Invitation to the portal will be sent via customer e-mail. Check whether it’s right and change if necessary 
         </p>
         <form>
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email Address</label>
+            <label htmlFor="email" className="form-label">Customer e-mail</label>
             <input
               type="email"
               className="form-control"
@@ -20,7 +20,9 @@ export default function SendInvitationForm() {
               required
             />
           </div>
-          <button type="submit" className="btn btn-primary w-100">Send</button>
+          <div className="container d-flex justify-content-center align-items-center ">
+          <button type="submit" className="btn btn-primary w-50 " style={{backgroundColor:'#41619A'}}>Send</button>
+          </div>
         </form>
       </div>
     </div>
