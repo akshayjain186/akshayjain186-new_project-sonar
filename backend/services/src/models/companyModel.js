@@ -1,15 +1,23 @@
 const { DataTypes, Model } = require('sequelize');
-const { sequelize } = require('../../config/database');  
+const { sequelizeService } = require('../../config/database');
 
 class CompanyModel extends Model {}
 
 CompanyModel.init({
+    userId:{
+        type: DataTypes.STRING,      
+        allowNull: false, 
+    },
     companyName: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        type: DataTypes.STRING,      
+        allowNull: false,           
     },
     organisationNumber: {
         type: DataTypes.STRING,
+        allowNull: false,
+    },
+    country:{
+            type: DataTypes.STRING,
         allowNull: false,
     },
     city: {
@@ -25,7 +33,7 @@ CompanyModel.init({
         allowNull: false,
     },
     categoryId: {
-        type: DataTypes.JSON,
+        type: DataTypes.JSON,        
         allowNull: false,
     },
     jobTypes: {
@@ -37,10 +45,10 @@ CompanyModel.init({
         allowNull: false,
     },
     useSubcontractors: {
-        type: DataTypes.BOOLEAN,
+        type: DataTypes.BOOLEAN,     
         allowNull: false,
     },
-    countyCoverage: {
+    countiesCoverage: {
         type: DataTypes.JSON,
         allowNull: false,
     },
@@ -49,10 +57,10 @@ CompanyModel.init({
         allowNull: false,
     },
 }, {
-    sequelize,
-    modelName: 'CompanyModel',
-    tableName: 'Companies',
-    timestamps: true,
+    sequelize:sequelizeService,                
+    modelName: 'CompanyModel',     
+    tableName: 'Companies',        
+    timestamps: true,               
 });
 
-module.exports = CompanyModel;
+module.exports = CompanyModel;       

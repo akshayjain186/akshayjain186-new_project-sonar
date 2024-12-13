@@ -10,9 +10,11 @@ const currencyRoutes = require('./routes/currencyRoutes');
 const languageRoutes = require('./routes/languagesRoutes');
 const swaggerUi = require('swagger-ui-express');
 const swaggerSpec = require('./swagger/swagger');  
-const {authenticate}=require('../middleware/authMiddleware');
 
 const app = express();
+const { authenticate } = require('../middleware/authMiddleware');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
@@ -23,9 +25,9 @@ app.use(cors());
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/continents',authenticate, continentRoutes);
-app.use('/api/countries', authenticate,countryRoutes);
-app.use('/api/currencies', authenticate, currencyRoutes);
-app.use('/api/languages', authenticate, languageRoutes);
+app.use('/api/countries',authenticate, countryRoutes);
+app.use('/api/currencies',authenticate, currencyRoutes);
+app.use('/api/languages',authenticate, languageRoutes);
 
 // DB Connection Test
 sequelize.authenticate()

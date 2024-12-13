@@ -1,15 +1,12 @@
 const { DataTypes, Model } = require('sequelize');
 const { sequelizeService } = require('../../config/database');
 
-class ProjectManagerRole extends Model {}
+class Role extends Model {}
 
-ProjectManagerRole.init({
+Role.init({
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    validate: {
-      notEmpty: true, 
-    },
   },
   machineName: {
     type: DataTypes.STRING,
@@ -20,15 +17,20 @@ ProjectManagerRole.init({
     type: DataTypes.TEXT,
     allowNull: true,
   },
+  permissions: {
+    type: DataTypes.TEXT, 
+    allowNull: true,
+  },
   isActive: {
     type: DataTypes.BOOLEAN,
+    allowNull: false,
     defaultValue: true,
   },
 }, {
-  sequelize:sequelizeService,              
-  modelName: 'ProjectManagerRole', 
-  tableName: 'projectmanagerole', 
-  timestamps: true,       
+  sequelize:sequelizeService,
+  modelName: 'Role', 
+  tableName: 'roles', 
+  timestamps: true, 
 });
 
-module.exports = ProjectManagerRole;
+module.exports = Role;

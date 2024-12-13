@@ -4,7 +4,6 @@ const {
     updateCountryById,
     getCountryById,
     deleteCountryById,
-    
 } = require("../controllers/countriesController");
 
 const router = express.Router();

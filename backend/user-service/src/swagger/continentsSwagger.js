@@ -13,7 +13,7 @@
  * /api/continents:
  *   get:
  *     summary: Retrieve a list of all continents
- *     description: Fetches all the continents available in the database.
+ *     description: Returns all continents available in the database.
  *     tags: [Continents]
  *     parameters:
  *       - in: query
@@ -49,7 +49,7 @@
  * /api/continents/{id}:
  *   get:
  *     summary: Retrieve a specific continent by ID
- *     description: Fetches the details of a continent based on its unique ID.
+ *     description: Returns the details of a continent based on its unique ID.
  *     tags: [Continents]
  *     parameters:
  *       - in: path

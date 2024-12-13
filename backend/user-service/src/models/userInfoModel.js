@@ -4,7 +4,7 @@ const {sequelize }= require('../../config/database');
 class UserInfo extends Model {}
 
 UserInfo.init({
-    userId:{
+  userId:{
         type: DataTypes.STRING,
         allowNull: false,
     },
