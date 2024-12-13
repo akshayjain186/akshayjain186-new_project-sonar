@@ -62,7 +62,7 @@
 // }
 
 import { useState } from 'react';
-import { Tab, Tabs } from 'react-bootstrap';
+import { Tab, Tabs } from 'reactstrap';
 import Customers from './Customers';
 import Companies from './Companies';
 
