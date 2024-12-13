@@ -14,7 +14,7 @@ import electriciationicon from '../../../assets/images/users/usersview/electrici
 import sewingIcon from '../../../assets/images/users/usersview/sawingicon.png';
 import dsbqualification from '../../../assets/images/users/usersview/dsbquali.png';
 import mvaqualification from '../../../assets/images/users/usersview/mvaquali.png';
-import EditIcon from '../../../assets/images/users/usersview/editicon.png';
+import EditIcon from '../../../assets/images/users/usersview/editIcon.png';
 import FmdGoodIcon from '../../../assets/images/users/usersview/material-symbols_location-on.png';
 import CheckIcon from '../../../assets/images/users/usersview/righticon.png';
 import Manager from '../AdminUserView/Manager/Manager';

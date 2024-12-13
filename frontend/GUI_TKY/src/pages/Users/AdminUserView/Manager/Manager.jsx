@@ -1,13 +1,5 @@
 import React, { useMemo } from 'react';
-import {
-  Box,
-  Grid,
-  IconButton,
-  InputAdornment,
-  OutlinedInput,
-} from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import AddIcon from '@mui/icons-material/Add';
+
 // import TableContainer from '../../../components/Common/TableContainer';
 import TableContainer from '@/components/Common/TableContainer';
 
@@ -87,7 +79,7 @@ const Manager = () => {
   );
 
   return (
-    <Box>
+    <div>
    
 
       {/* Table with Pagination */}
@@ -106,7 +98,7 @@ const Manager = () => {
         paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
         pagination="pagination"
       />
-    </Box>
+    </div>
   );
 };
 

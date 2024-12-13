@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import NotFrameIcon from '../../../assets/images/leads/NotFrameicon.png';
 import BathroomIcon from '../../../assets/images/users/usersview/bathroomicon.png';
-import KitchenIcon from '../../../assets/images/users/usersview/Kitchenicon.png';
+import KitchenIcon from '../../../assets/images/users/usersview/kitchenicon.png';
 import ToiletIcon from '../../../assets/images/users/usersview/toileticon.png';
 import WashingIcon from '../../../assets/images/leads/washingRoomIcon.png';
 import LivingRoomIconRoom from '../../../assets/images/leads/LivingRoomIcon.png';
@@ -15,7 +15,7 @@ import RoofingIcon from '../../../assets/images/leads/roofingIcon.png';
 import GroundWorkIcon from '../../../assets/images/leads/GroundWorkIcon.png';
 import ExtensionIcon from '../../../assets/images/leads/extensionIcon.png'
 import GarageIcon from '../../../assets/images/leads/GarageIcon.png'
-import NewHomeIcon from '../../../assets/images/leads/NewHomeicon.png'
+import NewHomeIcon from '../../../assets/images/leads/NewHomeIcon.png'
 
 export default function SmallJobForm() {
   const [activeSection, setActiveSection] = useState(null);

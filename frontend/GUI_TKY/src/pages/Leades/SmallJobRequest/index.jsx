@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import smallJobIcon from '../../../assets/images/leads/smallJobicon.png';
-import homeIcon from '../../../assets/images/leads/homeicon.png';
+import smallJobIcon from '../../../assets/images/leads/smallJobIcon.png';
+import homeIcon from '../../../assets/images/leads/homeIcon.png';
 import BathroomIcon from '../../../assets/images/users/usersview/bathroomicon.png';
 import KitchenIcon from '../../../assets/images/users/usersview/kitchenicon.png';
 import imagePdfIcon from '../../../assets/images/leads/imagepdficon.png';
