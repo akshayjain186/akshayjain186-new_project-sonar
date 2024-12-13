@@ -2,7 +2,6 @@ const { DataTypes, Model } = require('sequelize');
 const { sequelize } = require('../../config/database');
 const Continent = require('../models/continentsModel');
 
-// Define the Country model
 class Country extends Model {}
 
 Country.init({

@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import authReducer from './auth/login/reducer';
 import Layout from './layout/reducer';
 import masterListReducer from './master/reducer';
+import userListReducer from './users/reducer';
+import registerUserReducer from './Ragister/reducer';
 /**
  * Combines all the individual reducers into a single root reducer.
  *
@@ -10,7 +12,9 @@ import masterListReducer from './master/reducer';
 const rootReducer = combineReducers({
   Login: authReducer, // Renamed key for clarity and consistency
   Layout,
-  masterListReducer
+  masterListReducer,
+  userListReducer,
+  registerUserReducer,
 });
 
 export default rootReducer;

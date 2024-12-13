@@ -1,34 +1,47 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 // Images
-import currency from "../../../assets/images/currency.png";
-import userprofile from "../../../assets/images/userprofile.png"
+import currency from '../../../assets/images/currency.png';
+import userprofile from '../../../assets/images/userprofile.png';
 // Reactstrap Components
-import { Input, Row, Col, Button } from "reactstrap";
+import { Input, Row, Col, Button } from 'reactstrap';
 import '../controlpaneladmin.scss';
-import InternationalHeader from "./InternationalHeader";
+import InternationalHeader from './InternationalHeader';
+import plus from '../../../assets/images/plus.png';
+import search from '../../../assets/images/searchIcon.png';
+import { useDispatch } from 'react-redux';
+import { getUsersListData } from '@/store/actions';
 function LicensesPage() {
   // useNavigate is a React Router hook used to programmatically navigate to different routes
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
+  const [usersListData, setUsersListData] = useState({});
+  const [searchQuery, setSearchQuery] = useState('');
   // Handler for adding a new license
   const handleAddLicense = () => {
-    navigate("/addnew");
+    navigate('/addnew');
   };
-  // License data 
-  const licenses = {
-    Europe: [
-      { country: "Norway", flag: "🇳🇴", name: "Jakob Issa", currency: "NOK" },
-      { country: "Sweden", flag: "🇸🇪", name: "Edgar Wahlström", currency: "SEK" },
-      { country: "United Kingdom", flag: "🇬🇧", name: "Alison Scott", currency: "GBP" },
-      { country: "Denmark", flag: "🇩🇰", name: "Johannes Dam", currency: "DKK" },
-      { country: "Finland", flag: "🇫🇮", name: "Mikael Varis", currency: "EUR" },
-    ],
-    "North America": [
-      { country: "USA", flag: "🇺🇸", name: "Mathew Long", currency: "USD" },
-      { country: "Canada", flag: "🇨🇦", name: "Abel Prinston", currency: "USD" },
-    ],
+  const userOwnerPage = (userId) => {
+    navigate(`/owner/${userId}`);
   };
+  
+
+  useEffect(() => {
+    dispatch(
+      getUsersListData({ roleId: 2, search: searchQuery }, (response, error) => {
+        console.log('xaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
+        if (response?.status === 200) {
+          setUsersListData(response?.data.data);
+        } else {
+          setUsersListData([]);
+        }
+      })
+    );
+  }, [searchQuery]);
+
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+};
   return (
     <>
       <InternationalHeader />
@@ -38,75 +51,93 @@ function LicensesPage() {
           <Col xs="12" md="6">
             <h4 className="fw-bold">Licenses</h4>
           </Col>
-          
         </Row>
 
         {/* Search Box */}
         <Row className="m-2 d-flex align-items-center justify-content-between">
-  <Col xs="12" md="auto" className="d-flex">
-    <div className="search-box w-100 ms-3">
-      <Input
-        type="search"
-        placeholder="Search..."
-        className="rounded-3 bg-transparent input"
-      />
-      <i className="bx bx-search-alt-2 search-icon"></i>
-    </div>
-  </Col>
-  <Col xs="12" md="auto" className="text-md-end mt-2 mt-md-0">
-    {/* Add License Button */}
-    <Button
-      className="color-blue px-4 rounded-3 me-3"
-      onClick={handleAddLicense}
-      style={{ background: "#41619A" }}
-    >
-      + icon
-    </Button>
-  </Col>
-</Row>
-
+          <Col xs="12" md="auto" className="d-flex">
+            <div className="search-box w-100 ms-3">
+              <Input
+                type="search"
+                placeholder="Search..."
+                className="rounded-3 bg-transparent input mt-1 "
+                value={searchQuery}
+                onChange={handleSearchChange}
+              />
+              {/* <Input
+                        name="search"
+                        style={{
+                            outline: "none",
+                            boxShadow: "none",
+                            borderRadius: "6px"
+                        }}
+                        className="form-control"
+                        placeholder="Search"
+                        type="text"
+                        value={searchQuery}
+                        onChange={handleSearchChange}
+                    /> */}
+              <img src={search} alt="" className="search-icon" />
+            </div>
+          </Col>
+          <Col xs="12" md="auto" className="text-md-end mt-2 mt-md-0">
+            {/* Add License Button */}
+            <Button
+              className=" px-4 rounded-3 me-3"
+              onClick={handleAddLicense}
+              style={{ background: '#41619A' }}
+            >
+              <img src={plus} alt="" className="me-1" /> Icon
+            </Button>
+          </Col>
+        </Row>
 
         {/* License List Section */}
-        <Row className="m-4">
-  <Col>
-    {Object.keys(licenses).map((region) => (
-      <div key={region} className="mb-4">
-        <h5 className="mt-4">{region}</h5>
-        {licenses[region].map((license, index) => (
-          <div
-            key={index}
-            className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center border rounded p-3 mb-2 bg-white"
-          >
-            {/* Country and Flag */}
-            <div className="d-flex gap-2 align-items-center mb-2 mb-md-0">
-              <div className="rounded-4 h-25 ">{license.flag}</div>
-              <p className="mb-0">{license.country}</p>
-            </div>
-
-            {/* License Info */}
-            <div
-              className="d-flex flex-column flex-md-row align-items-start align-items-center justify-content-between"
-              style={{ width: "30%", maxWidth: "300px" }}
-            >
-              <div className="d-flex">
-                <img src={userprofile} alt="Profile Icon" className="me-2" />
-                <span>{license.name}</span>
+        <Row className="mt-0 m-4" >
+          <Col>
+            {Object.keys(usersListData).map((region) => (
+              <div key={region} className="mb-4" >
+                <h5 className="mt-4">{region}</h5>
+                {usersListData[region].map((license, index) => (
+                  <div
+                    key={index}
+                    className="d-flex flex-column flex-md-row justify-content-between h-75 align-items-start align-items-md-center border rounded p-4 mb-2 bg-white"
+                    onClick={()=>userOwnerPage(license.id)}>
+                    {/* User Info */}
+                    <div className="d-flex gap-3 align-items-center mb-2 mb-md-0">
+                      <div className="rounded-4 h-25 ms-3">
+                        <strong>{license.country}</strong>
+                      </div>
+                      {/* <p className="mb-0 text-muted">{license.email}</p> */}
+                    </div>
+                    {/* License Info */}
+                    <div
+                      className="d-flex flex-column flex-md-row align-items-start align-items-center justify-content-between gap-4"
+                      style={{ width: '50%', maxWidth: '500px' }}
+                    >
+                      <div className="d-flex">
+                        <img
+                          src={userprofile}
+                          alt="Profile Icon"
+                          className="me-2 h-25"
+                        />
+                        {/* organization_number */}
+                        <span>{license.name}</span>
+                      </div>
+                      <div className="d-flex " style={{width:"30%"}}>
+                      <img src={currency} alt="Currency Icon" className="me-2 text-start" />
+                        <span className="">{license.currency}</span>
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-              <div className="d-flex align-items-center">
-                <img src={currency} alt="Currency Icon" className="me-2" />
-                <span>{license.currency}</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    ))}
-  </Col>
-</Row>
-
+            ))}
+          </Col>
+        </Row>
       </div>
     </>
-  )
+  );
 }
 
-export default LicensesPage
+export default LicensesPage;

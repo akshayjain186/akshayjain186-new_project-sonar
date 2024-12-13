@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router';
-import { authProtectedRoutes, publicRoutes } from './routes';
+import { authProtectedRoutes, authControleAdminRoutes, publicRoutes } from './routes';
 import Authmiddleware from './routes/route';
 import React from 'react';
 import { connect } from "react-redux";
@@ -65,6 +65,19 @@ const App = (props) => {
             exact={true}
           />
         ))}
+         {authControleAdminRoutes.map((route, idx) => (
+          <Route
+            path={route.path}
+            element={
+              <Authmiddleware>
+               {route.component}
+              </Authmiddleware>
+            }
+            key={idx}
+            exact={true}
+          />
+        ))}
+        
       </Routes>
     </React.Fragment>
   );

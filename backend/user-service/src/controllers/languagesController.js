@@ -1,14 +1,15 @@
 const Language = require('../models/languagesModel');
-const { Op } = require('sequelize');  
+const { Op } = require('sequelize');
 
+// Get All languages
 const getAllLanguages = async (req, res) => {
   try {
-    const { name } = req.query; 
+    const { name } = req.query;
     const queryOptions = {};
     if (name) {
       queryOptions.where = {
         name: {
-          [Op.like]: `%${name}%`, 
+          [Op.like]: `%${name}%`,
         },
       };
     }
@@ -32,14 +33,12 @@ const getAllLanguages = async (req, res) => {
 
 const getLanguageById = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params;
+    const { id } = req.params;
     const language = await Language.findByPk(id);
 
     if (!language) {
       return res.status(404).json({
-        message: 'Language not found'
+        message: 'Language not found',
       });
     }
     res.status(200).json({
@@ -54,24 +53,20 @@ const getLanguageById = async (req, res) => {
   }
 };
 
+// Update Language By its Id
 const updateLanguage = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params; 
-    const {
-      name,
-      code
-    } = req.body; 
+    const { id } = req.params;
+    const { name, code } = req.body;
     const language = await Language.findByPk(id);
     if (!language) {
       return res.status(404).json({
-        message: 'Language not found'
+        message: 'Language not found',
       });
     }
     await language.update({
       name,
-      code
+      code,
     });
     res.status(200).json({
       message: 'Language updated successfully',
@@ -85,15 +80,14 @@ const updateLanguage = async (req, res) => {
   }
 };
 
+// Delete Language By its Id
 const deleteLanguage = async (req, res) => {
   try {
-    const {
-      id
-    } = req.params; 
+    const { id } = req.params;
     const language = await Language.findByPk(id);
     if (!language) {
       return res.status(404).json({
-        message: 'Language not found'
+        message: 'Language not found',
       });
     }
     await language.destroy();

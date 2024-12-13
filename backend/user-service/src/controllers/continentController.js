@@ -4,52 +4,56 @@ const Country = require('../models/countriesModel');
 const countriesList = require('countries-list');
 const countries = countriesList.countries;
 
+// Get Countries By Continent
 const groupCountriesByContinent = () => {
-    const continents = {};
-    for (const countryCode in countries) {
-      const country = countries[countryCode];
-      const continent = country.continent;  
-      if (!continents[continent]) {
-        continents[continent] = [];
-      }
-      continents[continent].push(country.name);
+  const continents = {};
+  for (const countryCode in countries) {
+    const country = countries[countryCode];
+    const continent = country.continent;
+    if (!continents[continent]) {
+      continents[continent] = [];
     }
-      return continents;
-  };
-  
+    continents[continent].push(country.name);
+  }
+  return continents;
+};
 
-  const getAllContinents = async (req, res) => {
-    try {
-      const { name } = req.query;
-        const continents = await Continent.findAll({
-        where: name ? {
-          name: {
-            [Op.like]: `%${name}%` 
+// Get All Continents
+const getAllContinents = async (req, res) => {
+  try {
+    const { name } = req.query;
+    const continents = await Continent.findAll({
+      where: name
+        ? {
+            name: {
+              [Op.like]: `%${name}%`,
+            },
           }
-        } : {},
-        // Set collation for case-insensitive search
-        collation: 'utf8_general_ci' 
-      });
-  
-      const response = continents.map((continent) => {
-        return {
-          id: continent.id,
-          name: continent.name,
-        };
-      });
-  
-      res.status(200).json({
-        message: 'Continents fetched successfully',
-        data: response, 
-      });
-    } catch (error) {
-      res.status(500).json({
-        message: 'Error fetching continents',
-        error: error.message,
-      });
-    }
-  };
-  
+        : {},
+      // Set collation for case-insensitive search
+      collation: 'utf8_general_ci',
+    });
+
+    const response = continents.map((continent) => {
+      return {
+        id: continent.id,
+        name: continent.name,
+      };
+    });
+
+    res.status(200).json({
+      message: 'Continents fetched successfully',
+      data: response,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: 'Error fetching continents',
+      error: error.message,
+    });
+  }
+};
+
+// Get continents By Id
 const getContinentById = async (req, res) => {
   try {
     const continentId = req.params.id;
@@ -59,10 +63,14 @@ const getContinentById = async (req, res) => {
     }
     const countriesForContinent = await getCountriesByContinentId(continentId);
     const groupedCountries = groupCountriesByContinent();
-    const countriesForContinentFromPackage = groupedCountries[continent.name] || [];
+    const countriesForContinentFromPackage =
+      groupedCountries[continent.name] || [];
     res.status(200).json({
       continent: continent.name,
-      countries: countriesForContinent.length > 0 ? countriesForContinent : countriesForContinentFromPackage, // Prefer DB countries over package data
+      countries:
+        countriesForContinent.length > 0
+          ? countriesForContinent
+          : countriesForContinentFromPackage, // Prefer DB countries over package data
     });
   } catch (error) {
     res.status(500).json({
@@ -72,6 +80,7 @@ const getContinentById = async (req, res) => {
   }
 };
 
+// Get Countries By Continent Id
 const getCountriesByContinentId = async (continentId) => {
   return await Country.findAll({ where: { continentId } });
 };
@@ -79,5 +88,5 @@ const getCountriesByContinentId = async (continentId) => {
 module.exports = {
   getAllContinents,
   getContinentById,
-  getCountriesByContinentId
+  getCountriesByContinentId,
 };

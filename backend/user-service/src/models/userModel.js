@@ -39,10 +39,10 @@ User.init(
     },
   },
   {
-    sequelize, // The Sequelize instance
-    modelName: 'User', // The model name
-    tableName: 'Users', // Table name in the database
-    timestamps: true, // Add createdAt and updatedAt timestamps
+    sequelize, 
+    modelName: 'User', 
+    tableName: 'Users', 
+    timestamps: true, 
   }
 );
 

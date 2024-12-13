@@ -8,7 +8,7 @@ const {
 } = require('../controllers/languagesController');
 
 router.get('/', getAllLanguages);
-router.get('/:id', getLanguageById)
+router.get('/:id', getLanguageById);
 router.put('/:id', updateLanguage);
 router.delete('/:id', deleteLanguage)
 
