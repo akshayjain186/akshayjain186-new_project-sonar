@@ -1,11 +1,11 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Col, Row } from 'reactstrap';
-import fileIconImage from '../../../assets/images/leads/image pdf icon.png';
-import BigJobRequestImage from '../../../assets/images/leads/bigjob icon.png';
-import ApartmentImage from '../../../assets/images/leads/apartment icon.png';
-import BathroomTitleIcon from '../../../assets/images/users/usersview/bathroom icon.png';
-import ToiletTitleIcon from '../../../assets/images/users/usersview/toilet icon.png';
+import fileIconImage from '../../../assets/images/leads/imagepdficon.png';
+import BigJobRequestImage from '../../../assets/images/leads/bigjobicon.png';
+import ApartmentImage from '../../../assets/images/leads/apartmenticon.png';
+import BathroomTitleIcon from '../../../assets/images/users/usersview/bathroomicon.png';
+import ToiletTitleIcon from '../../../assets/images/users/usersview/toileticon.png';
 
 const BigJobRequest = () => {
   const projects = [

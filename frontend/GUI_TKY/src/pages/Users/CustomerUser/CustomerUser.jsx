@@ -211,7 +211,7 @@
 
 import React, { useMemo } from 'react';
 import TableContainer from '../../../components/Common/TableContainer';
-import plusIcon from '../../../assets/images/users/usersview/plus icon.png'
+import plusIcon from '../../../assets/images/users/usersview/plusicon.png'
 
 const CustomerUser = () => {
   const rows = [

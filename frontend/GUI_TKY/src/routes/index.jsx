@@ -37,7 +37,7 @@ const publicRoutes = [
   },
   { path: '/signUp', component: <SignUp /> },
   { path: '/owner', component: <OwnerPage /> },
-  // { path: '/users', component: <Users /> },
+  { path: '/users', component: <Users /> },
   { path: '/UserView', component: <UserView /> },
   { path: '/AdminUserView', component: <AdminUserView /> },
   { path: '/CustomerUserProfile', component: <CustomerUserProfile /> },

@@ -1,12 +1,18 @@
 import { useState } from 'react';
-import NotFrameIcon from '../../../assets/images/leads/NotFrame icon.png';
-import BathroomIcon from'../../../assets/images/users/usersview/bathroom icon.png'
-import KitchenIcon from '../../../assets/images/users/usersview/Kitchen icon.png'
-import ToiletIcon from '../../../assets/images/users/usersview/toilet icon.png'
-import WashingIcon from '../../../assets/images/leads/washingRoomIcon.png'
-import LivingRoomIconRoom from '../../../assets/images/leads/LivingRoomIcon.png'
-import BedroomIcon from '../../../assets/images/leads/BedroomIcon.png'
-import ChildrenIcon from '../../../assets/images/'
+import NotFrameIcon from '../../../assets/images/leads/NotFrameicon.png';
+import BathroomIcon from '../../../assets/images/users/usersview/bathroomicon.png';
+import KitchenIcon from '../../../assets/images/users/usersview/Kitchenicon.png';
+import ToiletIcon from '../../../assets/images/users/usersview/toileticon.png';
+import WashingIcon from '../../../assets/images/leads/washingRoomIcon.png';
+import LivingRoomIconRoom from '../../../assets/images/leads/LivingRoomIcon.png';
+import BedroomIcon from '../../../assets/images/leads/BedroomIcon.png';
+import ChildrenIcon from '../../../assets/images/leads/ChildrenRoomIcon.png';
+import TechnicalRoomIcon from '../../../assets/images/leads/TechnicalRoomIcon.png';
+import StorageRoomIcon from '../../../assets/images/leads/storageRoomIcon.png';
+import HallwayIcon from '../../../assets/images/leads/HallwayIcon.png';
+import FacadeIcon from '../../../assets/images/leads/FacadeIcon.png';
+import RoofingIcon from '../../../assets/images/leads/roofingIcon.png';
+import GroundWorkIcon from '../../../assets/images/leads/GroundWorkIcon.png';
 
 export default function SmallJobForm() {
   const [activeSection, setActiveSection] = useState(null);
@@ -113,7 +119,7 @@ export default function SmallJobForm() {
                       key={option.id}
                       className="d-flex align-items-center justify-content-between"
                     >
-                        <img src={option.icon} alt="icon" />
+                      <img src={option.icon} alt="icon" />
                       <span>{option.label}</span>
                       <input
                         type="checkbox"

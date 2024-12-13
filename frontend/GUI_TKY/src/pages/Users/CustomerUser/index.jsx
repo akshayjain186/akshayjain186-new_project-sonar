@@ -1,9 +1,9 @@
 import React from 'react';
 import { Card, CardBody, Row, Col, Badge, Button } from 'reactstrap'; // Bootstrap components
-import tylorCustomer from '../../../assets/images/users/usersview/tylor customer.png';
-import addedCutomerIcon from '../../../assets/images/users/usersview/added cutomericon.png';
+import tylorCustomer from '../../../assets/images/users/usersview/tylorcustomer.png';
+import addedCutomerIcon from '../../../assets/images/users/usersview/addedcutomericon.png';
 // import ongoingIcon from '../../../assets/images/users/usersview/ongoing-icon.png'; // Replace with image for "Ongoing"
-import finishedIcon from '../../../assets/images/users/usersview/finished icon.png'; // Replace with image for "Finished"
+import finishedIcon from '../../../assets/images/users/usersview/finishedicon.png'; // Replace with image for "Finished"
 
 export default function UserProfile() {
   return (
