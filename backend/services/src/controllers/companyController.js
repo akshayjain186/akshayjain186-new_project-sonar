@@ -275,11 +275,12 @@ const getCompanyDetails = async (req, res) => {
     }
 
     // Fetch related categories and project manager roles (for all IDs)
-    const [categories, projectManagerRoles] = await Promise.all([
+    const [categories, projectManagerRoles, userRole] = await Promise.all([
       Category.findAll({ where: { id: company.categoryId } }), // Fetch categories for all categoryIds
       ProjectManagerRole.findAll({
         where: { id: company.ProjectManagerRoleId },
       }), // Fetch roles for all ProjectManagerRoleIds
+      role.findOne({ where: { id: user.roleId } }), // Fetch user role name
     ]);
 
     // Prepare response data
@@ -291,6 +292,7 @@ const getCompanyDetails = async (req, res) => {
         email: user.email,
         mobile_no: user.mobile_no,
         roleId: user.roleId,
+        roleName: userRole ? userRole.name : "Unknown Role", // Include role name
       },
       company: {
         id: company.id,
@@ -324,6 +326,7 @@ const getCompanyDetails = async (req, res) => {
     });
   }
 };
+
 
 const updateCompanyDetails = async (req, res) => {
   try {

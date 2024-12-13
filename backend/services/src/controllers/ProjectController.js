@@ -229,9 +229,6 @@ const registerSmallProject = async (req, res) => {
 };
 
 
-
-const Role = require('../models/roleModel');  // Import Role model
-
 const getSmallProject = async (req, res) => {
   try {
     // Step 1: Extract user ID from the token
@@ -368,9 +365,6 @@ const getSmallProject = async (req, res) => {
     });
   }
 };
-
-
-
 
 module.exports = {
   registerSmallProject,
