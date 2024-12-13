@@ -63,8 +63,9 @@
 
 import { useState } from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
-import Customers from './Customers';
-import Companies from './Companies';
+// import Customers from './Customers';
+import Companies from './Companies/Companies';
+import Customers from './Customers/Customers';
 
 export default function Leads() {
   const [key, setKey] = useState('customers');

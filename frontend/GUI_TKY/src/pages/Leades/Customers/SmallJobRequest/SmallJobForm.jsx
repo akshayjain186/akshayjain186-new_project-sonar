@@ -1,21 +1,37 @@
 import { useState } from 'react';
-import NotFrameIcon from '../../../assets/images/leads/NotFrameicon.png';
-import BathroomIcon from '../../../assets/images/users/usersview/bathroomicon.png';
-import KitchenIcon from '../../../assets/images/users/usersview/kitchenicon.png';
-import ToiletIcon from '../../../assets/images/users/usersview/toileticon.png';
-import WashingIcon from '../../../assets/images/leads/washingRoomIcon.png';
-import LivingRoomIconRoom from '../../../assets/images/leads/LivingRoomIcon.png';
-import BedroomIcon from '../../../assets/images/leads/BedroomIcon.png';
-import ChildrenIcon from '../../../assets/images/leads/ChildrenRoomIcon.png';
-import TechnicalRoomIcon from '../../../assets/images/leads/TechnicalRoomIcon.png';
-import StorageRoomIcon from '../../../assets/images/leads/storageRoomIcon.png';
-import HallwayIcon from '../../../assets/images/leads/HallwayIcon.png';
-import FacadeIcon from '../../../assets/images/leads/FacadeIcon.png';
-import RoofingIcon from '../../../assets/images/leads/roofingIcon.png';
-import GroundWorkIcon from '../../../assets/images/leads/GroundWorkIcon.png';
-import ExtensionIcon from '../../../assets/images/leads/extensionIcon.png'
-import GarageIcon from '../../../assets/images/leads/GarageIcon.png'
-import NewHomeIcon from '../../../assets/images/leads/NewHomeIcon.png'
+import NotFrameIcon from '../../../../assets/images/leads/NotFrameicon.png';
+import BathroomIcon from '../../../../assets/images/users/usersview/bathroomicon.png';
+import KitchenIcon from '../../../../assets/images/users/usersview/kitchenicon.png';
+import ToiletIcon from '../../../../assets/images/users/usersview/toileticon.png';
+import WashingIcon from '../../../../assets/images/leads/washingRoomIcon.png';
+import LivingRoomIconRoom from '../../../../assets/images/leads/LivingRoomIcon.png';
+import BedroomIcon from '../../../../assets/images/leads/BedroomIcon.png';
+import ChildrenIcon from '../../../../assets/images/leads/ChildrenRoomIcon.png';
+import TechnicalRoomIcon from '../../../../assets/images/leads/TechnicalRoomIcon.png';
+import StorageRoomIcon from '../../../../assets/images/leads/storageRoomIcon.png';
+import HallwayIcon from '../../../../assets/images/leads/HallwayIcon.png';
+import FacadeIcon from '../../../../assets/images/leads/FacadeIcon.png';
+import RoofingIcon from '../../../../assets/images/leads/roofingIcon.png';
+import GroundWorkIcon from '../../../../assets/images/leads/GroundWorkIcon.png';
+import ExtensionIcon from '../../../../assets/images/leads/extensionIcon.png';
+import GarageIcon from '../../../../assets/images/leads/GarageIcon.png';
+import NewHomeIcon from '../../../../assets/images/leads/NewHomeIcon.png';
+
+//AdminImage
+import CarpenterAndBuildingIcon from '../../../../assets/images/leads/CarpenterandbuildingtradesmenIcon.png';
+import CleanerIcon from '../../../../assets/images/leads/CleanerIcon.png';
+import DemolitionIcon from '../../../../assets/images/leads/DemolitiontilingandconcretesawingIcon.png';
+import ElectricianIcon from '../../../../assets/images/leads/ElectricianIcon.png';
+import FoundationAndLandscapingRoom from '../../../../assets/images/leads/FoundationandlandscapingworkerIcon.png';
+import GlassIcon from '../../../../assets/images/leads/GlassmasterandglazierIcon.png';
+import PlumberIcon from '../../../../assets/images/leads/PlumberIcon.png';
+import RooferIcon from '../../../../assets/images/leads/roofingIcon.png';
+import TilerBricklayerIcon from '../../../../assets/images/leads/TilerbricklayerandplasteringIcon.png';
+import ProjectManagerIcon from '../../../../assets/images/leads/ProjectmanagerIcon.png';
+import AppraiserIcon from '../../../../assets/images/leads/AppraiserIcon.png';
+import BuilderIcon from '../../../../assets/images/leads/BuilderIcon.png';
+import InteriorIcon from '../../../../assets/images/leads/InteriordesignerIcon.png';
+import ArchitectIcon from '../../../../assets/images/leads/ArchitectIcon.png';
 
 export default function SmallJobForm() {
   const [activeSection, setActiveSection] = useState(null);
@@ -45,27 +61,65 @@ export default function SmallJobForm() {
   ]);
 
   const [adminOptions, setAdminOptions] = useState([
-    { id: 1, icon: BathroomIcon, label: 'Carpenter and building tradesmen', checked: false },
-    { id: 2, icon: KitchenIcon, label: 'Kitchen', checked: false },
-    { id: 3, icon: ToiletIcon, label: 'Toilet', checked: false },
-    { id: 4, icon: WashingIcon, label: 'Washing room', checked: false },
-    { id: 5, icon: LivingRoomIconRoom, label: 'Living room', checked: false },
-    { id: 6, icon: BedroomIcon, label: 'Bedroom', checked: false },
-    { id: 7, icon: ChildrenIcon, label: 'Children room', checked: false },
-    { id: 8, icon: TechnicalRoomIcon, label: 'Technical room', checked: false },
-    { id: 9, icon: StorageRoomIcon, label: 'Storage room', checked: false },
-    { id: 10, icon: HallwayIcon, label: 'Hallway', checked: false },
-    { id: 11, icon: FacadeIcon, label: 'Facade', checked: false },
-    { id: 12, icon: RoofingIcon, label: 'Roofing', checked: false },
-    { id: 13, icon: GroundWorkIcon, label: 'Ground work', checked: false },
     {
-      id: 14,
-      icon: ExtensionIcon,
-      label: 'Superstructure and extension',
+      id: 1,
+      icon: CarpenterAndBuildingIcon,
+      label: 'Carpenter and building tradesmen',
       checked: false,
     },
-    { id: 15, icon: GarageIcon, label: 'Garage', checked: false },
-    { id: 16, icon: NewHomeIcon, label: 'New home', checked: false },
+    { id: 2, icon: CleanerIcon, label: 'Cleaner', checked: false },
+    {
+      id: 3,
+      icon: DemolitionIcon,
+      label: 'Demolition, tiling and concrete sawing',
+      checked: false,
+    },
+    { id: 4, icon: ElectricianIcon, label: ' Electrician', checked: false },
+    {
+      id: 5,
+      icon: FoundationAndLandscapingRoom,
+      label: 'Foundation and landscaping worker',
+      checked: false,
+    },
+    {
+      id: 6,
+      icon: GlassIcon,
+      label: 'Glass master and glazier',
+      checked: false,
+    },
+    { id: 7, icon: PlumberIcon, label: 'Plumber', checked: false },
+    {
+      id: 8,
+      icon: RooferIcon,
+      label: 'Roofer and tinsmith',
+      checked: false,
+    },
+    {
+      id: 9,
+      icon: TilerBricklayerIcon,
+      label: 'Tiler, bricklayer and plastering',
+      checked: false,
+    },
+    {
+      id: 10,
+      icon: ProjectManagerIcon,
+      label: 'Project manager',
+      checked: false,
+    },
+    { id: 11, icon: AppraiserIcon, label: 'Appraiser', checked: false },
+    { id: 12, icon: BuilderIcon, label: 'Builder', checked: false },
+    {
+      id: 13,
+      icon: InteriorIcon,
+      label: 'Interior designer',
+      checked: false,
+    },
+    {
+      id: 14,
+      icon: ArchitectIcon,
+      label: 'Architect',
+      checked: false,
+    },
   ]);
 
   const handleOptionChange = (type, id) => {
@@ -137,20 +191,44 @@ export default function SmallJobForm() {
                   }}
                 >
                   {superAdminOptions.map((option) => (
+                    // <div
+                    //   key={option.id}
+                    //   className="d-flex align-items-center justify-content-between"
+                    // >
+                    //   <div>
+                    //     <img src={option.icon} alt="icon" className="m-2" />
+                    //   </div>
+                    //   <span>{option.label}</span>
+                    //   <input
+                    //     type="checkbox"
+                    //     checked={option.checked}
+                    //     onChange={() =>
+                    //       handleOptionChange('superAdmin', option.id)
+                    //     }
+                    //   />
+                    // </div>
                     <div
                       key={option.id}
-                      className="d-flex align-items-center justify-content-between"
+                      className="d-flex align-items-center mb-2"
+                      style={{ justifyContent: 'space-between', gap: '0px' }}
                     >
-                        <div>
-                      <img src={option.icon} alt="icon" className='m-2'/>
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={option.icon}
+                          alt="icon"
+                          className="mb-0"
+                          style={{
+                            width: '20px',
+                            height: '20px',
+                            marginRight: '5px',
+                          }}
+                        />
+                        <span>{option.label}</span>
                       </div>
-                      <span>{option.label}</span>
                       <input
                         type="checkbox"
                         checked={option.checked}
-                        onChange={() =>
-                          handleOptionChange('superAdmin', option.id)
-                        }
+                        onChange={() => handleOptionChange('admin', option.id)}
                       />
                     </div>
                   ))}
@@ -194,11 +272,36 @@ export default function SmallJobForm() {
                   }}
                 >
                   {adminOptions.map((option) => (
+                    // <div
+                    //   key={option.id}
+                    //   className="d-flex align-items-center justify-content-between"
+                    // >
+                    //     <img src={option.icon} alt="icon" className='mb-2' />
+                    //   <span>{option.label}</span>
+                    //   <input
+                    //     type="checkbox"
+                    //     checked={option.checked}
+                    //     onChange={() => handleOptionChange('admin', option.id)}
+                    //   />
+                    // </div>
                     <div
                       key={option.id}
-                      className="d-flex align-items-center justify-content-between"
+                      className="d-flex align-items-center mb-2"
+                      style={{ justifyContent: 'space-between', gap: '0px' }}
                     >
-                      <span>{option.label}</span>
+                      <div className="d-flex align-items-center">
+                        <img
+                          src={option.icon}
+                          alt="icon"
+                          className="mb-0"
+                          style={{
+                            width: '20px',
+                            height: '20px',
+                            marginRight: '5px',
+                          }}
+                        />
+                        <span>{option.label}</span>
+                      </div>
                       <input
                         type="checkbox"
                         checked={option.checked}

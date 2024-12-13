@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import TableContainer from '../../components/Common/TableContainer';
+import TableContainer from '../../../components/Common/TableContainer';
 
 const Companies = () => {
   const rows = [
