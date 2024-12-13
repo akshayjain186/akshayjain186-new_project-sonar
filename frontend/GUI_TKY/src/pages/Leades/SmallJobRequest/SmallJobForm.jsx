@@ -1,26 +1,38 @@
 import { useState } from 'react';
 import NotFrameIcon from '../../../assets/images/leads/NotFrame icon.png';
+import BathroomIcon from'../../../assets/images/users/usersview/bathroom icon.png'
+import KitchenIcon from '../../../assets/images/users/usersview/Kitchen icon.png'
+import ToiletIcon from '../../../assets/images/users/usersview/toilet icon.png'
+import WashingIcon from '../../../assets/images/leads/washingRoomIcon.png'
+import LivingRoomIconRoom from '../../../assets/images/leads/LivingRoomIcon.png'
+import BedroomIcon from '../../../assets/images/leads/BedroomIcon.png'
+import ChildrenIcon from '../../../assets/images/'
 
 export default function SmallJobForm() {
   const [activeSection, setActiveSection] = useState(null);
 
   const [superAdminOptions, setSuperAdminOptions] = useState([
-    { id: 1, label: 'Bathroom', checked: false },
-    { id: 2, label: 'Kitchen', checked: false },
-    { id: 3, label: 'Toilet', checked: false },
-    { id: 4, label: 'Washing room', checked: false },
-    { id: 5, label: 'Living room', checked: false },
-    { id: 6, label: 'Bedroom', checked: false },
-    { id: 7, label: 'Children room', checked: false },
-    { id: 8, label: 'Technical room', checked: false },
-    { id: 9, label: 'Storage room', checked: false },
-    { id: 10, label: 'Hallway', checked: false },
-    { id: 11, label: 'Facade', checked: false },
-    { id: 12, label: 'Roofing', checked: false },
-    { id: 13, label: 'Ground work', checked: false },
-    { id: 14, label: 'Superstructure and extension', checked: false },
-    { id: 15, label: 'Garage', checked: false },
-    { id: 16, label: 'New home', checked: false },
+    { id: 1, icon: BathroomIcon, label: 'Bathroom', checked: false },
+    { id: 2, icon: KitchenIcon, label: 'Kitchen', checked: false },
+    { id: 3, icon: ToiletIcon, label: 'Toilet', checked: false },
+    { id: 4, icon: WashingIcon, label: 'Washing room', checked: false },
+    { id: 5, icon: LivingRoomIconRoom, label: 'Living room', checked: false },
+    { id: 6, icon: BedroomIcon, label: 'Bedroom', checked: false },
+    { id: 7, icon: ChildrenIcon, label: 'Children room', checked: false },
+    { id: 8, icon: TechnicalRoomIcon, label: 'Technical room', checked: false },
+    { id: 9, icon: StorageRoomIcon, label: 'Storage room', checked: false },
+    { id: 10, icon: HallwayIcon, label: 'Hallway', checked: false },
+    { id: 11, icon: FacadeIcon, label: 'Facade', checked: false },
+    { id: 12, icon: RoofingIcon, label: 'Roofing', checked: false },
+    { id: 13, icon: GroundWorkIcon, label: 'Ground work', checked: false },
+    {
+      id: 14,
+      icon: ExtensionIcon,
+      label: 'Superstructure and extension',
+      checked: false,
+    },
+    { id: 15, icon: GarageIcon, label: 'Garage', checked: false },
+    { id: 16, icon: NewHomeIcon, label: 'New home', checked: false },
   ]);
 
   const [adminOptions, setAdminOptions] = useState([
@@ -101,6 +113,7 @@ export default function SmallJobForm() {
                       key={option.id}
                       className="d-flex align-items-center justify-content-between"
                     >
+                        <img src={option.icon} alt="icon" />
                       <span>{option.label}</span>
                       <input
                         type="checkbox"
