@@ -45,8 +45,27 @@ export default function SmallJobForm() {
   ]);
 
   const [adminOptions, setAdminOptions] = useState([
-    { id: 1, label: 'Option A', checked: false },
-    { id: 2, label: 'Option B', checked: false },
+    { id: 1, icon: BathroomIcon, label: 'Carpenter and building tradesmen', checked: false },
+    { id: 2, icon: KitchenIcon, label: 'Kitchen', checked: false },
+    { id: 3, icon: ToiletIcon, label: 'Toilet', checked: false },
+    { id: 4, icon: WashingIcon, label: 'Washing room', checked: false },
+    { id: 5, icon: LivingRoomIconRoom, label: 'Living room', checked: false },
+    { id: 6, icon: BedroomIcon, label: 'Bedroom', checked: false },
+    { id: 7, icon: ChildrenIcon, label: 'Children room', checked: false },
+    { id: 8, icon: TechnicalRoomIcon, label: 'Technical room', checked: false },
+    { id: 9, icon: StorageRoomIcon, label: 'Storage room', checked: false },
+    { id: 10, icon: HallwayIcon, label: 'Hallway', checked: false },
+    { id: 11, icon: FacadeIcon, label: 'Facade', checked: false },
+    { id: 12, icon: RoofingIcon, label: 'Roofing', checked: false },
+    { id: 13, icon: GroundWorkIcon, label: 'Ground work', checked: false },
+    {
+      id: 14,
+      icon: ExtensionIcon,
+      label: 'Superstructure and extension',
+      checked: false,
+    },
+    { id: 15, icon: GarageIcon, label: 'Garage', checked: false },
+    { id: 16, icon: NewHomeIcon, label: 'New home', checked: false },
   ]);
 
   const handleOptionChange = (type, id) => {
