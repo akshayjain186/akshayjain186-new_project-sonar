@@ -1,11 +1,5 @@
-const {
-  DataTypes,
-  Model
-} = require('sequelize');
-const {
-  sequelize
-} = require('../../config/database');
-
+const { DataTypes, Model } = require('sequelize');
+const { sequelizeService } = require('../../config/database');
 class Category extends Model {}
 
 Category.init({
@@ -18,7 +12,7 @@ Category.init({
     },
   },
 }, {
-  sequelize,
+  sequelize:sequelizeService,
   modelName: 'Category',
   timestamps: true,
   tableName: 'Categories',

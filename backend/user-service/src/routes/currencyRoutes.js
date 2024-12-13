@@ -9,9 +9,9 @@ const {
 } = require('../controllers/currencyController');
 
 router.get('/', getAllCurrencies);
-router.get('/:currencycode', getCurrencyByCode); ///  http://localhost:3002/api/currencies/EUR
+router.get('/:currencycode', getCurrencyByCode); 
 router.put('/:currencycode', updateCurrency);
-router.get('/currencies/:id', getCurrencyById);
+router.get('/list/:id', getCurrencyById);
 router.delete('/:currencycode', deleteCurrency);
 
 module.exports = router;

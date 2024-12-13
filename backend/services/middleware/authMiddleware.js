@@ -1,51 +1,39 @@
-const axios = require('axios');
+const jwt = require('jsonwebtoken');
+const User  = require('../../user-service/src/models/userModel'); // Assuming you have a User model
 
 /**
- * Middleware function to authenticate the user by verifying the provided token.
- * The token should be included in the 'Authorization' header as a Bearer token (e.g., 'Authorization: Bearer <token>').
- * If the token is valid, the user ID is added to the request object for use in subsequent middleware or route handlers.
- * If the token is missing or invalid, a 401 response is sent back.
- *
- * @param {Object} req - The Express request object, which contains the HTTP request data (headers, body, params, etc.).
- * @param {Object} res - The Express response object, used to send a response back to the client.
- * @param {Function} next - The next middleware function to pass control to after successful authentication.
- * @returns {void} - If authentication is successful, calls `next()` to proceed to the next middleware; otherwise, sends a 401 response.
+ * Middleware to authenticate the user by verifying the provided token.
  */
 const authenticate = async (req, res, next) => {
-  // Retrieve the token from the Authorization header
-  const token = req.header('Authorization')?.split(' ')[1]; // Authorization: Bearer <token>
+    // Retrieve the token from the Authorization header
+    const authHeader = req.header('Authorization');
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        console.log('No or malformed token provided');
+        return res.status(401).json({ message: 'No token, authorization denied' });
+    }
 
-  // If no token is provided, deny access
-  if (!token) {
-    console.log('No token provided');
-    return res.status(401).json({ message: 'No token, authorization denied' });
-  }
+    const token = authHeader.split(' ')[1]; // Extract token
 
-  try {
-    console.log('Verifying token:', token);
-    let response = null; // Initialize 'response' on declaration
-
-    // Try to verify the token via an API request
     try {
-      response = await axios.post('http://localhost:3001/api/users/verify', { token });
-    } catch (error) {
-      // If the first URL fails, try the alternate URL for verification
-      response = await axios.post('http://user-service:3001/api/users/verify', { token });
-    }
+        console.log('Verifying token:', token);
 
-    // If the token is valid, attach the user ID to the request and proceed
-    if (response && response.status === 200) {
-      req.user = response.data.userId; // Attach user ID to request
-      return next(); // Explicitly return after calling next
-    } else {
-      console.log('Invalid token');
-      return res.status(401).json({ message: 'Invalid token' });
+        // Decode and verify the token using JWT
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Fetch the user from the database based on the userId in the token
+        const user = await User.findByPk(decoded.userId); // Adjust according to your User model
+
+        if (!user) {
+            console.log('User not found with the decoded user ID');
+            return res.status(401).json({ message: 'User not found' });
+        }
+
+        req.user = user; // Attach user data to request object
+        next(); // Proceed to the next middleware/route handler
+    } catch (error) {
+        console.error('Error during token verification or user retrieval:', error.message);
+        return res.status(401).json({ message: 'Invalid token, authorization denied' });
     }
-  } catch (error) {
-    // Handle errors during token verification
-    console.log('Error verifying token:', error.message);
-    return res.status(401).json({ message: 'Token is not valid' });
-  }
 };
 
 module.exports = { authenticate };

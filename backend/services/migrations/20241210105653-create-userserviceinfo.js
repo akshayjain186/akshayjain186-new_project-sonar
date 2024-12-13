@@ -2,21 +2,32 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Currencies', {
+    await queryInterface.createTable('Userserviceinfo', {
       id: {
         type: Sequelize.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
       },
-      currencycode: {
+      userId: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
-      name: {
+      typeOfHome: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      address: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      city: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      generalComment: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -32,6 +43,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Currencies');
-  },
+    await queryInterface.dropTable('Userserviceinfo');
+  }
 };

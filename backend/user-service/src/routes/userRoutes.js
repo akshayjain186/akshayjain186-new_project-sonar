@@ -2,7 +2,6 @@ const express = require('express');
 const {
   registerUser,
   loginUser,
-  forgotPassword,
   getAllUsers,
   getUserById,
   
@@ -11,6 +10,8 @@ const {
   verifyToken
 } = require('../utils/verifyToken');
 const router = express.Router();
+
+const {authenticate} = require('../../middleware/authMiddleware');
 
 // Register user
 router.post('/register', registerUser);
@@ -27,11 +28,10 @@ router.post('/verify', verifyToken, (req, res) => {
   });
 });
 
-//Forgot Password
-router.post('/forgot-password', forgotPassword);
+// getAllUserList ,search by roleId,search by continent,country,currency,name and pagination
+router.get('/users-list',authenticate, getAllUsers);
 
-router.get('/users-list', getAllUsers);
-
+// getUser by Itd Id
 router.get('/:id', getUserById);
 
 module.exports = router;

@@ -2,14 +2,13 @@ const Language = require('../models/languagesModel');
 const { Op } = require('sequelize');  
 
 const getAllLanguages = async (req, res) => {
-  console.log('getAllLanguages called');
   try {
-    const { search } = req.query; 
+    const { name } = req.query; 
     const queryOptions = {};
-    if (search) {
+    if (name) {
       queryOptions.where = {
         name: {
-          [Op.like]: `%${search}%`, 
+          [Op.like]: `%${name}%`, 
         },
       };
     }
@@ -30,6 +29,7 @@ const getAllLanguages = async (req, res) => {
     });
   }
 };
+
 const getLanguageById = async (req, res) => {
   try {
     const {
@@ -108,51 +108,9 @@ const deleteLanguage = async (req, res) => {
   }
 };
 
-const searchLanguages = async (req, res) => {
-  try {
-    const { name, code } = req.query;
-    if (!name && !code) {
-      return res.status(400).json({
-        message: "At least one search parameter (name or code) is required",
-      });
-    }
-    const conditions = {};
-    if (name) {
-      conditions.name = {
-        [Op.like]: `%${name}%`, // Case-insensitive search for name
-      };
-    }
-    if (code) {
-      conditions.code = {
-        [Op.like]: `%${code}%`, 
-      };
-    }
-    const languages = await Language.findAll({
-      where: conditions,
-    });
-
-    if (languages.length === 0) {
-      return res.status(404).json({
-        message: 'No languages found',
-      });
-    }
-
-    res.status(200).json({
-      message: 'Languages fetched successfully',
-      languages,
-    });
-  } catch (error) {
-    res.status(500).json({
-      message: 'An error occurred while searching for languages',
-      error: error.message,
-    });
-  }
-};
-
 module.exports = {
   getAllLanguages,
   getLanguageById,
   updateLanguage,
   deleteLanguage,
-  searchLanguages
 };

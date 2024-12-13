@@ -2,34 +2,35 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Countries', {
+    await queryInterface.createTable('small_projects', {
       id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
+        autoIncrement: true,
       },
-      code: {
+      userId:{
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       name: {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      emoji: {
+      type_of_project: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
       },
-      continentId: {
+      category_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        references: {
-          model: 'Continents', // References the 'Continents' table
-          key: 'id', // Foreign key to the 'id' column of the 'Continents' table
-        },
-        onDelete: 'CASCADE', // If a continent is deleted, its related countries are also deleted
+      },
+      subcategory_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
+      projectmanagerole_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -45,6 +46,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Countries');
+    await queryInterface.dropTable('small_projects');
   },
 };

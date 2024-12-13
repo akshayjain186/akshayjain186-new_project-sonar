@@ -1,35 +1,29 @@
 require('dotenv').config({ path: '../../shared/config/.env' });
 const { Sequelize } = require('sequelize');
 
-let sequelize = null; // Initialize with a placeholder value
+// Database connection for the Service Service
+let sequelizeService = null;
 
-if (process.env.DB_TYPE === 'sqlite') {
-  sequelize = new Sequelize({
-    dialect: 'sqlite',
-    storage: process.env.DB_NAME, // SQLite file path
-  });
-} else {
-  sequelize = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASSWORD,
-    {
-      host: process.env.DB_HOST,
-      dialect: 'mysql',
-      port: process.env.DB_PORT || 3306, // Default MySQL port
-    }
-  );
-}
+sequelizeService = new Sequelize(
+  process.env.DB_NAME_SERVICE,
+  process.env.DB_USER_SERVICE,
+  process.env.DB_PASSWORD_SERVICE,
+  {
+    host: process.env.DB_HOST_SERVICE,
+    dialect: 'mysql',
+    port: process.env.DB_PORT_SERVICE || 3306, // Default MySQL port
+  }
+);
 
-// Test the connection
+// Test the connection for the Service Service Database
 (async () => {
   try {
-    await sequelize.authenticate();
-    console.log('Database connected successfully.');
+    await sequelizeService.authenticate();
+    console.log('Service Service Database connected successfully.');
   } catch (error) {
-    console.error('Unable to connect to the database:', error);
-    throw new Error('Database connection failed'); // Throw an error instead of exiting
+    console.error('Unable to connect to the Service Service Database:', error);
+    throw new Error('Service Service Database connection failed');
   }
 })();
 
-module.exports = { sequelize };
+module.exports = { sequelizeService };
