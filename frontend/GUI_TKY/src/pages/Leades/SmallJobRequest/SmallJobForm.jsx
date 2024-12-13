@@ -13,6 +13,9 @@ import HallwayIcon from '../../../assets/images/leads/HallwayIcon.png';
 import FacadeIcon from '../../../assets/images/leads/FacadeIcon.png';
 import RoofingIcon from '../../../assets/images/leads/roofingIcon.png';
 import GroundWorkIcon from '../../../assets/images/leads/GroundWorkIcon.png';
+import ExtensionIcon from '../../../assets/images/leads/extensionIcon.png'
+import GarageIcon from '../../../assets/images/leads/GarageIcon.png'
+import NewHomeIcon from '../../../assets/images/leads/NewHomeicon.png'
 
 export default function SmallJobForm() {
   const [activeSection, setActiveSection] = useState(null);
@@ -119,7 +122,9 @@ export default function SmallJobForm() {
                       key={option.id}
                       className="d-flex align-items-center justify-content-between"
                     >
-                      <img src={option.icon} alt="icon" />
+                        <div>
+                      <img src={option.icon} alt="icon" className='m-2'/>
+                      </div>
                       <span>{option.label}</span>
                       <input
                         type="checkbox"
