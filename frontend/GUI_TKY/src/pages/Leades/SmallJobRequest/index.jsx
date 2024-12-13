@@ -1,10 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import smallJobIcon from '../../../assets/images/leads/smallJob Icon.png';
-import homeIcon from '../../../as';
-import BathroomIcon from '../../../assets/images/users/usersview/Bathroom icon.png';
-import KitchenIcon from '../../../assets/images/users/usersview/kitchen icon.png';
-import imagePdfIcon from '../../../assets/images/leads/image pdf icon.png';
+// import smallJobIcon from '../../../assets/images/leads/smallJob Icon.png';
+// import homeIcon from '../../../as';
+// import BathroomIcon from '../../../assets/images/users/usersview/Bathroom icon.png';
+// import KitchenIcon from '../../../assets/images/users/usersview/kitchen icon.png';
+// import imagePdfIcon from '../../../assets/images/leads/image pdf icon.png';
 
 export default function SmallJobRequest() {
   return (

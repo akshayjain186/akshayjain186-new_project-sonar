@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import NotFrameIcon from '../../../assets/images/leads/NotFrameicon.png';
 import BathroomIcon from '../../../assets/images/users/usersview/bathroomicon.png';
-import KitchenIcon from '../../../assets/images/users/usersview/Kitchenicon.png';
+//  import KitchenIcon from '../../../assets/images/users/usersview/Kitchenicon.png';
 import ToiletIcon from '../../../assets/images/users/usersview/toileticon.png';
 import WashingIcon from '../../../assets/images/leads/washingRoomIcon.png';
 import LivingRoomIconRoom from '../../../assets/images/leads/LivingRoomIcon.png';
@@ -19,7 +19,7 @@ export default function SmallJobForm() {
 
   const [superAdminOptions, setSuperAdminOptions] = useState([
     { id: 1, icon: BathroomIcon, label: 'Bathroom', checked: false },
-    { id: 2, icon: KitchenIcon, label: 'Kitchen', checked: false },
+    // { id: 2, icon: KitchenIcon, label: 'Kitchen', checked: false },
     { id: 3, icon: ToiletIcon, label: 'Toilet', checked: false },
     { id: 4, icon: WashingIcon, label: 'Washing room', checked: false },
     { id: 5, icon: LivingRoomIconRoom, label: 'Living room', checked: false },
@@ -33,12 +33,12 @@ export default function SmallJobForm() {
     { id: 13, icon: GroundWorkIcon, label: 'Ground work', checked: false },
     {
       id: 14,
-      icon: ExtensionIcon,
+      // icon: ExtensionIcon,
       label: 'Superstructure and extension',
       checked: false,
     },
-    { id: 15, icon: GarageIcon, label: 'Garage', checked: false },
-    { id: 16, icon: NewHomeIcon, label: 'New home', checked: false },
+    // { id: 15, icon: GarageIcon, label: 'Garage', checked: false },
+    // { id: 16, icon: NewHomeIcon, label: 'New home', checked: false },
   ]);
 
   const [adminOptions, setAdminOptions] = useState([

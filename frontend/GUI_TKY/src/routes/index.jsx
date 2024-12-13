@@ -7,6 +7,8 @@ import {
   LicensesPage,
   OwnerPage,
 } from '@/pages';
+import SmallJobForm from '@/pages/Ragister/SmallJobForm';
+import BigJobForm from '@/pages/Ragister/BigJobForm';
 
 const authUser = JSON.parse(localStorage.getItem('authUser')) || null;
 import Users from '@/pages/Users';
@@ -37,6 +39,10 @@ const publicRoutes = [
   },
   { path: '/signUp', component: <SignUp /> },
   { path: '/owner', component: <OwnerPage /> },
+  { path: '/smalljob', component: <SmallJobForm /> },
+
+  { path: '/bigjob', component: <BigJobForm/> },
+
   { path: '/users', component: <Users /> },
   { path: '/UserView', component: <UserView /> },
   { path: '/AdminUserView', component: <AdminUserView /> },
