@@ -9,14 +9,14 @@ import {
   Tab,
   Image,
 } from 'react-bootstrap';
-import AdminELogo from '../../../assets/images/users/usersview/AdminE logo.png';
-import electriciationicon from '../../../assets/images/users/usersview/electriciation icon.png';
-import sewingIcon from '../../../assets/images/users/usersview/sawing icon.png';
-import dsbqualification from '../../../assets/images/users/usersview/dsb quali.png';
-import mvaqualification from '../../../assets/images/users/usersview/mva quali.png';
-import EditIcon from '../../../assets/images/users/usersview/edit icon.png';
+import AdminELogo from '../../../assets/images/users/usersview/AdminElogo.png';
+import electriciationicon from '../../../assets/images/users/usersview/electriciationicon.png';
+import sewingIcon from '../../../assets/images/users/usersview/sawingicon.png';
+import dsbqualification from '../../../assets/images/users/usersview/dsbquali.png';
+import mvaqualification from '../../../assets/images/users/usersview/mvaquali.png';
+import EditIcon from '../../../assets/images/users/usersview/editicon.png';
 import FmdGoodIcon from '../../../assets/images/users/usersview/material-symbols_location-on.png';
-import CheckIcon from '../../../assets/images/users/usersview/right icon.png';
+import CheckIcon from '../../../assets/images/users/usersview/righticon.png';
 import Manager from '../AdminUserView/Manager/Manager';
 
 const TabPanel = ({ children, value, index }) => {

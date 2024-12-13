@@ -11,16 +11,16 @@ import {
   Button,
   Badge,
 } from 'react-bootstrap';
-import groupLogo from '../../../assets/images/users/usersview/group logo.png';
-import bathroomIcon from '../../../assets/images/users/usersview/bathroom icon.png';
-import kitchenIcon from '../../../assets/images/users/usersview/kitchen icon.png';
-import toiletIcon from '../../../assets/images/users/usersview/toilet icon.png';
-import facadeIcon from '../../../assets/images/users/usersview/fecade icon.png';
-import dsbqualification from '../../../assets/images/users/usersview/dsb quali.png';
-import mvaqualification from '../../../assets/images/users/usersview/mva quali.png';
-import EditIcon from '../../../assets/images/users/usersview/edit icon.png';
+import groupLogo from '../../../assets/images/users/usersview/grouplogo.png';
+import bathroomIcon from '../../../assets/images/users/usersview/bathroomicon.png';
+import kitchenIcon from '../../../assets/images/users/usersview/kitchenicon.png';
+import toiletIcon from '../../../assets/images/users/usersview/toileticon.png';
+import facadeIcon from '../../../assets/images/users/usersview/fecadeicon.png';
+import dsbqualification from '../../../assets/images/users/usersview/dsbquali.png';
+import mvaqualification from '../../../assets/images/users/usersview/mvaquali.png';
+import EditIcon from '../../../assets/images/users/usersview/editicon.png';
 import FmdGoodIcon from '../../../assets/images/users/usersview/material-symbols_location-on.png';
-import CheckIcon from '../../../assets/images/users/usersview/right icon.png'; // Checkmark icon
+import CheckIcon from '../../../assets/images/users/usersview/righticon.png'; // Checkmark icon
 
 import Employee from '../UsersView/Emloyee/Employee';
 

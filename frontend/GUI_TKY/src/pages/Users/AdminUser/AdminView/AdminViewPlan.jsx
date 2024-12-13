@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import adminELogo from '../../../../assets/images/users/usersview/AdminE logo.png';
+import adminELogo from '../../../../assets/images/users/usersview/AdminElogo.png';
 
 export default function AdminViewPlan() {
   const [selectedPlan, setSelectedPlan] = useState('Admin BASIC');
