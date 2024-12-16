@@ -17,10 +17,15 @@ import AdminUserView from '@/pages/Users/AdminUser';
 import CustomerUserProfile from '@/pages/Users/CustomerUser';
 import AdminViewPlan from '@/pages/Users/AdminUser/AdminView/AdminViewPlan';
 import Leads from '@/pages/Leades';
-import BigJobRequest from '@/pages/Leades/BigJobRequest';
-import SmallJobRequest from '@/pages/Leades/SmallJobRequest';
+
 // import SmallJobForm from '@/pages/Leades/SmallJobRequest/SmallJobForm';
 import SendInvitationForm from '@/pages/Leades/SmallJobRequest/SendInvitation';
+import BigJobRequest from '@/pages/Leades/Customers/BigJobRequest';
+import SmallJobRequest from '@/pages/Leades/Customers/SmallJobRequest';
+import SmallJobForm from '@/pages/Leades/Customers/SmallJobRequest/SmallJobForm';
+import ArtBuilding from '@/pages/Leades/Companies/ArtBuilding/ArtBuilding';
+import UploadPhoto from '@/pages/Leades/Companies/UploadPhoto/UploadPhoto';
+import SendInvitation from '@/pages/Leades/Companies/SendInvitation';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
@@ -52,7 +57,10 @@ const publicRoutes = [
   { path: '/BigJobRequest', component: <BigJobRequest /> },
   { path: '/SmallJobRequest', component: <SmallJobRequest /> },
   { path: '/SmallJobForm', component: <SmallJobForm /> },
-  { path: '/SendInvitationForm', component: <SendInvitationForm /> },
+  // { path: '/SendInvitationForm', component: <SendInvitationForm /> },
+  { path: '/ArtBuilding', component: <ArtBuilding /> },
+  { path: '/UploadPhoto', component: <UploadPhoto /> },
+  { path: '/SendInvitation', component: <SendInvitation /> },
 ];
 
-export { authProtectedRoutes,authControleAdminRoutes, publicRoutes };
+export { authProtectedRoutes, authControleAdminRoutes, publicRoutes };

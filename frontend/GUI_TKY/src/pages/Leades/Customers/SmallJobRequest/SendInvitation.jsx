@@ -21,7 +21,8 @@ export default function SendInvitationForm() {
             />
           </div>
           <div className="container d-flex justify-content-center align-items-center ">
-          <button type="submit" className="btn btn-primary w-50 " style={{backgroundColor:'#41619A'}}>Send</button>
+          <button type="submit" className="btn btn-primary w-50 " style={{backgroundColor:'#F4F8FC', color:'#41619A'}}>Secondary</button>
+          <button type="submit" className="btn btn-primary w-50 " style={{backgroundColor:'#41619A'}}>Primary</button>
           </div>
         </form>
       </div>
