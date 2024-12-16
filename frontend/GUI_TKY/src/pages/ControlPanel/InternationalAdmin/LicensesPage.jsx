@@ -11,6 +11,8 @@ import plus from '../../../assets/images/plus.png';
 import search from '../../../assets/images/searchIcon.png';
 import { useDispatch } from 'react-redux';
 import { getUsersListData } from '@/store/actions';
+import Flag from 'react-world-flags';  //add for country flags
+
 function LicensesPage() {
   // useNavigate is a React Router hook used to programmatically navigate to different routes
   const navigate = useNavigate();
@@ -24,7 +26,205 @@ function LicensesPage() {
   const userOwnerPage = (userId) => {
     navigate(`/owner/${userId}`);
   };
-  
+
+  // Expanded countryCodeMap for mapping country names to ISO codes
+  const countryCodeMap = {
+    "Afghanistan": "AF",
+    "Albania": "AL",
+    "Algeria": "DZ",
+    "Andorra": "AD",
+    "Angola": "AO",
+    "Antigua and Barbuda": "AG",
+    "Argentina": "AR",
+    "Armenia": "AM",
+    "Australia": "AU",
+    "Austria": "AT",
+    "Azerbaijan": "AZ",
+    "Bahamas": "BS",
+    "Bahrain": "BH",
+    "Bangladesh": "BD",
+    "Barbados": "BB",
+    "Belarus": "BY",
+    "Belgium": "BE",
+    "Belize": "BZ",
+    "Benin": "BJ",
+    "Bhutan": "BT",
+    "Bolivia": "BO",
+    "Bosnia and Herzegovina": "BA",
+    "Botswana": "BW",
+    "Brazil": "BR",
+    "Bouvet Island": "BV",
+    "Brunei": "BN",
+    "Bulgaria": "BG",
+    "Burkina Faso": "BF",
+    "Burundi": "BI",
+    "Cabo Verde": "CV",
+    "Cambodia": "KH",
+    "Cameroon": "CM",
+    "Canada": "CA",
+    "Central African Republic": "CF",
+    "Chad": "TD",
+    "Chile": "CL",
+    "China": "CN",
+    "Colombia": "CO",
+    "Comoros": "KM",
+    "Congo (Congo-Brazzaville)": "CG",
+    "Congo (Democratic Republic of the Congo)": "CD",
+    "Costa Rica": "CR",
+    "Croatia": "HR",
+    "Cuba": "CU",
+    "Cyprus": "CY",
+    "Czech Republic": "CZ",
+    "Denmark": "DK",
+    "Djibouti": "DJ",
+    "Dominica": "DM",
+    "Dominican Republic": "DO",
+    "Ecuador": "EC",
+    "Egypt": "EG",
+    "El Salvador": "SV",
+    "Equatorial Guinea": "GQ",
+    "Eritrea": "ER",
+    "Estonia": "EE",
+    // "Eswatini (fmr. "Swaziland")": "SZ",
+    "Ethiopia": "ET",
+    "Fiji": "FJ",
+    "Finland": "FI",
+    "France": "FR",
+    "Gabon": "GA",
+    "Gambia": "GM",
+    "Georgia": "GE",
+    "Germany": "DE",
+    "Ghana": "GH",
+    "Greece": "GR",
+    "Grenada": "GD",
+    "Guatemala": "GT",
+    "Guinea": "GN",
+    "Guinea-Bissau": "GW",
+    "Guyana": "GY",
+    "Haiti": "HT",
+    "Honduras": "HN",
+    "Hungary": "HU",
+    "Iceland": "IS",
+    "India": "IN",
+    "Indonesia": "ID",
+    "Iran": "IR",
+    "Iraq": "IQ",
+    "Ireland": "IE",
+    "Israel": "IL",
+    "Italy": "IT",
+    "Jamaica": "JM",
+    "Japan": "JP",
+    "Jordan": "JO",
+    "Kazakhstan": "KZ",
+    "Kenya": "KE",
+    "Kiribati": "KI",
+    "Korea, North": "KP",
+    "Korea, South": "KR",
+    "Kuwait": "KW",
+    "Kyrgyzstan": "KG",
+    "Laos": "LA",
+    "Latvia": "LV",
+    "Lebanon": "LB",
+    "Lesotho": "LS",
+    "Liberia": "LR",
+    "Libya": "LY",
+    "Liechtenstein": "LI",
+    "Lithuania": "LT",
+    "Luxembourg": "LU",
+    "Madagascar": "MG",
+    "Malawi": "MW",
+    "Malaysia": "MY",
+    "Maldives": "MV",
+    "Mali": "ML",
+    "Malta": "MT",
+    "Marshall Islands": "MH",
+    "Mauritania": "MR",
+    "Mauritius": "MU",
+    "Mexico": "MX",
+    "Micronesia": "FM",
+    "Moldova": "MD",
+    "Monaco": "MC",
+    "Mongolia": "MN",
+    "Montenegro": "ME",
+    "Morocco": "MA",
+    "Mozambique": "MZ",
+    "Myanmar (formerly Burma)": "MM",
+    "Namibia": "NA",
+    "Nauru": "NR",
+    "Nepal": "NP",
+    "Netherlands": "NL",
+    "New Zealand": "NZ",
+    "Nicaragua": "NI",
+    "Niger": "NE",
+    "Nigeria": "NG",
+    "North Macedonia (fmr. Macedonia)": "MK",
+    "Norway": "NO",
+    "Oman": "OM",
+    "Pakistan": "PK",
+    "Palau": "PW",
+    "Panama": "PA",
+    "Papua New Guinea": "PG",
+    "Paraguay": "PY",
+    "Peru": "PE",
+    "Philippines": "PH",
+    "Poland": "PL",
+    "Portugal": "PT",
+    "Qatar": "QA",
+    "Romania": "RO",
+    "Russia": "RU",
+    "Rwanda": "RW",
+    "Saint Kitts and Nevis": "KN",
+    "Saint Lucia": "LC",
+    "Saint Vincent and the Grenadines": "VC",
+    "Samoa": "WS",
+    "San Marino": "SM",
+    "Sao Tome and Principe": "ST",
+    "Saudi Arabia": "SA",
+    "Senegal": "SN",
+    "Serbia": "RS",
+    "Seychelles": "SC",
+    "Sierra Leone": "SL",
+    "Singapore": "SG",
+    "Slovakia": "SK",
+    "Slovenia": "SI",
+    "Solomon Islands": "SB",
+    "Somalia": "SO",
+    "South Africa": "ZA",
+    "South Sudan": "SS",
+    "Spain": "ES",
+    "Sri Lanka": "LK",
+    "Sudan": "SD",
+    "Suriname": "SR",
+    "Sweden": "SE",
+    "Switzerland": "CH",
+    "Syria": "SY",
+    "Taiwan": "TW",
+    "Tajikistan": "TJ",
+    "Tanzania": "TZ",
+    "Thailand": "TH",
+    "Timor-Leste": "TL",
+    "Togo": "TG",
+    "Tonga": "TO",
+    "Trinidad and Tobago": "TT",
+    "Tunisia": "TN",
+    "Turkey": "TR",
+    "Turkmenistan": "TM",
+    "Tuvalu": "TV",
+    "Uganda": "UG",
+    "Ukraine": "UA",
+    "United Arab Emirates": "AE",
+    "United Kingdom": "GB",
+    "United States": "US",
+    "Uruguay": "UY",
+    "Uzbekistan": "UZ",
+    "Vanuatu": "VU",
+    "Vatican City": "VA",
+    "Venezuela": "VE",
+    "Vietnam": "VN",
+    "Yemen": "YE",
+    "Zambia": "ZM",
+    "Zimbabwe": "ZW"
+  };
 
   useEffect(() => {
     dispatch(
@@ -41,7 +241,7 @@ function LicensesPage() {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-};
+  };
   return (
     <>
       <InternationalHeader />
@@ -102,13 +302,32 @@ function LicensesPage() {
                   <div
                     key={index}
                     className="d-flex flex-column flex-md-row justify-content-between h-75 align-items-start align-items-md-center border rounded p-4 mb-2 bg-white"
-                    onClick={()=>userOwnerPage(license.id)}>
+                    onClick={() => userOwnerPage(license.id)}>
                     {/* User Info */}
                     <div className="d-flex gap-3 align-items-center mb-2 mb-md-0">
+                      <div className="ms-2">
+                        {/* Check if country name exists in the countryCodeMap */}
+                        {countryCodeMap[license.country] ? (
+                          <Flag
+                            className="rounded-4"
+                            code={countryCodeMap[license.country]}
+                            style={{
+                              width: '30px',       // Set the width of the flag
+                              height: '30px',      // Set the height of the flag to be equal to width for a circle
+                              borderRadius: '60%', // This makes the flag circular
+                              objectFit: 'cover'   // Ensures the flag fits within the circle without distortion
+                            }}
+                          />
+
+                        ) : (
+                          <span>Flag not available</span>
+                        )}
+                      </div>
                       <div className="rounded-4 h-25 ms-3">
                         <strong>{license.country}</strong>
                       </div>
                       {/* <p className="mb-0 text-muted">{license.email}</p> */}
+
                     </div>
                     {/* License Info */}
                     <div
@@ -124,8 +343,8 @@ function LicensesPage() {
                         {/* organization_number */}
                         <span>{license.name}</span>
                       </div>
-                      <div className="d-flex " style={{width:"30%"}}>
-                      <img src={currency} alt="Currency Icon" className="me-2 text-start" />
+                      <div className="d-flex " style={{ width: "30%" }}>
+                        <img src={currency} alt="Currency Icon" className="me-2 text-start" />
                         <span className="">{license.currency}</span>
                       </div>
                     </div>

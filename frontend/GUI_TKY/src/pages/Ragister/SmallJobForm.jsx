@@ -20,8 +20,6 @@ import "./Register.scss";
 
 import { Link } from "react-router-dom";
 import "./Register.scss";
-
-
 //images
 // import washingroom from "../../assets/images/washingroom.png";
 import electricianicon from "../../assets/images/icons/electrician-icon.svg";
@@ -51,6 +49,9 @@ import Groundwork from "../../assets/images/icons/Groundicon.png";
 import Superstructure from "../../assets/images/icons/Superstructureicon.png";
 import Garage from "../../assets/images/icons/Garageicon.png";
 import Newhome from "../../assets/images/icons/homeicon.png";
+import ChooseWorkType from "./ChooseWorkType";
+import ChooseCategories from "./ChooseCategories";
+import DescriptionContactInfo from "./DescriptionContactInfo";
 
 
 const SmallJobForm = () => {
@@ -113,6 +114,13 @@ const SmallJobForm = () => {
     const [activeTab, setactiveTab] = useState(1);
     const [passedSteps, setPassedSteps] = useState([1]);
     const [selectedWorker, setSelectedWorker] = useState();
+    const [selectedProjectManagers, setSelectedProjectManagers] = useState([]);
+  const [selectedRooms, setSelectedRooms] = useState([]);
+  const [selectedOutsideWork, setSelectedOutsideWork] = useState([]);
+  const [selectedNewBuilding, setSelectedNewBuilding] = useState([]);
+
+  const [selectedNewBuilding2, setSelectedNewBuilding2] = useState([]);
+   const [selectedOutsideWork2, setSelectedOutsideWork2] = useState([]);
   
     function toggleTab(tab) {
       if (activeTab !== tab) {
@@ -122,7 +130,15 @@ const SmallJobForm = () => {
           setPassedSteps(modifiedSteps);
         }
       }
-    }
+    }  const handleProjectManagerSelect = (id) => {
+      setSelectedProjectManagers(
+        (prevSelected) =>
+          prevSelected.includes(id)
+            ? prevSelected.filter((managerId) => managerId !== id) // Deselect if already selected
+            : [...prevSelected, id] // Add to selection if not selected
+      );
+    };
+
   return (
     <React.Fragment>
     <Container fluid={true} style={{ fontFamily: "Montserrat" }}>
@@ -157,12 +173,17 @@ const SmallJobForm = () => {
                     }`}
                   >
                     <div
-                      className={`circle ms-3 ${
+                      className={`bigcircle ms-3 ${
                         activeTab === 1 ? "active" : ""
                       } ${activeTab >= 1 ? "completed" : ""}`}
                       onClick={() => activeTab >= 1 && setactiveTab(1)}
                     >
-                      1
+                      <div  className={`circle  ${
+                        activeTab === 1 ? "active" : ""
+                      } ${activeTab >= 1 ? "completed" : ""}`}>
+                        
+                      </div>
+                      
                     </div>
                     <span className="label">Work type</span>
                   </div>
@@ -175,12 +196,16 @@ const SmallJobForm = () => {
                     className={`step ${activeTab >= 2 ? "completed" : ""}`}
                   >
                     <div
-                      className={`circle ms-4 ${
+                      className={`bigcircle ms-4 ${
                         activeTab === 2 ? "active" : ""
                       } ${activeTab >= 2 ? "completed" : ""}`}
                       onClick={() => activeTab >= 2 && setactiveTab(2)}
                     >
-                      2
+                      <div  className={`circle  ${
+                        activeTab === 2 ? "active" : ""
+                      } ${activeTab >= 2 ? "completed" : ""}`}>
+
+                      </div>
                     </div>
                     <span className="label">Choose categories</span>
                   </div>
@@ -193,10 +218,13 @@ const SmallJobForm = () => {
                     className={`step ${activeTab >= 3 ? "completed" : ""}`}
                   >
                     <div
-                      className={`circle ${activeTab === 3 ? "active" : ""}`}
+                      className={`bigcircle ${activeTab === 3 ? "active" : ""}`}
                       onClick={() => activeTab >= 3 && setactiveTab(3)}
                     >
-                      3
+                      <div className={`circle ${activeTab === 3 ? "active" : ""}`}
+                      >
+
+                      </div>
                     </div>
                     <span className="label">
                       Description and contact info
@@ -209,7 +237,7 @@ const SmallJobForm = () => {
             <div className="content clearfix">
               <TabContent activeTab={activeTab} className="body">
                 <TabPane tabId={1}>
-                  <Row className="justify-content-center">
+                  {/* <Row className="justify-content-center">
                     <Col xl="7" sm="7">
                       <Card className="rounded-4">
                         <CardBody className="ms-3">
@@ -308,10 +336,11 @@ const SmallJobForm = () => {
                       </div>
                     </Col>
                   </Row>
-               
+                */}
+                <ChooseWorkType workerTypes={workerTypes } selectedWorker={ selectedWorker} Projectm={Projectm}  toggleTab={toggleTab} activeTab={activeTab}/>
                 </TabPane>
                 <TabPane tabId={2}>
-                  <Row className="justify-content-center">
+                  {/* <Row className="justify-content-center">
                     <Col xl="7" sm="7">
                       <Card className="rounded-4">
                         <CardBody className="ms-3">
@@ -562,10 +591,11 @@ const SmallJobForm = () => {
                         </button>
                       </div>
                     </Col>
-                  </Row>
+                  </Row> */}
+                  <ChooseCategories Rooms={Rooms}  outsidework={outsidework} newbuilding={newbuilding} selectedWorker={selectedWorker} toggleTab={toggleTab} activeTab={activeTab}/>
                 </TabPane>
                 <TabPane tabId={3}>
-                  <Row className="justify-content-center">
+                  {/* <Row className="justify-content-center">
                     <Col xl="8" sm="8">
                       <Card>
                         <CardBody>
@@ -582,7 +612,7 @@ const SmallJobForm = () => {
                                     Type of home
                                   </Label>
                                   <span className="input-group-text bg-white">
-                                  {/* <img src={Appertment} style={{height:"25px",width:"25px"}}/>{" "} */}
+                                  <img src={Appertment} style={{height:"25px",width:"25px"}}/>{" "}
                                     <Input
                                       type="text"
                                       className="form-control border-0"
@@ -657,8 +687,8 @@ const SmallJobForm = () => {
                         </CardBody>
                       </Card>
                     </Col>
-                  </Row>
-                  <Row className="justify-content-center">
+                  </Row> */}
+                  {/* <Row className="justify-content-center">
                     <Col xl="8" sm="8">
                       <Card>
                         <CardBody>
@@ -738,8 +768,8 @@ const SmallJobForm = () => {
                         </CardBody>
                       </Card>
                     </Col>
-                  </Row>
-                  <Row className="justify-content-center">
+                  </Row> */}
+                  {/* <Row className="justify-content-center">
                     <Col xl="8" sm="8">
                       <Card>
                         <CardBody>
@@ -822,8 +852,8 @@ const SmallJobForm = () => {
                         </CardBody>
                       </Card>
                     </Col>
-                  </Row>
-                  <Row className="justify-content-center">
+                  </Row> */}
+                  {/* <Row className="justify-content-center">
                     <Col xl="8" sm="8">
                       <Card>
                         <CardBody>
@@ -915,7 +945,8 @@ const SmallJobForm = () => {
                         </button>
                       </div>
                     </Col>
-                  </Row>
+                  </Row> */}
+                  <DescriptionContactInfo/>
                 </TabPane>
               </TabContent>
             </div>
@@ -927,4 +958,5 @@ const SmallJobForm = () => {
   )
 }
 
-export default SmallJobForm
+  export default  SmallJobForm ;
+  

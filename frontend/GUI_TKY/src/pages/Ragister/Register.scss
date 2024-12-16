@@ -11,10 +11,10 @@
   }
   
   .circle {
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     border-radius: 50%;
-    background-color: #ccc;
+    background-color: #EAEEF4;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,21 +24,23 @@
   }
   
   .circle.active {
-    background-color: #3a76f0;
+    background-color: #41619A;
+   
+   
   }
   
   .circle.completed {
-    background-color: #3a76f0;
+    background-color: #41619A;
   }
   
   .line {
     flex: 1;
     height: 3px;
-    background-color: #ccc;
+    background-color: #EAEEF4;
   }
   
   .line.completed {
-    background-color: #3a76f0;
+    background-color: #41619A;
   }
   
   .label {
@@ -46,4 +48,14 @@
     font-size: 12px;
     color: #666;
   }
-  
+   .bigcircle{
+     @extend.circle;
+     width: 35px;
+     height: 35px;
+     border: 2px solid transparent;
+     background-color: transparent !important;
+     
+  }
+  .bigcircle.active{
+    border: 2px solid #41619A;
+  }

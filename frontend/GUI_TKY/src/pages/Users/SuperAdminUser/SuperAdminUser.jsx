@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import TableContainer from '../../../components/Common/TableContainer';
-import plusIcon from '../../../assets/images/users/usersview/plusicon.png'
+import plusIcon from '../../../assets/images/users/usersview/Plusicon.png'
 
 const SuperAdmins = () => {
   const rows = [

@@ -51,8 +51,67 @@ import ProjectmanagerIcon from "../../assets/images/icons/Project managerIcon.pn
 // import Garage from "../../../assets/images/icons/Garageicon.png";
 import Newhome from "../../assets/images/icons/homeicon.png";
 import Appertment from '../../assets/images/icons/Appertment.png'
+ function BigJobForm() {
+const [selectedWorkers, setSelectedWorkers] = useState([]);
+  const [selectedProjectManagers, setSelectedProjectManagers] = useState([]);
+  const [selectedNewBuildingManagers, setSelectedNewBuildingManagers] =
+    useState([]);
+  
+  const [selectedBathroomWorkers, setSelectedBathroomWorkers] = useState([]);
+  
 
-function BigJobForm() {
+  const [selectedOutsideWorks, setSelectedOutsideWorks] = useState([]);
+  
+
+  const [selectedKitchenWorkers, setSelectedKitchenWorkers] = useState([]);
+  
+
+
+  const [selectedOutsideWorkers2, setSelectedOutsideWorkers2] = useState([]);
+
+  const toggleSelectionForOutsideWork2 = (id, setSelected, selected) => {
+    setSelectedOutsideWorkers2((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+    const toggleSelectionForKitchen = (id, setSelected, selected) => {
+      setSelectedKitchenWorkers((prev) =>
+        prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      );
+    };
+
+   const toggleSelectionForOutsideWorks = (id, setSelected, selected) => {
+     setSelectedOutsideWorks((prev) =>
+       prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+     );
+   };
+
+
+
+    const toggleSelectionForBathroom = (id, setSelected, selected) => {
+      setSelectedBathroomWorkers((prev) =>
+        prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+      );
+    };
+
+
+
+  const handleMultiSelect = (id, setSelected, selected) => {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  const toggleSelectionForNewBuilding = (id, setSelected, selected) => {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+
+
+
 
     const [data_attr, setData_attr] = useState(0);
     const worker = [
@@ -77,6 +136,14 @@ function BigJobForm() {
     //   { id: 3, label: "New home", iconClass: Newhome },
     ];
   
+  
+  const toggleSelection = (id, setSelected, selected) => {
+    setSelected((prev) =>
+      prev.includes(id) ? prev.filter((item) => item !== id) : [...prev, id]
+    );
+  };
+
+  
     const Roomsrenovation = [
       {
         id: 1,
@@ -98,8 +165,8 @@ function BigJobForm() {
       { id: 6, label: "Bedroom", iconClass: GlassmasterIcon },
       { id: 7, label: "Children room", iconClass: PlumberIcon },
       { id: 8, label: "Technical room", iconClass: RooferandtinsmithIcon },
-      { id: 9, label: "Storage room", iconClass: TilerIcon },
-      { id: 8, label: "Hallway", iconClass: RooferandtinsmithIcon },
+      { id: 11, label: "Storage room", iconClass: TilerIcon },
+      { id: 10, label: "Hallway", iconClass: RooferandtinsmithIcon },
       { id: 9, label: "Other", iconClass: TilerIcon },
     ];
     const Outsidework = [
@@ -154,7 +221,7 @@ function BigJobForm() {
           <Col lg="12">
             <div className="wizard clearfix">
               <Row className="justify-content-center">
-                <Col lg="6">
+                {/* <Col lg="6">
                   <div className="progress-bar-container">
                     <div
                       className={`step me-3 ${
@@ -208,7 +275,74 @@ function BigJobForm() {
                       </span>
                     </div>
                   </div>
-                </Col>
+                </Col> */}
+                  <Col lg="6">
+                <div className="progress-bar-container">
+                  <div
+                    className={`step me-3 ${
+                      activeTab >= 1 ? "completed" : ""
+                    }`}
+                  >
+                    <div
+                      className={`bigcircle ms-3 ${
+                        activeTab === 1 ? "active" : ""
+                      } ${activeTab >= 1 ? "completed" : ""}`}
+                      onClick={() => activeTab >= 1 && setactiveTab(1)}
+                    >
+                      <div  className={`circle  ${
+                        activeTab === 1 ? "active" : ""
+                      } ${activeTab >= 1 ? "completed" : ""}`}>
+                        
+                      </div>
+                      
+                    </div>
+                    <span className="label">Work type</span>
+                  </div>
+                  <div
+                    className={`line mb-4  ${
+                      activeTab > 1 ? "completed" : ""
+                    }`}
+                  ></div>
+                  <div
+                    className={`step ${activeTab >= 2 ? "completed" : ""}`}
+                  >
+                    <div
+                      className={`bigcircle ms-4 ${
+                        activeTab === 2 ? "active" : ""
+                      } ${activeTab >= 2 ? "completed" : ""}`}
+                      onClick={() => activeTab >= 2 && setactiveTab(2)}
+                    >
+                      <div  className={`circle  ${
+                        activeTab === 2 ? "active" : ""
+                      } ${activeTab >= 2 ? "completed" : ""}`}>
+
+                      </div>
+                    </div>
+                    <span className="label">Choose categories</span>
+                  </div>
+                  <div
+                    className={`mb-4 line me-3 ${
+                      activeTab > 2 ? "completed" : ""
+                    }`}
+                  ></div>
+                  <div
+                    className={`step ${activeTab >= 3 ? "completed" : ""}`}
+                  >
+                    <div
+                      className={`bigcircle ${activeTab === 3 ? "active" : ""}`}
+                      onClick={() => activeTab >= 3 && setactiveTab(3)}
+                    >
+                      <div className={`circle ${activeTab === 3 ? "active" : ""}`}
+                      >
+
+                      </div>
+                    </div>
+                    <span className="label">
+                      Description and contact info
+                    </span>
+                  </div>
+                </div>
+              </Col>
               </Row>
 
               <div className="content clearfix">
@@ -222,35 +356,51 @@ function BigJobForm() {
                               Choose type of worker you need
                             </h4>
                             <span className="text-muted">worker</span>
-                            <div className="d-flex flex-wrap gap-3 mt-2 ">
+                            <div className="d-flex flex-wrap gap-3 mt-2">
                               {Roomsrenovation.map((worker) => (
                                 <label
-                                  className={`card-radio-label text-start  ${
-                                    selectedWorker === worker.id
-                                      ? "border-primary"
-                                      : ""
-                                  }`}
                                   key={worker.id}
+                                  className={`card-radio-label text-start ${
+                                    selectedWorkers.includes(worker.id)
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
                                   style={{
-                                    width: "180px",
-                                    cursor: "pointer",
+                                    width: '180px',
+                                    cursor: 'pointer',
                                   }}
-                                  onClick={() => setSelectedWorker(worker.id)}
+                                  onClick={() =>
+                                    toggleSelection(
+                                      worker.id,
+                                      setSelectedWorkers,
+                                      selectedWorkers
+                                    )
+                                  }
                                 >
                                   <div
                                     className={`card-radio py-4 border rounded d-flex text-start ${
-                                      selectedWorker === worker.id
-                                        ? "border-primary"
-                                        : ""
+                                      selectedWorkers.includes(worker.id)
+                                        ? 'border-primary'
+                                        : ''
                                     }`}
+                                    style={{
+                                      background: selectedWorkers.includes(
+                                        worker.id
+                                      )
+                                        ? 'blue'
+                                        : '#F4F8FC',
+                                      color: selectedWorkers.includes(worker.id)
+                                        ? 'white'
+                                        : 'black',
+                                    }}
                                   >
                                     <img
                                       src={worker.iconClass}
                                       alt={worker.label}
                                       style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
                                       }}
                                       className="me-2"
                                     />
@@ -261,66 +411,161 @@ function BigJobForm() {
                                 </label>
                               ))}
                             </div>
+
                             <span className="text-muted">Project manager</span>
                             <div className="d-flex flex-wrap mt-2 gap-4">
                               {Outsidework.map((worker) => (
                                 <label
-                                  className="card-radio-label text-center"
                                   key={worker.id}
-                                  style={{ minWidth: "" }} 
+                                  className={`card-radio-label text-center ${
+                                    selectedProjectManagers.includes(worker.id)
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
+                                  style={{
+                                    minWidth: 'auto',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() =>
+                                    handleMultiSelect(
+                                      worker.id,
+                                      setSelectedProjectManagers,
+                                      selectedProjectManagers
+                                    )
+                                  }
                                 >
-                                  <div className="card-radio py-4 px-5 border rounded  d-flex">
+                                  <div
+                                    className={`card-radio py-4 px-5 border rounded d-flex ${
+                                      selectedProjectManagers.includes(
+                                        worker.id
+                                      )
+                                        ? 'border-primary'
+                                        : ''
+                                    }`}
+                                    style={{
+                                      background:
+                                        selectedProjectManagers.includes(
+                                          worker.id
+                                        )
+                                          ? 'blue'
+                                          : '#F4F8FC',
+                                      color: selectedProjectManagers.includes(
+                                        worker.id
+                                      )
+                                        ? 'white'
+                                        : 'black',
+                                    }}
+                                  >
                                     <img
                                       src={worker.iconClass}
                                       style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
                                       }}
                                       className="me-2"
+                                      alt={worker.label}
                                     />
                                     <div>
                                       <div className="mt-2">{worker.label}</div>
                                     </div>
                                   </div>
-
                                   <input
-                                    type="radio"
-                                    name="currency"
+                                    type="checkbox"
+                                    name={`projectManager${worker.id}`}
                                     id={`workerType${worker.id}`}
-                                    className="card-radio-input"
+                                    checked={selectedProjectManagers.includes(
+                                      worker.id
+                                    )}
+                                    onChange={() =>
+                                      handleMultiSelect(
+                                        worker.id,
+                                        setSelectedProjectManagers,
+                                        selectedProjectManagers
+                                      )
+                                    }
+                                    style={{ display: 'none' }} // Hide default checkbox
                                   />
                                 </label>
                               ))}
                             </div>
+
                             <span className="text-muted">Project manager</span>
                             <div className="d-flex flex-wrap mt-2 gap-4">
                               {Newbuilding.map((worker) => (
                                 <label
-                                  className="card-radio-label text-center"
                                   key={worker.id}
-                                  style={{ minWidth: "" }} 
+                                  className={`card-radio-label text-center ${
+                                    selectedNewBuildingManagers.includes(
+                                      worker.id
+                                    )
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
+                                  style={{
+                                    minWidth: 'auto',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() =>
+                                    toggleSelectionForNewBuilding(
+                                      worker.id,
+                                      setSelectedNewBuildingManagers,
+                                      selectedNewBuildingManagers
+                                    )
+                                  }
                                 >
-                                  <div className="card-radio py-4 px-5 border rounded  d-flex">
+                                  <div
+                                    className={`card-radio py-4 px-5 border rounded d-flex ${
+                                      selectedNewBuildingManagers.includes(
+                                        worker.id
+                                      )
+                                        ? 'border-primary'
+                                        : ''
+                                    }`}
+                                    style={{
+                                      background:
+                                        selectedNewBuildingManagers.includes(
+                                          worker.id
+                                        )
+                                          ? 'blue'
+                                          : '#F4F8FC',
+                                      color:
+                                        selectedNewBuildingManagers.includes(
+                                          worker.id
+                                        )
+                                          ? 'white'
+                                          : 'black',
+                                    }}
+                                  >
                                     <img
                                       src={worker.iconClass}
                                       style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
                                       }}
                                       className="me-2"
+                                      alt={worker.label}
                                     />
                                     <div>
                                       <div className="mt-2">{worker.label}</div>
                                     </div>
                                   </div>
-
                                   <input
-                                    type="radio"
-                                    name="currency"
+                                    type="checkbox"
+                                    name={`newBuildingManager${worker.id}`}
                                     id={`workerType${worker.id}`}
-                                    className="card-radio-input"
+                                    checked={selectedNewBuildingManagers.includes(
+                                      worker.id
+                                    )}
+                                    onChange={() =>
+                                      toggleSelectionForNewBuilding(
+                                        worker.id,
+                                        setSelectedNewBuildingManagers,
+                                        selectedNewBuildingManagers
+                                      )
+                                    }
+                                    style={{ display: 'none' }} // Hide default checkbox
                                   />
                                 </label>
                               ))}
@@ -329,7 +574,7 @@ function BigJobForm() {
                         </Card>
                         <div className="actions clearfix text-end">
                           <button
-                            style={{ width: "100px" }}
+                            style={{ width: '100px' }}
                             className={`  btn btn-primary p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
                           >
                             <Link
@@ -345,7 +590,6 @@ function BigJobForm() {
                         </div>
                       </Col>
                     </Row>
-                 
                   </TabPane>
                   <TabPane tabId={2}>
                     <Row className="justify-content-center">
@@ -354,70 +598,165 @@ function BigJobForm() {
                           <CardBody className="ms-3">
                             <div>
                               <h4 className="text-start mb-3 fw-semibold">
-                              Choose what workers you need for Bathroom
+                                Choose what workers you need for Bathroom
                               </h4>
                             </div>
 
                             <span>Rooms</span>
                             <div
                               className="d-flex flex-wrap gap-3 mt-2"
-                              style={{ color: "#41619A" }}
+                              style={{ color: '#41619A' }}
                             >
                               {worker.map((worker) => (
                                 <label
-                                  className="card-radio-label  text-center"
                                   key={worker.id}
-                                  style={{ minWidth: "auto" }} 
+                                  className={`card-radio-label text-center ${
+                                    selectedBathroomWorkers.includes(worker.id)
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
+                                  style={{
+                                    minWidth: 'auto',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() =>
+                                    toggleSelectionForBathroom(
+                                      worker.id,
+                                      setSelectedBathroomWorkers,
+                                      selectedBathroomWorkers
+                                    )
+                                  }
                                 >
                                   <div
-                                    className="card-radio py-1 border rounded-5 d-flex"
-                                    style={{ background: "#F4F8FC" }}
+                                    className={`card-radio py-1 border rounded-5 d-flex ${
+                                      selectedBathroomWorkers.includes(
+                                        worker.id
+                                      )
+                                        ? 'selected'
+                                        : ''
+                                    }`}
+                                    style={{
+                                      background:
+                                        selectedBathroomWorkers.includes(
+                                          worker.id
+                                        )
+                                          ? 'blue'
+                                          : '#F4F8FC',
+                                      color: selectedBathroomWorkers.includes(
+                                        worker.id
+                                      )
+                                        ? 'white'
+                                        : 'black',
+                                    }}
                                   >
                                     <img
                                       src={worker.iconClass}
                                       style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
                                       }}
                                       className="me-2"
+                                      alt={worker.label}
                                     />
                                     <div>
                                       <div className="mt-2">{worker.label}</div>
                                     </div>
                                   </div>
+                                  <input
+                                    type="checkbox"
+                                    name={`bathroomWorker${worker.id}`}
+                                    id={`workerType${worker.id}`}
+                                    checked={selectedBathroomWorkers.includes(
+                                      worker.id
+                                    )}
+                                    onChange={() =>
+                                      toggleSelectionForBathroom(
+                                        worker.id,
+                                        setSelectedBathroomWorkers,
+                                        selectedBathroomWorkers
+                                      )
+                                    }
+                                    style={{ display: 'none' }} // Hide default checkbox
+                                  />
                                 </label>
                               ))}
                             </div>
 
                             <span>Outside work</span>
                             <div
-                              className="d-flex flex-wrap  gap-3 mt-2"
-                              style={{ color: "#41619A" }}
+                              className="d-flex flex-wrap gap-3 mt-2"
+                              style={{ color: '#41619A' }}
                             >
                               {projectmanager.map((worker) => (
                                 <label
-                                  className="card-radio-label text-center"
                                   key={worker.id}
-                                  style={{ minWidth: "auto" }} 
+                                  className={`card-radio-label text-center ${
+                                    selectedOutsideWorks.includes(worker.id)
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
+                                  style={{
+                                    minWidth: 'auto',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() =>
+                                    toggleSelectionForOutsideWorks(
+                                      worker.id,
+                                      setSelectedOutsideWorks,
+                                      selectedOutsideWorks
+                                    )
+                                  }
                                 >
                                   <div
-                                    className="card-radio py-1 border rounded-5  d-flex"
-                                    style={{ background: "#F4F8FC" }}
+                                    className={`card-radio py-1 border rounded-5 d-flex ${
+                                      selectedOutsideWorks.includes(worker.id)
+                                        ? 'selected'
+                                        : ''
+                                    }`}
+                                    style={{
+                                      background: selectedOutsideWorks.includes(
+                                        worker.id
+                                      )
+                                        ? 'blue'
+                                        : '#F4F8FC',
+                                      color: selectedOutsideWorks.includes(
+                                        worker.id
+                                      )
+                                        ? 'white'
+                                        : 'black',
+                                    }}
                                   >
                                     <img
                                       src={worker.iconClass}
                                       style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
                                       }}
                                       className="me-2"
+                                      alt={worker.label}
                                     />
                                     <div>
                                       <div className="mt-2">{worker.label}</div>
                                     </div>
                                   </div>
+                                  <input
+                                    type="checkbox"
+                                    name={`outsideWork${worker.id}`}
+                                    id={`workerType${worker.id}`}
+                                    checked={selectedOutsideWorks.includes(
+                                      worker.id
+                                    )}
+                                    onChange={() =>
+                                      toggleSelectionForOutsideWorks(
+                                        worker.id,
+                                        setSelectedOutsideWorks,
+                                        selectedOutsideWorks
+                                      )
+                                    }
+                                    style={{ display: 'none' }} // Hide default checkbox
+                                  />
                                 </label>
                               ))}
                             </div>
@@ -431,82 +770,60 @@ function BigJobForm() {
                           <CardBody className="ms-3">
                             <div>
                               <h4 className="text-start mb-3 fw-semibold">
-                              Choose what workers you need for Kitchen
+                                Choose what workers you need for Kitchen
                               </h4>
                             </div>
                             <div
                               className="d-flex flex-wrap gap-3 mt-2"
-                              style={{ color: "#41619A" }}
+                              style={{ color: '#41619A' }}
                             >
                               {worker.map((worker) => (
                                 <label
                                   key={worker.id}
-                                  className="card-radio-label text-center"
-                                  style={{ minWidth: "auto" }} 
-                                  onClick={() => setSelectedWorker(worker.id)} 
+                                  className={`card-radio-label text-center ${
+                                    selectedKitchenWorkers.includes(worker.id)
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
+                                  style={{
+                                    minWidth: 'auto',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() =>
+                                    toggleSelectionForKitchen(
+                                      worker.id,
+                                      setSelectedKitchenWorkers,
+                                      selectedKitchenWorkers
+                                    )
+                                  }
                                 >
                                   <div
                                     className={`card-radio py-1 border rounded-5 d-flex ${
-                                      selectedWorker === worker.id
-                                        ? "selected"
-                                        : ""
+                                      selectedKitchenWorkers.includes(worker.id)
+                                        ? 'selected'
+                                        : ''
                                     }`}
                                     style={{
                                       background:
-                                        selectedWorker === worker.id
-                                          ? "blue"
-                                          : "#F4F8FC",
-                                    }} 
+                                        selectedKitchenWorkers.includes(
+                                          worker.id
+                                        )
+                                          ? 'blue'
+                                          : '#F4F8FC',
+                                      color: selectedKitchenWorkers.includes(
+                                        worker.id
+                                      )
+                                        ? 'white'
+                                        : 'black',
+                                    }}
                                   >
                                     <img
                                       src={worker.iconClass}
                                       alt={worker.label}
                                       style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
-                                      }}
-                                      className="me-2"
-                                    />
-                                    <div>
-                                      <div
-                                        className="mt-2"
-                                        style={{
-                                          color:
-                                            selectedWorker === worker.id
-                                              ? "white"
-                                              : "#41619A",
-                                        }}
-                                      >
-                                        {worker.label}
-                                      </div>
-                                    </div>
-                                  </div>
-                                </label>
-                              ))}
-                            </div>
-                            <span>Outside work</span>
-                            <div
-                              className="d-flex flex-wrap  gap-3 mt-2"
-                              style={{ color: "#41619A" }}
-                            >
-                              {projectmanager.map((worker) => (
-                                <label
-                                  className="card-radio-label text-center"
-                                  key={worker.id}
-                                  style={{ minWidth: "auto" }} 
-                                >
-                                  <div
-                                    className="card-radio py-1 border rounded-5  d-flex"
-                                    style={{ background: "#F4F8FC" }}
-                                  >
-                                    <img
-                                      src={worker.iconClass}
-                                      // alt={worker.label}
-                                      style={{
-                                        height: "20px",
-                                        width: "20px",
-                                        marginTop: "7px",
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
                                       }}
                                       className="me-2"
                                     />
@@ -514,16 +831,110 @@ function BigJobForm() {
                                       <div className="mt-2">{worker.label}</div>
                                     </div>
                                   </div>
+                                  <input
+                                    type="checkbox"
+                                    name={`kitchenWorker${worker.id}`}
+                                    id={`workerType${worker.id}`}
+                                    checked={selectedKitchenWorkers.includes(
+                                      worker.id
+                                    )}
+                                    onChange={() =>
+                                      toggleSelectionForKitchen(
+                                        worker.id,
+                                        setSelectedKitchenWorkers,
+                                        selectedKitchenWorkers
+                                      )
+                                    }
+                                    style={{ display: 'none' }} // Hide default checkbox
+                                  />
                                 </label>
                               ))}
                             </div>
-
-                           
+                            <span>Outside work</span>
+                            <div
+                              className="d-flex flex-wrap gap-3 mt-2"
+                              style={{ color: '#41619A' }}
+                            >
+                              {projectmanager.map((worker) => (
+                                <label
+                                  key={worker.id}
+                                  className={`card-radio-label text-center ${
+                                    selectedOutsideWorkers2.includes(worker.id)
+                                      ? 'border-primary'
+                                      : ''
+                                  }`}
+                                  style={{
+                                    minWidth: 'auto',
+                                    cursor: 'pointer',
+                                  }}
+                                  onClick={() =>
+                                    toggleSelectionForOutsideWork2(
+                                      worker.id,
+                                      setSelectedOutsideWorkers2,
+                                      selectedOutsideWorkers2
+                                    )
+                                  }
+                                >
+                                  <div
+                                    className={`card-radio py-1 border rounded-5 d-flex ${
+                                      selectedOutsideWorkers2.includes(
+                                        worker.id
+                                      )
+                                        ? 'selected'
+                                        : ''
+                                    }`}
+                                    style={{
+                                      background:
+                                        selectedOutsideWorkers2.includes(
+                                          worker.id
+                                        )
+                                          ? 'blue'
+                                          : '#F4F8FC',
+                                      color: selectedOutsideWorkers2.includes(
+                                        worker.id
+                                      )
+                                        ? 'white'
+                                        : 'black',
+                                    }}
+                                  >
+                                    <img
+                                      src={worker.iconClass}
+                                      alt={worker.label}
+                                      style={{
+                                        height: '20px',
+                                        width: '20px',
+                                        marginTop: '7px',
+                                      }}
+                                      className="me-2"
+                                    />
+                                    <div>
+                                      <div className="mt-2">{worker.label}</div>
+                                    </div>
+                                  </div>
+                                  <input
+                                    type="checkbox"
+                                    name={`outsideWorkWorker${worker.id}`}
+                                    id={`workerType${worker.id}`}
+                                    checked={selectedOutsideWorkers2.includes(
+                                      worker.id
+                                    )}
+                                    onChange={() =>
+                                      toggleSelectionForOutsideWork2(
+                                        worker.id,
+                                        setSelectedOutsideWorkers2,
+                                        selectedOutsideWorkers2
+                                      )
+                                    }
+                                    style={{ display: 'none' }} // Hide default checkbox
+                                  />
+                                </label>
+                              ))}
+                            </div>
                           </CardBody>
                         </Card>
                         <div className="actions clearfix text-end">
                           <button
-                            style={{ width: "100px" }}
+                            style={{ width: '100px' }}
                             className={` btn btn-primary p-2 (activeTab === 3 ? "next disabled" : "next" )`}
                           >
                             <Link
@@ -558,7 +969,13 @@ function BigJobForm() {
                                       Type of home
                                     </Label>
                                     <span className="input-group-text bg-white">
-                                      <img src={Appertment} style={{height:"25px",width:"25px"}}/>{" "}
+                                      <img
+                                        src={Appertment}
+                                        style={{
+                                          height: '25px',
+                                          width: '25px',
+                                        }}
+                                      />{' '}
                                       <Input
                                         type="text"
                                         className="form-control border-0"
@@ -573,7 +990,13 @@ function BigJobForm() {
                                     <Label for="basicpill-firstname-input1"></Label>
 
                                     <span className="input-group-text bg-white">
-                                    <img src={Newhome} style={{height:"25px",width:"25px"}}/>{" "}
+                                      <img
+                                        src={Newhome}
+                                        style={{
+                                          height: '25px',
+                                          width: '25px',
+                                        }}
+                                      />{' '}
                                       <Input
                                         type="text"
                                         className="form-control border-0"
@@ -860,7 +1283,7 @@ function BigJobForm() {
                                     <div className="d-flex">
                                       <select
                                         className="form-control me-2"
-                                        style={{ maxWidth: "100px" }}
+                                        style={{ maxWidth: '100px' }}
                                       >
                                         <option value="+1">+1 (US)</option>
                                         <option value="+91">+91 (India)</option>
@@ -884,7 +1307,7 @@ function BigJobForm() {
                         </Card>
                         <div className="actions clearfix text-end">
                           <button
-                            style={{ width: "100px" }}
+                            style={{ width: '100px' }}
                             className={` btn btn-primary p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
                           >
                             Send
@@ -895,6 +1318,7 @@ function BigJobForm() {
                   </TabPane>
                 </TabContent>
               </div>
+
             </div>
           </Col>
         </Row>
