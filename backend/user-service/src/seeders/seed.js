@@ -9,9 +9,6 @@ const Language = require('../models/languagesModel');
 const iso6391 = require('iso-639-1'); 
 const currencyCodes = require('currency-codes'); 
 const seedRoles = require('./role-seeder'); 
-
-
-
 (async () => {
   try {
     await sequelize.authenticate();

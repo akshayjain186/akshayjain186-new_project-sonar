@@ -1,5 +1,5 @@
 const { DataTypes, Model } = require('sequelize');
-const { sequelize } = require('../../config/database');
+const { sequelizeService } = require('../../config/database');
 
 class ProjectManagerRole extends Model {}
 
@@ -25,11 +25,10 @@ ProjectManagerRole.init({
     defaultValue: true,
   },
 }, {
-  sequelize,                 
+  sequelize:sequelizeService,              
   modelName: 'ProjectManagerRole', 
   tableName: 'projectmanagerole', 
   timestamps: true,       
-  paranoid: true,              
 });
 
 module.exports = ProjectManagerRole;

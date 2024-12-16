@@ -19,7 +19,7 @@ export default function SmallJobRequest() {
           <img
             src={homeIcon}
             alt="Home"
-            style={{ width: '24px', height: '24px' }}
+              style={{ width: '24px', height: '24px' }}
           />
         </Button>
       </div> */}

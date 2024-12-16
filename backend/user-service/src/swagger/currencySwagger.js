@@ -4,6 +4,13 @@
  *   - name: Currencies
  *     description: API endpoints for managing currencies
  */
+
+/**
+ * @swagger
+ * security:
+ *   - bearerAuth: []  # This applies bearer authentication globally to all endpoints
+ */
+
 /**
  * @swagger
  * /api/currencies:
@@ -122,7 +129,7 @@
  * @swagger
  * /api/currencies/list/{id}:
  *   get:
- *     summary: Retrieve a specific currencylist by ID
+ *     summary: Retrieve a specific currency list by ID
  *     description: Returns the details of a currency based on its unique ID.
  *     tags: [Currencies]
  *     parameters:

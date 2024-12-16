@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useMemo} from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 
 import { Col, Row, } from "reactstrap";
 import flag from '../../../assets/images/flag-round.png'
@@ -80,29 +80,29 @@ const OwnerPage = () => {
                                 }}
                             ></div>
                             {/* Deactivate Link */}
-                <a
-                    href="#"
-                    className="mb-0 fs-5 border-bottom deactivate-link"
-                    style={{
-                        position: "relative",
-                        textDecoration: "none",
-                        color:"#CA3D35"
-                        // paddingBottom: "2px",
-                    }}
-                >
-                    Deactivate
-                    <span
-                        style={{
-                            position: "absolute",
-                            bottom: "-2px",
-                            left: "0",
-                            width: "100%",
-                            height: "2px",
-                            backgroundColor: "#CA3D35",
-                            content: '""',
-                        }}
-                    ></span>
-                </a>
+                            <a
+                                href="#"
+                                className="mb-0 fs-5 border-bottom deactivate-link"
+                                style={{
+                                    position: "relative",
+                                    textDecoration: "none",
+                                    color: "#CA3D35"
+                                    // paddingBottom: "2px",
+                                }}
+                            >
+                                Deactivate
+                                <span
+                                    style={{
+                                        position: "absolute",
+                                        bottom: "-2px",
+                                        left: "0",
+                                        width: "100%",
+                                        height: "2px",
+                                        backgroundColor: "#CA3D35",
+                                        content: '""',
+                                    }}
+                                ></span>
+                            </a>
                         </div>
                     );
                 }
@@ -1131,20 +1131,20 @@ const OwnerPage = () => {
         },
 
     ]
-    
+
     useEffect(() => {
         const userId = id;
         dispatch(
-            getUserDetailsData({userId }, (response, error) => {
-            console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
-            if (response?.status === 200) {
-                setUsersDetailsData(response?.data.data);
-            } else {
-                setUsersDetailsData([]);
-            }
-          })
+            getUserDetailsData({ userId }, (response, error) => {
+                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
+                if (response?.status === 200) {
+                    setUsersDetailsData(response?.data.data);
+                } else {
+                    setUsersDetailsData([]);
+                }
+            })
         );
-      }, []);
+    }, []);
     return (
         <>
             <InternationalHeader />
@@ -1152,8 +1152,14 @@ const OwnerPage = () => {
                 <div className="mt-4">
                     <div className="mb-4">
                         <p>
-                            <span className="text-color">Licenses</span>&nbsp;&nbsp; ^ &nbsp;&nbsp;<span className="text_light">{usersDetailsData?.country}</span>
+                            <span className="text-color">Licenses</span>&nbsp;&nbsp;
+                            <span className="icon-wrapper">
+                                <i className='bx bx-chevron-up fw-bold'></i>&nbsp;&nbsp;
+                            </span>
+                            <span className="text_light">{usersDetailsData?.country}</span>
                         </p>
+
+
                     </div>
                     <Row className="d-flex justify-content ">
                         <Col>
@@ -1277,85 +1283,85 @@ const OwnerPage = () => {
                     </Row>
 
 
-                {/* Tab Navigation */}
-                <Row className="mb-4 mt-5">
-                    <Col className="d-flex align-items-center border-bottom">
-                        {/* Managers Tab */}
-                        <a
-                            href="#"
-                            className={`me-4 anchor-text ${activeTab === 'Managers' ? 'border-bottom border-primary fw-bold' : ''}`}
-                            onClick={() => handleTabClick('Managers')}
-                            style={{
-                                textDecoration: "none",
-                                color: activeTab === 'Managers' ? '#41619A' : 'black',
-                            }}
-                        >
-                            Managers
-                        </a>
+                    {/* Tab Navigation */}
+                    <Row className="mb-4 mt-5">
+                        <Col className="d-flex align-items-center border-bottom">
+                            {/* Managers Tab */}
+                            <a
+                                href="#"
+                                className={`me-4 anchor-text ${activeTab === 'Managers' ? 'border-bottom border-primary fw-bold' : ''}`}
+                                onClick={() => handleTabClick('Managers')}
+                                style={{
+                                    textDecoration: "none",
+                                    color: activeTab === 'Managers' ? '#41619A' : 'black',
+                                }}
+                            >
+                                Managers
+                            </a>
 
-                        {/* Super Admins Tab */}
-                        <a
-                            href="#"
-                            className={`me-4 anchor-text ${activeTab === 'Super admins' ? 'border-bottom border-primary fw-bold' : ''}`}
-                            onClick={() => handleTabClick('Super admins')}
-                            style={{
-                                textDecoration: "none",
-                                color: activeTab === 'Super admins' ? '#41619A' : 'black',
-                            }}
-                        >
-                            Super admins
-                        </a>
+                            {/* Super Admins Tab */}
+                            <a
+                                href="#"
+                                className={`me-4 anchor-text ${activeTab === 'Super admins' ? 'border-bottom border-primary fw-bold' : ''}`}
+                                onClick={() => handleTabClick('Super admins')}
+                                style={{
+                                    textDecoration: "none",
+                                    color: activeTab === 'Super admins' ? '#41619A' : 'black',
+                                }}
+                            >
+                                Super admins
+                            </a>
 
-                        {/* Admins Tab */}
-                        <a
-                            href="#"
-                            className={`me-4 anchor-text ${activeTab === 'Admins' ? 'border-bottom border-primary fw-bold' : ''}`}
-                            onClick={() => handleTabClick('Admins')}
-                            style={{
-                                textDecoration: "none",
-                                color: activeTab === 'Admins' ? '#41619A' : 'black',
-                            }}
-                        >
-                            Admins
-                        </a>
+                            {/* Admins Tab */}
+                            <a
+                                href="#"
+                                className={`me-4 anchor-text ${activeTab === 'Admins' ? 'border-bottom border-primary fw-bold' : ''}`}
+                                onClick={() => handleTabClick('Admins')}
+                                style={{
+                                    textDecoration: "none",
+                                    color: activeTab === 'Admins' ? '#41619A' : 'black',
+                                }}
+                            >
+                                Admins
+                            </a>
 
-                        {/* Customers Tab */}
-                        <a
-                            href="#"
-                            className={`me-4 anchor-text ${activeTab === 'Customers' ? 'border-bottom border-primary fw-bold' : ''}`}
-                            onClick={() => handleTabClick('Customers')}
-                            style={{
-                                textDecoration: "none",
-                                color: activeTab === 'Customers' ? '#41619A' : 'black',
-                            }}
-                        >
-                            Customers
-                        </a>
-                    </Col>
-                </Row>
-                    
-                <div className="tab-content mt-4">
-                    {activeTab === "Managers" && <p>No data available for Managers.</p>}
-                    {activeTab === "Admins" && <p>No data available for Admins.</p>}
-                    {activeTab === "Customers" && <p>No data available for Customers.</p>}
-                    {activeTab === "Super admins" && (
-                        <TableContainer
-                            columns={columns}
-                            data={users || []}
-                            isGlobalFilter={false}
-                            isPagination={true}
-                            SearchPlaceholder="Search..."
-                            isCustomPageSize={false}
-                           isAddButton={false}
-                            buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
-                            buttonName="New Contact"
-                            tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"
-                            theadClass="table-light"
-                            paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
-                            pagination="pagination"
-                        />
-                    )}
-                </div>
+                            {/* Customers Tab */}
+                            <a
+                                href="#"
+                                className={`me-4 anchor-text ${activeTab === 'Customers' ? 'border-bottom border-primary fw-bold' : ''}`}
+                                onClick={() => handleTabClick('Customers')}
+                                style={{
+                                    textDecoration: "none",
+                                    color: activeTab === 'Customers' ? '#41619A' : 'black',
+                                }}
+                            >
+                                Customers
+                            </a>
+                        </Col>
+                    </Row>
+
+                    <div className="tab-content mt-4">
+                        {activeTab === "Managers" && <p>No data available for Managers.</p>}
+                        {activeTab === "Admins" && <p>No data available for Admins.</p>}
+                        {activeTab === "Customers" && <p>No data available for Customers.</p>}
+                        {activeTab === "Super admins" && (
+                            <TableContainer
+                                columns={columns}
+                                data={users || []}
+                                isGlobalFilter={false}
+                                isPagination={true}
+                                SearchPlaceholder="Search..."
+                                isCustomPageSize={false}
+                                isAddButton={false}
+                                buttonClass="btn btn-success waves-effect waves-light addContact-modal mb-2"
+                                buttonName="New Contact"
+                                tableClass=" table-nowrap  dt-responsive nowrap w-100  no-footer dtr-inline"
+                                theadClass="table-light"
+                                paginationWrapper="dataTables_paginate paging_simple_numbers pagination-rounded"
+                                pagination="pagination"
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
         </>

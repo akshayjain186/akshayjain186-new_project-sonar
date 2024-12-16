@@ -11,6 +11,8 @@ const {
 } = require('../utils/verifyToken');
 const router = express.Router();
 
+const {authenticate} = require('../../middleware/authMiddleware');
+
 // Register user
 router.post('/register', registerUser);
 
@@ -27,7 +29,7 @@ router.post('/verify', verifyToken, (req, res) => {
 });
 
 // getAllUserList ,search by roleId,search by continent,country,currency,name and pagination
-router.get('/users-list', getAllUsers);
+router.get('/users-list',authenticate, getAllUsers);
 
 // getUser by Itd Id
 router.get('/:id', getUserById);

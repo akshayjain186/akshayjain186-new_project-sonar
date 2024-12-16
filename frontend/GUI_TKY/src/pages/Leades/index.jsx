@@ -107,9 +107,11 @@
 // }
 
 import { useState } from 'react';
+
 import { Tab, Tabs } from 'react-bootstrap';
 import Companies from './Companies/Companies';
 import Customers from './Customers/Customers';
+
 
 export default function Leads() {
   const [key, setKey] = useState('customers');
@@ -117,7 +119,7 @@ export default function Leads() {
   return (
     <div className="card card-header mt-4">
       <h2 className="mb-4">Leads</h2>
-      <Tabs
+       <Tabs
         id="leads-tabs"
         activeKey={key}
         onSelect={(k) => setKey(k)}
@@ -128,8 +130,11 @@ export default function Leads() {
         </Tab>
         <Tab eventKey="companies" title="Companies">
           <Companies />
+
         </Tab>
-      </Tabs>
+      </Tabs> 
+  
+
 
       <style jsx>{`
         .custom-tabs .nav-item {

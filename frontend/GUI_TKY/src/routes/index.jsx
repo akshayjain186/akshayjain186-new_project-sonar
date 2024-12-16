@@ -7,6 +7,8 @@ import {
   LicensesPage,
   OwnerPage,
 } from '@/pages';
+import SmallJobForm from '@/pages/Ragister/SmallJobForm';
+import BigJobForm from '@/pages/Ragister/BigJobForm';
 
 const authUser = JSON.parse(localStorage.getItem('authUser')) || null;
 import Users from '@/pages/Users';
@@ -15,13 +17,17 @@ import AdminUserView from '@/pages/Users/AdminUser';
 import CustomerUserProfile from '@/pages/Users/CustomerUser';
 import AdminViewPlan from '@/pages/Users/AdminUser/AdminView/AdminViewPlan';
 import Leads from '@/pages/Leades';
+
+// import SmallJobForm from '@/pages/Leades/SmallJobRequest/SmallJobForm';
+// import SendInvitationForm from '@/pages/Leades/SmallJobRequest/SendInvitation';
 import BigJobRequest from '@/pages/Leades/Customers/BigJobRequest';
 import SmallJobRequest from '@/pages/Leades/Customers/SmallJobRequest';
-import SmallJobForm from '@/pages/Leades/Customers/SmallJobRequest/SmallJobForm';
-// import SendInvitationForm from '@/pages/Leades/Customers/SmallJobRequest/SendInvitation';
+// import SmallJobForm from '@/pages/Leades/Customers/SmallJobRequest/SmallJobForm';
 import ArtBuilding from '@/pages/Leades/Companies/ArtBuilding/ArtBuilding';
 import UploadPhoto from '@/pages/Leades/Companies/UploadPhoto/UploadPhoto';
-import SendInvitation from '@/pages/Leades/Companies/SendInvitation';
+import SendInvitationSecond from '@/pages/Leades/Companies/SendInvitation';
+import SendInvitationForm from '@/pages/Leades/Customers/SmallJobRequest/SendInvitation';
+// import SendInvitation from '@/pages/Leades/Companies/SendInvitation';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
@@ -40,6 +46,10 @@ const publicRoutes = [
   },
   { path: '/signUp', component: <SignUp /> },
   { path: '/owner', component: <OwnerPage /> },
+  { path: '/smalljob', component: <SmallJobForm /> },
+
+  { path: '/bigjob', component: <BigJobForm /> },
+
   { path: '/users', component: <Users /> },
   { path: '/UserView', component: <UserView /> },
   { path: '/AdminUserView', component: <AdminUserView /> },
@@ -49,10 +59,10 @@ const publicRoutes = [
   { path: '/BigJobRequest', component: <BigJobRequest /> },
   { path: '/SmallJobRequest', component: <SmallJobRequest /> },
   { path: '/SmallJobForm', component: <SmallJobForm /> },
-  // { path: '/SendInvitationForm', component: <SendInvitationForm /> },
+  { path: '/SendInvitationForm', component: <SendInvitationForm /> },
   { path: '/ArtBuilding', component: <ArtBuilding /> },
   { path: '/UploadPhoto', component: <UploadPhoto /> },
-  { path: '/SendInvitation', component: <SendInvitation /> },
+  { path: '/SendInvitationSecond', component: <SendInvitationSecond /> },
 ];
 
 export { authProtectedRoutes, authControleAdminRoutes, publicRoutes };

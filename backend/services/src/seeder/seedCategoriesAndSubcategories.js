@@ -1,0 +1,230 @@
+<<<<<<< HEAD
+=======
+const { sequelize }  = require('../../config/database'); 
+>>>>>>> microDev-megha-dubey
+const Category = require('../models/categoryModel');
+const Subcategory = require('../models/subcategoryModel');
+
+const categories = [
+  {
+    title: 'Carpenter and Building Tradesmen',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Cleaner',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Demolition, tiling and concrete sawing',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Electrician',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Foundation and landscaping worker',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Glass master and glazier',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Plumber',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Roofer and tinsmith',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+  {
+    title: 'Tiler, bricklayer and plastering',
+    subcategories: [
+      { name: 'Bathroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Washing room', subcategory_type: 'Rooms renovation' },
+      { name: 'Living room', subcategory_type: 'Rooms renovation' },
+      { name: 'Kitchen', subcategory_type: 'Rooms renovation' },
+      { name: 'Toilet', subcategory_type: 'Rooms renovation' },
+      { name: 'Bedroom', subcategory_type: 'Rooms renovation' },
+      { name: 'Children room', subcategory_type: 'Rooms renovation' },
+      { name: 'Technical room', subcategory_type: 'Rooms renovation' },
+      { name: 'Storage room', subcategory_type: 'Rooms renovation' },
+      { name: 'Hallway', subcategory_type: 'Rooms renovation' },
+      { name: 'Other', subcategory_type: 'Rooms renovation' },
+      { name: 'Facade', subcategory_type: 'Outside work' },
+      { name: 'Roofing', subcategory_type: 'Outside work' },
+      { name: 'Ground work', subcategory_type: 'Outside work' },
+      { name: 'Superstructure and extension', subcategory_type: 'New building' },
+      { name: 'Build a garage', subcategory_type: 'New building' },
+      { name: 'New home', subcategory_type: 'New building' },
+    ],
+  },
+];
+
+const seedCategoriesAndSubcategories = async () => {
+  try{
+    for (const categoryData of categories) {
+      const [categoryInstance] = await Category.findOrCreate({
+        where: { title: categoryData.title },
+      });
+
+      for (const subcategoryData of categoryData.subcategories) {
+        await Subcategory.create({
+          name: subcategoryData.name,
+          subcategory_type: subcategoryData.subcategory_type,
+          CategoryId: categoryInstance.id,
+        });
+      }
+    }
+    console.log('Categories and subcategories seeded successfully!');
+  } catch (error) {
+    console.error('Error seeding categories and subcategories:', error);
+  }
+};
+
+module.exports = seedCategoriesAndSubcategories;
