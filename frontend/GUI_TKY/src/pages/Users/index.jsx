@@ -14,7 +14,7 @@
 // const Users = () => {
 //   const [activeTab, setActiveTab] = useState(0);
 //   const theme = useTheme();
-//   const isMobile = useMediaQuery(theme.breakpoints.down('sm')); 
+//   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
 //   const handleTabChange = (event, newValue) => {
 //     setActiveTab(newValue);
@@ -72,11 +72,11 @@
 
 // export default Users;
 
-
 import React, { useState } from 'react';
 import SuperAdmins from './SuperAdminUser/SuperAdminUser';
 import AdminUser from './AdminUser/AdminUser';
 import CustomerUser from './CustomerUser/CustomerUser';
+
 
 const Users = () => {
   const [activeTab, setActiveTab] = useState(0);
@@ -142,6 +142,28 @@ const Users = () => {
           </div>
         )}
       </div>
+
+      <style jsx>{`
+        .nav-link {
+          color: gray !important;
+          padding-bottom: 5px;
+          border-bottom: 2px solid transparent;
+          transition: all 0.3s ease;
+        }
+
+        /* Active tab styling */
+        .nav-link.active {
+          color: #41619a !important;
+          font-weight: bold;
+          border-bottom: 2px solid #41619a;
+          background-color: transparent !important;
+        }
+
+        .nav-link:hover {
+          color: #41619a !important;
+          // border-bottom: 2px solid #41619a;
+        }
+      `}</style>
     </div>
   );
 };

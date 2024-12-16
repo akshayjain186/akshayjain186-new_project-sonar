@@ -211,7 +211,9 @@
 
 import React, { useMemo } from 'react';
 import TableContainer from '../../../components/Common/TableContainer';
-import plusIcon from '../../../assets/images/users/usersview/Plusicon.png'
+import plusIcon from '../../../assets/images/users/usersview/Plusicon.png';
+import SearchIcon from '../../../assets/images/leads/SearchIcon.png';
+import ActionIcon from '../../../assets/images/leads/ActionIcon.png';
 
 const CustomerUser = () => {
   const rows = [
@@ -332,7 +334,13 @@ const CustomerUser = () => {
         enableColumnFilter: false,
         cell: () => (
           <div className="d-flex justify-content-end text-danger">
-            <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i>
+            {/* <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i> */}
+            <img
+              src={ActionIcon}
+              alt="Show Icon"
+              className="fs-4"
+              style={{ color: '#41619A', width: '24px', height: '24px' }}
+            />
             <div
               style={{
                 borderLeft: '1px solid #EAEEF4',
@@ -340,9 +348,18 @@ const CustomerUser = () => {
                 margin: '0 8px',
               }}
             ></div>
-            <a href="#" className="text-danger mb-0 fs-5">
-              Deactivate
-            </a>
+             <button
+            className="text-danger mb-0 fs-5"
+            style={{
+              textDecoration: 'underline ',
+              textDecorationColor: '#dc3545',
+              textUnderlineOffset: '3px',
+              border: 'none',
+              background: '#FBFCFE',
+            }}
+          >
+            Deactivate
+          </button>
           </div>
         ),
       },
@@ -353,13 +370,18 @@ const CustomerUser = () => {
   return (
     <div>
       {/* Top Bar */}
-      <div className="row mb-2 align-items-center">
+      {/* <div className="row mb-2 align-items-center">
         <div className="col-12 col-sm-4 col-md-3">
           <input
             type="text"
             className="form-control form-control-lg"
             placeholder="Search..."
-            style={{ borderRadius: '7px', height: '40px', backgroundColor:'#EAEEF4', width:'auto' }}
+            style={{
+              borderRadius: '7px',
+              height: '40px',
+              backgroundColor: '#EAEEF4',
+              width: 'auto',
+            }}
           />
         </div>
 
@@ -374,11 +396,56 @@ const CustomerUser = () => {
               background: '#41619A',
             }}
           >
-                <img src={plusIcon} alt="" />
+            <img src={plusIcon} alt="" />
             <i className="bi bi-plus-lg me-2"></i> Icon
           </button>
         </div>
-      </div>
+      </div> */}
+
+      <div className="row mb-3 align-items-center">
+              <div className="col-12 col-sm-8 col-md-9">
+                <div className="position-relative mb-2">
+                  <input
+                    type="text"
+                    className="form-control form-control-lg"
+                    placeholder="Search..."
+                    style={{
+                      borderRadius: '7px',
+                      height: '40px',
+                      backgroundColor: '#EAEEF4',
+                      paddingLeft: '2.5rem',
+                      width: 'auto',
+                    }}
+                  />
+                  <img
+                    className="bi bi-search position-absolute"
+                    src={SearchIcon}
+                    alt="Search"
+                    style={{
+                      top: '50%',
+                      left: '10px',
+                      transform: 'translateY(-50%)',
+                      color: '#6c757d',
+                    }}
+                  />
+                </div>
+              </div>
+              <div className="col-12 col-sm-4 col-md-3 d-flex justify-content-end mt-2 mt-sm-0">
+                <button
+                  className="btn btn-primary d-flex justify-content-center align-items-center"
+                  style={{
+                    borderRadius: '10px',
+                    width: '100px',
+                    height: '40px',
+                    fontSize: '16px',
+                    background: '#41619A',
+                  }}
+                >
+                  <img src={plusIcon} alt="Plus" />
+                  <i className="bi bi-plus-lg me-2"></i> Icon
+                </button>
+              </div>
+            </div>
 
       {/* Table with Pagination */}
       <TableContainer
