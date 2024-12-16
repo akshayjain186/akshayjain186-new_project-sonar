@@ -6,7 +6,7 @@ const Projectmanagerole = require('../models/projectmanagerole');
 const User = require('../../../user-service/src/models/userModel');
 const UserserviceInfo = require('../models/userserviceInfo')
 const role = require('../models/roleModel')
-const jwt = require('jsonwebtoken'); // Import JWT library (if you are using JWT)
+const jwt = require('jsonwebtoken'); 
 
 const { Op } = require('sequelize');
 const nodemailer = require('nodemailer');
@@ -15,26 +15,26 @@ const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
 
 //  This Function is Used to Generate a Random Password
-require('dotenv').config(); // For loading environment variables
+require('dotenv').config(); 
 
 // Utility function for password generation (remains the same)
 const generatePassword = () => {
-  return Math.random().toString(36).slice(-8); // Generates an 8-character random password
+  return Math.random().toString(36).slice(-8); 
 };
 
 // Set up your email transporter using environment variables
 const transporter = nodemailer.createTransport({
-  service: 'Gmail', // Replace with your email provider
+  service: 'Gmail', 
   auth: {
-    user: process.env.EMAIL_SERVICE, // Use environment variable for security
-    pass: process.env.EMAIL_PASSWORD, // Use environment variable for security
+    user: process.env.EMAIL_SERVICE, 
+    pass: process.env.EMAIL_PASSWORD, 
   },
 });
 
 const registerSmallProject = async (req, res) => {
   try {
     const {
-      name, // Project name
+      name, 
       type_of_project,
       category_id,
       subcategory_id,
@@ -89,7 +89,7 @@ const registerSmallProject = async (req, res) => {
 
         // Only proceed if roleId is 5
         if (roleId !== 5) {
-          continue; // Skip users who do not have roleId 5
+          continue; 
         }
 
         const generatedPassword = generatePassword();
@@ -106,16 +106,16 @@ const registerSmallProject = async (req, res) => {
         });
 
         // Fetch role name based on roleId
-        const userRole = await role.findByPk(roleId); // Assuming you have the 'role' model
+        const userRole = await role.findByPk(roleId); 
         const roleName = userRole ? userRole.name : "Unknown";
 
         createdUsers.push({
           ...newUser.toJSON(),
-          password: generatedPassword, // Include plain password for response
-          roleName, // Include role name in response
+          password: generatedPassword, 
+          roleName,
         });
 
-        // Send email to the user
+        // Send email 
         await transporter.sendMail({
           from: process.env.EMAIL_SERVICE,
           to: email,
@@ -128,7 +128,7 @@ const registerSmallProject = async (req, res) => {
 
         // Create SmallProject
         const smallProjectData = {
-          name, // Use project name here
+          name, 
           type_of_project,
           category_id,
           subcategory_id,
@@ -155,7 +155,7 @@ const registerSmallProject = async (req, res) => {
               });
             }
 
-            const subcategoryDetails = await Subcategory.findByPk(id); // Fetch subcategory details
+            const subcategoryDetails = await Subcategory.findByPk(id); 
             const subcategoryName = subcategoryDetails ? subcategoryDetails.name : "Unknown";
 
             const newSubcategory = await ProjectSubcategory.create({
@@ -167,7 +167,7 @@ const registerSmallProject = async (req, res) => {
             });
             createdSubcategories.push({
               ...newSubcategory.toJSON(),
-              subcategoryName, // Add subcategory name to response
+              subcategoryName, 
             });
           }
         }
@@ -185,7 +185,7 @@ const registerSmallProject = async (req, res) => {
           }
 
           userServiceInfoResponse = await UserserviceInfo.create({
-            userId, // Use the userId from created user
+            userId, 
             typeOfHome,
             address,
             city,
@@ -207,12 +207,12 @@ const registerSmallProject = async (req, res) => {
             projectManagerRoleName,
             ...smallProject.toJSON(),
           },
-          subcategories: createdSubcategories, // Include subcategory names
+          subcategories: createdSubcategories, 
           users: createdUsers,
           userServiceInfo: userServiceInfoResponse
             ? {
                 ...userServiceInfoResponse.toJSON(),
-                userName: createdUsers[0].name, // Assuming only one user for now
+                userName: createdUsers[0].name, 
               }
             : null,
         });
@@ -228,9 +228,6 @@ const registerSmallProject = async (req, res) => {
   }
 };
 
-
-
-const Role = require('../models/roleModel');  // Import Role model
 
 const getSmallProject = async (req, res) => {
   try {
@@ -368,8 +365,6 @@ const getSmallProject = async (req, res) => {
     });
   }
 };
-
-
 
 
 module.exports = {
