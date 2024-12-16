@@ -18,15 +18,15 @@ SmallProject.init(
       allowNull: true,
     },
     category_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.JSON,
       allowNull: false,
     },
     subcategory_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.JSON,
       allowNull: false,
     },
     projectmanagerole_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.JSON,
       allowNull: false,
     },
   },

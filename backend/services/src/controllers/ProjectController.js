@@ -36,25 +36,23 @@ const registerSmallProject = async (req, res) => {
     const {
       name, // Project name
       type_of_project,
-      category_id,
-      subcategory_id,
-      projectmanagerole_id,
+      category_id = [], 
+      subcategory_id = [],
+      projectmanagerole_id = [], 
       typeOfHome,
       projectAddress,
       city,
       generalComment,
-      selectsubcategory = [],
+      selectsubcategory = [], 
       users = [],
-      userServiceInfo,
+      userServiceInfo, 
     } = req.body;
-
-    // Validate required fields
     if (
       !name ||
       !type_of_project ||
-      !category_id ||
-      !subcategory_id ||
-      !projectmanagerole_id ||
+      !category_id.length ||
+      !subcategory_id.length ||
+      !projectmanagerole_id.length ||
       !typeOfHome ||
       !projectAddress ||
       !city
@@ -64,29 +62,29 @@ const registerSmallProject = async (req, res) => {
         status: "error",
       });
     }
+    const categories = await Category.findAll({ where: { id: category_id } });
+    const projectManagerRoles = await Projectmanagerole.findAll({
+      where: { id: projectmanagerole_id },
+    });
 
-    // Validate relations (category_id and projectmanagerole_id)
-    const category = await Category.findByPk(category_id);
-    const projectManagerRole = await Projectmanagerole.findByPk(
-      projectmanagerole_id
-    );
-
-    if (!category) {
+    if (categories.length !== category_id.length) {
       return res.status(400).json({
-        message: "Invalid category ID.",
+        message: "Some category IDs are invalid.",
         status: "error",
       });
     }
 
-    if (!projectManagerRole) {
+    if (projectManagerRoles.length !== projectmanagerole_id.length) {
       return res.status(400).json({
-        message: "Invalid project manager role ID.",
+        message: "Some project manager role IDs are invalid.",
         status: "error",
       });
     }
 
     // Create users
     const createdUsers = [];
+    let firstUserId = null;
+
     if (Array.isArray(users)) {
       for (const user of users) {
         const { name: userName, surname, email, mobile_no, roleId } = user;
@@ -97,17 +95,13 @@ const registerSmallProject = async (req, res) => {
             status: "error",
           });
         }
-
-        // Only proceed if roleId is 5
         if (roleId !== 5) {
-          continue; // Skip users who do not have roleId 5
+          continue; 
         }
 
         const generatedPassword = generatePassword();
-        console.log(
-          "PASSWORD --------------------------------",
-          generatedPassword
-        );
+        console.log("password ************** for ************** login ****************", generatedPassword);
+
         const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
         const newUser = await User.create({
@@ -120,14 +114,17 @@ const registerSmallProject = async (req, res) => {
         });
 
         // Fetch role name based on roleId
-        const userRole = await role.findByPk(roleId); // Assuming you have the 'role' model
+        const userRole = await role.findByPk(roleId); 
         const roleName = userRole ? userRole.name : "Unknown";
 
         createdUsers.push({
           ...newUser.toJSON(),
-          password: generatedPassword, // Include plain password for response
-          roleName, // Include role name in response
+          password: generatedPassword, 
+          roleName, 
         });
+        if (!firstUserId) {
+          firstUserId = newUser.id;
+        }
 
         // Send email to the user
         await transporter.sendMail({
@@ -136,108 +133,98 @@ const registerSmallProject = async (req, res) => {
           subject: "Welcome to Our Platform",
           text: `Hello ${userName},\n\nYour account has been created. Use the following credentials:\nEmail: ${email}\nPassword: ${generatedPassword}`,
         });
+      }
+    }
+    if (!firstUserId) {
+      return res.status(400).json({
+        message: "No valid user found to associate with the project.",
+        status: "error",
+      });
+    }
 
-        // Use the userId after user creation to associate with the project
-        const userId = newUser.id;
+    // Create SmallProject with userId
+    const smallProject = await SmallProject.create({
+      name,
+      type_of_project,
+      category_id: category_id.join(","), 
+      subcategory_id: subcategory_id.join(","),
+      projectmanagerole_id: projectmanagerole_id.join(","),
+      typeOfHome,
+      projectAddress,
+      city,
+      generalComment,
+      userId: firstUserId, 
+    });
+    const createdSubcategories = [];
+    if (Array.isArray(selectsubcategory)) {
+      for (const subcategory of selectsubcategory) {
+        const { id, description, attachment, floor } = subcategory;
 
-        // Create SmallProject
-        const smallProjectData = {
-          name, // Use project name here
-          type_of_project,
-          category_id,
-          subcategory_id,
-          projectmanagerole_id,
-          typeOfHome,
-          projectAddress,
-          city,
-          generalComment,
-          userId,
-        };
-
-        const smallProject = await SmallProject.create(smallProjectData);
-
-        // Process selectsubcategory
-        const createdSubcategories = [];
-        if (Array.isArray(selectsubcategory)) {
-          for (const subcategory of selectsubcategory) {
-            const { id, description, attachment, floor } = subcategory;
-
-            if (!id || !description || !attachment || !floor) {
-              return res.status(400).json({
-                message:
-                  "Each subcategory must include id, description, attachment, and floor.",
-                status: "error",
-              });
-            }
-
-            const subcategoryDetails = await Subcategory.findByPk(id); // Fetch subcategory details
-            const subcategoryName = subcategoryDetails
-              ? subcategoryDetails.name
-              : "Unknown";
-
-            const newSubcategory = await ProjectSubcategory.create({
-              smallProject_id: smallProject.id,
-              subcategory_id: id,
-              description,
-              attachment,
-              floor,
-            });
-            createdSubcategories.push({
-              ...newSubcategory.toJSON(),
-              subcategoryName, // Add subcategory name to response
-            });
-          }
-        }
-
-        // Process userServiceInfo
-        let userServiceInfoResponse = null;
-        if (userServiceInfo) {
-          const { typeOfHome, address, city, generalComment } = userServiceInfo;
-
-          if (!typeOfHome || !address || !city) {
-            return res.status(400).json({
-              message: "User service info details are incomplete.",
-              status: "error",
-            });
-          }
-
-          userServiceInfoResponse = await UserserviceInfo.create({
-            userId, // Use the userId from created user
-            typeOfHome,
-            address,
-            city,
-            generalComment,
+        if (!id || !description || !attachment || !floor) {
+          return res.status(400).json({
+            message:
+              "Each subcategory must include id, description, attachment, and floor.",
+            status: "error",
           });
         }
 
-        // Fetch category name and project manager role name
-        const categoryName = category ? category.title : "Unknown";
-        const projectManagerRoleName = projectManagerRole
-          ? projectManagerRole.name
+        const subcategoryDetails = await Subcategory.findByPk(id);
+        const subcategoryName = subcategoryDetails
+          ? subcategoryDetails.name
           : "Unknown";
 
-        // Respond with created data including names
-        return res.status(201).json({
-          message:
-            "Small Project, subcategories, users, and user service info created successfully.",
-          project: {
-            id: smallProject.id,
-            name: smallProject.name,
-            categoryName,
-            projectManagerRoleName,
-            ...smallProject.toJSON(),
-          },
-          subcategories: createdSubcategories, 
-          users: createdUsers,
-          userServiceInfo: userServiceInfoResponse
-            ? {
-                ...userServiceInfoResponse.toJSON(),
-                userName: createdUsers[0].name, 
-              }
-            : null,
+        const newSubcategory = await ProjectSubcategory.create({
+          smallProject_id: smallProject.id,
+          subcategory_id: id,
+          description,
+          attachment,
+          floor,
+        });
+        createdSubcategories.push({
+          ...newSubcategory.toJSON(),
+          subcategoryName, 
         });
       }
     }
+    let userServiceInfoResponse = null;
+
+    if (userServiceInfo && firstUserId) {
+      const { typeOfHome, address, city, generalComment } = userServiceInfo;
+
+      if (!typeOfHome || !address || !city) {
+        return res.status(400).json({
+          message: "User service info details are incomplete.",
+          status: "error",
+        });
+      }
+
+      userServiceInfoResponse = await UserserviceInfo.create({
+        userId: firstUserId, 
+        typeOfHome,
+        address,
+        city,
+        generalComment,
+      });
+    }
+    return res.status(201).json({
+      message:
+        "Small Project, subcategories, users, and user service info created successfully.",
+      project: {
+        id: smallProject.id,
+        name: smallProject.name,
+        categoryNames: categories.map((cat) => cat.title), 
+        projectManagerRoleNames: projectManagerRoles.map((role) => role.name), 
+        ...smallProject.toJSON(),
+      },
+      subcategories: createdSubcategories,
+      users: createdUsers,
+      userServiceInfo: userServiceInfoResponse
+        ? {
+            ...userServiceInfoResponse.toJSON(),
+            userName: createdUsers[0]?.name, 
+          }
+        : null,
+    });
   } catch (error) {
     console.error("Error registering small project:", error);
     return res.status(500).json({
@@ -247,6 +234,7 @@ const registerSmallProject = async (req, res) => {
     });
   }
 };
+
 
 const getSmallProject = async (req, res) => {
   try {
@@ -276,18 +264,9 @@ const getSmallProject = async (req, res) => {
         status: "error",
       });
     }
-
-    console.log(
-      `Step 2: Found ${smallProjects.length} small project(s) for user ID ${userId}`
-    );
-
-    // Step 3: Fetch related data for each project
     const response = [];
 
     for (const project of smallProjects) {
-      console.log(`Processing Project ID: ${project.id}`);
-
-      // Fetch related subcategories
       const subcategories = await ProjectSubcategory.findAll({
         where: { smallProject_id: project.id },
         attributes: [
@@ -298,10 +277,33 @@ const getSmallProject = async (req, res) => {
           "floor",
         ],
       });
+      const category = await Category.findOne({
+        where: { id: project.category_id },
+        attributes: ["id", "title"],
+      });
 
-      console.log(`Subcategories for Project ID ${project.id}:`, subcategories);
+      const projectManagerRole = await Projectmanagerole.findOne({
+        where: { id: project.projectmanagerole_id },
+        attributes: ["id", "name"],
+      });
 
-      // Fetch user service info
+      console.log(
+        `Project Manager Role for Project ID ${project.id}:`,
+        projectManagerRole
+      );
+      const user = await User.findOne({
+        where: { id: project.userId },
+        attributes: ["name", "surname", "email", "mobile_no", "roleId"],
+      });
+
+      let roleName = "Unknown";
+      if (user?.roleId) {
+        const roleModel = await role.findOne({
+          where: { id: user.roleId },
+          attributes: ["name"],
+        });
+        roleName = roleModel?.name || "Unknown";
+      }
       const userServiceInfo = await UserserviceInfo.findOne({
         where: { userId: project.userId },
         attributes: ["typeOfHome", "address", "city", "generalComment"],
@@ -312,78 +314,46 @@ const getSmallProject = async (req, res) => {
         userServiceInfo
       );
 
-      // Fetch category name
-      const category = await Category.findOne({
-        where: { id: project.category_id },
-        attributes: ["title"],
-      });
-
-      console.log(`Category for Project ID ${project.id}:`, category);
-
-      // Fetch project manager role name
-      const projectManagerRole = await Projectmanagerole.findOne({
-        where: { id: project.projectmanagerole_id },
-        attributes: ["name"],
-      });
+      const projectResponse = {
+        id: project.id,
+        name: project.name,
+        type_of_project: project.type_of_project,
+        projectAddress: project.projectAddress,
+        city: project.city,
+        generalComment: project.generalComment,
+        category: {
+          id: category?.id || null,
+          name: category?.title || "Unknown",
+        },
+        projectManagerRole: {
+          id: projectManagerRole?.id || null,
+          name: projectManagerRole?.name || "Unknown",
+        },
+        subcategories: subcategories.map((subcategory) => ({
+          id: subcategory.id,
+          subcategory_id: subcategory.subcategory_id,
+          description: subcategory.description,
+          attachment: subcategory.attachment,
+          floor: subcategory.floor,
+        })),
+        userServiceInfo: userServiceInfo || null,
+        user: user
+          ? {
+              name: user.name,
+              surname: user.surname,
+              email: user.email,
+              mobile_no: user.mobile_no,
+              roleName,
+            }
+          : null,
+      };
 
       console.log(
-        `Project Manager Role for Project ID ${project.id}:`,
-        projectManagerRole
+        `Constructed Response for Project ID ${project.id}:`,
+        projectResponse
       );
 
-      // Fetch user details (user information)
-      const user = await User.findOne({
-        where: { id: project.userId },
-        attributes: ["name", "surname", "email", "mobile_no", "roleId"],
-      });
-
-      // Fetch role name from role table based on roleId
-      if (user && user.roleId) {
-        const roleModel = await role.findOne({
-          where: { id: user.roleId },
-          attributes: ["name"],
-        });
-
-        console.log(`Role Info for User ID ${user?.id}:`, roleModel);
-
-        // Construct project response
-        const projectResponse = {
-          id: project.id,
-          name: project.name,
-          type_of_project: project.type_of_project,
-          projectAddress: project.projectAddress,
-          city: project.city,
-          generalComment: project.generalComment,
-          categoryName: category?.title || "Unknown",
-          projectManagerRoleName: projectManagerRole?.name || "Unknown",
-          subcategories: subcategories.map((subcategory) => ({
-            id: subcategory.id,
-            subcategoryName: `Subcategory ${subcategory.subcategory_id}`,
-            description: subcategory.description,
-            attachment: subcategory.attachment,
-            floor: subcategory.floor,
-          })),
-          userServiceInfo: userServiceInfo || null,
-          user: user
-            ? {
-                name: user.name,
-                surname: user.surname,
-                email: user.email,
-                mobile_no: user.mobile_no,
-                roleName: roleModel?.name || "Unknown",
-              }
-            : null,
-        };
-
-        console.log(
-          `Constructed Response for Project ID ${project.id}:`,
-          projectResponse
-        );
-
-        response.push(projectResponse);
-      } else {
-        console.log("User or Role not found.");
-      }
+      response.push(projectResponse);
     }
 
     // Step 4: Send the final response
@@ -403,7 +373,124 @@ const getSmallProject = async (req, res) => {
   }
 };
 
+const getProjectsByJobType = async (req, res) => {
+  try {
+    const { jobType } = req.query;
+
+    if (!jobType) {
+      console.log("Job type is required.");
+      return res.status(400).json({
+        message: "Job type is required.",
+        status: "error",
+      });
+    }
+
+    console.log("Step 1: Job type from query parameters:", jobType);
+    const smallProjects = await SmallProject.findAll({
+      where: { type_of_project: jobType },
+    });
+
+    if (!smallProjects || smallProjects.length === 0) {
+      console.log(`No projects found for job type: ${jobType}`);
+      return res.status(404).json({
+        message: "No projects found for the specified job type.",
+        data: [],
+        status: "error",
+      });
+    }
+    const response = await Promise.all(smallProjects.map(async (project) => {
+      const subcategories = await ProjectSubcategory.findAll({
+        where: { smallProject_id: project.id },
+        attributes: [
+          "id",
+          "subcategory_id",
+          "description",
+          "attachment",
+          "floor",
+        ],
+      });
+
+      const category = await Category.findOne({
+        where: { id: project.category_id },
+        attributes: ["id", "title"],
+      });
+
+      const projectManagerRole = await Projectmanagerole.findOne({
+        where: { id: project.projectmanagerole_id },
+        attributes: ["id", "name"],
+      });
+
+      const user = await User.findOne({
+        where: { id: project.userId },
+        attributes: ["name", "surname", "email", "mobile_no", "roleId"],
+      });
+
+      let roleName = "Unknown";
+      if (user?.roleId) {
+        const roleModel = await role.findOne({
+          where: { id: user.roleId },
+          attributes: ["name"],
+        });
+        roleName = roleModel?.name || "Unknown";
+      }
+
+      const userServiceInfo = await UserserviceInfo.findOne({
+        where: { userId: project.userId },
+        attributes: ["typeOfHome", "address", "city", "generalComment"],
+      });
+
+      return {
+        id: project.id,
+        name: project.name,
+        type_of_project: project.type_of_project,
+        projectAddress: project.projectAddress,
+        city: project.city,
+        generalComment: project.generalComment,
+        category: {
+          id: category?.id || null,
+          name: category?.title || "Unknown",
+        },
+        projectManagerRole: {
+          id: projectManagerRole?.id || null,
+          name: projectManagerRole?.name || "Unknown",
+        },
+        subcategories: subcategories.map((subcategory) => ({
+          id: subcategory.id,
+          subcategory_id: subcategory.subcategory_id,
+          description: subcategory.description,
+          attachment: subcategory.attachment,
+          floor: subcategory.floor,
+        })),
+        userServiceInfo: userServiceInfo || null,
+        user: user
+          ? {
+              name: user.name,
+              surname: user.surname,
+              email: user.email,
+              mobile_no: user.mobile_no,
+              roleName,
+            }
+          : null,
+      };
+    }));
+    console.log("Final Response:", response);
+    return res.status(200).json({
+      message: "Projects retrieved successfully.",
+      data: response,
+      status: "success",
+    });
+  } catch (error) {
+    console.error("Error retrieving projects by job type:", error);
+    return res.status(500).json({
+      message: "An error occurred while fetching projects by job type.",
+      error: error.message,
+      status: "error",
+    });
+  }
+};
+
 module.exports = {
   registerSmallProject,
   getSmallProject,
+  getProjectsByJobType
 };

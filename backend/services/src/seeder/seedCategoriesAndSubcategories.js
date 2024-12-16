@@ -1,4 +1,3 @@
-const { sequelize } = require('../../config/database'); 
 const Category = require('../models/categoryModel');
 const Subcategory = require('../models/subcategoryModel');
 
@@ -204,16 +203,10 @@ const categories = [
 ];
 
 const seedCategoriesAndSubcategories = async () => {
-  const transaction = await sequelize.transaction();
-  try {
-    console.log('Connecting to the database...');
-    await sequelize.authenticate(); 
-    console.log('Database connected successfully.');
-
+  try{
     for (const categoryData of categories) {
       const [categoryInstance] = await Category.findOrCreate({
         where: { title: categoryData.title },
-        transaction,
       });
 
       for (const subcategoryData of categoryData.subcategories) {
@@ -221,14 +214,11 @@ const seedCategoriesAndSubcategories = async () => {
           name: subcategoryData.name,
           subcategory_type: subcategoryData.subcategory_type,
           CategoryId: categoryInstance.id,
-        }, { transaction });
+        });
       }
     }
-
-    await transaction.commit();
     console.log('Categories and subcategories seeded successfully!');
   } catch (error) {
-    await transaction.rollback();
     console.error('Error seeding categories and subcategories:', error);
   }
 };

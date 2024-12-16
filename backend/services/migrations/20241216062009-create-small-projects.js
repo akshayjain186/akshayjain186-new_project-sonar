@@ -2,31 +2,35 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('project_subcategories', {
+    await queryInterface.createTable('small_projects', {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
-      subcategory_id: {
-        type: Sequelize.INTEGER,
+      userId:{
+        type: Sequelize.STRING,
         allowNull: false,
       },
-      smallProject_id: {
-        type: Sequelize.INTEGER,
-        allowNull: false,       
-      },
-      description: {
-        type: Sequelize.TEXT,
-        allowNull: true,
-      },
-      attachment: {
-        type: Sequelize.JSON,
-        allowNull: true,
-      },
-      floor: {
+      name: {
         type: Sequelize.STRING,
-        allowNull: true,
+        allowNull: false,
+      },
+      type_of_project: {
+        type: Sequelize.STRING,
+        allowNull: false,
+      },
+      category_id: {
+        type: Sequelize.JSON,
+        allowNull: false,
+      },
+      subcategory_id: {
+        type: Sequelize.JSON,
+        allowNull: false,
+      },
+      projectmanagerole_id: {
+        type: Sequelize.JSON,
+        allowNull: false,
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -42,6 +46,6 @@ module.exports = {
   },
 
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('project_subcategories');
+    await queryInterface.dropTable('small_projects');
   },
 };

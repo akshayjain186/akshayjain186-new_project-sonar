@@ -3,10 +3,11 @@ const nodemailer = require("nodemailer");
 const User = require("../../../user-service/src/models/userModel");
 const CompanyModel = require("../models/companyModel");
 const Category = require("../models/categoryModel");
-const role = require('../models/roleModel')
+const role = require("../models/roleModel");
 const ProjectManagerRole = require("../models/projectmanagerole");
 const jwt = require("jsonwebtoken");
 require("dotenv").config();
+const { Op } = require("sequelize");
 
 // Helper function to validate relations (category, ProjectManagerRole)
 const validateRelationsWithoutForeignKey = async (relationsArray) => {
@@ -24,8 +25,6 @@ const validateRelationsWithoutForeignKey = async (relationsArray) => {
 
   return validatedRelations;
 };
-
-// For loading environment variables
 
 // Utility function for password generation (remains the same)
 const generatePassword = () => {
@@ -73,7 +72,7 @@ const registerCompany = async (req, res) => {
     }
 
     const generatedPassword = generatePassword();
-    console.log("password for login--------------", generatedPassword);
+    console.log("password ************** for ************** login ****************", generatedPassword);
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
 
@@ -185,11 +184,9 @@ const registerCompany = async (req, res) => {
 
     // Create the company
     const newCompany = await CompanyModel.create(companyData);
-
-    // Fetch full details for the response
     const categories = await Category.findAll({
       where: {
-        id: categoryId, // Fetch multiple categories based on the array
+        id: categoryId, 
       },
     });
 
@@ -205,7 +202,7 @@ const registerCompany = async (req, res) => {
       data: {
         users: {
           ...userWithoutPassword,
-          roleName: userRole.name, // Add role name to the user data
+          roleName: userRole.name, 
         },
         id: newCompany.id,
         companyName: newCompany.companyName,
@@ -218,7 +215,7 @@ const registerCompany = async (req, res) => {
         employeeCount: newCompany.employeeCount,
         useSubcontractors: newCompany.useSubcontractors,
         countiesCoverage: newCompany.countiesCoverage,
-        categoryId, // Returning multiple category IDs
+        categoryId, 
         categoryNames: categories.map((category) => category.title),
         ProjectManagerRoleId,
         ProjectManagerRoleNames: projectManagerRoles.map((role) => role.name),
@@ -249,13 +246,11 @@ const getCompanyDetails = async (req, res) => {
     const userId = decoded.userId;
     console.log("Decoded userId:", userId);
 
-    // Fetch the user based on the decoded userId
     const user = await User.findByPk(userId);
     if (!user) {
       return res.status(404).json({ message: "User not found." });
     }
 
-    // Fetch the company associated with the user
     const company = await CompanyModel.findOne({ where: { userId: user.id } });
     if (!company) {
       return res
@@ -263,27 +258,25 @@ const getCompanyDetails = async (req, res) => {
         .json({ message: "No company found for this user." });
     }
 
-    // Debugging log to check the company details
     console.log("Company details:", company);
 
     // Validate required fields before querying related data
     if (!company.categoryId || !company.ProjectManagerRoleId) {
       return res.status(400).json({
         message: "Missing categoryId or ProjectManagerRoleId in company.",
-        companyDetails: company, // Return the company details for debugging
+        companyDetails: company, 
       });
     }
 
     // Fetch related categories and project manager roles (for all IDs)
     const [categories, projectManagerRoles, userRole] = await Promise.all([
-      Category.findAll({ where: { id: company.categoryId } }), // Fetch categories for all categoryIds
+      Category.findAll({ where: { id: company.categoryId } }), 
       ProjectManagerRole.findAll({
         where: { id: company.ProjectManagerRoleId },
-      }), // Fetch roles for all ProjectManagerRoleIds
-      role.findOne({ where: { id: user.roleId } }), // Fetch user role name
+      }), 
+      role.findOne({ where: { id: user.roleId } }),
     ]);
 
-    // Prepare response data
     const responseData = {
       users: {
         id: user.id,
@@ -292,7 +285,7 @@ const getCompanyDetails = async (req, res) => {
         email: user.email,
         mobile_no: user.mobile_no,
         roleId: user.roleId,
-        roleName: userRole ? userRole.name : "Unknown Role", // Include role name
+        roleName: userRole ? userRole.name : "Unknown Role", 
       },
       company: {
         id: company.id,
@@ -307,13 +300,11 @@ const getCompanyDetails = async (req, res) => {
         useSubcontractors: company.useSubcontractors,
         countiesCoverage: company.countiesCoverage,
         categoryId: company.categoryId,
-        categoryNames: categories.map((category) => category.title), // Mapping to get category names
+        categoryNames: categories.map((category) => category.title), 
         ProjectManagerRoleId: company.ProjectManagerRoleId,
-        projectManagerRoleNames: projectManagerRoles.map((role) => role.name), // Mapping to get project manager role names
+        projectManagerRoleNames: projectManagerRoles.map((role) => role.name), 
       },
     };
-
-    // Send the response
     res.status(200).json({
       message: "Company and user details fetched successfully.",
       data: responseData,
@@ -327,6 +318,68 @@ const getCompanyDetails = async (req, res) => {
   }
 };
 
+const getAllCompanies = async (req, res) => {
+  try {
+    // Fetch all companies
+    const companies = await CompanyModel.findAll();
+
+    const responseData = [];
+
+    for (const company of companies) {
+      const user = await User.findByPk(company.userId);
+      const categories = company.categoryId
+        ? await Category.findAll({
+            where: { id: company.categoryId },
+          })
+        : [];
+      const projectManagerRoles = company.ProjectManagerRoleId
+        ? await ProjectManagerRole.findAll({
+            where: { id: company.ProjectManagerRoleId },
+          })
+        : [];
+      responseData.push({
+        company: {
+          id: company.id,
+          companyName: company.companyName,
+          organisationNumber: company.organisationNumber,
+          country: company.country,
+          city: company.city,
+          address: company.address,
+          postalcode: company.postalcode,
+          jobTypes: company.jobTypes,
+          employeeCount: company.employeeCount,
+          useSubcontractors: company.useSubcontractors,
+          countiesCoverage: company.countiesCoverage,
+          categoryId: company.categoryId,
+          categoryNames: categories.map((category) => category.title),
+          ProjectManagerRoleId: company.ProjectManagerRoleId,
+          projectManagerRoleNames: projectManagerRoles.map((role) => role.name),
+        },
+        user: user
+          ? {
+              id: user.id,
+              name: user.name,
+              surname: user.surname,
+              email: user.email,
+              mobile_no: user.mobile_no,
+              roleId: user.roleId,
+            }
+          : null,
+      });
+    }
+
+    res.status(200).json({
+      message: "Companies fetched successfully.",
+      data: responseData,
+    });
+  } catch (error) {
+    console.error("Error fetching companies:", error);
+    res.status(500).json({
+      message: "An error occurred while fetching the companies.",
+      error: error.message,
+    });
+  }
+};
 
 const updateCompanyDetails = async (req, res) => {
   try {
@@ -494,11 +547,58 @@ const deleteUserAndCompanyById = async (req, res) => {
   }
 };
 
+const searchByCompanyName = async (req, res) => {
+  try {
+    const { companyName } = req.query;
+    if (!companyName) {
+      return res.status(400).json({
+        message: "The 'companyName' query parameter is required.",
+        status: "error",
+      });
+    }
+    const companies = await CompanyModel.findAll({
+      where: { companyName: { [Op.like]: `%${companyName}%` } },
+    });
+
+    if (companies.length === 0) {
+      return res.status(404).json({
+        message: `No companies found with the name '${companyName}'.`,
+        status: "not_found",
+      });
+    }
+    const companyResults = await Promise.all(companies.map(async (company) => {
+      const user = await User.findOne({
+        where: { id: company.userId },
+        attributes: ['name'],
+      });
+
+      return {
+        ...company.toJSON(),
+        userName: user ? user.name : "Unknown User",  
+      };
+    }));
+
+    return res.status(200).json({
+      message: "Search results retrieved successfully.",
+      data: companyResults,
+    });
+  } catch (error) {
+    console.error("Error during company search:", error);
+    return res.status(500).json({
+      message: "An error occurred while searching for companies.",
+      error: error.message,
+    });
+  }
+};
+
+
 
 module.exports = {
   registerCompany,
   getCompanyDetails,
+  getAllCompanies,
   updateCompanyDetails,
   deleteUserAndCompanyById,
-
+  searchByCompanyName,
+  
 };

@@ -6,7 +6,7 @@ class ProjectSubcategory extends Model {}
 ProjectSubcategory.init(
   {
     subcategory_id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.JSON,
       allowNull: false,
     },
     smallProject_id: {
