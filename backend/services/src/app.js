@@ -8,6 +8,7 @@ const subcategoryRoutes = require('./routes/SubcategoriesRoutes');
 const projectmanageroleRoutes = require('./routes/ProjectmanageroleRoutes');
 const projectSubcategoryRoutes = require('./routes/ProjectRoutes');
 const registerCompanyRoutes = require('./routes/companyRoutes');
+const projectRoutes = require('./routes/ProjectRoutes');
 
 const app = express();
 
@@ -20,7 +21,7 @@ app.use('/api/category', categoryRoutes);
 app.use('/api/subcategory', subcategoryRoutes);
 app.use('/api/projectmanager', projectmanageroleRoutes);
 app.use('/api/project', projectSubcategoryRoutes);
-
+app.use('/api/project',projectRoutes);
 app.use('/api/company',registerCompanyRoutes)
 
 // Test DB connection and handle errors
