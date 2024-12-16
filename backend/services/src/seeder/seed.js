@@ -1,14 +1,22 @@
-const { sequelize } = require('../../config/database');
+// src/seeder/seed.js
+const { sequelizeService } = require('../../config/database');  // Ensure this is the correct path
 const seedRoles = require('./seedRoles');
-const seedCategoriesAndSubcategories = require('./seedCategoriesAndSubcategories'); 
+const seedCategoriesAndSubcategories = require('./seedCategoriesAndSubcategories');
 const seedProjectManageRole = require('./seedProjectManageRole');
+
+console.log(sequelizeService);  // Check if sequelizeService is correctly imported
+
+if (!sequelizeService) {
+  console.error('Sequelize instance is undefined!');
+  return;
+}
 
 (async () => {
   try {
-    await sequelize.authenticate();
+    await sequelizeService.authenticate();
     console.log('Database connection successful!');
 
-    await sequelize.sync({ force: true });
+    await sequelizeService.sync({ force: true });
     console.log('Database synchronized!');
 
     // Seed roles
@@ -24,6 +32,6 @@ const seedProjectManageRole = require('./seedProjectManageRole');
   } catch (error) {
     console.error('Error during seeding:', error);
   } finally {
-    await sequelize.close();
+    await sequelizeService.close();
   }
 })();

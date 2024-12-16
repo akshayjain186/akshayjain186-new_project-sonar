@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+const { sequelize }  = require('../../config/database'); 
+>>>>>>> microDev-megha-dubey
 const Category = require('../models/categoryModel');
 const Subcategory = require('../models/subcategoryModel');
 

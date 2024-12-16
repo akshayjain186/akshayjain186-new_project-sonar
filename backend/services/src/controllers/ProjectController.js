@@ -1,33 +1,33 @@
-const SmallProject = require("../models/Project");
-const ProjectSubcategory = require("../models/ProjectSubcategory");
-const Category = require("../models/categoryModel");
-const Subcategory = require("../models/subcategoryModel");
-const Projectmanagerole = require("../models/projectmanagerole");
-const User = require("../../../user-service/src/models/userModel");
-const UserserviceInfo = require("../models/userserviceInfo");
-const role = require("../models/roleModel");
-const jwt = require("jsonwebtoken"); 
+const SmallProject = require('../models/Project');
+const ProjectSubcategory = require('../models/ProjectSubcategory');
+const Category = require('../models/categoryModel');
+const Subcategory = require('../models/subcategoryModel');
+const Projectmanagerole = require('../models/projectmanagerole');
+const User = require('../../../user-service/src/models/userModel');
+const UserserviceInfo = require('../models/userserviceInfo')
+const role = require('../models/roleModel')
+const jwt = require('jsonwebtoken'); 
 
-const { Op } = require("sequelize");
-const nodemailer = require("nodemailer");
+const { Op } = require('sequelize');
+const nodemailer = require('nodemailer');
 
-const bcrypt = require("bcryptjs");
-const crypto = require("crypto");
+const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
 
 //  This Function is Used to Generate a Random Password
-require("dotenv").config(); // For loading environment variables
+require('dotenv').config(); 
 
 // Utility function for password generation (remains the same)
 const generatePassword = () => {
-  return Math.random().toString(36).slice(-8); // Generates an 8-character random password
+  return Math.random().toString(36).slice(-8); 
 };
 
 // Set up your email transporter using environment variables
 const transporter = nodemailer.createTransport({
-  service: "Gmail", // Replace with your email provider
+  service: 'Gmail', 
   auth: {
-    user: process.env.EMAIL_SERVICE, // Use environment variable for security
-    pass: process.env.EMAIL_PASSWORD, // Use environment variable for security
+    user: process.env.EMAIL_SERVICE, 
+    pass: process.env.EMAIL_PASSWORD, 
   },
 });
 

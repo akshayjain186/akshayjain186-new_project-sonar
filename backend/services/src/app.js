@@ -3,11 +3,11 @@ const express = require('express');
 // const productRoutes = require('./routes/productRoutes');
 const { sequelizeService } = require('../../services/config/database');  // Ensure correct path
 const { authenticate } = require('../middleware/authMiddleware');
-const categoryRoutes = require('./routes/CategoriesRoutes')
-const subcategoryRoutes = require('./routes/SubcategoriesRoutes')
-const projectmanageroleRoutes = require('./routes/ProjectmanageroleRoutes')
-const projectSubcategoryRoutes = require('./routes/ProjectRoutes')
-const registerCompanyRoutes = require('./routes/CompanyRoutes')
+const categoryRoutes = require('./routes/CategoriesRoutes');
+const subcategoryRoutes = require('./routes/SubcategoriesRoutes');
+const projectmanageroleRoutes = require('./routes/ProjectmanageroleRoutes');
+const projectSubcategoryRoutes = require('./routes/ProjectRoutes');
+const registerCompanyRoutes = require('./routes/companyRoutes');
 
 const app = express();
 
