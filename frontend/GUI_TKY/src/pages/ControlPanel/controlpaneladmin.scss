@@ -137,13 +137,6 @@ input[type="number"] {
   display: flex;
   align-items: center; /* Align the icon and text in the same line */
 }
-
-
-
-
-
-
-
 .ajax-select {
   position: relative;
   width: 100%;
@@ -155,7 +148,6 @@ input[type="number"] {
   margin-bottom: px;
   display: inline-block;
 }
-
 .ajax-select .dropbtn {
   width: 100%;
   padding: 10px;
@@ -214,8 +206,13 @@ input[type="number"] {
 .ajax-select .dropdown-item:active {
   background-color: #ddd;
 }
-
 .ajax-select .text-danger {
   font-size: 12px;
   margin-top: 5px;
+}
+.icon-wrapper {
+  justify-content: center;   /* Centers the icon horizontally */
+  align-items: center;       /* Centers the icon vertically */
+  height: 100%;
+           /* Ensure the icon is vertically centered with text */
 }

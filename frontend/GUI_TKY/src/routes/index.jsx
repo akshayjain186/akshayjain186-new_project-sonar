@@ -7,6 +7,8 @@ import {
   LicensesPage,
   OwnerPage,
 } from '@/pages';
+ import SmallJobForm from '@/pages/Ragister/SmallJobForm';
+import BigJobForm from '@/pages/Ragister/BigJobForm';
 
 const authUser = JSON.parse(localStorage.getItem('authUser')) || null;
 import Users from '@/pages/Users';
@@ -17,7 +19,7 @@ import AdminViewPlan from '@/pages/Users/AdminUser/AdminView/AdminViewPlan';
 import Leads from '@/pages/Leades';
 import BigJobRequest from '@/pages/Leades/BigJobRequest';
 import SmallJobRequest from '@/pages/Leades/SmallJobRequest';
-import SmallJobForm from '@/pages/Leades/SmallJobRequest/SmallJobForm';
+// import SmallJobForm from '@/pages/Leades/SmallJobRequest/SmallJobForm';
 import SendInvitationForm from '@/pages/Leades/SmallJobRequest/SendInvitation';
 
 const authProtectedRoutes = [
@@ -37,6 +39,10 @@ const publicRoutes = [
   },
   { path: '/signUp', component: <SignUp /> },
   { path: '/owner', component: <OwnerPage /> },
+  { path: '/smalljob', component: <SmallJobForm /> },
+
+  { path: '/bigjob', component: <BigJobForm/> },
+
   { path: '/users', component: <Users /> },
   { path: '/UserView', component: <UserView /> },
   { path: '/AdminUserView', component: <AdminUserView /> },
