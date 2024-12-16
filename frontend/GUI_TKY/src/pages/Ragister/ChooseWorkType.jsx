@@ -85,41 +85,6 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
                   </label>
                 ))}
               </div>
-
-              {/* <div className="d-flex flex-wrap mt-2 gap-4">
-                {Projectm.map((worker) => (
-                  <label
-                    key={worker.id}
-                    className={`card-radio-label text-center ${
-                      selectedProjectManagers.includes(worker.id)
-                        ? 'selected'
-                        : ''
-                    }`}                    style={{ minWidth: "" }}
-                  >
-                    <div className="card-radio py-4 px-5 border rounded  d-flex">
-                      <img
-                        src={worker.iconClass}
-                        style={{
-                          height: "20px",
-                          width: "20px",
-                          marginTop: "7px",
-                        }}
-                        className="me-2"
-                      />
-                      <div>
-                        <div className="mt-2">{worker.label}</div>
-                      </div>
-                    </div>
-
-                    <input
-                      type="radio"
-                      name="currency"
-                      id={`workerType${worker.id}`}
-                      className="card-radio-input"
-                    />
-                  </label>
-                ))}
-              </div> */}
               <span className="text-muted">Project manager</span>
               <div className="d-flex flex-wrap mt-2 gap-4">
                 {Projectm.map((worker) => (
@@ -209,39 +174,7 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
           </div>
         </Col>
       </Row>  
-      <div className="d-flex flex-wrap mt-2 gap-4">
-        {Projectm.map((worker) => (
-          <label
-            key={worker.id}
-            className={`card-radio-label text-center ${selectedProjectManagers.includes(worker.id)
-                ? 'selected'
-                : ''
-              }`} style={{ minWidth: "" }}
-          >
-            <div className="card-radio py-4 px-5 border rounded  d-flex">
-              <img
-                src={worker.iconClass}
-                style={{
-                  height: "20px",
-                  width: "20px",
-                  marginTop: "7px",
-                }}
-                className="me-2"
-              />
-              <div>
-                <div className="mt-2">{worker.label}</div>
-              </div>
-            </div>
-
-            <input
-              type="radio"
-              name="currency"
-              id={`workerType${worker.id}`}
-              className="card-radio-input"
-            />
-          </label>
-        ))}
-      </div>
+      
     </>
   );
 };
