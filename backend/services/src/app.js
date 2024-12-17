@@ -10,6 +10,7 @@ const projectSubcategoryRoutes = require('./routes/ProjectRoutes');
 const registerCompanyRoutes = require('./routes/companyRoutes');
 const projectRoutes = require('./routes/ProjectRoutes');
 
+
 const app = express();
 
 // Middleware
@@ -23,6 +24,7 @@ app.use('/api/projectmanager', projectmanageroleRoutes);
 app.use('/api/project', projectSubcategoryRoutes);
 app.use('/api/project',projectRoutes);
 app.use('/api/company',registerCompanyRoutes)
+
 
 // Test DB connection and handle errors
 sequelizeService.authenticate()

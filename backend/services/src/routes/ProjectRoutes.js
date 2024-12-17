@@ -15,7 +15,7 @@ router.get('/small-projects', authenticate, getSmallProject);
 
 router.get('/search',getProjectsByJobType);
 
-router.get('/allprojects',getAllSmallProjects);
+router.get('/allprojects',authenticate,getAllSmallProjects);
 
 
 module.exports = router;
