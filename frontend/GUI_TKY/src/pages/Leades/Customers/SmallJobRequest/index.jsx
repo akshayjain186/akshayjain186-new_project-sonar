@@ -9,20 +9,7 @@ import imagePdfIcon from '../../../../assets/images/leads/imagepdficon.png';
 export default function SmallJobRequest() {
   return (
     <Container fluid className="p-4 position-relative">
-      {/* Home Button - Top right */}
-      {/* <div className="position-absolute top-0 end-0 mt-3 me-3">
-        <Button
-          variant="link"
-          className="p-0"
-          style={{ fontSize: '1.5rem', textDecoration: 'none' }}
-        >
-          <img
-            src={homeIcon}
-            alt="Home"
-              style={{ width: '24px', height: '24px' }}
-          />
-        </Button>
-      </div> */}
+    
 
       {/* Header */}
       <Row className="mb-4">
@@ -40,13 +27,7 @@ export default function SmallJobRequest() {
         <Button
           variant="link"
           className="p-0"
-          //   style={{
-          //     fontSize: '15px',
-          //     textDecoration: 'none',
-          //     backgroundColor: 'white',
-          //     width: '100%',
-          //     maxWidth: '150px',
-          //   }}
+         
 
           style={{
             width: '100px',
@@ -222,12 +203,7 @@ export default function SmallJobRequest() {
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
                 nisi ut aliquip ex ea commodo consequat.
               </Card.Text>
-              {/* <div className="d-flex">
-                <Button variant="link" className="me-2">
-                  Room.pdf
-                </Button>
-                <Button variant="link">IMG-453.jpeg</Button>
-              </div> */}
+             
               <div className="d-flex">
                 <Button
                   variant="link"

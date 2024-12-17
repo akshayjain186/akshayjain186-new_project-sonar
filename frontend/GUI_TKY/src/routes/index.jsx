@@ -18,16 +18,13 @@ import CustomerUserProfile from '@/pages/Users/CustomerUser';
 import AdminViewPlan from '@/pages/Users/AdminUser/AdminView/AdminViewPlan';
 import Leads from '@/pages/Leades';
 
-// import SmallJobForm from '@/pages/Leades/SmallJobRequest/SmallJobForm';
-// import SendInvitationForm from '@/pages/Leades/SmallJobRequest/SendInvitation';
 import BigJobRequest from '@/pages/Leades/Customers/BigJobRequest';
 import SmallJobRequest from '@/pages/Leades/Customers/SmallJobRequest';
-// import SmallJobForm from '@/pages/Leades/Customers/SmallJobRequest/SmallJobForm';
+
 import ArtBuilding from '@/pages/Leades/Companies/ArtBuilding/ArtBuilding';
 import UploadPhoto from '@/pages/Leades/Companies/UploadPhoto/UploadPhoto';
 import SendInvitationSecond from '@/pages/Leades/Companies/SendInvitation';
 import SendInvitationForm from '@/pages/Leades/Customers/SmallJobRequest/SendInvitation';
-// import SendInvitation from '@/pages/Leades/Companies/SendInvitation';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },

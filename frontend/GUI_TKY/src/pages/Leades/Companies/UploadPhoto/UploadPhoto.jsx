@@ -1,5 +1,3 @@
-
-
 import React, { useState } from 'react';
 import YesIcon from '../../../../assets/images/leads/YesIcon.png';
 import CameraIcon from '../../../../assets/images/leads/CameraIcon.png';
@@ -148,12 +146,15 @@ const UploadPhoto = () => {
                 selectedSubscription === pkg.name ? 'border-primary' : ''
               }`}
               onClick={() => setSelectedSubscription(pkg.name)}
-              style={{ cursor: 'pointer', }}
+              style={{ cursor: 'pointer', border:
+                selectedSubscription === pkg.name ? '2px solid #41619A' : 'none', }}
             >
-              <h6 className="fw-bold" style={{color:'#41619A'}}>{pkg.name}</h6>
+              <h6 className="fw-bold" style={{ color: '#41619A' }}>
+                {pkg.name}
+              </h6>
               <ul className="list-unstyled small">
                 {pkg.benefits.map((benefit, idx) => (
-                  <li key={idx} style={{color:'#A8AFB9'}}>
+                  <li key={idx} style={{ color: '#A8AFB9' }}>
                     {' '}
                     <img
                       src={pkg.icon}
@@ -229,12 +230,12 @@ const UploadPhoto = () => {
 
         {/* Company Manager */}
         <div
-          className=" card card-header col-md-6"
+          className=" card  col-md-6"
           style={{ borderRadius: '5px', border: '5px' }}
         >
           <h6 className="fw-bold">Company Manager</h6>
           <form>
-            <div className="row">
+            <div className="row ">
               <div className="col-md-6 mb-3">
                 <label>Manager name</label>
                 <input
@@ -364,7 +365,17 @@ const UploadPhoto = () => {
 
       {/* Submit Button */}
       <div className="text-end mt-4">
-        <button className="btn btn-primary" style={{backgroundColor:'#41619A', width:"100%", maxWidth:'15%', borderRadius:'7px'}}>Done</button>
+        <button
+          className="btn btn-primary"
+          style={{
+            backgroundColor: '#41619A',
+            width: '100%',
+            maxWidth: '15%',
+            borderRadius: '7px',
+          }}
+        >
+          Done
+        </button>
       </div>
     </div>
   );
