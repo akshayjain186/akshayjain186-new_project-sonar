@@ -71,16 +71,7 @@ const BigJobRequest = () => {
         </div>
       </header>
       {/* Image below the header */}
-      {/* <div className="d-flex justify-content-between align-items-start mt-3">
-        <img
-          src="/path-to-image.png"
-          alt="Icon"
-          style={{ width: '40px', height: '40px' }}
-        />
-<h4 >Big job request</h4>
-       
-        <button className="btn btn-primary ">Apartment</button>
-      </div> */}
+
       <div className="d-flex justify-content-between align-items-center mb-3">
         <div className="d-flex " style={{ maxWidth: '100%', width: '500px' }}>
           <img

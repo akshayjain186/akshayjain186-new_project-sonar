@@ -53,30 +53,7 @@ export default function ArtBuilding() {
               </p>
             </div>
           </div>
-          {/* <div className="mb-4">
-        <span className="text-muted">Leads &gt; </span>
-        <span className="fw-bold">Company 1990</span>
-      </div>
-
-   
-      <div className="row mb-4">
-        <div className="col-md-6">
-          <h5 className="fw-bold">Art Building</h5>
-          <p className="text-muted mb-1">
-            Organisation number: <span className="fw-bold">8171158722</span>
-          </p>
-          <p className="mb-1">Address: Vossegata 22, 0475 Oslo</p>
-          <p className="mb-1">
-            Email: <a href="mailto:post@artbuild.com">post@artbuild.com</a>
-          </p>
-        </div>
-        <div className="col-md-6">
-          <p className="mb-1">Company manager: Harry Stone</p>
-          <p>
-            Mobile phone: <a href="tel:+4721607947">+47 216 079 47</a>
-          </p>
-        </div>
-      </div> */}
+        
 
           {/* Small Jobs Section */}
           <div

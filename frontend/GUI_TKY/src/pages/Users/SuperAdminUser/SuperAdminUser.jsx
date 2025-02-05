@@ -121,10 +121,6 @@ const SuperAdmins = () => {
       accessorKey: 'actions',
       enableColumnFilter: false,
       cell: () => (
-        // <div className="text-danger d-flex align-items-center">
-        //   <i className="bi bi-eye-fill me-2" style={{ color: '#41619A' }}></i>
-        //   <span>Deactivate</span>
-        // </div>
         <div className="d-flex justify-content-end text-danger">
           {/* <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i> */}
           <img
@@ -172,48 +168,7 @@ const SuperAdmins = () => {
   return (
     <div>
       {/* Top Bar */}
-      {/* <div className="row mb-3 align-items-center">
-        <div className="col-12 col-sm-8 col-md-9">
-          <input
-            type="text"
-            className="form-control form-control-lg"
-            placeholder="Search..."
-            style={{
-              borderRadius: '7px',
-              height: '40px',
-              backgroundColor: '#EAEEF4',
-              width: 'auto',
-            }}
-          />
-           <img
-        className="bi bi-search position-absolute"
-        src={SearchIcon}  // Assuming SearchIcon is imported correctly
-        alt="Search"
-        style={{
-          top: '50%',
-          left: '10px',
-          transform: 'translateY(-50%)',
-          color: '#6c757d',
-        }}
-      />
-       
-        </div>
-        <div className="col-12 col-sm-4 col-md-3 d-flex justify-content-end mt-2 mt-sm-0">
-          <button
-            className="btn btn-primary d-flex justify-content-center align-items-center"
-            style={{
-              borderRadius: '10px',
-              width: '100px',
-              height: '40px',
-              fontSize: '16px',
-              background: '#41619A',
-            }}
-          >
-            <img src={plusIcon} alt="" />
-            <i className="bi bi-plus-lg me-2"></i> Icon
-          </button>
-        </div>
-      </div> */}
+
       <div className="row mb-3 align-items-center">
         <div className="col-12 col-sm-8 col-md-9">
           <div className="position-relative mb-2">

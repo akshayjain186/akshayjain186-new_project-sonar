@@ -191,22 +191,6 @@ export default function SmallJobForm() {
                   }}
                 >
                   {superAdminOptions.map((option) => (
-                    // <div
-                    //   key={option.id}
-                    //   className="d-flex align-items-center justify-content-between"
-                    // >
-                    //   <div>
-                    //     <img src={option.icon} alt="icon" className="m-2" />
-                    //   </div>
-                    //   <span>{option.label}</span>
-                    //   <input
-                    //     type="checkbox"
-                    //     checked={option.checked}
-                    //     onChange={() =>
-                    //       handleOptionChange('superAdmin', option.id)
-                    //     }
-                    //   />
-                    // </div>
                     <div
                       key={option.id}
                       className="d-flex align-items-center mb-2"
@@ -272,18 +256,6 @@ export default function SmallJobForm() {
                   }}
                 >
                   {adminOptions.map((option) => (
-                    // <div
-                    //   key={option.id}
-                    //   className="d-flex align-items-center justify-content-between"
-                    // >
-                    //     <img src={option.icon} alt="icon" className='mb-2' />
-                    //   <span>{option.label}</span>
-                    //   <input
-                    //     type="checkbox"
-                    //     checked={option.checked}
-                    //     onChange={() => handleOptionChange('admin', option.id)}
-                    //   />
-                    // </div>
                     <div
                       key={option.id}
                       className="d-flex align-items-center mb-2"

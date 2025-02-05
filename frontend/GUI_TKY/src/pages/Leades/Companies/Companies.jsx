@@ -156,19 +156,7 @@ const Companies = () => {
         accessorKey: 'actions',
         enableColumnFilter: false,
         cell: () => (
-          // <div className="d-flex justify-content-end text-danger">
-          //   <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i>
-          //   <div
-          //     style={{
-          //       borderLeft: '1px solid #EAEEF4',
-          //       height: '20px',
-          //       margin: '0 8px',
-          //     }}
-          //   ></div>
-          //   <a href="#" className="text-danger mb-0 fs-5">
-          //     Deactivate
-          //   </a>
-          // </div>
+         
           <div className="d-flex justify-content-end align-items-center text-danger">
             <img
               src={ActionIcon}
@@ -208,19 +196,7 @@ const Companies = () => {
   return (
     <div>
       {/* Top Bar */}
-      {/* <div className="row mb-2 align-items-center">
-        <div className="d-flex justify-content-between align-items-center mb-3">
-          <div className="d-flex" style={{ maxWidth: '100%', width: '500px' }}>
-            <input
-              type="text"
-              className="form-control me-3 mb-2"
-              placeholder="Search..."
-            />
-            <input type="date" className="form-control me-3 mb-2" />
-          </div>
-          <p className="mb-0">Total Requests: 234</p>
-        </div>
-      </div> */}
+  
       <div className="row mb-2 align-items-center">
         <div className="d-flex justify-content-between align-items-center mb-3">
           <div className="d-flex" style={{ maxWidth: '100%', width: '500px' }}>

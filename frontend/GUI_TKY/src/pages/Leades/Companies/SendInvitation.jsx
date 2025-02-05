@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-export default function SendInvitation() {
+export default function SendInvitationSecond() {
   return (
     <div className="container d-flex justify-content-center align-items-center vh-100">
       <div
@@ -27,7 +27,7 @@ export default function SendInvitation() {
               style={{ borderColor: 'gray' }}
             />
           </div>
-          
+
           <div
             className="container d-flex justify-content-center align-items-center   "
             style={{ gap: '20px' }}
