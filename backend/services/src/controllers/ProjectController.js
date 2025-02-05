@@ -1,51 +1,70 @@
-const SmallProject = require('../models/Project');
-const ProjectSubcategory = require('../models/ProjectSubcategory');
-const Category = require('../models/categoryModel');
-const Subcategory = require('../models/subcategoryModel');
-const Projectmanagerole = require('../models/projectmanagerole');
-const User = require('../../../user-service/src/models/userModel');
-const UserserviceInfo = require('../models/userserviceInfo')
-const role = require('../models/roleModel')
-const jwt = require('jsonwebtoken'); 
+const SmallProject = require("../models/Project");
+const ProjectSubcategory = require("../models/ProjectSubcategory");
+const Category = require("../models/categoryModel");
+const Subcategory = require("../models/subcategoryModel");
+const Projectmanagerole = require("../models/projectmanagerole");
+const User = require("../../../user-service/src/models/userModel");
+const UserserviceInfo = require("../models/userserviceInfo");
+const role = require("../models/roleModel");
+const jwt = require("jsonwebtoken");
+const { Op } = require("sequelize");
+const nodemailer = require("nodemailer");
+const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 
-const { Op } = require('sequelize');
-const nodemailer = require('nodemailer');
+//Used to Generate a Random Password
+require("dotenv").config();
 
-const bcrypt = require('bcryptjs');
-const crypto = require('crypto');
+/**
+ * Registers a new small project, its subcategories, users, and associated user service information in the database.
+ *
+ * @param {Object} req - The request object containing the project and user details.
+ * @param {string} req.body.name - The name of the new small project.
+ * @param {string} req.body.type_of_project - The type of the project (e.g., residential, commercial).
+ * @param {Array<number>} req.body.category_id - The list of category IDs that the project belongs to.
+ * @param {Array<number>} req.body.subcategory_id - The list of subcategory IDs associated with the project.
+ * @param {Array<number>} req.body.projectmanagerole_id - The list of project manager role IDs associated with the project.
+ * @param {string} req.body.typeOfHome - The type of home being built or renovated.
+ * @param {string} req.body.projectAddress - The physical address of the project.
+ * @param {string} req.body.city - The city where the project is located.
+ * @param {string} req.body.generalComment - Any additional general comments about the project.
+ * @param {Array<Object>} req.body.selectsubcategory - A list of subcategories selected for the project, each containing details like ID, description, attachment, and floor number.
+ * @param {Array<Object>} req.body.users - A list of user objects to be created, each containing user details like name, surname, email, mobile number, and role ID.
+ * @param {Object} req.body.userServiceInfo - The user-specific service information containing type of home, address, city, and general comments.
+ * @param {Object} res - The response object for sending HTTP responses.
+ *
+ * @returns {Object} - Sends a JSON response with details of the created project, subcategories, users, and user service information, or an error message.
+ */
 
-//  This Function is Used to Generate a Random Password
-require('dotenv').config(); 
-
-// Utility function for password generation (remains the same)
+// function for password generation
 const generatePassword = () => {
-  return Math.random().toString(36).slice(-8); 
+  return Math.random().toString(36).slice(-8);
 };
 
-// Set up your email transporter using environment variables
+// your email transporter using environment variables
 const transporter = nodemailer.createTransport({
-  service: 'Gmail', 
+  service: "Gmail",
   auth: {
-    user: process.env.EMAIL_SERVICE, 
-    pass: process.env.EMAIL_PASSWORD, 
+    user: process.env.EMAIL_SERVICE,
+    pass: process.env.EMAIL_PASSWORD,
   },
 });
 
 const registerSmallProject = async (req, res) => {
   try {
     const {
-      name, // Project name
+      name,
       type_of_project,
-      category_id = [], 
+      category_id = [],
       subcategory_id = [],
-      projectmanagerole_id = [], 
+      projectmanagerole_id = [],
       typeOfHome,
       projectAddress,
       city,
       generalComment,
-      selectsubcategory = [], 
+      selectsubcategory = [],
       users = [],
-      userServiceInfo, 
+      userServiceInfo,
     } = req.body;
     if (
       !name ||
@@ -96,11 +115,14 @@ const registerSmallProject = async (req, res) => {
           });
         }
         if (roleId !== 5) {
-          continue; 
+          continue;
         }
 
         const generatedPassword = generatePassword();
-        console.log("password ************** for ************** login ****************", generatedPassword);
+        console.log(
+          "password ************** for ************** login ****************",
+          generatedPassword
+        );
 
         const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
@@ -114,13 +136,13 @@ const registerSmallProject = async (req, res) => {
         });
 
         // Fetch role name based on roleId
-        const userRole = await role.findByPk(roleId); 
+        const userRole = await role.findByPk(roleId);
         const roleName = userRole ? userRole.name : "Unknown";
 
         createdUsers.push({
           ...newUser.toJSON(),
-          password: generatedPassword, 
-          roleName, 
+          password: generatedPassword,
+          roleName,
         });
         if (!firstUserId) {
           firstUserId = newUser.id;
@@ -146,14 +168,14 @@ const registerSmallProject = async (req, res) => {
     const smallProject = await SmallProject.create({
       name,
       type_of_project,
-      category_id: category_id.join(","), 
+      category_id: category_id.join(","),
       subcategory_id: subcategory_id.join(","),
       projectmanagerole_id: projectmanagerole_id.join(","),
       typeOfHome,
       projectAddress,
       city,
       generalComment,
-      userId: firstUserId, 
+      userId: firstUserId,
     });
     const createdSubcategories = [];
     if (Array.isArray(selectsubcategory)) {
@@ -182,7 +204,7 @@ const registerSmallProject = async (req, res) => {
         });
         createdSubcategories.push({
           ...newSubcategory.toJSON(),
-          subcategoryName, 
+          subcategoryName,
         });
       }
     }
@@ -199,7 +221,7 @@ const registerSmallProject = async (req, res) => {
       }
 
       userServiceInfoResponse = await UserserviceInfo.create({
-        userId: firstUserId, 
+        userId: firstUserId,
         typeOfHome,
         address,
         city,
@@ -212,8 +234,8 @@ const registerSmallProject = async (req, res) => {
       project: {
         id: smallProject.id,
         name: smallProject.name,
-        categoryNames: categories.map((cat) => cat.title), 
-        projectManagerRoleNames: projectManagerRoles.map((role) => role.name), 
+        categoryNames: categories.map((cat) => cat.title),
+        projectManagerRoleNames: projectManagerRoles.map((role) => role.name),
         ...smallProject.toJSON(),
       },
       subcategories: createdSubcategories,
@@ -221,7 +243,7 @@ const registerSmallProject = async (req, res) => {
       userServiceInfo: userServiceInfoResponse
         ? {
             ...userServiceInfoResponse.toJSON(),
-            userName: createdUsers[0]?.name, 
+            // userName: createdUsers[0]?.name,
           }
         : null,
     });
@@ -235,10 +257,19 @@ const registerSmallProject = async (req, res) => {
   }
 };
 
+/**
+ * Retrieves  small projects created by a specific user, along with related data like subcategories,
+ * categories, project manager roles, user information, and user service details.
+ *
+ * @param {Object} req - The request object containing the user's authentication details.
+ * @param {Object} res - The response object for sending HTTP responses.
+ *
+ * @returns {Object} - Sends a JSON response containing a list of the user's small projects or an error message.
+ */
 
 const getSmallProject = async (req, res) => {
   try {
-    // Step 1: Extract user ID from the token
+    //  Extract user ID from the token
     const userId = req.user?.id;
 
     if (!userId) {
@@ -251,7 +282,7 @@ const getSmallProject = async (req, res) => {
 
     console.log("Step 1: User ID from token:", userId);
 
-    // Step 2: Fetch small projects created by the user
+    //  Fetch small projects created by the user
     const smallProjects = await SmallProject.findAll({
       where: { userId },
     });
@@ -356,7 +387,7 @@ const getSmallProject = async (req, res) => {
       response.push(projectResponse);
     }
 
-    // Step 4: Send the final response
+    // Send the final response
     console.log("Final Response:", response);
     return res.status(200).json({
       message: "Small projects retrieved successfully.",
@@ -373,32 +404,36 @@ const getSmallProject = async (req, res) => {
   }
 };
 
-const getProjectsByJobType = async (req, res) => {
+/**
+ * Retrieves all small projects created by users, along with related data like subcategories,
+ * categories, project manager roles, user information, and user service details.
+ *
+ * @param {Object} req - The request object containing the client request data.
+ * @param {Object} res - The response object used to send the HTTP response.
+ *
+ * @returns {Object} - Sends a JSON response containing a list of all small projects with related
+ * data or an error message in case of failure. The response will include the project ID, name,
+ * type, address, city, category, project manager role, associated subcategories, user information,
+ * and user service details.
+ */
+const getAllSmallProjects = async (req, res) => {
   try {
-    const { jobType } = req.query;
-
-    if (!jobType) {
-      console.log("Job type is required.");
-      return res.status(400).json({
-        message: "Job type is required.",
-        status: "error",
-      });
-    }
-
-    console.log("Step 1: Job type from query parameters:", jobType);
-    const smallProjects = await SmallProject.findAll({
-      where: { type_of_project: jobType },
-    });
+    // Fetch all small projects
+    const smallProjects = await SmallProject.findAll();
 
     if (!smallProjects || smallProjects.length === 0) {
-      console.log(`No projects found for job type: ${jobType}`);
+      console.log("No small projects found.");
       return res.status(404).json({
-        message: "No projects found for the specified job type.",
+        message: "No small projects found.",
         data: [],
         status: "error",
       });
     }
-    const response = await Promise.all(smallProjects.map(async (project) => {
+
+    const response = [];
+
+    for (const project of smallProjects) {
+      // Fetch associated subcategories
       const subcategories = await ProjectSubcategory.findAll({
         where: { smallProject_id: project.id },
         attributes: [
@@ -410,16 +445,24 @@ const getProjectsByJobType = async (req, res) => {
         ],
       });
 
+      // Fetch associated category
       const category = await Category.findOne({
         where: { id: project.category_id },
         attributes: ["id", "title"],
       });
 
+      // Fetch associated project manager role
       const projectManagerRole = await Projectmanagerole.findOne({
         where: { id: project.projectmanagerole_id },
         attributes: ["id", "name"],
       });
 
+      console.log(
+        `Project Manager Role for Project ID ${project.id}:`,
+        projectManagerRole
+      );
+
+      // Fetch associated user information
       const user = await User.findOne({
         where: { id: project.userId },
         attributes: ["name", "surname", "email", "mobile_no", "roleId"],
@@ -434,12 +477,19 @@ const getProjectsByJobType = async (req, res) => {
         roleName = roleModel?.name || "Unknown";
       }
 
+      // Fetch associated user service info
       const userServiceInfo = await UserserviceInfo.findOne({
         where: { userId: project.userId },
         attributes: ["typeOfHome", "address", "city", "generalComment"],
       });
 
-      return {
+      console.log(
+        `UserServiceInfo for Project ID ${project.id}:`,
+        userServiceInfo
+      );
+
+      // Construct the response object
+      const projectResponse = {
         id: project.id,
         name: project.name,
         type_of_project: project.type_of_project,
@@ -472,7 +522,146 @@ const getProjectsByJobType = async (req, res) => {
             }
           : null,
       };
-    }));
+
+      console.log(
+        `Constructed Response for Project ID ${project.id}:`,
+        projectResponse
+      );
+
+      response.push(projectResponse);
+    }
+
+    // Send the final response
+    console.log("Final Response:", response);
+    return res.status(200).json({
+      message: "Small projects retrieved successfully.",
+      data: response,
+      status: "success",
+    });
+  } catch (error) {
+    console.error("Error retrieving small projects:", error);
+    return res.status(500).json({
+      message: "An error occurred while fetching small projects.",
+      error: error.message,
+      status: "error",
+    });
+  }
+};
+
+/**
+ * Retrieves small projects filtered by the specified job type. For each project, it fetches
+ * related data such as subcategories, category, project manager role, user information,
+ * and user service details.
+ * @param {Object} req - The request object that contains query parameters (specifically `jobType`).
+ * @param {Object} res - The response object used to send back the HTTP response.
+ *
+ * @returns {Object} - A JSON response containing the list of projects filtered by job type,
+ * along with related data such as subcategories, categories, project manager roles, and user details.
+ * If no projects match the job type or an error occurs, an appropriate error message is returned.
+ */
+
+const getProjectsByJobType = async (req, res) => {
+  try {
+    const { jobType } = req.query;
+
+    if (!jobType) {
+      console.log("Job type is required.");
+      return res.status(400).json({
+        message: "Job type is required.",
+        status: "error",
+      });
+    }
+
+    console.log("Step 1: Job type from query parameters:", jobType);
+    const smallProjects = await SmallProject.findAll({
+      where: { type_of_project: jobType },
+    });
+
+    if (!smallProjects || smallProjects.length === 0) {
+      console.log(`No projects found for job type: ${jobType}`);
+      return res.status(404).json({
+        message: "No projects found for the specified job type.",
+        data: [],
+        status: "error",
+      });
+    }
+    const response = await Promise.all(
+      smallProjects.map(async (project) => {
+        const subcategories = await ProjectSubcategory.findAll({
+          where: { smallProject_id: project.id },
+          attributes: [
+            "id",
+            "subcategory_id",
+            "description",
+            "attachment",
+            "floor",
+          ],
+        });
+
+        const category = await Category.findOne({
+          where: { id: project.category_id },
+          attributes: ["id", "title"],
+        });
+
+        const projectManagerRole = await Projectmanagerole.findOne({
+          where: { id: project.projectmanagerole_id },
+          attributes: ["id", "name"],
+        });
+
+        const user = await User.findOne({
+          where: { id: project.userId },
+          attributes: ["name", "surname", "email", "mobile_no", "roleId"],
+        });
+
+        let roleName = "Unknown";
+        if (user?.roleId) {
+          const roleModel = await role.findOne({
+            where: { id: user.roleId },
+            attributes: ["name"],
+          });
+          roleName = roleModel?.name || "Unknown";
+        }
+
+        const userServiceInfo = await UserserviceInfo.findOne({
+          where: { userId: project.userId },
+          attributes: ["typeOfHome", "address", "city", "generalComment"],
+        });
+
+        return {
+          id: project.id,
+          name: project.name,
+          type_of_project: project.type_of_project,
+          projectAddress: project.projectAddress,
+          city: project.city,
+          generalComment: project.generalComment,
+          category: {
+            id: category?.id || null,
+            name: category?.title || "Unknown",
+          },
+          projectManagerRole: {
+            id: projectManagerRole?.id || null,
+            name: projectManagerRole?.name || "Unknown",
+          },
+          subcategories: subcategories.map((subcategory) => ({
+            id: subcategory.id,
+            subcategory_id: subcategory.subcategory_id,
+            description: subcategory.description,
+            attachment: subcategory.attachment,
+            floor: subcategory.floor,
+          })),
+          userServiceInfo: userServiceInfo || null,
+          user: user
+            ? {
+                name: user.name,
+                surname: user.surname,
+                email: user.email,
+                mobile_no: user.mobile_no,
+                roleName,
+              }
+            : null,
+        };
+      })
+    );
     console.log("Final Response:", response);
     return res.status(200).json({
       message: "Projects retrieved successfully.",
@@ -492,5 +681,6 @@ const getProjectsByJobType = async (req, res) => {
 module.exports = {
   registerSmallProject,
   getSmallProject,
-  getProjectsByJobType
+  getProjectsByJobType,
+  getAllSmallProjects,
 };

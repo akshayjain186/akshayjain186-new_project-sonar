@@ -16,8 +16,8 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         references: {
-          model: 'small_projects', // Reference to small_projects table
-          key: 'id',              // Referencing primary key
+          model: 'small_projects', 
+          key: 'id',              
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -46,7 +46,6 @@ module.exports = {
       },
     });
 
-    // Add indexes for performance
     await queryInterface.addIndex('project_subcategories', ['smallProject_id']);
   },
 

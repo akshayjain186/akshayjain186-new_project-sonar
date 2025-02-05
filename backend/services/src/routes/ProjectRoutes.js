@@ -2,7 +2,8 @@ const express = require('express');
 const {
   registerSmallProject,
   getSmallProject,
-  getProjectsByJobType
+  getProjectsByJobType,
+  getAllSmallProjects
   
 } = require('../controllers/ProjectController.js');
 const router = express.Router();
@@ -13,6 +14,8 @@ router.post('/add', registerSmallProject);
 router.get('/small-projects', authenticate, getSmallProject);
 
 router.get('/search',getProjectsByJobType);
+
+router.get('/allprojects',authenticate,getAllSmallProjects);
 
 
 module.exports = router;
