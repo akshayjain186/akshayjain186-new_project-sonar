@@ -83,7 +83,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                             className={`card-radio py-1 border rounded-5 d-flex ${selectedRooms.includes(room.id) ? 'border-primary' : ''
                                                 }`}
                                             style={{
-                                                background: selectedRooms.includes(room.id) ? 'blue' : '#F4F8FC',
+                                                background: selectedRooms.includes(room.id) ? '#41619A' : '#F4F8FC',
                                                 color: selectedRooms.includes(room.id) ? 'white' : '#000',
                                             }}
                                         >
@@ -94,6 +94,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                     height: '20px',
                                                     width: '20px',
                                                     marginTop: '7px',
+                                                    filter: selectedRooms.includes(room.id) ? 'invert(1)' : 'none',  // Add this line
                                                 }}
                                                 className="me-2"
                                             />
@@ -143,7 +144,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 background: selectedOutsideWork.includes(
                                                     worker.id
                                                 )
-                                                    ? 'blue'
+                                                    ? '#41619A'
                                                     : '#F4F8FC',
                                                 color: selectedOutsideWork.includes(
                                                     worker.id
@@ -212,7 +213,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 background: selectedNewBuilding.includes(
                                                     worker.id
                                                 )
-                                                    ? 'blue'
+                                                    ? '#41619A'
                                                     : '#F4F8FC',
                                                 color: selectedNewBuilding.includes(
                                                     worker.id
@@ -281,7 +282,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                             className={`card-radio py-1 border rounded-5 d-flex ${selectedRooms2.includes(room.id) ? 'border-primary' : ''
                                                 }`}
                                             style={{
-                                                background: selectedRooms2.includes(room.id) ? 'blue' : '#F4F8FC',
+                                                background: selectedRooms2.includes(room.id) ? '#41619A' : '#F4F8FC',
                                                 color: selectedRooms2.includes(room.id) ? 'white' : '#000',
                                             }}
                                         >
@@ -344,7 +345,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 background: selectedOutsideWork2.includes(
                                                     worker.id
                                                 )
-                                                    ? 'blue'
+                                                    ? '#41619A'
                                                     : '#F4F8FC',
                                                 color: selectedOutsideWork2.includes(
                                                     worker.id
@@ -420,7 +421,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 background: selectedNewBuilding2.includes(
                                                     worker.id
                                                 )
-                                                    ? 'blue'
+                                                    ? '#41619A'
                                                     : '#F4F8FC',
                                                 color: selectedNewBuilding2.includes(
                                                     worker.id
