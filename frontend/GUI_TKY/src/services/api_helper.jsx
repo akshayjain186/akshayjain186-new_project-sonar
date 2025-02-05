@@ -28,10 +28,9 @@ const postLogin = (data) => {
  * @param {object} userData - The registration information (name, email, password, etc.).
  */
 export const postRegister = (data) => {
-  console.log(data, "postRegister")
+  console.log(data, 'postRegister');
   return post(POST_REGISTER_USER, data);
-
-}
+};
 /**
  * Fetches the user profile from the server.
  * Sends a GET request to retrieve the user's profile data.
@@ -42,10 +41,10 @@ export const getUserProfile = () => get(GET_USER_PROFILE);
 // master list
 export const getCountryListData = ({ continentId }) => {
   if (continentId === null) {
-    return get(GET_COUNTRY_LIST)
+    return get(GET_COUNTRY_LIST);
   } else {
-    const apiUrl = `${GET_CONTINENT_LIST}/${continentId}`
-    return get(apiUrl)
+    const apiUrl = `${GET_CONTINENT_LIST}/${continentId}`;
+    return get(apiUrl);
   }
 };
 export const getLanguageListData = () => get(GET_LANGUAGE_LIST);
@@ -62,13 +61,9 @@ export const getUsersListData = ({ roleId, search }) => {
   return get(apiUrl);
 };
 
-
-
 export const postGeneralInformationData = (data) => {
-  console.log(data, 'postGeneralInformationData')
-  return
-
-}
-
+  console.log(data, 'postGeneralInformationData');
+  return;
+};
 
 export { postLogin }; // Export the postLogin function for use in other parts of the application

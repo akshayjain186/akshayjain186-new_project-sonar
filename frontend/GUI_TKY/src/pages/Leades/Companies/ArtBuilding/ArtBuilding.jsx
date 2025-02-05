@@ -6,6 +6,7 @@ import AreasIcon from '../../../../assets/images/leads/AreasIcon.png';
 import NoSubcontractorsIcon from '../../../../assets/images/leads/NoSubcontractorsIcon.png';
 import artBuilding from '../../../../assets/images/leads/ArtBuildingIcon.png';
 import CopyPastIcon from '../../../../assets/images/leads/CopyPastIcon.png';
+import { Link } from 'react-router-dom';
 
 export default function ArtBuilding() {
   return (
@@ -53,7 +54,6 @@ export default function ArtBuilding() {
               </p>
             </div>
           </div>
-        
 
           {/* Small Jobs Section */}
           <div
@@ -152,6 +152,7 @@ export default function ArtBuilding() {
 
           {/* Footer Button */}
           <div className="mt-4 text-end">
+            <Link to="/UploadPhoto"> 
             <button
               className="btn btn-primary"
               style={{
@@ -162,6 +163,7 @@ export default function ArtBuilding() {
             >
               Give access
             </button>
+            </Link>
           </div>
         </div>
       </div>

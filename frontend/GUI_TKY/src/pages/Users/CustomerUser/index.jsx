@@ -19,7 +19,7 @@ export default function UserProfile() {
               style={{ width: 120, height: 120 }}
             />
             <div className="ms-3">
-              <h5 className="font-weight-bold">Elektro Solutions</h5>
+              <h5 className="font-weight-bold">Tyler Hopper</h5>
               <p className="mb-1">Member since 22.12.2021</p>
               <div className="d-flex align-items-center">
                 <p className="mb-0 text-secondary" style={{ fontSize: '14px' }}>

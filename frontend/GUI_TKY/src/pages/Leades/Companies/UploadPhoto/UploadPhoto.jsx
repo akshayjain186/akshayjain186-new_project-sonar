@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import YesIcon from '../../../../assets/images/leads/YesIcon.png';
 import CameraIcon from '../../../../assets/images/leads/CameraIcon.png';
+import { Link } from 'react-router-dom';
 
 const UploadPhoto = () => {
   const [selectedSubscription, setSelectedSubscription] =
@@ -146,8 +147,13 @@ const UploadPhoto = () => {
                 selectedSubscription === pkg.name ? 'border-primary' : ''
               }`}
               onClick={() => setSelectedSubscription(pkg.name)}
-              style={{ cursor: 'pointer', border:
-                selectedSubscription === pkg.name ? '2px solid #41619A' : 'none', }}
+              style={{
+                cursor: 'pointer',
+                border:
+                  selectedSubscription === pkg.name
+                    ? '2px solid #41619A'
+                    : 'none',
+              }}
             >
               <h6 className="fw-bold" style={{ color: '#41619A' }}>
                 {pkg.name}
@@ -365,17 +371,19 @@ const UploadPhoto = () => {
 
       {/* Submit Button */}
       <div className="text-end mt-4">
-        <button
-          className="btn btn-primary"
-          style={{
-            backgroundColor: '#41619A',
-            width: '100%',
-            maxWidth: '15%',
-            borderRadius: '7px',
-          }}
-        >
-          Done
-        </button>
+        <Link to="/SendInvitationSecond">
+          <button
+            className="btn btn-primary"
+            style={{
+              backgroundColor: '#41619A',
+              width: '100%',
+              maxWidth: '15%',
+              borderRadius: '7px',
+            }}
+          >
+            Done
+          </button>
+        </Link>
       </div>
     </div>
   );

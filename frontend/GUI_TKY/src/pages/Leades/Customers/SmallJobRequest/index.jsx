@@ -5,6 +5,7 @@ import homeIcon from '../../../../assets/images/leads/homeIcon.png';
 import BathroomIcon from '../../../../assets/images/users/usersview/bathroomicon.png';
 import KitchenIcon from '../../../../assets/images/users/usersview/kitchenicon.png';
 import imagePdfIcon from '../../../../assets/images/leads/imagepdficon.png';
+import { Link } from 'react-router-dom';
 
 export default function SmallJobRequest() {
   return (
@@ -251,9 +252,11 @@ export default function SmallJobRequest() {
       {/* Footer Button */}
       <Row>
         <Col className="text-end">
+        <Link to="/SmallJobFormRequest">  
           <Button variant="primary" style={{ backgroundColor: '#41619A' }}>
             Post a project
           </Button>
+          </Link>
         </Col>
       </Row>
     </Container>

@@ -32,8 +32,9 @@ import AppraiserIcon from '../../../../assets/images/leads/AppraiserIcon.png';
 import BuilderIcon from '../../../../assets/images/leads/BuilderIcon.png';
 import InteriorIcon from '../../../../assets/images/leads/InteriordesignerIcon.png';
 import ArchitectIcon from '../../../../assets/images/leads/ArchitectIcon.png';
+import { Link } from 'react-router-dom';
 
-export default function SmallJobForm() {
+export default function SmallJobFormRequest() {
   const [activeSection, setActiveSection] = useState(null);
 
   const [superAdminOptions, setSuperAdminOptions] = useState([
@@ -311,6 +312,7 @@ export default function SmallJobForm() {
               >
                 Cancel
               </button>
+              <Link to="/SendInvitationForm"> </Link>
               <button
                 type="submit"
                 className="btn btn-primary"
