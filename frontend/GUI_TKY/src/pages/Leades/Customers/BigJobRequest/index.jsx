@@ -6,6 +6,7 @@ import BigJobRequestImage from '../../../../assets/images/leads/bigJobicon.png';
 import ApartmentImage from '../../../../assets/images/leads/apartmenticon.png';
 import BathroomTitleIcon from '../../../../assets/images/users/usersview/bathroomicon.png';
 import ToiletTitleIcon from '../../../../assets/images/users/usersview/toileticon.png';
+import { Link } from 'react-router-dom';
 
 const BigJobRequest = () => {
   const projects = [
@@ -198,6 +199,7 @@ const BigJobRequest = () => {
         </div>
 
         {/* Post a Project Button */}
+        <Link to="/SmallJobRequest"> 
         <div className="text-end mt-4">
           <button
             className="btn btn-primary"
@@ -206,6 +208,7 @@ const BigJobRequest = () => {
             Post a project
           </button>
         </div>
+        </Link>
       </main>
     </div>
   );

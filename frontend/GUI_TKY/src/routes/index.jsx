@@ -25,6 +25,7 @@ import ArtBuilding from '@/pages/Leades/Companies/ArtBuilding/ArtBuilding';
 import UploadPhoto from '@/pages/Leades/Companies/UploadPhoto/UploadPhoto';
 import SendInvitationSecond from '@/pages/Leades/Companies/SendInvitation';
 import SendInvitationForm from '@/pages/Leades/Customers/SmallJobRequest/SendInvitation';
+import SmallJobFormRequest from '@/pages/Leades/Customers/SmallJobRequest/SmallJobForm';
 
 const authProtectedRoutes = [
   { path: '/dashboard', component: <Dashboard /> },
@@ -55,7 +56,7 @@ const publicRoutes = [
   { path: '/leads', component: <Leads /> },
   { path: '/BigJobRequest', component: <BigJobRequest /> },
   { path: '/SmallJobRequest', component: <SmallJobRequest /> },
-  { path: '/SmallJobForm', component: <SmallJobForm /> },
+  { path: '/SmallJobFormRequest', component: <SmallJobFormRequest /> },
   { path: '/SendInvitationForm', component: <SendInvitationForm /> },
   { path: '/ArtBuilding', component: <ArtBuilding /> },
   { path: '/UploadPhoto', component: <UploadPhoto /> },

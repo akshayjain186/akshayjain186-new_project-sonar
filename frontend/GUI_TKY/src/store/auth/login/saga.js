@@ -1,7 +1,7 @@
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeEvery } from 'redux-saga/effects';
 import { postLogin } from '@/services/api_helper';
-import {  LOGIN_USER } from './actionTypes';
-import { apiError } from "./action";
+import { LOGIN_USER } from './actionTypes';
+import { apiError } from './action';
 
 /**
  * Saga to handle user login.
@@ -24,7 +24,7 @@ function* loginUser({ payload: { user, history } }) {
     if (response?.status === 200) {
       console.log('Login faileasssssssssssd:', response);
       localStorage.setItem('authUser', JSON.stringify(response.data));
-   
+
       history('/licenses');
     }
   } catch (error) {
@@ -48,4 +48,3 @@ function* authSaga() {
 }
 
 export default authSaga;
-

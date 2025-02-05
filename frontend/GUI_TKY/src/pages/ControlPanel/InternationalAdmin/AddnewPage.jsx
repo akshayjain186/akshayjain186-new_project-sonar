@@ -126,7 +126,6 @@
 //     }
 //   };
 
-
 //   useEffect(() => {
 //     if (continentId || continentId === null) {
 //       dispatch(
@@ -298,7 +297,6 @@
 //                       <div className="dropdown-content">
 //                         <div className="input-with-icon ">
 
-
 //                           <input
 //                             type="search"
 //                             id="searchContinentInput"
@@ -369,7 +367,6 @@
 
 //                       <div className="dropdown-content">
 //                         <div className="input-with-icon">
-
 
 //                           {/* Search Input inside Dropdown */}
 //                           <img src={search} alt="" className="search-icon" />
@@ -753,7 +750,8 @@
 // };
 
 // export default AddnewPage;
-import React, { useEffect, useState } from "react";
+
+import React, { useEffect, useState } from 'react';
 import {
   Col,
   Label,
@@ -762,13 +760,13 @@ import {
   InputGroup,
   InputGroupText,
   Button,
-} from "reactstrap";
-import * as yup from "yup";
-import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+} from 'reactstrap';
+import * as yup from 'yup';
+import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 //  logo image
-import "../controlpaneladmin.scss";
-import InternationalHeader from "./InternationalHeader";
+import '../controlpaneladmin.scss';
+import InternationalHeader from './InternationalHeader';
 import search from '../../../assets/images/searchIcon.png';
 
 import {
@@ -778,8 +776,8 @@ import {
   getContinentListData,
   postGeneralInformation,
   registerUser,
-} from "@/store/actions";
-import { useNavigate } from "react-router";
+} from '@/store/actions';
+import { useNavigate } from 'react-router';
 
 const AddnewPage = () => {
   const dispatch = useDispatch();
@@ -788,19 +786,19 @@ const AddnewPage = () => {
   const [countryListData, setCountryListDataData] = useState([]);
   const [languageListData, setLanguageListData] = useState([]);
   const [currenciesListData, setCurrenciesListData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [continentSearchQuery, setContinentSearchQuery] = useState("");
-  const [countrySearchQuery, setCountrySearchQuery] = useState("");
-  const [currencySearchQuery, setCurrencySearchQuery] = useState("");
+  const [searchTerm, setSearchTerm] = useState('');
+  const [continentSearchQuery, setContinentSearchQuery] = useState('');
+  const [countrySearchQuery, setCountrySearchQuery] = useState('');
+  const [currencySearchQuery, setCurrencySearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const [languageSearchQuery, setLanguageSearchQuery] = useState("");
+  const [languageSearchQuery, setLanguageSearchQuery] = useState('');
   const [filteredLanguages, setFilteredLanguages] = useState(languageListData);
   const [isContinentDropdownOpen, setIsContinentDropdownOpen] = useState(false);
   const [isCurrencyDropdownOpen, setIsCurrencyDropdownOpen] = useState(false);
   const [filteredCountries, setFilteredCountries] = useState([]);
-  const [continentId, setContinentId] = useState(null)
+  const [continentId, setContinentId] = useState(null);
   // States for Currency Dropdown Search
   const filteredContinents = continentListData?.filter((continent) =>
     continent.name.toLowerCase().includes(continentSearchQuery.toLowerCase())
@@ -813,10 +811,10 @@ const AddnewPage = () => {
 
     // List of fields that need to be converted to integers
     const integerFields = [
-      "continent_id",
-      "country_id",
-      "currency_id",
-      "language_id",
+      'continent_id',
+      'country_id',
+      'currency_id',
+      'language_id',
     ];
 
     setFormData((prevData) => ({
@@ -824,7 +822,7 @@ const AddnewPage = () => {
       [name]: integerFields.includes(name) ? parseInt(value, 10) : value,
     }));
   };
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Function to toggle dropdown visibility
   const toggleLanguageDropdown = () => {
@@ -833,8 +831,8 @@ const AddnewPage = () => {
 
   const filteredCurrencies = searchQuery
     ? currenciesListData.filter((currency) =>
-      currency.name.toLowerCase().includes(searchQuery.toLowerCase())
-    )
+        currency.name.toLowerCase().includes(searchQuery.toLowerCase())
+      )
     : currenciesListData;
 
   const handleDropdownToggle = () => {
@@ -842,7 +840,7 @@ const AddnewPage = () => {
   };
   // Function to handle language selection
   const handleLanguageSelect = (id) => {
-    formik.setFieldValue("language_id", id); // Set selected language ID in Formik
+    formik.setFieldValue('language_id', id); // Set selected language ID in Formik
     setIsLanguageDropdownOpen(false); // Close the dropdown
   };
   // Effect to filter languages based on the search query
@@ -859,9 +857,9 @@ const AddnewPage = () => {
   };
 
   const handleCurrencySelect = (currencyId) => {
-    formik.setFieldValue("currency_id", currencyId);
+    formik.setFieldValue('currency_id', currencyId);
     setIsCurrencyDropdownOpen(false); // Close dropdown after selection
-    setSearchQuery(""); // Reset search input
+    setSearchQuery(''); // Reset search input
   };
 
   const handleContinentChange = (event) => {
@@ -870,10 +868,10 @@ const AddnewPage = () => {
 
     if (continentId) {
       getCountryListDataByContinent(continentId)
-        .then(response => {
+        .then((response) => {
           setCountries(response); // Set the countries based on selected continent
         })
-        .catch(error => {
+        .catch((error) => {
           console.error('Error fetching countries:', error);
         });
     } else {
@@ -881,16 +879,12 @@ const AddnewPage = () => {
     }
   };
 
-
   useEffect(() => {
     if (continentId || continentId === null) {
       dispatch(
         getCountryListData({ continentId }, (response, error) => {
-          if (
-            response?.status === 200
-          ) {
+          if (response?.status === 200) {
             setCountryListDataData(response?.data?.countries);
-
           } else {
             setCountryListDataData([]);
           }
@@ -909,7 +903,10 @@ const AddnewPage = () => {
       );
       dispatch(
         getLanguageListData({}, (response, error) => {
-          if (response?.status === 200 && response?.data?.message === "Languages fetched successfully") {
+          if (
+            response?.status === 200 &&
+            response?.data?.message === 'Languages fetched successfully'
+          ) {
             setLanguageListData(response?.data?.languages);
           } else {
             setLanguageListData([]);
@@ -918,7 +915,10 @@ const AddnewPage = () => {
       );
       dispatch(
         getCurrenciesListData({}, (response, error) => {
-          if (response?.status === 200 && response?.data?.message === "Currencies fetched successfully") {
+          if (
+            response?.status === 200 &&
+            response?.data?.message === 'Currencies fetched successfully'
+          ) {
             setCurrenciesListData(response?.data?.currencies);
           } else {
             setCurrenciesListData([]);
@@ -926,75 +926,73 @@ const AddnewPage = () => {
         })
       );
     }
-
   }, [continentId]);
   // Formik setup
   const formik = useFormik({
     initialValues: {
-      name: "",
-      surname: "",
-      email: "",
+      name: '',
+      surname: '',
+      email: '',
       roleId: 2,
-      mobile_no: "",
-      isActive: "",
+      mobile_no: '',
+      isActive: '',
       continent_id: null,
       country_id: null,
       currency_id: null,
       language_id: null,
-      address: "",
-      city: "",
-      postal_code: "",
-      organization_number: "",
+      address: '',
+      city: '',
+      postal_code: '',
+      organization_number: '',
     },
 
     // Validation schema
     validationSchema: yup.object({
-      name: yup.string().required("Manager name is required"),
-      surname: yup.string().required("Manager surname is required"),
-      email: yup.string().email("Invalid email").required("Email is required"),
+      name: yup.string().required('Manager name is required'),
+      surname: yup.string().required('Manager surname is required'),
+      email: yup.string().email('Invalid email').required('Email is required'),
       mobile_no: yup
         .string()
-        .matches(/^[0-9]+$/, "Only numbers are allowed")
-        .required("Mobile phone is required"),
+        .matches(/^[0-9]+$/, 'Only numbers are allowed')
+        .required('Mobile phone is required'),
       continent_id: yup
         .number()
-        .required("Continent is required")
-        .typeError("Continent is required"),
+        .required('Continent is required')
+        .typeError('Continent is required'),
       country_id: yup
         .number()
-        .required("Country is required")
-        .typeError("Country is required"),
+        .required('Country is required')
+        .typeError('Country is required'),
       language_id: yup
         .number()
-        .required("Language is required")
-        .typeError("Language is required"),
+        .required('Language is required')
+        .typeError('Language is required'),
       currency_id: yup
         .number()
-        .required("Currency is required")
-        .typeError("Currency is required"),
+        .required('Currency is required')
+        .typeError('Currency is required'),
       organization_number: yup
         .string()
-        .required("Organization number is required"),
-      address: yup.string().required("Address is required"),
-      city: yup.string().required("City is required"),
+        .required('Organization number is required'),
+      address: yup.string().required('Address is required'),
+      city: yup.string().required('City is required'),
       postal_code: yup
         .string()
-        .matches(/^[0-9]+$/, "Only numbers are allowed")
-        .required("Postal code is required"),
+        .matches(/^[0-9]+$/, 'Only numbers are allowed')
+        .required('Postal code is required'),
     }),
     onSubmit: (values, { resetForm }) => {
-      console.log("values", values);
+      console.log('values', values);
       dispatch(
         registerUser(values, (response, error) => {
           if (response?.status === 201) {
-            alert("User registered successfully!");
+            alert('User registered successfully!');
             resetForm();
-            navigate("/licenses");
+            navigate('/licenses');
             setContinentId(null);
-
           } else {
-            console.error("Registration failed:", error);
-            alert("Registration failed: ");
+            console.error('Registration failed:', error);
+            alert('Registration failed: ');
           }
         })
       );

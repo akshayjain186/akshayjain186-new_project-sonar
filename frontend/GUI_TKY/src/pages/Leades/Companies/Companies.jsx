@@ -2,6 +2,7 @@ import React, { useMemo } from 'react';
 import TableContainer from '../../../components/Common/TableContainer';
 import ActionIcon from '../../../assets/images/leads/ActionIcon.png';
 import SearchIcon from '../../../assets/images/leads/SearchIcon.png';
+import { Link } from 'react-router-dom';
 
 const Companies = () => {
   const rows = [
@@ -158,13 +159,14 @@ const Companies = () => {
         cell: () => (
          
           <div className="d-flex justify-content-end align-items-center text-danger">
+            <Link to="/ArtBuilding"> 
             <img
               src={ActionIcon}
               alt="Show Icon"
               className="fs-4"
               style={{ color: '#41619A', width: '24px', height: '24px' }}
             />
-
+</Link>
             <div
               style={{
                 // borderLeft: '1px solid #EAEEF4',

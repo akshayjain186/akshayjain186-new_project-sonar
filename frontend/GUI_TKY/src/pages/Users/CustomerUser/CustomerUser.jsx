@@ -3,6 +3,7 @@ import TableContainer from '../../../components/Common/TableContainer';
 import plusIcon from '../../../assets/images/users/usersview/Plusicon.png';
 import SearchIcon from '../../../assets/images/leads/SearchIcon.png';
 import ActionIcon from '../../../assets/images/leads/ActionIcon.png';
+import { Link } from 'react-router-dom';
 
 const CustomerUser = () => {
   const rows = [
@@ -124,12 +125,14 @@ const CustomerUser = () => {
         cell: () => (
           <div className="d-flex justify-content-end text-danger">
             {/* <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i> */}
-            <img
-              src={ActionIcon}
-              alt="Show Icon"
-              className="fs-4"
-              style={{ color: '#41619A', width: '24px', height: '24px' }}
-            />
+            <Link to="/CustomerUserProfile">
+              <img
+                src={ActionIcon}
+                alt="Show Icon"
+                className="fs-4"
+                style={{ color: '#41619A', width: '24px', height: '24px' }}
+              />
+            </Link>
             <div
               style={{
                 borderLeft: '1px solid #EAEEF4',
