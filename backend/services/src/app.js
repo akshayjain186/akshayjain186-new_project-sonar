@@ -32,6 +32,6 @@ sequelizeService.authenticate()
   .catch((err) => console.log(`Error: ${err}`)); // Direct chaining for error handling
 
 // Start server with direct chaining
-app.listen(process.env.PORT || 3002, () =>
-  console.log(`Server running on port ${process.env.PORT || 3002}`) // Direct chaining for server start
+app.listen(process.env.PORT || 7002, () =>
+  console.log(`Server running on port ${process.env.PORT || 7002}`) // Direct chaining for server start
 );

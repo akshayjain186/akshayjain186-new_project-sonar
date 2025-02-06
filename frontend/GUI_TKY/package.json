@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "vite --port 3000 --host 0.0.0.0",
+    "start": "vite --port 7000 --host 0.0.0.0",
     "build:staging": "NODE_ENV=staging vite build",
     "build:production": "NODE_ENV=production vite build",
     "start:staging": "vite preview --port $PORT",

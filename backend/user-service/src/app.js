@@ -35,6 +35,6 @@ sequelize.authenticate()
   .catch(err => console.log(`Error: ${err}`));
 
 // Start server
-app.listen(process.env.PORT || 3001, () =>
-  console.log(`Server running on port ${process.env.PORT || 3001}`)
+app.listen(process.env.PORT || 7001, () =>
+  console.log(`Server running on port ${process.env.PORT || 7001}`)
 );

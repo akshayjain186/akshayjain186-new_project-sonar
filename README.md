@@ -27,7 +27,7 @@ DB_PASSWORD=website
 DB_HOST=localhost
 
 # Microservices Base URL
-USERS_SERVICE_URL=http://localhost:3001/api/
+USERS_SERVICE_URL=http://localhost:7001/api/
 
 # Environment Variable
 ENV_NAME=World
@@ -48,8 +48,8 @@ chmod +x run.sh
 
 # Post-Deployment Details:
 ## Backend Services:
-* Runs on ports: 3001 and 33002
+* Runs on ports: 7001 and 7002
 ## Frontend Service:
-* Accessible at: http://localhost:3000
+* Accessible at: http://localhost:7000
 Navigate to the frontend URL in your browser to access the application.
 

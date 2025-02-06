@@ -13,7 +13,7 @@ services:
     networks:
       - turnkey-network
     ports:
-      - "3001:3001"  # Expose port 3001 for local access
+      - "7001:7001"  # Expose port 7001 for local access
 
   # Product service container
   product-service:
@@ -27,7 +27,7 @@ services:
     networks:
       - turnkey-network
     ports:
-      - "3002:3002"  # Expose port 3002 for local access
+      - "7002:7002"  # Expose port 7002 for local access
     depends_on:
       - user-service  # Only this direction remains
 
@@ -37,10 +37,10 @@ services:
       context: ./frontend/GUI_TKY
     image: turnkey-gui_tky
     ports:
-      - "3000:3000"
+      - "7000:7000"
     environment:
       - NODE_ENV=development
-      - PORT=3000
+      - PORT=7000
     networks:
       - turnkey-network
 

@@ -7,15 +7,15 @@ module.exports = {
         watch: true,
         env: {
           NODE_ENV: "development",
-          PORT: 3001, // Specify the port here
+          PORT: 7001, // Specify the port here
         },
         env_staging: {
           NODE_ENV: "staging",
-          PORT: 3002, // Port for staging
+          PORT: 7002, // Port for staging
         },
         env_production: {
           NODE_ENV: "production",
-          PORT: 3003, // Port for production
+          PORT: 7003, // Port for production
         },
       },
     ],

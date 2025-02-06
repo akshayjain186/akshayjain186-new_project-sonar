@@ -11,8 +11,8 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
-# Expose port 3002
-EXPOSE 3002
+# Expose port 7002
+EXPOSE 7002
 
 # Set the command to run the migrations and then start the app
 CMD ["sh", "-c", "npx sequelize-cli db:migrate && npm start"]

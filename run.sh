@@ -22,6 +22,6 @@ docker ps
 
 # Step 3: Provide feedback to the user
 echo_message "The project is now running."
-echo "Frontend: http://localhost:3000"
-echo "Backend user-service: http://localhost:3001"
-echo "Backend services: http://localhost:3002"
+echo "Frontend: http://localhost:7000"
+echo "Backend user-service: http://localhost:7001"
+echo "Backend services: http://localhost:7002"

@@ -27,10 +27,10 @@ const authenticate = async (req, res, next) => {
 
     // Try to verify the token via an API request
     try {
-      response = await axios.post('http://localhost:3001/api/users/verify', { token });
+      response = await axios.post('http://localhost:7001/api/users/verify', { token });
     } catch (error) {
       // If the first URL fails, try the alternate URL for verification
-      response = await axios.post('http://user-service:3001/api/users/verify', { token });
+      response = await axios.post('http://user-service:7001/api/users/verify', { token });
     }
 
     // If the token is valid, attach the user ID to the request and proceed
