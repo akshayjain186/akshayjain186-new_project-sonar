@@ -36,7 +36,7 @@ const seedUsers = async () => {
         surname: 'Control Admin',
         email: 'controlAdmin@gmail.com',
         password: hashedPassword, // Use the actual hashed password
-        mobile_no: '8959881549',
+        mobile_no: null,
         isActive: true,
         roleId: controlAdminRole.id || null, // Use found role ID instead of hardcoded value
         createdAt: new Date(),
@@ -47,7 +47,7 @@ const seedUsers = async () => {
         surname: 'Country Admin',
         email: 'countryAdmin@gmail.com',
         password: hashedPassword, // Use the actual hashed password
-        mobile_no: '8959881549',
+        mobile_no: null,
         isActive: true,
         roleId: countryAdminRole.id || null, // Use found role ID instead of hardcoded value
         createdAt: new Date(),
@@ -58,7 +58,7 @@ const seedUsers = async () => {
         surname: 'Super Admin',
         email: 'superAdmin@gmail.com',
         password: hashedPassword, // Use the actual hashed password
-        mobile_no: '8959881549',
+        mobile_no: null,
         isActive: true,
         roleId: superAdminRole.id || null, // Use found role ID instead of hardcoded value
         createdAt: new Date(),
@@ -69,7 +69,7 @@ const seedUsers = async () => {
         surname: 'Admin',
         email: 'admin@gmail.com',
         password: hashedPassword, // Use the actual hashed password
-        mobile_no: '8959881549',
+        mobile_no: null,
         isActive: true,
         roleId: adminRole.id || null, // Use found role ID instead of hardcoded value
         createdAt: new Date(),
@@ -80,7 +80,7 @@ const seedUsers = async () => {
         surname: 'User',
         email: 'user@gmail.com',
         password: hashedPassword, // Use the actual hashed password
-        mobile_no: '8959881549',
+        mobile_no: null,
         isActive: true,
         roleId: userRole.id || null, // Use found role ID instead of hardcoded value
         createdAt: new Date(),
