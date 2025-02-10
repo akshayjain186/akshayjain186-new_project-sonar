@@ -117,78 +117,78 @@ const seedUsers = require('./user-seeder');
 
     console.log('Database synchronized!');
 
-    // await seedRoles();
+    await seedRoles();
     await seedUsers();
 
-    // // Insert continents
-    // const continentMap = {};
-    // for (const [code, name] of Object.entries(continents)) {
-    //   const continent = await Continent.create({ code, name });
-    //   continentMap[code] = continent.id;
-    // }
+    // Insert continents
+    const continentMap = {};
+    for (const [code, name] of Object.entries(continents)) {
+      const continent = await Continent.create({ code, name });
+      continentMap[code] = continent.id;
+    }
 
-    // // Insert languages with duplicate check
-    // const languageSet = new Set();
-    // for (const data of Object.values(countries)) {
-    //   if (data.languages) {
-    //     for (const lang of data.languages) {
-    //       if (!languageSet.has(lang)) {
-    //         const languageName = iso6391.getName(lang);
+    // Insert languages with duplicate check
+    const languageSet = new Set();
+    for (const data of Object.values(countries)) {
+      if (data.languages) {
+        for (const lang of data.languages) {
+          if (!languageSet.has(lang)) {
+            const languageName = iso6391.getName(lang);
 
-    //         await Language.findOrCreate({
-    //           where: { code: lang },
-    //           defaults: { name: languageName || lang },
-    //         });
+            await Language.findOrCreate({
+              where: { code: lang },
+              defaults: { name: languageName || lang },
+            });
 
-    //         languageSet.add(lang);
-    //       }
-    //     }
-    //   }
-    // }
+            languageSet.add(lang);
+          }
+        }
+      }
+    }
 
-    // console.log('Language data inserted successfully!');
+    console.log('Language data inserted successfully!');
 
-    // // Insert currencies with duplicate check
-    // const currencySet = new Set();
-    // for (const data of Object.values(countries)) {
-    //   if (data.currency) {
-    //     const currencies = Array.isArray(data.currency) ? data.currency : [data.currency];
-    //     for (const currencyCode of currencies) {
-    //       if (!currencySet.has(currencyCode)) {
-    //         const currency = currencyCodes.code(currencyCode);
-    //         const currencyName = currency ? currency.currency : currencyCode;
+    // Insert currencies with duplicate check
+    const currencySet = new Set();
+    for (const data of Object.values(countries)) {
+      if (data.currency) {
+        const currencies = Array.isArray(data.currency) ? data.currency : [data.currency];
+        for (const currencyCode of currencies) {
+          if (!currencySet.has(currencyCode)) {
+            const currency = currencyCodes.code(currencyCode);
+            const currencyName = currency ? currency.currency : currencyCode;
 
-    //         await Currency.findOrCreate({
-    //           where: { currencycode: currencyCode },
-    //           defaults: { name: currencyName },
-    //         });
+            await Currency.findOrCreate({
+              where: { currencycode: currencyCode },
+              defaults: { name: currencyName },
+            });
 
-    //         currencySet.add(currencyCode);
-    //       }
-    //     }
-    //   }
-    // }
+            currencySet.add(currencyCode);
+          }
+        }
+      }
+    }
 
-    // console.log('Currency data inserted successfully!');
+    console.log('Currency data inserted successfully!');
 
-    // // Insert countries
-    // for (const [code, data] of Object.entries(countries)) {
-    //   const flag = getEmojiFlag(code);
+    // Insert countries
+    for (const [code, data] of Object.entries(countries)) {
+      const flag = getEmojiFlag(code);
 
-    //   try {
-    //     await Country.findOrCreate({
-    //       where: { code },
-    //       defaults: {
-    //         name: data.name,
-    //         emoji: flag,
-    //         continentId: continentMap[data.continent],
-    //       },
-    //     });
-    //     console.log(`Country ${data.name} inserted successfully.`);
-    //   } catch (error) {
-    //     console.error(`Error inserting country ${data.name}:`, error);
-    //   }
-    // }
+      try {
+        await Country.findOrCreate({
+          where: { code },
+          defaults: {
+            name: data.name,
+            emoji: flag,
+            continentId: continentMap[data.continent],
+          },
+        });
+        console.log(`Country ${data.name} inserted successfully.`);
+      } catch (error) {
+        console.error(`Error inserting country ${data.name}:`, error);
+      }
+    }
 
     console.log('Seeding completed successfully!');
   } catch (error) {
