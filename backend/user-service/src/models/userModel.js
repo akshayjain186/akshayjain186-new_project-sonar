@@ -26,7 +26,7 @@ User.init(
     },
     mobile_no: {
       type: DataTypes.STRING(15),
-      allowNull: false,
+      allowNull: true,
     },
     roleId: {
       type: DataTypes.STRING,
