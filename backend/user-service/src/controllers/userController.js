@@ -323,6 +323,9 @@ const getAllUsers = async (req, res) => {
       offset: parseInt(offset),
     });
 
+
+
+    console.log('hhhhhhhhhhhhhhhhhh',users)
     if (users.length === 0) {
       return res.status(404).json({
         message: 'No users found.',

@@ -158,7 +158,6 @@ const BigJobRequest = () => {
                         backgroundColor: role.active ? '#F4F8FC' : '#FBFCFE',
                         color: role.active ? '#41619A' : '#A8AFB9',
                         height: '100%',
-                        height: '20px',
                       }}
                     >
                       {role.name}

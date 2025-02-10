@@ -2,15 +2,56 @@ import axios from 'axios';
 const token = '';
 
 // Apply base URL for axios
-const API_URL = import.meta.env.VITE_API_BASE_URL;
+const API_URL = "http://localhost:7001"   //import.meta.env.VITE_API_BASE_URL;
 
 const axiosApi = axios.create({
   baseURL: API_URL,
 });
 
-// Setting default headers
-axiosApi.defaults.headers.common.Authorization = token;
 
+
+
+// if (localStorage.getItem("authUser")) {
+//   const authUser = JSON.parse(localStorage.getItem("authUser"));
+//   axiosApi.defaults.headers.common[
+//     "Authorization"
+//   ] = `Bearer ${authUser.token}`;
+// } else {
+//   axiosApi.defaults.headers.common["Authorization"] = "";
+// }
+// Setting default headers
+// axiosApi.defaults.headers.common.Authorization = token;
+
+// axiosApi.interceptors.response.use(
+//   (response) => response,
+//   (error) => Promise.reject(error)
+// );
+// Request interceptor for adding Authorization and dynamic Content-Type
+axiosApi.interceptors.request.use(
+  (config) => {
+    const authUser = localStorage.getItem('authUser');
+    if (authUser) {
+     
+      const { token } = JSON.parse(authUser);
+      console.log('authUserauthUserauthUserauthUser',token);
+      config.headers['Authorization'] = `Bearer ${token}`;
+    } else {
+      console.log('No authUser found in localStorage');
+    }
+
+    // Dynamically set Content-Type based on the data type
+    if (config.data instanceof FormData) {
+      config.headers["Content-Type"] = "multipart/form-data";
+    } else {
+      config.headers["Content-Type"] = "application/json";
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
+// Response interceptor (you can add error handling or logging here if needed)
 axiosApi.interceptors.response.use(
   (response) => response,
   (error) => Promise.reject(error)

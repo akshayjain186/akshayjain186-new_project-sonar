@@ -20,7 +20,7 @@ if (!sequelizeService) {
     console.log('Database synchronized!');
 
     // Seed roles
-    await seedRoles();
+    // await seedRoles();
 
     // Seed categories and subcategories
     await seedCategoriesAndSubcategories();
