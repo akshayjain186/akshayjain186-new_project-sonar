@@ -9,7 +9,8 @@ import { Link } from 'react-router-dom';
 
 export default function SmallJobRequest() {
   return (
-    <Container fluid className="p-4 position-relative">
+    <div className="card card-header" style={{marginTop:"100px"}}>
+   
     
 
       {/* Header */}
@@ -259,6 +260,7 @@ export default function SmallJobRequest() {
           </Link>
         </Col>
       </Row>
-    </Container>
+    
+    </div>
   );
 }

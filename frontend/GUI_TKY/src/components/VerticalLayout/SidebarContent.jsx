@@ -153,18 +153,18 @@ const SidebarContent = (props) => {
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/users">
                 <i className="bx bx-briefcase-alt"></i>
                 <span>{props.t("Users")}</span>
               </Link>
             </li>
             <li>
-              <Link to="/">
+              <Link to="/leads">
                 <i className="bx bx-briefcase-alt"></i>
                 <span>{props.t("Leads")}</span>
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/">
                 <i className="bx bx-briefcase-alt"></i>
                 <span>{props.t("Economy")}</span>
@@ -187,7 +187,7 @@ const SidebarContent = (props) => {
                 <i className="bx bx-briefcase-alt"></i>
                 <span>{props.t("Templates")}</span>
               </Link>
-            </li>
+            </li> */}
             
           </ul>
         </div>

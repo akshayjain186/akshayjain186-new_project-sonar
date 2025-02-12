@@ -36,7 +36,8 @@ export default function AdminUserView() {
   };
 
   return (
-    <Container className="mt-4">
+    // <Container className="mt-4">
+    <div className="card card-header" style={{marginTop:"100px"}}>
       {/* Header Section */}
       <Row className="align-items-center">
         <Col xs={12} sm={6} md={8}>
@@ -226,6 +227,7 @@ export default function AdminUserView() {
           </Tabs>
         </Col>
       </Row>
-    </Container>
+      </div>
+   
   );
 }

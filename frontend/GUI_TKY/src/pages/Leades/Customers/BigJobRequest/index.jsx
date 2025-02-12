@@ -58,6 +58,8 @@ const BigJobRequest = () => {
   ];
 
   return (
+    <div className="card card-header">
+    
     <div
       className="row mb-2 align-items-center"
       style={{ width: '100%', overflowX: 'hidden' }}
@@ -209,6 +211,7 @@ const BigJobRequest = () => {
         </div>
         </Link>
       </main>
+    </div>
     </div>
   );
 };

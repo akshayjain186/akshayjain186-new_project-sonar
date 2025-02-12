@@ -7,7 +7,8 @@ import finishedIcon from '../../../assets/images/users/usersview/finishedicon.pn
 
 export default function UserProfile() {
   return (
-    <div className="container py-4">
+    // <div className="container py-4">
+    <div className="card card-header" style={{marginTop:"100px"}}>
       {/* Profile Section */}
       <Row className="align-items-center">
         <Col xs="12" sm="6" md="8">

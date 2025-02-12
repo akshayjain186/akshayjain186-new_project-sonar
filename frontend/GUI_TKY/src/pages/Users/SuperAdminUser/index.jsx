@@ -39,7 +39,8 @@ export default function UserView() {
   };
 
   return (
-    <div className="container py-4">
+    // <div className="container py-4">
+    <div className="card card-header" style={{marginTop:"100px"}}>
       {/* Header Section */}
       <Row className="mb-4">
         <Col xs={12} md={8}>

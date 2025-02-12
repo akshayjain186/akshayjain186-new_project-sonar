@@ -86,7 +86,8 @@ export default function AdminViewPlan() {
   };
 
   return (
-    <div className="container py-5">
+    // <div className="container py-5">
+    <div className="card card-header" style={{marginTop:"100px"}}>
       <div className="d-flex align-items-center mb-4">
         <img
           src={adminELogo}

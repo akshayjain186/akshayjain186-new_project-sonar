@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 
 // import TableContainer from '../../../components/Common/TableContainer';
 import TableContainer from '@/components/Common/TableContainer';
-
+import ActionIcon from '../../../../assets/images/leads/ActionIcon.png';
+import { Link } from 'react-router-dom';
 const Manager = () => {
   const rows = [
     {
@@ -60,7 +61,15 @@ const Manager = () => {
         enableColumnFilter: false,
         cell: (cell) => (
           <div className="text-danger d-flex text-end">
-            <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i>
+            {/* <i className="bx bx-show fs-4" style={{ color: '#41619A' }}></i> */}
+             <Link to="/AdminViewPlan">  
+                      <img
+                        src={ActionIcon}
+                        alt="Show Icon"
+                        className="fs-4"
+                        style={{ color: '#41619A', width: '24px', height: '24px' }}
+                      />
+                      </Link>
             <div
               style={{
                 borderLeft: '1px solid #EAEEF4',

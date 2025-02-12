@@ -28,26 +28,19 @@ import SendInvitationForm from '@/pages/Leades/Customers/SmallJobRequest/SendInv
 import SmallJobFormRequest from '@/pages/Leades/Customers/SmallJobRequest/SmallJobForm';
 
 const authProtectedRoutes = [
-  { path: '/dashboard', component: <Dashboard /> },
-  { path: '/', exact: true, component: <Navigate to="/dashboard" /> },
+  // { path: '/dashboard', component: <Dashboard /> },
+  // { path: '/', exact: true, component: <Navigate to="/dashboard" /> },
 ];
 const authControleAdminRoutes = [
+  { path: '/', component: <LicensesPage />},
   { path: '/addnew', component: <AddnewPage /> },
   { path: '/licenses', component: <LicensesPage /> },
+  { path: '/owner', component: <OwnerPage /> },
   { path: '/owner/:id', component: <OwnerPage /> },
 ];
-const publicRoutes = [
-  // { path: '/login', component: <Login /> },
-  {
-    path: '/login',
-    component: authUser ? <Navigate to={'/'} /> : <Login />,
-  },
-  { path: '/signUp', component: <SignUp /> },
-  { path: '/owner', component: <OwnerPage /> },
-  { path: '/smalljob', component: <SmallJobForm /> },
-
-  { path: '/bigjob', component: <BigJobForm /> },
-
+const authCountryAdminRoutes = [
+  { path: '/dashboard', component: <Dashboard /> },
+  { path: '/', exact: true, component: <Navigate to="/dashboard" /> },
   { path: '/users', component: <Users /> },
   { path: '/UserView', component: <UserView /> },
   { path: '/AdminUserView', component: <AdminUserView /> },
@@ -58,9 +51,39 @@ const publicRoutes = [
   { path: '/SmallJobRequest', component: <SmallJobRequest /> },
   { path: '/SmallJobFormRequest', component: <SmallJobFormRequest /> },
   { path: '/SendInvitationForm', component: <SendInvitationForm /> },
-  { path: '/ArtBuilding', component: <ArtBuilding /> },
-  { path: '/UploadPhoto', component: <UploadPhoto /> },
-  { path: '/SendInvitationSecond', component: <SendInvitationSecond /> },
+   { path: '/ArtBuilding', component: <ArtBuilding /> },
+   { path: '/UploadPhoto', component: <UploadPhoto /> },
+   { path: '/SendInvitationSecond', component: <SendInvitationSecond /> },
+   
 ];
 
-export { authProtectedRoutes, authControleAdminRoutes, publicRoutes };
+
+
+const publicRoutes = [
+  // { path: '/', component: <Login /> },
+  {
+    path: '/login',
+    component: authUser ? <Navigate to={'/'} /> : <Login />,
+  },
+  // { path: '/signUp', component: <SignUp /> },
+  // { path: '/owner', component: <OwnerPage /> },
+  { path: '/smalljob', component: <SmallJobForm /> },
+
+  { path: '/bigjob', component: <BigJobForm /> },
+
+  // { path: '/users', component: <Users /> },
+  // { path: '/UserView', component: <UserView /> },
+  // { path: '/AdminUserView', component: <AdminUserView /> },
+  // { path: '/CustomerUserProfile', component: <CustomerUserProfile /> },
+  // { path: '/AdminViewPlan', component: <AdminViewPlan /> },
+  // { path: '/leads', component: <Leads /> },
+  //  { path: '/BigJobRequest', component: <BigJobRequest /> },
+  // { path: '/SmallJobRequest', component: <SmallJobRequest /> },
+  // { path: '/SmallJobFormRequest', component: <SmallJobFormRequest /> },
+  // { path: '/SendInvitationForm', component: <SendInvitationForm /> },
+  //  { path: '/ArtBuilding', component: <ArtBuilding /> },
+  // { path: '/UploadPhoto', component: <UploadPhoto /> },
+  // { path: '/SendInvitationSecond', component: <SendInvitationSecond /> },
+];
+
+export { authProtectedRoutes, authControleAdminRoutes, authCountryAdminRoutes, publicRoutes };

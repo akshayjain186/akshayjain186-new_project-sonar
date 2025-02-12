@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 export default function ArtBuilding() {
   return (
-    <div className=" mt-4" style={{ backgroundColor: 'transparent' }}>
+    <div className="" style={{ backgroundColor: 'transparent' ,marginTop:"100px"}} >
       <div
         className="container me-6"
         style={{ backgroundColor: 'transparent' }}

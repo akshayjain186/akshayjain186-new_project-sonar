@@ -141,7 +141,7 @@ export default function SmallJobFormRequest() {
   };
 
   return (
-    <div className="container-fluid position-relative vh-100 d-flex justify-content-center align-items-start">
+    <div className="container-fluid position-relative vh-100 d-flex justify-content-center align-items-start" style={{marginTop:"100px"}}>
       {/* Blurred Background */}
       {/* <div className="blur-background"></div> */}
 
@@ -312,7 +312,7 @@ export default function SmallJobFormRequest() {
               >
                 Cancel
               </button>
-              <Link to="/SendInvitationForm"> </Link>
+              <Link to="/SendInvitationForm"> 
               <button
                 type="submit"
                 className="btn btn-primary"
@@ -325,6 +325,7 @@ export default function SmallJobFormRequest() {
               >
                 Send
               </button>
+              </Link>
             </div>
           </form>
         </div>

@@ -98,7 +98,7 @@ const UploadPhoto = () => {
   };
 
   return (
-    <div className="container mt-4 mb-5">
+    <div className="container" style={{ marginTop:"100px", marginBottom:"100px"}}>
       <div className=" row  mb-4">
         <div
           className="position-relative d-inline-block"

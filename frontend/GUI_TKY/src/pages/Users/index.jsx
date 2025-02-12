@@ -11,7 +11,8 @@ const Users = () => {
   };
 
   return (
-    <div className="container py-4">
+    // <div className="container py-4">
+    <div className="card card-header mt-4">
       {/* Page Title */}
       <h1 className="mb-4">Users</h1>
 
