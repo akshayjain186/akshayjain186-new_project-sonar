@@ -80,7 +80,7 @@ const Login = (props) => {
         className="container-fluid min-vh-100 align-items-center justify-content-center"
         style={{ backgroundColor: '#2d3b60' }}
       >
-        <div className="text-center pt-md-5 p-4 text-white  align-items-center justify-content-center ">
+        <div className="text-center pt-md-5 p-4 text-white  align-items-center justify-content-center " style={{marginTop: "50px"}}>
           <img
             src={trunkeylogo} // Replace with the actual path to your logo
             alt="Logo"

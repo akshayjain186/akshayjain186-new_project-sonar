@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import adminELogo from '../../../../assets/images/users/usersview/AdminElogo.png';
-
+import checkmarkImage from '../../../../assets/images/icons/righittick.png';
 export default function AdminViewPlan() {
   const [selectedPlan, setSelectedPlan] = useState('Admin BASIC');
   const [selectedDesignations, setSelectedDesignations] = useState(['Plumber']);
@@ -87,7 +87,7 @@ export default function AdminViewPlan() {
 
   return (
     // <div className="container py-5">
-    <div className="card card-header" style={{marginTop:"100px"}}>
+    <div className="card card-header" style={{ marginTop: '100px' }}>
       <div className="d-flex align-items-center mb-4">
         <img
           src={adminELogo}
@@ -117,15 +117,28 @@ export default function AdminViewPlan() {
                 <h5 className="card-title">
                   {plan.name}
                   {selectedPlan === plan.name && (
-                    <img
-                      //   src={checkmarkImage}
-                      //   alt="Selected"
+                    <div
                       style={{
-                        width: '20px',
-                        height: '20px',
-                        marginLeft: '10px',
+                        position: 'absolute',
+                        top: '-2px',
+                        right: '-2px',
+                        background: '#41619A',
+                        borderStartEndRadius: '10px',
+                        borderBottomLeftRadius: '10px',
+                        width: '35px',
+                        height: '35px',
+                        textAlign: 'center',
+                        paddingTop: '5px',
                       }}
-                    />
+                    >
+                      <img
+                        src={checkmarkImage}
+                        style={{
+                          width: '20px',
+                          height: '20px',
+                        }}
+                      />
+                    </div>
                   )}
                 </h5>
 
@@ -149,20 +162,37 @@ export default function AdminViewPlan() {
         </div>
         <div className="card-body">
           {designations.map((designation, index) => (
-            <button
-              key={index}
-              className={`btn btn-outline-primary mx-1 mb-2 ${
-                selectedDesignations.includes(designation) ? 'active' : ''
-              }`}
-              onClick={() => toggleDesignation(designation)}
-              style={{
-                backgroundColor: '#EAEEF4',
-                border: 'none',
-                borderRadius: 20,
-              }}
-            >
-              {designation}
-            </button>
+            <>
+              <button
+                key={index}
+                className={`btn btn-outline-primary mx-1 mb-2 ${
+                  selectedDesignations.includes(designation) ? 'active' : ''
+                }`}
+                onClick={() => toggleDesignation(designation)}
+                style={{
+                  // backgroundColor: '#EAEEF4',
+                  background: selectedDesignations.includes(designation)
+                    ? '#41619A'
+                    : '#EAEEF4',
+                  border: 'none',
+                  borderRadius: 20,
+                }}
+              >
+                {
+                  selectedDesignations.includes(designation) ? (
+                    <img
+                  src={checkmarkImage}
+                  style={{
+                    width: '16px',
+                    height: '16px',
+                    marginRight:"5px"
+                  }}
+                />
+                  ) : ''
+                }
+                {designation}
+              </button>
+            </>
           ))}
         </div>
       </div>
@@ -217,11 +247,26 @@ export default function AdminViewPlan() {
                           onClick={() => toggleDesignation(city)}
                           //   style={{borderRadius:20}}
                           style={{
-                            backgroundColor: '#EAEEF4',
+                            // backgroundColor: '#EAEEF4',
+                            background: selectedDesignations.includes(city)
+                              ? '#41619A'
+                              : '#EAEEF4',
                             border: 'none',
                             borderRadius: 20,
                           }}
                         >
+                          {
+                            selectedDesignations.includes(city) ? (
+                              <img
+                            src={checkmarkImage}
+                            style={{
+                              width: '16px',
+                              height: '16px',
+                              marginRight:"5px"
+                            }}
+                          />
+                            ) : ''
+                          }
                           {city}
                         </button>
                       ))}

@@ -760,6 +760,7 @@ import {
   InputGroup,
   InputGroupText,
   Button,
+  Spinner,
 } from 'reactstrap';
 import * as yup from 'yup';
 import { useFormik } from 'formik';
@@ -823,7 +824,7 @@ const AddnewPage = () => {
     }));
   };
   const [searchQuery, setSearchQuery] = useState('');
-
+  const [isdisablefor_apiCall, setIsdisablefor_apiCall] = useState(false)
   // Function to toggle dropdown visibility
   const toggleLanguageDropdown = () => {
     setIsLanguageDropdownOpen(!isLanguageDropdownOpen);
@@ -983,15 +984,19 @@ const AddnewPage = () => {
     }),
     onSubmit: (values, { resetForm }) => {
       console.log('values', values);
+      setIsdisablefor_apiCall(true);
       dispatch(
         registerUser(values, (response, error) => {
           if (response?.status === 201) {
-            alert('User registered successfully!');
+            //alert('User registered successfully!');
+            setIsdisablefor_apiCall(false);
             resetForm();
             navigate('/licenses');
             setContinentId(null);
           } else {
             console.error('Registration failed:', error);
+           
+            setIsdisablefor_apiCall(false);
             alert('Registration failed: ');
           }
         })
@@ -1533,8 +1538,15 @@ const AddnewPage = () => {
         </Row>
         <Row>
           <Col lg="12" className="text-center mt-4">
-            <Button type="submit" className="btn btn-primary px-5">
-              Submit
+            <Button type="submit" className="btn px-5" style={{background:"#41619a"}}>
+            {isdisablefor_apiCall ? (
+                        <Spinner
+                          style={{ color: "##34c38f" }}
+                          size="sm"
+                        />
+                      ) : (
+                         "Submit"
+                      )}
             </Button>
           </Col>
         </Row>
