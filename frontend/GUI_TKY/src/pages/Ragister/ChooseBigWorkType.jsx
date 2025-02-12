@@ -246,17 +246,11 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                     <div className="actions clearfix text-end">
                         <button
                             style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
-                            className={`  btn  p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
-                        >
-                            <Link
-                                className="text-white"
-                                to="#"
-                                onClick={() => {
-                                    toggleTab(activeTab + 1);
-                                }}
-                            >
-                                Next
-                            </Link>
+                            className={`  btn  p-2 text-white`}
+                            onClick={() => {
+                                toggleTab(activeTab + 1);
+                            }}>
+                            Next
                         </button>
                     </div>
                 </Col>

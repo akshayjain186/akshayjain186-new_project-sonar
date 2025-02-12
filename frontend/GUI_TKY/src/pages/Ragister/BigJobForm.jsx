@@ -124,6 +124,8 @@ function BigJobForm() {
 
   function toggleTab(tab) {
     if (activeTab !== tab) {
+
+      console.log('ggggggggggggggggg',activeTab,"bbbbbbbbbbbbbbbbb",tab);
       var modifiedSteps = [...passedSteps, tab];
       if (tab >= 1 && tab <= 4) {
         setactiveTab(tab);
