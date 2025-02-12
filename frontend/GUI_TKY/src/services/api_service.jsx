@@ -2,7 +2,7 @@ import axios from 'axios';
 const token = '';
 
 // Apply base URL for axios
-const API_URL = import.meta.env.VITE_API_BASE_URL; //"http://localhost:7001"
+const API_URL = "http://localhost:7001"   //import.meta.env.VITE_API_BASE_URL;
 
 const axiosApi = axios.create({
   baseURL: API_URL,
