@@ -61,7 +61,7 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
                         }`}
                       style={{
                         background: selectedWorkers.includes(worker.id)
-                          ? 'blue'
+                          ? '#41619A'
                           : '#fff',
                         color: selectedWorkers.includes(worker.id)
                           ? 'white'
@@ -74,7 +74,8 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
                         style={{
                           height: '20px',
                           width: '20px',
-                          marginTop: '7px',
+                          marginTop: '0px',
+                          filter: selectedWorkers.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                         }}
                         className="me-2"
                       />
@@ -114,7 +115,7 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
                           selectedProjectManagers.includes(
                             worker.id
                           )
-                            ? 'blue'
+                            ? '#41619A'
                             : '#fff',
                         color: selectedProjectManagers.includes(
                           worker.id
@@ -129,7 +130,8 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
                         style={{
                           height: '20px',
                           width: '20px',
-                          marginTop: '7px',
+                          marginTop: '0px',
+                          filter: selectedProjectManagers.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                         }}
                         className="me-2"
                       />
@@ -158,18 +160,12 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
           </Card>
           <div className="actions clearfix text-end">
             <button
-              style={{ width: "100px" }}
+              style={{ width: "100px",backgroundColor:"#41619A", color:"#fff" }}
               className={`btn btn-primary p-2 text-white`}
-            >
-              <Link
-                className="text-white"
-                to="#"
-                onClick={() => {
-                  toggleTab(activeTab + 1);
-                }}
-              >
-                Next
-              </Link>
+              onClick={() => {
+                toggleTab(activeTab + 1);
+              }}>
+              Next
             </button>
           </div>
         </Col>

@@ -84,7 +84,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 }`}
                                             style={{
                                                 background: selectedRooms.includes(room.id) ? '#41619A' : '#F4F8FC',
-                                                color: selectedRooms.includes(room.id) ? 'white' : '#000',
+                                                color: selectedRooms.includes(room.id) ? 'white' : '#000', height:"40px"
                                             }}
                                         >
                                             <img
@@ -93,8 +93,9 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
-                                                    filter: selectedRooms.includes(room.id) ? 'invert(1)' : 'none',  // Add this line
+                                                    marginTop: '0px',
+                                                    // filter: selectedRooms.includes(room.id) ? 'invert(1)' : 'none',
+                                                    filter: selectedRooms.includes(room.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
@@ -150,7 +151,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : '#000',
+                                                    : '#000',height:"40px"
                                             }}
                                         >
                                             <img
@@ -159,7 +160,8 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedOutsideWork.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
@@ -219,7 +221,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : '#000',
+                                                    : '#000',height:"40px"
                                             }}
                                         >
                                             <img
@@ -228,7 +230,8 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedNewBuilding.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
@@ -283,7 +286,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 }`}
                                             style={{
                                                 background: selectedRooms2.includes(room.id) ? '#41619A' : '#F4F8FC',
-                                                color: selectedRooms2.includes(room.id) ? 'white' : '#000',
+                                                color: selectedRooms2.includes(room.id) ? 'white' : '#000',height:"40px"
                                             }}
                                         >
                                             <img
@@ -292,7 +295,8 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedRooms2.includes(room.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
@@ -351,7 +355,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : 'black',
+                                                    : 'black',height:"40px"
                                             }}
                                         >
                                             <img
@@ -360,12 +364,13 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedOutsideWork2.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
                                             <div>
-                                                <div className="mt-2">{worker.label}</div>
+                                                <div className="">{worker.label}</div>
                                             </div>
                                         </div>
                                         <input
@@ -427,7 +432,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : 'black',
+                                                    : 'black',height:"40px"
                                             }}
                                         >
                                             <img
@@ -436,12 +441,13 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedNewBuilding2.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
                                             <div>
-                                                <div className="mt-2">{worker.label}</div>
+                                                <div className="">{worker.label}</div>
                                             </div>
                                         </div>
                                         <input
@@ -465,7 +471,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                             </div>
                         </CardBody>
                     </Card>
-                    <div className="actions clearfix text-end">
+                    {/* <div className="actions clearfix text-end">
                         <button
                             style={{ width: '100px' }}
                             className={` btn btn-primary p-2 (activeTab === 3 ? "next disabled" : "next" )`}
@@ -477,9 +483,33 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                                     toggleTab(activeTab + 1);
                                 }}
                             >
-                                Next
+                                Next  aaaa
                             </Link>
                         </button>
+                    </div> */}
+
+                   <div className="d-flex flex-wrap">
+                       <div className="actions clearfix text-start" style={{width:"50%"}}>
+                       <button
+                            style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
+                            className={` btn p-2`}
+                            onClick={() => {
+                                toggleTab(activeTab - 1);
+                            }}>
+                         Previous
+                        </button>
+                        </div>
+                        <div className="actions clearfix text-end" style={{width:"50%"}}>
+                        <button
+                            style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
+                            className={` btn p-2 (activeTab === 3 ? "next disabled" : "next" )`}
+                            onClick={() => {
+                                toggleTab(activeTab + 1);
+                            }}>
+                         Next
+                        </button>
+                        
+                        </div>
                     </div>
                 </Col>
             </Row>

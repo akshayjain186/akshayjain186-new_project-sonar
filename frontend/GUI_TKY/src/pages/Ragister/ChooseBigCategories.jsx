@@ -85,13 +85,13 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                     selectedBathroomWorkers.includes(
                                                         worker.id
                                                     )
-                                                        ? 'blue'
+                                                        ? '#41619A'
                                                         : '#F4F8FC',
                                                 color: selectedBathroomWorkers.includes(
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : 'black',
+                                                    : 'black',height:"40px"
                                             }}
                                         >
                                             <img
@@ -99,13 +99,14 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedBathroomWorkers.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                                 alt={worker.label}
                                             />
                                             <div>
-                                                <div className="mt-2">{worker.label}</div>
+                                                <div className="mt-0">{worker.label}</div>
                                             </div>
                                         </div>
                                         <input
@@ -161,13 +162,13 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                 background: selectedOutsideWorks.includes(
                                                     worker.id
                                                 )
-                                                    ? 'blue'
+                                                    ? '#41619A'
                                                     : '#F4F8FC',
                                                 color: selectedOutsideWorks.includes(
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : 'black',
+                                                    : 'black',height:"40px"
                                             }}
                                         >
                                             <img
@@ -175,13 +176,14 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedOutsideWorks.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                                 alt={worker.label}
                                             />
                                             <div>
-                                                <div className="mt-2">{worker.label}</div>
+                                                <div className="">{worker.label}</div>
                                             </div>
                                         </div>
                                         <input
@@ -249,13 +251,13 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                     selectedKitchenWorkers.includes(
                                                         worker.id
                                                     )
-                                                        ? 'blue'
+                                                        ? '#41619A'
                                                         : '#F4F8FC',
                                                 color: selectedKitchenWorkers.includes(
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : 'black',
+                                                    : 'black',height:"40px"
                                             }}
                                         >
                                             <img
@@ -264,12 +266,13 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedKitchenWorkers.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
                                             <div>
-                                                <div className="mt-2">{worker.label}</div>
+                                                <div className="">{worker.label}</div>
                                             </div>
                                         </div>
                                         <input
@@ -327,13 +330,13 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                     selectedOutsideWorkers2.includes(
                                                         worker.id
                                                     )
-                                                        ? 'blue'
+                                                        ? '#41619A'
                                                         : '#F4F8FC',
                                                 color: selectedOutsideWorkers2.includes(
                                                     worker.id
                                                 )
                                                     ? 'white'
-                                                    : 'black',
+                                                    : 'black',height:"40px"
                                             }}
                                         >
                                             <img
@@ -342,12 +345,13 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    filter: selectedOutsideWorkers2.includes(worker.id) ? 'grayscale(100%) brightness(0) invert(1)' : 'none',
                                                 }}
                                                 className="me-2"
                                             />
                                             <div>
-                                                <div className="mt-2">{worker.label}</div>
+                                                <div className="">{worker.label}</div>
                                             </div>
                                         </div>
                                         <input
@@ -371,11 +375,32 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                             </div>
                         </CardBody>
                     </Card>
-                    <div className="actions clearfix text-end">
+                    <div className="d-flex flex-wrap">
+                       <div className="actions clearfix text-start" style={{width:"50%"}}>
+                            <button  style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
+                                className={` btn p-2`}  onClick={() => {
+                                    toggleTab(activeTab -1);
+                                }}>
+                                
+                                Previous
+                            </button>
+                        </div>
+                        <div className="actions clearfix text-end" style={{width:"50%"}}>
+                            <button
+                                style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
+                                className={` btn  p-2 (activeTab === 3 ? "next disabled" : "next" )`}  onClick={() => {
+                                    toggleTab(activeTab + 1);
+                                }}>
+                                Next
+                            </button>
+                        </div>
+                    </div>
+                    {/* <div className="actions clearfix text-end">
                         <button
                             style={{ width: '100px' }}
-                            className={` btn btn-primary p-2 (activeTab === 3 ? "next disabled" : "next" )`}
-                        >
+                            className={` btn btn-primary p-2 (activeTab === 3 ? "next disabled" : "next" )`}  onClick={() => {
+                                toggleTab(activeTab + 1);
+                            }}>
                             <Link
                                 className="text-white"
                                 to="#"
@@ -385,8 +410,9 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                             >
                                 Next
                             </Link>
+                            Next
                         </button>
-                    </div>
+                    </div> */}
                 </Col>
             </Row>
         </>

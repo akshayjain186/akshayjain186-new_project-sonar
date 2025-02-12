@@ -46,7 +46,7 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                                         key={worker.id}
                                         className={`card-radio-label text-start ${selectedWorkers.includes(worker.id)
                                                 ? 'border-primary'
-                                                : ''
+                                                : '#F4F8FC'
                                             }`}
                                         style={{
                                             width: '180px',
@@ -61,19 +61,20 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                                         }
                                     >
                                         <div
-                                            className={`card-radio py-4 border rounded d-flex text-start ${selectedWorkers.includes(worker.id)
-                                                    ? 'border-primary'
-                                                    : ''
+                                            className={`card-radio py-4  rounded d-flex text-start 
                                                 }`}
                                             style={{
                                                 background: selectedWorkers.includes(
                                                     worker.id
                                                 )
-                                                    ? 'blue'
-                                                    : '#F4F8FC',
+                                                    ? '#F4F8FC'
+                                                    : '#FFF',
                                                 color: selectedWorkers.includes(worker.id)
-                                                    ? 'white'
+                                                    ? 'black'
                                                     : 'black',
+                                                    borderColor:selectedWorkers.includes(worker.id)
+                                                    ? '#8093b5'
+                                                    : '#F4F8FC',
                                             }}
                                         >
                                             <img
@@ -82,7 +83,8 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                                                 style={{
                                                     height: '20px',
                                                     width: '20px',
-                                                    marginTop: '7px',
+                                                    marginTop: '0px',
+                                                    
                                                 }}
                                                 className="me-2"
                                             />
@@ -101,7 +103,7 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                                         key={worker.id}
                                         className={`card-radio-label text-center ${selectedProjectManagers.includes(worker.id)
                                                 ? 'border-primary'
-                                                : ''
+                                                : '#F4F8FC'
                                             }`}
                                         style={{
                                             minWidth: 'auto',
@@ -116,25 +118,21 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                                         }
                                     >
                                         <div
-                                            className={`card-radio py-4 px-5 border rounded d-flex ${selectedProjectManagers.includes(
-                                                worker.id
-                                            )
-                                                    ? 'border-primary'
-                                                    : ''
+                                            className={`card-radio py-4 px-5  rounded d-flex 
                                                 }`}
-                                            style={{
-                                                background:
-                                                    selectedProjectManagers.includes(
+                                                style={{
+                                                    background: selectedProjectManagers.includes(
                                                         worker.id
                                                     )
-                                                        ? 'blue'
+                                                        ? '#F4F8FC'
+                                                        : '#FFF',
+                                                    color: selectedProjectManagers.includes(worker.id)
+                                                        ? 'black'
+                                                        : 'black',
+                                                        borderColor:selectedProjectManagers.includes(worker.id)
+                                                        ? '#8093b5'
                                                         : '#F4F8FC',
-                                                color: selectedProjectManagers.includes(
-                                                    worker.id
-                                                )
-                                                    ? 'white'
-                                                    : 'black',
-                                            }}
+                                                }}
                                         >
                                             <img
                                                 src={worker.iconClass}
@@ -194,26 +192,21 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                                         }
                                     >
                                         <div
-                                            className={`card-radio py-4 px-5 border rounded d-flex ${selectedNewBuildingManagers.includes(
-                                                worker.id
-                                            )
-                                                    ? 'border-primary'
-                                                    : ''
+                                            className={`card-radio py-4 px-5  rounded d-flex 
                                                 }`}
-                                            style={{
-                                                background:
-                                                    selectedNewBuildingManagers.includes(
+                                                style={{
+                                                    background: selectedNewBuildingManagers.includes(
                                                         worker.id
                                                     )
-                                                        ? 'blue'
-                                                        : '#F4F8FC',
-                                                color:
-                                                    selectedNewBuildingManagers.includes(
-                                                        worker.id
-                                                    )
-                                                        ? 'white'
+                                                        ? '#F4F8FC'
+                                                        : '#FFF',
+                                                    color: selectedNewBuildingManagers.includes(worker.id)
+                                                        ? 'black'
                                                         : 'black',
-                                            }}
+                                                        borderColor:selectedNewBuildingManagers.includes(worker.id)
+                                                        ? '#8093b5'
+                                                        : '#F4F8FC',
+                                                }}
                                         >
                                             <img
                                                 src={worker.iconClass}
@@ -252,8 +245,8 @@ const ChooseBigWorkType = ({ Roomsrenovation, Outsidework, Newbuilding, toggleTa
                     </Card>
                     <div className="actions clearfix text-end">
                         <button
-                            style={{ width: '100px' }}
-                            className={`  btn btn-primary p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
+                            style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
+                            className={`  btn  p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
                         >
                             <Link
                                 className="text-white"

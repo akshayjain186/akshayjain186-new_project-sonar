@@ -11,7 +11,7 @@ import { createSelector } from 'reselect';
 // Formik validation
 import * as Yup from 'yup';
 import { useFormik } from 'formik';
-
+import Header from '../Header/Header';
 import {
   Row,
   Col,
@@ -71,7 +71,11 @@ const Login = (props) => {
     !validation.values.email || !validation.values.password;
 
   return (
+    <>
+    <Header />
+ 
     <React.Fragment>
+      
       <div
         className="container-fluid min-vh-100 align-items-center justify-content-center"
         style={{ backgroundColor: '#2d3b60' }}
@@ -224,6 +228,7 @@ const Login = (props) => {
         </Container>
       </div>
     </React.Fragment>
+    </>
   );
 };
 

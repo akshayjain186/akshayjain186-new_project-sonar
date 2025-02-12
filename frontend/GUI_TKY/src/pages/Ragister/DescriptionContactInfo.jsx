@@ -20,7 +20,7 @@ import {
 
 } from "reactstrap";
 
-const DescriptionContactInfo = () => {
+const DescriptionContactInfo = ({toggleTab, activeTab}) => {
     const [data_attr, setData_attr] = useState(0);
   return (
   <>
@@ -365,14 +365,35 @@ const DescriptionContactInfo = () => {
                           </Form>
                         </CardBody>
                       </Card>
-                      <div className="actions clearfix text-end">
+                      {/* <div className="actions clearfix text-end">
                         <button
                           style={{ width: "100px" }}
                           className={` btn btn-primary p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
                         >
                           Send
                         </button>
-                      </div>
+                      </div> */}
+
+                     <div className="d-flex flex-wrap">
+                       <div className="actions clearfix text-start" style={{width:"50%"}}>
+                       <button
+                            style={{ width: '100px',backgroundColor:"#41619A", color:"#fff" }}
+                            className={` btn p-2`}
+                            onClick={() => {
+                                toggleTab(activeTab - 1);
+                            }}>
+                         Previous
+                        </button>
+                        </div>
+                        <div className="actions clearfix text-end" style={{width:"50%"}}>
+                        <button
+                            style={{ width: "100px",backgroundColor:"#41619A", color:"#fff" }}
+                            className={` btn btn-primary p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}>
+                         Send
+                        </button>
+                        
+                        </div>
+                    </div>
                     </Col>
                   </Row></>
   )
