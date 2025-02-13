@@ -221,10 +221,8 @@ function* showRightSidebar() {
  * @yields {void} Dispatches `getUserProfileSuccess` or `getUserProfileFail` actions based on the API response.
  */
 function* fetchUserProfile() {
-  console.log('fetchUserProfile ');
   try {
     const response = yield call(getUserProfile);
-    console.log('hhhhhhhhhhhhhhh ssssssssssssssssssssss', response);
     try {
       yield put(getUserProfileSuccess(response));
     } catch (error) {

@@ -15,10 +15,9 @@ axiosApi.interceptors.request.use(
     if (authUser) {
      
       const { token } = JSON.parse(authUser);
-      console.log('authUserauthUserauthUserauthUser',token);
       config.headers['Authorization'] = `Bearer ${token}`;
     } else {
-      console.log('No authUser found in localStorage');
+    
     }
 
     // Dynamically set Content-Type based on the data type
@@ -47,7 +46,6 @@ axiosApi.interceptors.response.use(
  * @returns {Promise<Object>} - The response data from the GET request.
  */
 export function get(url, config = {}) {
-  console.log('llllllllllllllllllllllllllllllllllllllll');
   return axiosApi.get(url, { ...config }).then((response) => response);
 }
 
@@ -60,9 +58,7 @@ export function get(url, config = {}) {
  * @returns {Promise<Object>} - The response data from the POST request.
  */
 export function post(url, data, config = {}) {
-  console.log(data, 'post');
   return axiosApi.post(url, { ...data }, { ...config }).then((response) => {
-    console.log('response', response);
     return response;
   });
 }

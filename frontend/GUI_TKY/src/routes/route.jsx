@@ -31,7 +31,6 @@ const Authmiddleware = (props) => {
   const location = useLocation();
   const currentPath = location.pathname;
   if (!localStorage.getItem("authUser")) {
-   // console.log('gggggggggggggggggggggggg')
     return (
       <Navigate to={{ pathname: "/login", state: { from: props.location } }} />
     );
@@ -43,7 +42,6 @@ const Authmiddleware = (props) => {
   
    if(userDetails){
       if(userDetails?.userData?.role?.machineName == "control_admin"){
-        console.log('control admin', )
           // Check if the current path is in the defined routes
           const isValidRoute = controleAdminRoutes.some((path) =>
             new RegExp(`^${path.replace(/:\w+/g, "[^/]+")}$`).test(currentPath)
@@ -53,7 +51,6 @@ const Authmiddleware = (props) => {
           }
       }
       if(userDetails?.userData?.role?.machineName == "country_admin"){
-        console.log('country admin', )
         const isValidRouteCountry = authCountryAdminRoutes.some((path) =>
           new RegExp(`^${path.replace(/:\w+/g, "[^/]+")}$`).test(currentPath)
         );

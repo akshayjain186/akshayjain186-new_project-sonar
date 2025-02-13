@@ -231,7 +231,7 @@ function LicensesPage() {
       getUsersListData(
         { roleId: 2, search: searchQuery },
         (response, error) => {
-          console.log('xaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
+         
           if (response?.status === 200) {
             setUsersListData(response?.data.data);
           } else {

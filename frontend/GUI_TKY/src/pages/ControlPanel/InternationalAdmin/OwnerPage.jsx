@@ -1136,7 +1136,6 @@ const OwnerPage = () => {
         const userId = id;
         dispatch(
             getUserDetailsData({ userId }, (response, error) => {
-                console.log('aaaaaaaaaaaaaaaaaaaaaaaaaa', response?.data.data);
                 if (response?.status === 200) {
                     setUsersDetailsData(response?.data.data);
                 } else {

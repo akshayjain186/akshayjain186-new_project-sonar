@@ -28,7 +28,6 @@ const postLogin = (data) => {
  * @param {object} userData - The registration information (name, email, password, etc.).
  */
 export const postRegister = (data) => {
-  //console.log(data, 'postRegister');
   return post(POST_REGISTER_USER, data);
 };
 /**
@@ -62,7 +61,6 @@ export const getUsersListData = ({ roleId, search }) => {
 };
 
 export const postGeneralInformationData = (data) => {
-  //console.log(data, 'postGeneralInformationData');
   return;
 };
 

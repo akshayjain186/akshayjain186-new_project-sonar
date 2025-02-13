@@ -95,7 +95,6 @@ const seedUsers = async () => {
       });
 
       if (created) {
-        console.log(`Created user: ${user.email}`);
         // Create associated UserInfo
         await UserInfo.findOrCreate({
           where: { userId: user.id },  // Add 'where' clause to check if UserInfo exists
@@ -113,12 +112,12 @@ const seedUsers = async () => {
           },
         });
       } else {
-        console.log(`User already exists: ${user.email}`);
+        
       }
     }
-    console.log('Users seeded successfully.');
+    
   } catch (error) {
-    console.error('Error seeding users:', error);
+    
   }
 };
 

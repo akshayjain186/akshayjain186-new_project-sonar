@@ -126,10 +126,7 @@ const registerUser = async (req, res) => {
 
     // Generate and hash the password
     const generatedPassword = generatePassword();
-    console.log(
-      '--------password for the login user----------->>>>',
-      generatedPassword
-    );
+  
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(generatedPassword, salt);
 
@@ -323,9 +320,6 @@ const getAllUsers = async (req, res) => {
       offset: parseInt(offset),
     });
 
-
-
-    console.log('hhhhhhhhhhhhhhhhhh',users)
     if (users.length === 0) {
       return res.status(404).json({
         message: 'No users found.',

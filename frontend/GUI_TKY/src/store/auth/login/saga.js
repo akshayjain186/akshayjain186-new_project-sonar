@@ -22,13 +22,11 @@ function* loginUser({ payload: { user, history } }) {
     const response = yield call(postLogin, user);
 
     if (response?.status === 200) {
-      console.log('Login faileasssssssssssd:', response);
       localStorage.setItem('authUser', JSON.stringify(response.data));
 
       history('/licenses');
     }
   } catch (error) {
-    console.log('Login failed:', error.response);
     yield put(apiError(error?.response?.data?.message));
     // Optionally, you can dispatch an error action or update the state with the error
   }

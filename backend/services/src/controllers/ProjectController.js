@@ -119,10 +119,6 @@ const registerSmallProject = async (req, res) => {
         }
 
         const generatedPassword = generatePassword();
-        console.log(
-          "password ************** for ************** login ****************",
-          generatedPassword
-        );
 
         const hashedPassword = await bcrypt.hash(generatedPassword, 10);
 
@@ -273,14 +269,11 @@ const getSmallProject = async (req, res) => {
     const userId = req.user?.id;
 
     if (!userId) {
-      console.log("User ID not found in token.");
       return res.status(401).json({
         message: "User ID not found in token.",
         status: "error",
       });
     }
-
-    console.log("Step 1: User ID from token:", userId);
 
     //  Fetch small projects created by the user
     const smallProjects = await SmallProject.findAll({
@@ -288,7 +281,6 @@ const getSmallProject = async (req, res) => {
     });
 
     if (!smallProjects || smallProjects.length === 0) {
-      console.log(`No small projects found for user ID: ${userId}`);
       return res.status(404).json({
         message: "No small projects found for the user.",
         data: [],
@@ -317,11 +309,6 @@ const getSmallProject = async (req, res) => {
         where: { id: project.projectmanagerole_id },
         attributes: ["id", "name"],
       });
-
-      console.log(
-        `Project Manager Role for Project ID ${project.id}:`,
-        projectManagerRole
-      );
       const user = await User.findOne({
         where: { id: project.userId },
         attributes: ["name", "surname", "email", "mobile_no", "roleId"],
@@ -339,11 +326,6 @@ const getSmallProject = async (req, res) => {
         where: { userId: project.userId },
         attributes: ["typeOfHome", "address", "city", "generalComment"],
       });
-
-      console.log(
-        `UserServiceInfo for Project ID ${project.id}:`,
-        userServiceInfo
-      );
 
       const projectResponse = {
         id: project.id,
@@ -379,16 +361,10 @@ const getSmallProject = async (req, res) => {
           : null,
       };
 
-      console.log(
-        `Constructed Response for Project ID ${project.id}:`,
-        projectResponse
-      );
-
       response.push(projectResponse);
     }
 
     // Send the final response
-    console.log("Final Response:", response);
     return res.status(200).json({
       message: "Small projects retrieved successfully.",
       data: response,
@@ -422,7 +398,6 @@ const getAllSmallProjects = async (req, res) => {
     const smallProjects = await SmallProject.findAll();
 
     if (!smallProjects || smallProjects.length === 0) {
-      console.log("No small projects found.");
       return res.status(404).json({
         message: "No small projects found.",
         data: [],
@@ -457,11 +432,6 @@ const getAllSmallProjects = async (req, res) => {
         attributes: ["id", "name"],
       });
 
-      console.log(
-        `Project Manager Role for Project ID ${project.id}:`,
-        projectManagerRole
-      );
-
       // Fetch associated user information
       const user = await User.findOne({
         where: { id: project.userId },
@@ -482,11 +452,6 @@ const getAllSmallProjects = async (req, res) => {
         where: { userId: project.userId },
         attributes: ["typeOfHome", "address", "city", "generalComment"],
       });
-
-      console.log(
-        `UserServiceInfo for Project ID ${project.id}:`,
-        userServiceInfo
-      );
 
       // Construct the response object
       const projectResponse = {
@@ -522,17 +487,10 @@ const getAllSmallProjects = async (req, res) => {
             }
           : null,
       };
-
-      console.log(
-        `Constructed Response for Project ID ${project.id}:`,
-        projectResponse
-      );
-
       response.push(projectResponse);
     }
 
     // Send the final response
-    console.log("Final Response:", response);
     return res.status(200).json({
       message: "Small projects retrieved successfully.",
       data: response,
@@ -565,20 +523,17 @@ const getProjectsByJobType = async (req, res) => {
     const { jobType } = req.query;
 
     if (!jobType) {
-      console.log("Job type is required.");
       return res.status(400).json({
         message: "Job type is required.",
         status: "error",
       });
     }
 
-    console.log("Step 1: Job type from query parameters:", jobType);
     const smallProjects = await SmallProject.findAll({
       where: { type_of_project: jobType },
     });
 
     if (!smallProjects || smallProjects.length === 0) {
-      console.log(`No projects found for job type: ${jobType}`);
       return res.status(404).json({
         message: "No projects found for the specified job type.",
         data: [],
@@ -662,14 +617,12 @@ const getProjectsByJobType = async (req, res) => {
         };
       })
     );
-    console.log("Final Response:", response);
     return res.status(200).json({
       message: "Projects retrieved successfully.",
       data: response,
       status: "success",
     });
   } catch (error) {
-    console.error("Error retrieving projects by job type:", error);
     return res.status(500).json({
       message: "An error occurred while fetching projects by job type.",
       error: error.message,

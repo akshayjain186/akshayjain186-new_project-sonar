@@ -16,8 +16,6 @@ const ChooseWorkType = ({ workerTypes, Projectm, setSelectedWorker, toggleTab, a
       const updatedWorkers = prev.includes(id)
         ? prev.filter((workerId) => workerId !== id) // Remove ID
         : [...prev, id]; // Add ID
-      console.log('Clicked ID:', id); // Log the clicked ID
-      console.log('Updated Workers:', updatedWorkers); // Log the updated state
       return updatedWorkers;
     });
   };

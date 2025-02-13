@@ -12,7 +12,6 @@ const userListReducer = (state = INIT_STATE, action) => {
         ...state,
       };
       case GET_USERS_DETAILS_BY_ID:
-        console.log('userListReducer');
       return {
         ...state,
       };

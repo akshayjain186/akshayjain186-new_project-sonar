@@ -17,12 +17,10 @@ const authenticate = async (req, res, next) => {
 
   // If no token is provided, deny access
   if (!token) {
-    console.log('No token provided');
     return res.status(401).json({ message: 'No token, authorization denied' });
   }
 
   try {
-    console.log('Verifying token:', token);
     let response = null; // Initialize 'response' on declaration
 
     // Try to verify the token via an API request
@@ -38,12 +36,10 @@ const authenticate = async (req, res, next) => {
       req.user = response.data.userId; // Attach user ID to request
       return next(); // Explicitly return after calling next
     } else {
-      console.log('Invalid token');
       return res.status(401).json({ message: 'Invalid token' });
     }
   } catch (error) {
     // Handle errors during token verification
-    console.log('Error verifying token:', error.message);
     return res.status(401).json({ message: 'Token is not valid' });
   }
 };

@@ -8,22 +8,17 @@ import { registerUserFailure, registerUserSuccess } from './action';
  * @param {Object} action - Dispatched action with payload and callback.
  */
 function* RegisterUser(action) {
-  console.log(action, "action ddddd 1")
   const { payload, callback } = action;
-  console.log(action, "action ddddd 2")
 
   try {
     const response = yield call(postRegister, payload?.data);
     // Dispatch success action
-    console.log(response, "action ddddd 3")
 
     // yield put(registerUserSuccess(response?.data));
-    // console.log(action, "action ddddd 4 ")
 
     // Invoke callback if provided
     if (callback) callback(response, null);
   } catch (error) {
-    console.log(error, "action ddddffffffffffffffd")
 
     // Dispatch failure action
     // yield put(registerUserFailure(error));

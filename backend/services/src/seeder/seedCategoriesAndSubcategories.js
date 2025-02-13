@@ -217,7 +217,7 @@ const seedCategoriesAndSubcategories = async () => {
         });
       }
     }
-    console.log('Categories and subcategories seeded successfully!');
+    
   } catch (error) {
     console.error('Error seeding categories and subcategories:', error);
   }

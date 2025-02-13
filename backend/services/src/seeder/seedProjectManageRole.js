@@ -60,9 +60,8 @@ const seedProjectManageRole = async () => {
                 },
             });
         }
-        console.log('Project Manager Roles seeded successfully');
     } catch (err) {
-        console.error('Error seeding project manager roles:', err);
+        
     }
 };
 
