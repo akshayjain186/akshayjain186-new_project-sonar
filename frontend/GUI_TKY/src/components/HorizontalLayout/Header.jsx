@@ -14,14 +14,9 @@ import { Row, Col, Dropdown, DropdownToggle, DropdownMenu } from "reactstrap";
 
 import NotificationDropdown from "../CommonForBoth/TopbarDropdown/NotificationDropdown";
 import ProfileMenu from "../CommonForBoth/TopbarDropdown/ProfileMenu";
-
-import megamenuImg from "../../assets/images/megamenu-img.png";
 import logo from "../../assets/images/logo.svg";
-import logoLight from "../../assets/images/logo-light1.png";
-import logoLightSvg from "../../assets/images/logo-light1.png";
-import logoDark from "../../assets/images/logo-dark.png";
 import logoNew from "../../assets/images/turnkey logo.png";
-import userImage from "../../assets/images/user-image.png";
+import userImage from "../../assets/images/userprofile.png";
 
 //i18n
 import { withTranslation } from "react-i18next";
@@ -29,7 +24,6 @@ import { withTranslation } from "react-i18next";
 const Header = (props) => {
   const [menu, setMenu] = useState(false);
   const [isSearch, setSearch] = useState(false);
-
 
   function toggleFullscreen() {
     if (
@@ -67,22 +61,12 @@ const Header = (props) => {
                  <span className="logo-sm">
                   <img src={logo} alt="" height="22" />
                 </span>
-                {/*<span className="logo-lg">
-                  <img src={logoDark} alt="" height="17" />
-                </span> */}
+              
                 <span className="logo-lg">
                   <img src={logoNew} alt="" height="40" />
                 </span>
               </Link>
-
-              {/* <Link to="/" className="logo logo-light">
-                <span className="logo-sm">
-                  <img src={logoLightSvg} alt="" height="22" />
-                </span>
-                <span className="logo-lg">
-                  <img src={logoLight} alt="" height="19" />
-                </span>
-              </Link> */}
+             
             </div>
             <div className="d-flex align-items-center ms-5 ">
                 <div className="me-2 ">
@@ -98,19 +82,8 @@ const Header = (props) => {
                   <div>Welcome  <span className="fw-bold">Jayant M Shah</span></div>
                 </div>
             <NotificationDropdown/>
-
             <ProfileMenu />
-
             <div className="dropdown d-inline-block">
-              {/* <button
-                onClick={() => {
-                  props.showRightSidebarAction(!props.showRightSidebar);
-                }}
-                type="button"
-                className="btn header-item noti-icon right-bar-toggle "
-              >
-                <i className="bx bx-cog bx-spin" />
-              </button> */}
             </div>
           </div>
         </div>

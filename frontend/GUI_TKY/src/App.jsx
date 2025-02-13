@@ -16,20 +16,6 @@ import NonAuthLayout from "./components/NonAuthLayout"
 // Import scss
 import "./assets/scss/theme.scss";
 const App = (props) => {
-  //  const [userRole, setUserRole] = useState('');
-  // const authUser = localStorage.getItem('authUser');
-  // if(authUser){
-  //   let aaa = JSON.parse(authUser)
-
-  //   console.log('kapil',aaa.userData.role.machineName);
-  //   if(userRole == ''){
-  //     setUserRole(aaa.userData.role.machineName)
-  //   }
-    
-  // }
-  // console.log('userRoleuserRoleuserRoleuserRole',userRole);
-  
-
   const LayoutProperties = createSelector(
     (state) => state.Layout,
     (layout) => ({

@@ -58,28 +58,6 @@ const Header = props => {
                 </span>
               </Link>
             </div>
-
-            {/* <button
-              type="button"
-              onClick={() => {
-                tToggle();
-              }}
-              className="btn btn-sm px-3 font-size-16 header-item "
-              id="vertical-menu-btn"
-            >
-              <i className="fa fa-fw fa-bars" />
-            </button> */}
-
-            {/* <form className="app-search d-none d-lg-block">
-              <div className="position-relative">
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder={props.t("Search") + "..."}
-                />
-                <span className="bx bx-search-alt" />
-              </div>
-            </form> */}
           </div>
           <div className="d-flex">
             <div className="dropdown d-inline-block d-lg-none ms-2">
@@ -130,12 +108,6 @@ const Header = props => {
               }}
               className="dropdown d-inline-block"
             >
-              {/* <button
-                type="button"
-                className="btn header-item noti-icon right-bar-toggle "
-              >
-                <i className="bx bx-cog bx-spin" />
-              </button> */}
             </div>
           </div>
         </div>

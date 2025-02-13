@@ -2,30 +2,12 @@ import axios from 'axios';
 const token = '';
 
 // Apply base URL for axios
-// const API_URL = "http://localhost:7001"   //import.meta.env.VITE_API_BASE_URL;
-const API_URL = "http://103.120.178.54:7001"   //import.meta.env.VITE_API_BASE_URL;
+const API_URL = import.meta.env.VITE_API_BASE_URL;
 const axiosApi = axios.create({
   baseURL: API_URL,
 });
 
 
-
-
-// if (localStorage.getItem("authUser")) {
-//   const authUser = JSON.parse(localStorage.getItem("authUser"));
-//   axiosApi.defaults.headers.common[
-//     "Authorization"
-//   ] = `Bearer ${authUser.token}`;
-// } else {
-//   axiosApi.defaults.headers.common["Authorization"] = "";
-// }
-// Setting default headers
-// axiosApi.defaults.headers.common.Authorization = token;
-
-// axiosApi.interceptors.response.use(
-//   (response) => response,
-//   (error) => Promise.reject(error)
-// );
 // Request interceptor for adding Authorization and dynamic Content-Type
 axiosApi.interceptors.request.use(
   (config) => {

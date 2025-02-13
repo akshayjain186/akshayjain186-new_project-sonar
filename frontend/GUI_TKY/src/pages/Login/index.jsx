@@ -207,7 +207,7 @@ const Login = (props) => {
                       </div>
 
                       <div className="d-flex justify-content-end mb-md-5">
-                        <Link to="/">Forgot password?</Link>
+                        {/* <Link to="/">Forgot password?</Link> */}
                       </div>
                       <Button
                         className="btn w-100 mt-md-5 mb-md-5 text-white"
