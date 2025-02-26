@@ -365,14 +365,7 @@ const DescriptionContactInfo = ({toggleTab, activeTab}) => {
                           </Form>
                         </CardBody>
                       </Card>
-                      {/* <div className="actions clearfix text-end">
-                        <button
-                          style={{ width: "100px" }}
-                          className={` btn btn-primary p-2 text-white (activeTab === 3 ? "next disabled" : "next" )`}
-                        >
-                          Send
-                        </button>
-                      </div> */}
+                      {}
 
                      <div className="d-flex flex-wrap">
                        <div className="actions clearfix text-start" style={{width:"50%"}}>

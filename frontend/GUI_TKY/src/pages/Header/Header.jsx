@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import "./header.scss";
 import './header.scss';
 
 // Redux Store
@@ -15,7 +14,7 @@ import { Row, Col, Dropdown, DropdownToggle, DropdownMenu } from 'reactstrap';
 
 import trunkeylogoblue from '../../assets/images/turnkey logo blue.png';
 import roof from '../../assets/images/roof.png';
-// import tiling from "../../../assets/designImages/tiling.png";
+
 import facade from '../../assets/images/facade.png';
 import demolition from '../../assets/images/demolition.png';
 import vector from '../../assets/images/Vector (1).png';
@@ -31,11 +30,10 @@ const Header = (props) => {
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <React.Fragment>
       <header id="page-topbar" style={{ left: '0' }}>
         <div className="navbar-header">
           <div className="d-flex ">
-            {/* Logo section */}
+            {}
             <div className="navbar-brand-box d-md-block  ">
               <Link to="/" className="logo">
                 <span className="logo-lg-sm ">
@@ -44,19 +42,17 @@ const Header = (props) => {
               </Link>
             </div>
 
-            {/* Find professional  */}
+            {}
             <Dropdown
               className="dropdown-mega  d-md-block "
               isOpen={menu}
-              // toggle={() => setMenu(!menu)}
               style={{ marginLeft: 'auto' }}
             >
               <DropdownToggle className="btn header-item " caret tag="button">
                 {props.t('Find professional')}
               </DropdownToggle>
             </Dropdown>
-            {/* Store mega menu */}
-
+            {}
             <Dropdown
               className="dropdown-mega  d-md-block"
               isOpen={menu}
@@ -315,7 +311,7 @@ const Header = (props) => {
                           </li>
                         </ul>
                         <h5 className="font-size-14 mt-0">
-                          <img src={roof} className="me-2 megaMenuIcon" />
+                          <img src={roof} alt='' className="me-2 megaMenuIcon" />
                           {props.t('Roofer and tinsmith')}
                         </h5>
                         <ul className="list-unstyled megamenu-list">
@@ -509,29 +505,7 @@ const Header = (props) => {
                 >
                   <i className="bx bx-search mb-1 text-black" />
                 </button>
-                {/* {search && (
-                  <div
-                    className="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0 show"
-                    aria-labelledby="page-header-search-dropdown"
-                  >
-                    <form className="p-3">
-                      <div className="form-group m-0">
-                        <div className="input-group">
-                          <input
-                            type="text"
-                            className="form-control"
-                            placeholder="Search ..."
-                          />
-                          <div className="input-group-append">
-                            <button className="btn btn-primary" type="submit">
-                              <i className="mdi mdi-magnify" />
-                            </button>
-                          </div>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                )} */}
+                
               </div>
 
               {/* Cart Icon */}
@@ -571,7 +545,6 @@ const Header = (props) => {
           </div>
         </div>
       </header>
-    </React.Fragment>
   );
 };
 

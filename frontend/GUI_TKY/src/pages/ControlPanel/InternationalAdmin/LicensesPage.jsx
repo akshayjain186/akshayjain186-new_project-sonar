@@ -231,7 +231,6 @@ function LicensesPage() {
       getUsersListData(
         { roleId: 2, search: searchQuery },
         (response, error) => {
-         
           if (response?.status === 200) {
             setUsersListData(response?.data.data);
           } else {
@@ -307,19 +306,18 @@ function LicensesPage() {
                     className="d-flex flex-column flex-md-row justify-content-between h-75 align-items-start align-items-md-center border rounded p-4 mb-2 bg-white"
                     onClick={() => userOwnerPage(license.id)}
                   >
-                    {/* User Info */}
                     <div className="d-flex gap-3 align-items-center mb-2 mb-md-0">
                       <div className="ms-2">
-                        {/* Check if country name exists in the countryCodeMap */}
+                    
                         {countryCodeMap[license.country] ? (
                           <Flag
                             className="rounded-4"
                             code={countryCodeMap[license.country]}
                             style={{
-                              width: '30px', // Set the width of the flag
-                              height: '30px', // Set the height of the flag to be equal to width for a circle
-                              borderRadius: '60%', // This makes the flag circular
-                              objectFit: 'cover', // Ensures the flag fits within the circle without distortion
+                              width: '30px', 
+                              height: '30px', 
+                              borderRadius: '60%', 
+                              objectFit: 'cover',
                             }}
                           />
                         ) : (

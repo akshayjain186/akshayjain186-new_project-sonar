@@ -17,7 +17,7 @@ axiosApi.interceptors.request.use(
       const { token } = JSON.parse(authUser);
       config.headers['Authorization'] = `Bearer ${token}`;
     } else {
-    
+      console.error('', error);
     }
 
     // Dynamically set Content-Type based on the data type

@@ -85,7 +85,9 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 input[type="number"] {
-  -moz-appearance: textfield;
+  -webkit-appearance: textfield; 
+  -moz-appearance: textfield;    
+    appearance: textfield;         
 }
 .form-control:focus,
 .form-select:focus {
@@ -211,8 +213,8 @@ input[type="number"] {
   margin-top: 5px;
 }
 .icon-wrapper {
-  justify-content: center;   /* Centers the icon horizontally */
-  align-items: center;       /* Centers the icon vertically */
+  justify-content: center;   
+  align-items: center;       
   height: 100%;
-           /* Ensure the icon is vertically centered with text */
+           
 }

@@ -142,7 +142,7 @@ const UploadPhoto = () => {
         </div>
         {subscriptionPackages.map((pkg, index) => (
           <div className="col-md-3 mb-3" key={index}>
-            <div
+             <div
               className={`card p-3 text-start ${
                 selectedSubscription === pkg.name ? 'border-primary' : ''
               }`}

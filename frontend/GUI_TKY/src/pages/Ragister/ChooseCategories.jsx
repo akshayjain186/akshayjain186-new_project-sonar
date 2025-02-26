@@ -471,22 +471,7 @@ const ChooseCategories = ({ Rooms, outsidework, newbuilding, selectedWorker, tog
                             </div>
                         </CardBody>
                     </Card>
-                    {/* <div className="actions clearfix text-end">
-                        <button
-                            style={{ width: '100px' }}
-                            className={` btn btn-primary p-2 (activeTab === 3 ? "next disabled" : "next" )`}
-                        >
-                            <Link
-                                className="text-white"
-                                to="#"
-                                onClick={() => {
-                                    toggleTab(activeTab + 1);
-                                }}
-                            >
-                                Next  aaaa
-                            </Link>
-                        </button>
-                    </div> */}
+                    {}
 
                    <div className="d-flex flex-wrap">
                        <div className="actions clearfix text-start" style={{width:"50%"}}>

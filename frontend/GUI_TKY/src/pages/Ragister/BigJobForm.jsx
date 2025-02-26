@@ -38,7 +38,6 @@ import Appertment from '../../assets/images/icons/Appertment.png';
 import ChooseBigWorkType from './ChooseBigWorkType';
 import ChooseBigCategories from './ChooseBigCategories';
 import ChooseBigContanctInfo from './ChooseBigContanctInfo';
-//import logo from '../../../assets/images/turnkey logo.png';
 
 import logo from '../../assets/images/turnkeylogo222.png';
 import Header from '../Header/Header';

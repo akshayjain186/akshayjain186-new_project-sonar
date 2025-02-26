@@ -88,37 +88,35 @@ const seedUsers = async () => {
       },
     ];
 
-    for (const userData of users) {
-      const [user, created] = await User.findOrCreate({
-        where: { email: userData.email },
-        defaults: userData,
-      });
+for (const userData of users) {
+  const [user, created] = await User.findOrCreate({
+    where: { email: userData.email },
+    defaults: userData,
+  });
 
-      if (created) {
-        // Create associated UserInfo
-        await UserInfo.findOrCreate({
-          where: { userId: user.id },  // Add 'where' clause to check if UserInfo exists
-          defaults: {
-            address: '123 Main St',
-            city: 'Default City',
-            postal_code: '12345',
-            continent_id: 1,
-            country_id: 1,
-            currency_id: 1,
-            language_id: 1,
-            organization_number: `ORG-${Math.floor(Math.random() * 10000)}`,
-            createdAt: new Date(),
-            updatedAt: new Date(),
-          },
-        });
-      } else {
-        
-      }
-    }
-    
-  } catch (error) {
-    
+  if (created) {
+    // Create associated UserInfo
+    await UserInfo.findOrCreate({
+      where: { userId: user.id },  // Check if UserInfo exists
+      defaults: {
+        address: '123 Main St',
+        city: 'Default City',
+        postal_code: '12345',
+        continent_id: 1,
+        country_id: 1,
+        currency_id: 1,
+        language_id: 1,
+        organization_number: `ORG-${Math.floor(Math.random() * 10000)}`,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      },
+    });
   }
-};
+}
+
+} catch (error) {
+  console.error('Error seeding users:', error); // Log error for debugging
+}
+}
 
 module.exports = seedUsers;

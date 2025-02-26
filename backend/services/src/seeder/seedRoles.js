@@ -91,14 +91,13 @@ const seedRoles = async () => {
       });
 
       if (created) {
-        
+        console.log(`Role created: ${role.name}`);
       } else {
-        
+        console.log(` Role already exists: ${role.name}`);
       }
     }
-    
   } catch (error) {
-    console.error('Error seeding roles:', error);
+    console.error(' Error seeding roles:', error);
   }
 };
 

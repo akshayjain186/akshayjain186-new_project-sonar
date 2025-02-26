@@ -86,18 +86,18 @@ const seedRoles = async () => {
         where: { machineName: roleData.machineName },
         defaults: {
           ...roleData,
-          permissions: JSON.stringify(roleData.permissions),
+          permissions: JSON.stringify(roleData.permissions), // Ensure permissions are stored as JSON string
         },
       });
 
       if (created) {
-        
+        console.log(`Role created: ${roleData.name}`);
       } else {
-       
+        console.log(`Role already exists: ${roleData.name}`);
       }
     }
   } catch (error) {
-   
+    console.error('Error seeding roles:', error);
   }
 };
 

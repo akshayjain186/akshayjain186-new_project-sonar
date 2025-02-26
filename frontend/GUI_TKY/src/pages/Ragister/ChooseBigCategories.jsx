@@ -395,24 +395,7 @@ const ChooseBigCategories = ({ worker, projectmanager, toggleTab, activeTab }) =
                             </button>
                         </div>
                     </div>
-                    {/* <div className="actions clearfix text-end">
-                        <button
-                            style={{ width: '100px' }}
-                            className={` btn btn-primary p-2 (activeTab === 3 ? "next disabled" : "next" )`}  onClick={() => {
-                                toggleTab(activeTab + 1);
-                            }}>
-                            <Link
-                                className="text-white"
-                                to="#"
-                                onClick={() => {
-                                    toggleTab(activeTab + 1);
-                                }}
-                            >
-                                Next
-                            </Link>
-                            Next
-                        </button>
-                    </div> */}
+                    {}
                 </Col>
             </Row>
         </>

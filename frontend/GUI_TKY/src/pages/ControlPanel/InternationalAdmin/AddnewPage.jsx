@@ -34,11 +34,8 @@ const AddnewPage = () => {
   const [countryListData, setCountryListDataData] = useState([]);
   const [languageListData, setLanguageListData] = useState([]);
   const [currenciesListData, setCurrenciesListData] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [continentSearchQuery, setContinentSearchQuery] = useState('');
   const [countrySearchQuery, setCountrySearchQuery] = useState('');
-  const [currencySearchQuery, setCurrencySearchQuery] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [languageSearchQuery, setLanguageSearchQuery] = useState('');
@@ -104,24 +101,23 @@ const AddnewPage = () => {
 
   const handleCurrencySelect = (currencyId) => {
     formik.setFieldValue('currency_id', currencyId);
-    setIsCurrencyDropdownOpen(false); // Close dropdown after selection
-    setSearchQuery(''); // Reset search input
+    setIsCurrencyDropdownOpen(false); 
+    setSearchQuery(''); 
   };
 
   const handleContinentChange = (event) => {
     const continentId = event.target.value;
-    setSelectedContinent(continentId); // Update selected continent
-
+    setSelectedContinent(continentId); 
     if (continentId) {
       getCountryListDataByContinent(continentId)
         .then((response) => {
-          setCountries(response); // Set the countries based on selected continent
+          setCountries(response); 
         })
         .catch((error) => {
           console.error('Error fetching countries:', error);
         });
     } else {
-      setCountries([]); // If no continent is selected, clear the countries
+      setCountries([]); 
     }
   };
 
@@ -173,7 +169,6 @@ const AddnewPage = () => {
       );
     }
   }, [continentId]);
-  // Formik setup
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -191,15 +186,13 @@ const AddnewPage = () => {
       postal_code: '',
       organization_number: '',
     },
-
-    // Validation schema
     validationSchema: yup.object({
       name: yup.string().required('Manager name is required'),
       surname: yup.string().required('Manager surname is required'),
       email: yup.string().email('Invalid email').required('Email is required'),
       mobile_no: yup
         .string()
-        .matches(/^[0-9]+$/, 'Only numbers are allowed')
+        .matches(/^0-9]+$/, 'Only numbers are allowed')
         .required('Mobile phone is required'),
       continent_id: yup
         .number()
@@ -224,7 +217,7 @@ const AddnewPage = () => {
       city: yup.string().required('City is required'),
       postal_code: yup
         .string()
-        .matches(/^[0-9]+$/, 'Only numbers are allowed')
+        .matches(/^0-9]+$/, 'Only numbers are allowed')
         .required('Postal code is required'),
     }),
     onSubmit: (values, { resetForm }) => {
@@ -232,7 +225,6 @@ const AddnewPage = () => {
       dispatch(
         registerUser(values, (response, error) => {
           if (response?.status === 201) {
-            //alert('User registered successfully!');
             setIsdisablefor_apiCall(false);
             resetForm();
             navigate('/licenses');
@@ -250,12 +242,12 @@ const AddnewPage = () => {
 
   return (
     <React.Fragment>
-      {/* Navigation bar */}
+      {}
       <InternationalHeader />
-      {/* Main content */}
+      {}
       <form onSubmit={formik.handleSubmit}>
         <Row className="m-4">
-          {/* Left Column for General Information */}
+          {}
           <div className="mb-2">
             <p className="mt-3">
               <span className="text-muted mb-2">Licenses</span> &nbsp;&nbsp;
@@ -264,12 +256,12 @@ const AddnewPage = () => {
             </p>
           </div>
           <Col lg="12" className="d-flex justify-content gap-4">
-            {/* General Information Form */}
+            {}
 
             <Col lg="6">
               <div className="border border-2 p-4 rounded-3">
                 <p className="fw-bold fs-5">General information</p>
-                {/* continent */}
+                {}
                 <div className=" ajax-select mt-3">
                   <label className="mb-0 mt-3">Continent</label>
                   <div className="dropdown">
@@ -284,7 +276,7 @@ const AddnewPage = () => {
                       onClick={() => {
                         setIsContinentDropdownOpen(!isContinentDropdownOpen);
                         formik.setFieldValue('country_id', null);
-                        setIsCurrencyDropdownOpen(false); // Close currency dropdown
+                        setIsCurrencyDropdownOpen(false); 
                       }}
                     >
                       {formik.values.continent_id
@@ -307,8 +299,8 @@ const AddnewPage = () => {
                               setContinentSearchQuery(e.target.value)
                             }
                             style={{
-                              paddingLeft: '3rem', // Added padding to prevent overlap with the search icon
-                              paddingRight: '2.5rem', // Added right padding for potential future use
+                              paddingLeft: '3rem', 
+                              paddingRight: '2.5rem', 
                             }}
                           />
                           <img
@@ -317,12 +309,12 @@ const AddnewPage = () => {
                             className="search-icon"
                             style={{
                               position: 'absolute',
-                              right: '10px', // Positioned icon to the right
-                              top: '5%', // Vertically centered
+                              right: '10px', 
+                              top: '5%', 
                               transform: 'translateY(-50%)',
-                              width: '20px', // Set icon width
-                              height: '20px', // Set icon height
-                              pointerEvents: 'none', // Ensures the icon doesn't block input interactions
+                              width: '20px', 
+                              height: '20px', 
+                              pointerEvents: 'none', 
                             }}
                           />
                         </div>
@@ -370,9 +362,9 @@ const AddnewPage = () => {
                       }`}
                       onClick={() => {
                         setIsCountryDropdownOpen(!isCountryDropdownOpen);
-                        setIsContinentDropdownOpen(false); // Ensure other dropdowns are closed
-                        setCountrySearchQuery(''); // Reset search query
-                        setFilteredCountries(countryListData); // Initially show all countries
+                        setIsContinentDropdownOpen(false); 
+                        setCountrySearchQuery(''); 
+                        setFilteredCountries(countryListData); 
                       }}
                     >
                       {formik.values.country_id
@@ -385,7 +377,7 @@ const AddnewPage = () => {
                     {isCountryDropdownOpen && (
                       <div className="dropdown-content">
                         <div className="input-with-icon">
-                          {/* Search Input inside Dropdown */}
+                          {}
                           <img src={search} alt="" className="search-icon" />
                           <input
                             type="text"
@@ -394,8 +386,8 @@ const AddnewPage = () => {
                             className="dropdown-search rounded-3 bg-transparent input mt-1"
                             value={countrySearchQuery}
                             style={{
-                              paddingLeft: '3rem', // Added padding to prevent overlap with the search icon
-                              paddingRight: 'rem', // Added right padding for potential future use
+                              paddingLeft: '3rem', 
+                              paddingRight: 'rem', 
                             }}
                             onChange={(e) => {
                               const query = e.target.value.toLowerCase();
@@ -409,7 +401,7 @@ const AddnewPage = () => {
                             }}
                           />
                         </div>
-                        {/* Render Country List */}
+                        {}
                         {filteredCountries?.length > 0 ? (
                           filteredCountries.map((country) => (
                             <div
@@ -417,7 +409,7 @@ const AddnewPage = () => {
                               className="dropdown-item"
                               onClick={() => {
                                 formik.setFieldValue('country_id', country.id);
-                                setIsCountryDropdownOpen(false); // Close dropdown after selection
+                                setIsCountryDropdownOpen(false); 
                               }}
                             >
                               {country.name}
@@ -436,7 +428,7 @@ const AddnewPage = () => {
                   </div>
                 </div>
 
-                {/* Language Dropdown */}
+                {}
                 <div className=" ajax-select  mt-lg-0 select2-container">
                   <label className="mb-0 mt-3">Language</label>
                   <div className="dropdown">
@@ -470,8 +462,8 @@ const AddnewPage = () => {
                               className="dropdown-search rounded-3 bg-transparent input mt-1"
                               value={languageSearchQuery}
                               style={{
-                                paddingLeft: '3rem', // Added padding to prevent overlap with the search icon
-                                paddingRight: 'rem', // Added right padding for potential future use
+                                paddingLeft: '3rem', 
+                                paddingRight: 'rem', 
                               }}
                               onChange={(e) => {
                                 const query = e.target.value.toLowerCase();
@@ -508,11 +500,11 @@ const AddnewPage = () => {
                   )}
                 </div>
 
-                {/* Currency Dropdown */}
+                {}
                 <div className=" ajax-select  mt-lg-0 select2-container">
                   <label className="mb-0 mt-3">Currency</label>
                   <div className="dropdown">
-                    {/* Dropdown Button */}
+                    {}
                     <button
                       type="button"
                       className={`dropbtn form-select rounded-3 bg-transparent ${
@@ -530,12 +522,12 @@ const AddnewPage = () => {
                         : 'Select currency'}
                     </button>
 
-                    {/* Dropdown Content */}
+                    {}
                     {isCurrencyDropdownOpen && (
                       <div className="dropdown-content">
                         <div className="input-with-icon">
                           <img src={search} alt="" className="search-icon" />
-                          {/* Search Input */}
+                          {}
                           <input
                             type="text"
                             id="currencySearchInput"
@@ -544,12 +536,12 @@ const AddnewPage = () => {
                             value={searchQuery}
                             onChange={handleSearchChange}
                             style={{
-                              paddingLeft: '3rem', // Added padding to prevent overlap with the search icon
-                              paddingRight: 'rem', // Added right padding for potential future use
+                              paddingLeft: '3rem', 
+                              paddingRight: 'rem', 
                             }}
                           />
                         </div>
-                        {/* Render Filtered List */}
+                        {}
                         {filteredCurrencies.length > 0 ? (
                           filteredCurrencies.map((currency) => (
                             <div
@@ -567,7 +559,7 @@ const AddnewPage = () => {
                     )}
                   </div>
 
-                  {/* Validation Message */}
+                  {}
                   {formik.touched.currency_id && formik.errors.currency_id && (
                     <div className="text-danger">
                       {formik.errors.currency_id}
@@ -575,7 +567,7 @@ const AddnewPage = () => {
                   )}
                 </div>
 
-                {/* Organisation Number */}
+                {}
                 <div className=" templating-select select2-container ">
                   <Label className="mb-0 mt-3">Organisation number</Label>
                   <Input
@@ -600,13 +592,13 @@ const AddnewPage = () => {
                 </div>
               </div>
             </Col>
-            {/* Right Column for Owner Information */}
+            {}
             <Col lg="6" className="">
               <div className="border border-2 p-4 rounded-3">
                 <p className="fw-bold fs-5">Owner information</p>
                 <Row>
                   <Col lg="12" className="mt-3">
-                    {/* Manager Name and Surname */}
+                    {}
                     <div className="d-flex gap-2">
                       <div className="w-50">
                         <Label className="mb-0">Manager name</Label>
@@ -652,7 +644,7 @@ const AddnewPage = () => {
                       </div>
                     </div>
 
-                    {/* Email Input */}
+                    {}
                     <div className="mb-3 templating-select select2-container">
                       <Label className="control-label mb-0 mt-3">E-mail</Label>
                       <Input
