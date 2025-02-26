@@ -1,0 +1,19 @@
+{
+  "name": "turnkey-",
+  "version": "1.0.0",
+  "description": "```cmd /turnKey ├── backend │   ├── services │   └── user-service ├── docker-compose.yml ├── frontend │   └── GUI_TKY ├── README.md └── shared     ├── config     └── utils ```",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akshayjain186/akshayjain186-new_project-sonar.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/akshayjain186/akshayjain186-new_project-sonar/issues"
+  },
+  "homepage": "https://github.com/akshayjain186/akshayjain186-new_project-sonar#readme"
+}

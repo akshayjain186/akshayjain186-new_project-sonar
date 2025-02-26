@@ -1,0 +1,43 @@
+name: SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  sonar:
+    name: SonarQube Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npm test
+
+      - name: SonarQube Scan
+        env:
+          SONAR_TOKEN: 6d672237e3425a93a6e9600dee9878b1f6fcdda6 
+        run: |
+          npx sonarqube-scanner \
+            -Dsonar.projectKey=akshayjain186_akshayjain186-new_project-sonar \
+            -Dsonar.organization=Trunket-project55 \
+            -Dsonar.sources=./src \
+            -Dsonar.host.url=http://sonarqube:9000 \
+            -Dsonar.language=js \
+           
