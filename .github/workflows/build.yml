@@ -3,10 +3,10 @@ name: SonarQube Analysis
 on:
   push:
     branches:
-      - main
+      - dev-backup
   pull_request:
     branches:
-      - main
+      - dev-backup
 
 jobs:
   sonar:
@@ -32,12 +32,10 @@ jobs:
 
       - name: SonarQube Scan
         env:
-          SONAR_TOKEN: 6d672237e3425a93a6e9600dee9878b1f6fcdda6 
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           npx sonarqube-scanner \
-            -Dsonar.projectKey=akshayjain186_akshayjain186-new_project-sonar \
-            -Dsonar.organization=Trunket-project55 \
+            -Dsonar.projectKey=akshayjain186_Trunket-project2 \
+            -Dsonar.organization=Trunket-project2 \
             -Dsonar.sources=./src \
-            -Dsonar.host.url=http://sonarqube:9000 \
-            -Dsonar.language=js \
-           
+            -Dsonar.host.url=https://sonarcloud.io
