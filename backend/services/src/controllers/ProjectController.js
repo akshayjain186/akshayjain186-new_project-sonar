@@ -11,11 +11,6 @@ const { Op } = require("sequelize");
 const nodemailer = require("nodemailer");
 const bcrypt = require("bcryptjs");
 const crypto = require("crypto");
-
-
-
-r2df3tyug5hjbtrhv324ik tjrhye532f46rtbywef53r26enjt
-
 //Used to Generate a Random Password
 require("dotenv").config();
 
@@ -355,7 +350,7 @@ const getSmallProject = async (req, res) => {
         })),
         userServiceInfo: userServiceInfo || null,
         user: user
-          ? {
+           {
               name: user.name,
               surname: user.surname,
               email: user.email,
