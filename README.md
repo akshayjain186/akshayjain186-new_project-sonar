@@ -1,4 +1,7 @@
 # turnKey
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ff7aec776cc54e4caa1a69158a92fa7e)](https://app.codacy.com/gh/akshayjain186/akshayjain186-new_project-sonar?utm_source=github.com&utm_medium=referral&utm_content=akshayjain186/akshayjain186-new_project-sonar&utm_campaign=Badge_Grade)
+
 ## Project Directory Structure
 ```cmd
 /turnKey
